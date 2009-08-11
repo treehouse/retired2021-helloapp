@@ -230,6 +230,14 @@ namespace Hello.Repo
 				return this.GetTable<Seat>();
 			}
 		}
+		
+		public System.Data.Linq.Table<QueuedTweet> QueuedTweets
+		{
+			get
+			{
+				return this.GetTable<QueuedTweet>();
+			}
+		}
 	}
 	
 	[Table(Name="dbo.UserTypes")]
@@ -2645,6 +2653,87 @@ namespace Hello.Repo
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.QueuedTweets")]
+	public partial class QueuedTweet
+	{
+		
+		private string _Username;
+		
+		private string _Message;
+		
+		private System.DateTime _Created;
+		
+		private bool _Processed;
+		
+		public QueuedTweet()
+		{
+		}
+		
+		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Username
+		{
+			get
+			{
+				return this._Username;
+			}
+			set
+			{
+				if ((this._Username != value))
+				{
+					this._Username = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Message", DbType="NVarChar(140) NOT NULL", CanBeNull=false)]
+		public string Message
+		{
+			get
+			{
+				return this._Message;
+			}
+			set
+			{
+				if ((this._Message != value))
+				{
+					this._Message = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
+		public System.DateTime Created
+		{
+			get
+			{
+				return this._Created;
+			}
+			set
+			{
+				if ((this._Created != value))
+				{
+					this._Created = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Processed", DbType="Bit NOT NULL")]
+		public bool Processed
+		{
+			get
+			{
+				return this._Processed;
+			}
+			set
+			{
+				if ((this._Processed != value))
+				{
+					this._Processed = value;
+				}
 			}
 		}
 	}

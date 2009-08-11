@@ -31,7 +31,9 @@ namespace Hello.Bot
 
         private static void ProcessHashTag()
         {
-            var statusesWithOurHashTag = GetTwitterRequest()
+            // TODO: Check max id
+
+            var statuses = GetTwitterRequest()
                 .Search()
                 .Query()
                 .ContainingHashTag(ConfigurationManager.AppSettings["TwitterHashTag"])
@@ -39,34 +41,78 @@ namespace Hello.Bot
                 //.Skip(2)
                 .Take(int.MaxValue)
                 .Request()
-                .AsSearchResult();
+                .AsSearchResult()
+                .Statuses
+                .Select(s => new QueuedTweet
+                {
+                    Username = s.FromUserScreenName,
+                    Message = s.Text
+                });
+
+            // TODO: record max id
+
+            StoreTweets(statuses);
         }
 
         private static void ProcessMentions()
         {
-            var statusesMentioningMe = GetTwitterRequest()
+            // TODO: Check max id
+
+            var statuses = GetTwitterRequest()
                 .Statuses()
                 .Mentions()
                 //.Since(123456789)
                 .Request()
-                .AsStatuses();
+                .AsStatuses()
+                .Select(s => new QueuedTweet
+                {
+                    Username = s.User.ScreenName,
+                    Message = s.Text
+                });
+
+            // TODO: record max id
+
+            StoreTweets(statuses);
         }
 
         private static void ProcessDirectMessages()
         {
-            var receivedDMs = GetTwitterRequest()
+            // TODO: Check max id
+
+            var statuses = GetTwitterRequest()
                 .DirectMessages()
                 .Received()
                 //.Since()
                 .Request()
-                .AsDirectMessages();
+                .AsDirectMessages()
+                .Select(s => new QueuedTweet
+                {
+                    Username = s.SenderScreenName,
+                    Message = s.Text
+                });
+
+            // TODO: record max id
+
+            StoreTweets(statuses);
         }
 
-        private static void SendDirectMessage(string screenName, string message)
+        private static void StoreTweets(IEnumerable<QueuedTweet> tweets)
+        {
+            var repo = new HelloRepoDataContext();
+            repo.QueuedTweets.InsertAllOnSubmit(
+                tweets.Select(t => new QueuedTweet {
+                    Username = t.Username,
+                    Message = t.Message,
+                    Created = DateTime.Now
+                })
+            );
+        }
+
+        private static void SendDirectMessage(string username, string message)
         {
             var response = GetTwitterRequest()
                 .Statuses()
-                .Update(String.Format("d {0} {1}", screenName, message))
+                .Update(String.Format("d {0} {1}", username, message))
                 .Request();
         }
     }

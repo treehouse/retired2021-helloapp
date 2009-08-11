@@ -158,4 +158,12 @@
       <Association Name="Event_Seat" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.QueuedTweets" Member="QueuedTweets">
+    <Type Name="QueuedTweet">
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(140) NOT NULL" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Processed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

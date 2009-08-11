@@ -148,7 +148,7 @@
         <classShapeMoniker Id="92e38f0f-e5e4-4d27-b63a-3f8a270e4752" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.30510797526406 : 5.5); (7.30510797526406 : 4.08742390950521); (5 : 4.08742390950521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.90440074381601 : 5.5); (6.90440074381601 : 4.08742390950521); (5 : 4.08742390950521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/HelloRepoDataContext/User/User_Point" />
       <nodes>
         <classShapeMoniker Id="1d206fc7-2dc0-4e96-82c0-11749f1fbc35" />
@@ -209,5 +209,11 @@
         <classShapeMoniker Id="e9b1c8bf-4c49-4320-bcd1-1071b2168674" />
       </nodes>
     </associationConnector>
+    <classShape Id="89250876-4818-40b2-a920-dadeba853c78" absoluteBounds="0.625, 2.75, 2, 1.4248478190104168">
+      <DataClassMoniker Name="/HelloRepoDataContext/QueuedTweet" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6728b134-dbc8-46fb-9db4-2a32ad545aa5" absoluteBounds="0.64000000000000012, 3.21, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
