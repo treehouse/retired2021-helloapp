@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="helloapp" Class="HelloRepoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=RYAN\SQLEXPRESS;Initial Catalog=helloapp;Integrated Security=True" SettingsObjectName="Hello.Repo.Properties.Settings" SettingsPropertyName="helloappConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.UserTypes" Member="UserTypes">
+    <Type Name="UserType">
+      <Column Name="UserTypeID" Type="System.String" DbType="Char(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DefaultColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="BurningColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="HotColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="WarmColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Association Name="UserType_User" Member="Users" ThisKey="UserTypeID" OtherKey="UserTypeID" Type="User" />
+      <Association Name="Event_UserType" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Badges" Member="Badges">
+    <Type Name="Badge">
+      <Column Name="BadgeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Badge_UserBadge" Member="UserBadges" ThisKey="BadgeID" OtherKey="BadgeID" Type="UserBadge" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Campaigns" Member="Campaigns">
+    <Type Name="Campaign">
+      <Column Name="CampaignID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Campaign_Token" Member="Tokens" ThisKey="CampaignID" OtherKey="CampaignID" Type="Token" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Events" Member="Events">
+    <Type Name="Event">
+      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Slug" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="Event_UserType" Member="UserTypes" ThisKey="EventID" OtherKey="EventID" Type="UserType" />
+      <Association Name="Event_Seat" Member="Seats" ThisKey="EventID" OtherKey="EventID" Type="Seat" />
+      <Association Name="Event_Session" Member="Sessions" ThisKey="EventID" OtherKey="EventID" Type="Session" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Friendships" Member="Friendships">
+    <Type Name="Friendship">
+      <Column Name="Befriender" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Befriendee" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="User_Friendship" Member="User" ThisKey="Befriendee" OtherKey="Username" Type="User" IsForeignKey="true" />
+      <Association Name="User_Friendship1" Member="User1" ThisKey="Befriender" OtherKey="Username" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Messages" Member="Messages">
+    <Type Name="Message">
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Message" Member="Message1" Type="System.String" DbType="NVarChar(140) NOT NULL" CanBeNull="false" />
+      <Column Name="Offensive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="User_Message" Member="User" ThisKey="Username" OtherKey="Username" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Points" Member="Points">
+    <Type Name="Point">
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Issued" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Details" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="User_Point" Member="User" ThisKey="Username" OtherKey="Username" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Redemptions" Member="Redemptions">
+    <Type Name="Redemption">
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TokenID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Token_Redemption" Member="Token" ThisKey="TokenID" OtherKey="TokenID" Type="Token" IsForeignKey="true" />
+      <Association Name="User_Redemption" Member="User" ThisKey="Username" OtherKey="Username" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Seats" Member="Seats">
+    <Type Name="Seat">
+      <Column Name="SeatNumber" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Row" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Section" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Association Name="Event_Seat" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sessions" Member="Sessions">
+    <Type Name="Session">
+      <Column Name="SessionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Start" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Finish" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Event_Session" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sits" Member="Sits">
+    <Type Name="Sit">
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SessionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_Sit" Member="User" ThisKey="Username" OtherKey="Username" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TagAggregates" Member="TagAggregates">
+    <Type Name="TagAggregate">
+      <Column Name="Tag" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="UserTypeID" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tags" Member="Tags">
+    <Type Name="Tag">
+      <Column Name="Tag" Member="Tag1" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="User_Tag" Member="User" ThisKey="Username" OtherKey="Username" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tokens" Member="Tokens">
+    <Type Name="Token">
+      <Column Name="TokenID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CampaignID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Token" Member="Token1" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="Token_Redemption" Member="Redemptions" ThisKey="TokenID" OtherKey="TokenID" Type="Redemption" />
+      <Association Name="Campaign_Token" Member="Campaign" ThisKey="CampaignID" OtherKey="CampaignID" Type="Campaign" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserBadges" Member="UserBadges">
+    <Type Name="UserBadge">
+      <Column Name="BadgeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Awarded" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Badge_UserBadge" Member="Badge" ThisKey="BadgeID" OtherKey="BadgeID" Type="Badge" IsForeignKey="true" />
+      <Association Name="User_UserBadge" Member="User" ThisKey="Username" OtherKey="Username" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UserTypeID" Type="System.String" DbType="Char(3) NOT NULL" CanBeNull="false" />
+      <Association Name="User_Friendship" Member="Friendships" ThisKey="Username" OtherKey="Befriendee" Type="Friendship" />
+      <Association Name="User_Friendship1" Member="Friendships1" ThisKey="Username" OtherKey="Befriender" Type="Friendship" />
+      <Association Name="User_Message" Member="Message" ThisKey="Username" OtherKey="Username" Type="Message" Cardinality="One" />
+      <Association Name="User_Point" Member="Points" ThisKey="Username" OtherKey="Username" Type="Point" />
+      <Association Name="User_Redemption" Member="Redemptions" ThisKey="Username" OtherKey="Username" Type="Redemption" />
+      <Association Name="User_Sit" Member="Sits" ThisKey="Username" OtherKey="Username" Type="Sit" />
+      <Association Name="User_Tag" Member="Tags" ThisKey="Username" OtherKey="Username" Type="Tag" />
+      <Association Name="User_UserBadge" Member="UserBadges" ThisKey="Username" OtherKey="Username" Type="UserBadge" />
+      <Association Name="UserType_User" Member="UserType" ThisKey="UserTypeID" OtherKey="UserTypeID" Type="UserType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TideMarks" Member="TideMarks">
+    <Type Name="TideMark">
+      <Column Name="Name" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="LastId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

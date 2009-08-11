@@ -1,4 +1,5 @@
 *.suo
 *.csproj.user
+*.local.config
 obj/
 bin/

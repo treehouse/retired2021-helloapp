@@ -1,0 +1,1954 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Dimebrain.TweetSharp</name>
+    </assembly>
+    <members>
+        <member name="T:Dimebrain.TweetSharp.Model.YammerSenderType">
+            <summary>
+            The type of yammer sender
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Model.YammerSenderType.User">
+            <summary>
+            Sender is a users
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.TwitterNodeBase">
+            <summary>
+            The base implementation for fluent query nodes on an <see cref="T:Dimebrain.TweetSharp.Fluent.IFluentTwitter"/> instance.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.ITwitterNode">
+            <summary>
+            The interface describing a Twitter node in the fluent expression tree.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.TwitterNodeBase.Root">
+            <summary>
+            The root expression node, useful for lower level debugging.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.TwitterNodeBase.Configuration">
+            <summary>
+            The current configuration state of this query expression.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.TwitterNodeBase.RateLimitStatus">
+            <summary>
+            If the last request made was an authenticated call, and Twitter provided rate limit
+            information in the response headers, this property is populated with the current rate
+            limit as of the last request.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.ITwitterLeafNode">
+            <summary>
+            The interface describing a Twitter leaf node in the fluent expression tree.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.ITwitterLeafNodeXmlJson">
+            <summary>
+            Represents a node that returns its results as XML or JSON
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.ITwitterLeafNodeXml">
+            <summary>
+            Interface for nodes that can return results as XML
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.ITwitterLeafNodeXml.AsXml">
+            <summary>
+            Gets the results formatted as XML
+            </summary>
+            <returns>the xml formatted results</returns>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.ITwitterLeafNodeJson">
+            <summary>
+            Interface for nodes that return results formatted as JSON
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.ITwitterLeafNodeJson.AsJson">
+            <summary>
+            Gets the results formatted as JSON
+            </summary>
+            <returns>the JSON formatted results </returns>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.Extensions">
+            <summary>
+            Extension methods for Authentication
+            </summary>
+            <summary>
+            Extension methods for search parameters.
+            </summary>
+            <summary>
+            Extention Methods for Messages
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.Containing(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.String)">
+            <summary>
+            Searches for tweets containing the given phrase.
+            </summary>
+            <param name="instance"></param>
+            <param name="phrase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.NotContaining(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.String)">
+            <summary>
+            Searches for tweets that do not contain the given phrase.
+            </summary>
+            <param name="instance"></param>
+            <param name="phrase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.FromUser(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.String)">
+            <summary>
+            Searches for tweets from the given user.
+            </summary>
+            <param name="instance"></param>
+            <param name="screenName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.ToUser(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.String)">
+            <summary>
+            Searches for tweets to the given user.
+            </summary>
+            <param name="instance"></param>
+            <param name="screenName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.ContainingHashTag(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.String)">
+            <summary>
+            Searches for tweets containing the given hashtag.
+            </summary>
+            <param name="instance"></param>
+            <param name="hashTag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.ReferencingUser(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.String)">
+            <summary>
+            Searches for tweets in reference to the given user.
+            </summary>
+            <param name="instance"></param>
+            <param name="screenName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.WithNegativity(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery)">
+            <summary>
+            Searches for tweets with negative wording.
+            </summary>
+            <param name="instance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.WithPositivity(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery)">
+            <summary>
+            Searches for tweets with positive wording.
+            </summary>
+            <param name="instance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.WithNeutrality(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery)">
+            <summary>
+            Searches for tweets with neutral wording. Used as a way to
+            reset previous sentiment selections on an existing query.
+            </summary>
+            <param name="instance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.WithQuestion(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery)">
+            <summary>
+            Searches for tweets containing a question
+            </summary>
+            <param name="instance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.ContainingLinks(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery)">
+            <summary>
+            Searches for tweets that contain embedded links.
+            </summary>
+            <param name="instance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.GetRequestToken(Dimebrain.TweetSharp.Fluent.IFluentTwitterAuthentication,System.String,System.String)">
+            <summary>
+            Gets the request token.
+            </summary>
+            <param name="instance">The instance.</param>
+            <param name="consumerKey">The consumer key.</param>
+            <param name="consumerSecret">The consumer secret.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.GetRequestToken(Dimebrain.TweetSharp.Fluent.IFluentTwitterAuthentication)">
+            <summary>
+            Gets the request token.
+            </summary>
+            <param name="instance">The fluent twitter instance.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.BuildRequestToken(Dimebrain.TweetSharp.Fluent.IFluentTwitterAuthentication,System.String,System.String)">
+            <summary>
+            Builds the request token.
+            </summary>
+            <param name="instance">The fluent twitter instance.</param>
+            <param name="consumerKey">The consumer key.</param>
+            <param name="consumerSecret">The consumer secret.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.AuthorizeDesktop(Dimebrain.TweetSharp.Fluent.IFluentTwitterAuthentication,System.String)">
+            <summary>
+            Authorizes the desktop by shelling out to the browser
+            </summary>
+            <param name="instance">The fluent twitter instance.</param>
+            <param name="token">The token.</param>
+            <returns>The fluent twitter instance.</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.SetPIN(Dimebrain.TweetSharp.Fluent.IFluentTwitterAuthentication,System.String)">
+            <summary>
+            Sets the PIN provided by the service to the user
+            </summary>
+            <param name="instance">The fluent twitter instance.</param>
+            <param name="pin">The pin obtained from the user who authorized the application.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.AuthorizeDesktop(Dimebrain.TweetSharp.Fluent.IFluentTwitterAuthentication,System.String,System.String,System.String)">
+            <summary>
+            Authorizes the desktop by shelling out to the browser
+            </summary>
+            <param name="instance">The fluent twitter instance.</param>
+            <param name="consumerKey">The consumer key.</param>
+            <param name="consumerSecret">The consumer secret.</param>
+            <param name="token">The token.</param>
+            <returns>The fluent twitter instance.</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.AuthorizeDesktop(Dimebrain.TweetSharp.Fluent.IFluentTwitterAuthentication,System.String,System.String,System.String,System.String)">
+            <summary>
+            Authorizes the desktop by shelling out to the browser
+            </summary>
+            <param name="instance">The FluentTwitter instance.</param>
+            <param name="consumerKey">The consumer key.</param>
+            <param name="consumerSecret">The consumer secret.</param>
+            <param name="token">The token.</param>
+            <param name="callback">The callback url.</param>
+            <returns>The FluentTwitter instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.GetAccessToken(Dimebrain.TweetSharp.Fluent.IFluentTwitterAuthentication,System.String,System.String,System.String)">
+            <summary>
+            Requests the access token.
+            </summary>
+            <param name="instance">The FluentTwitter instance.</param>
+            <param name="consumerKey">The consumer key.</param>
+            <param name="consumerSecret">The consumer secret.</param>
+            <param name="token">The request token.</param>
+            <returns>The FluentTwitter instance.</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.GetAccessToken(Dimebrain.TweetSharp.Fluent.IFluentTwitterAuthentication,System.String,System.String,System.String,System.String)">
+            <summary>
+            Requests the access token.
+            </summary>
+            <param name="instance">The FluentTwitter instance.</param>
+            <param name="consumerKey">The consumer key.</param>
+            <param name="consumerSecret">The consumer secret.</param>
+            <param name="token">The request token.</param>
+            <returns>The FluentTwitter instance.</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.GetAccessToken(Dimebrain.TweetSharp.Fluent.IFluentTwitterAuthentication,System.String)">
+            <summary>
+            Gets the access token.
+            </summary>
+            <param name="instance">The FluentTwitter instance.</param>
+            <param name="token">The request token.</param>
+            <returns>The FluentTwitter instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.GetAccessToken(Dimebrain.TweetSharp.Fluent.IFluentTwitterAuthentication,System.String,System.String)">
+            <summary>
+            Gets the access token.
+            </summary>
+            <param name="instance">The FluentTwitter instance.</param>
+            <param name="token">The request token.</param>
+            <returns>The FluentTwitter instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.GetAuthorizationUrl(Dimebrain.TweetSharp.Fluent.IFluentTwitterAuthentication,System.String)">
+            <summary>
+            Gets the authorization URL used in the oauth process.
+            </summary>
+            <param name="instance">The FluentTwitter instance.</param>
+            <param name="token">The request token.</param>
+            <returns>the authorization url</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.GetAuthorizationUrl(Dimebrain.TweetSharp.Fluent.IFluentTwitterAuthentication,System.String,System.String)">
+            <summary>
+            Gets the authorization URL used in the oauth process.
+            </summary>
+            <param name="instance">The FluentTwitter instance.</param>
+            <param name="token">The request token.</param>
+            <param name="callback">The callback url.</param>
+            <returns>the authorization url</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.UseUpdateTruncation(Dimebrain.TweetSharp.Fluent.IFluentTwitterConfiguration)">
+            <summary>
+            When this configuration option is called, any status updates that are longer than the
+            140 character option are truncated prior to sending. By default, updates longer than
+            140 characters will throw a <see cref="T:Dimebrain.TweetSharp.Core.Exceptions.ValidationException"/>
+            </summary>
+            <param name="instance">The current position in the fluent expression</param>
+            <returns>The current position in the fluent expression</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.UseUrlShortening(Dimebrain.TweetSharp.Fluent.IFluentTwitterConfiguration)">
+            <summary>
+            When this configuration option is called, any valid URLs found in user status text
+            are sent out of band to the default URL shortening service provider, with the shortened
+            URL replacing the longer one.
+            </summary>
+            <param name="instance">The current position in the fluent expression</param>
+            <returns>The current position in the fluent expression</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.UseUrlShortening(Dimebrain.TweetSharp.Fluent.IFluentTwitterConfiguration,Dimebrain.TweetSharp.Fluent.ShortenUrlServiceProvider)">
+            <summary>
+            When this configuration option is called, any valid URLs found in user status text
+            are sent out of band to the specificed URL shortening service provider, with the shortened
+            URL replacing the longer one.
+            </summary>
+            <param name="type">The URL service provider to use</param>
+            <param name="instance">The current position in the fluent expression</param>
+            <returns>The current position in the fluent expression</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.UseUrlShortening(Dimebrain.TweetSharp.Fluent.IFluentTwitterConfiguration,Dimebrain.TweetSharp.Fluent.ShortenUrlServiceProvider,System.String,System.String)">
+            <summary>
+            When this configuration option is called, any valid URLs found in user status text
+            are sent out of band to the specificed URL shortening service provider, with the shortened
+            URL replacing the longer one.</summary>
+            <param name="type">The URL service provider to use</param>
+            <param name="username">The username to pass to the URL service provider</param>
+            <param name="password">The password to pass to the URL service provider</param>
+            <param name="instance">The current position in the fluent expression</param>
+            <returns>The current position in the fluent expression</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.UseUrlShortening(Dimebrain.TweetSharp.Fluent.IFluentTwitterConfiguration,Dimebrain.TweetSharp.Fluent.ShortenUrlServiceProvider,System.String)">
+            When this configuration option is called, any valid URLs found in user status text
+            are sent out of band to the specificed URL shortening service provider, with the shortened
+            URL replacing the longer one.
+            <param name="type">The URL service provider to use</param>
+            <param name="apiKey">The API key to pass to the URL service provider</param>
+            <param name="instance">The current position in the fluent expression</param>
+            <returns>The current position in the fluent expression</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.CacheWith(Dimebrain.TweetSharp.Fluent.IFluentTwitterConfiguration,Dimebrain.TweetSharp.Core.Caching.IClientCache)">
+            <summary>
+            When this configuration option is called, the specified cache provider is used for any subsequent
+            caching on the request. The default caching strategy is this method is not used, is <see cref="T:Dimebrain.TweetSharp.Core.Caching.AspNetCache"/>.
+            </summary>
+            <param name="cache">The caching strategy to use</param>
+            <param name="instance">The current position in the fluent expression</param>
+            <returns>The current position in the fluent expression</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.CacheUntil(Dimebrain.TweetSharp.Fluent.IFluentTwitterConfiguration,System.DateTime)">
+            <summary>
+            When this configuration option is called, any request made inside the specified absolute expiration date,
+            is served from the client cache rather than from a request made to Twitter.
+            </summary>
+            <param name="absoluteExpiration">The specified local time that the cache for the request as defined will expire</param>
+            <param name="instance">The current position in the fluent expression</param>
+            <returns>The current position in the fluent expression</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.CacheForInactivityOf(Dimebrain.TweetSharp.Fluent.IFluentTwitterConfiguration,System.TimeSpan)">
+            <summary>
+            When this configuration option is called, any request made inside the specified sliding expiratino date,
+            is served from the client cache rather than from a request made to Twitter. Sliding expiration countdown begins
+            from the last time a request for the same URL was executed.
+            </summary>
+            <param name="slidingExpiration">The specified amount of inactivity that may elapse before expiring the cache</param>
+            <param name="instance">The current position in the fluent expression</param>
+            <returns>The current position in the fluent expression</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.UseRateLimiting(Dimebrain.TweetSharp.Fluent.IFluentTwitterConfiguration)">
+            <summary>
+            When this configuration option is called, the request is checked against the current
+            rate limit of the originating user or IP address, and is automatically delayed in reference
+            to other queued calls by priority.
+            <remarks>
+            This feature will be available in version 1.0
+            </remarks> 
+            </summary>
+            <param name="instance">The current position in the fluent expression</param>
+            <returns>The current position in the fluent expression</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.UseRateLimiting(Dimebrain.TweetSharp.Fluent.IFluentTwitterConfiguration,System.Threading.ThreadPriority)">
+            <summary>
+            NOT IMPLEMENTED - WILL THROW IF CALLED
+            </summary>
+            <param name="instance">The instance.</param>
+            <param name="priorityOverride">The priority override.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.UseProxy(Dimebrain.TweetSharp.Fluent.IFluentTwitterConfiguration,System.String)">
+            <summary>
+            When this configuration option is called, the query request is sent via the specified proxy URL,
+            rather than directly to Twitter.
+            <remarks>
+            Currently, the .NET default of using the Internet Explorer defined proxy as a default for all
+            outgoing requests is in place, but may change before the version 1.0 release.
+            </remarks>
+            </summary>
+            <param name="url">The URL of a proxy to use</param>
+            <param name="instance">The current position in the fluent expression</param>
+            <returns>The current position in the fluent expression</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.UseTransparentProxy(Dimebrain.TweetSharp.Fluent.IFluentTwitterConfiguration,System.String)">
+            <summary>
+            Uses the transparent proxy instead of calling twitter directly
+            </summary>
+            <param name="instance">The FluentTwitter instance.</param>
+            <param name="url">The transparent proxy URL.</param>
+            <returns>The FluentTwitter instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.UseGzipCompression(Dimebrain.TweetSharp.Fluent.IFluentTwitterConfiguration)">
+            <summary>
+            When this configuration option is called, the query request is sent as GZIP encoded content,
+            and automatically decompressed when received. This is useful for requests that retrieve a large
+            number of results, but will increase bandwidth on smaller requests.
+            </summary>
+            <param name="instance">The current position in the fluent expression</param>
+            <returns>The current position in the fluent expression</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.DisableMocking(Dimebrain.TweetSharp.Fluent.IFluentTwitterConfiguration)">
+            <summary>
+            Disables the mocking.
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.ForFriends(Dimebrain.TweetSharp.Fluent.ITwitterSocialGraphIds)">
+            <summary>
+            Gets IDs of the friends of the authenticated user
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>The instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.ForFriendsOf(Dimebrain.TweetSharp.Fluent.ITwitterSocialGraphIds,System.Int32)">
+            <summary>
+            Gets IDs of the friends of the specified user
+            </summary>
+            <param name="instance">The instance.</param>
+            <param name="id">The id of the user to get the friends of.</param>
+            <returns>The Instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.ForFriendsOf(Dimebrain.TweetSharp.Fluent.ITwitterSocialGraphIds,System.Int64)">
+            <summary>
+            Gets IDs of the friends of the specified user
+            </summary>
+            <param name="instance">The instance.</param>
+            <param name="id">The id of the user to get the friends of.</param>
+            <returns>The Instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.ForFriendsOf(Dimebrain.TweetSharp.Fluent.ITwitterSocialGraphIds,System.String)">
+            <summary>
+            Gets IDs of the friends of the specified user
+            </summary>
+            <param name="instance">The instance.</param>
+            <param name="screenName">Screen name of user to get the friends of.</param>
+            <returns>the Instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.ForFollowers(Dimebrain.TweetSharp.Fluent.ITwitterSocialGraphIds)">
+            <summary>
+            Gets the IDs of the followers of the authenticated user
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>The Instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.ForFollowersOf(Dimebrain.TweetSharp.Fluent.ITwitterSocialGraphIds,System.Int32)">
+            <summary>
+            Gets the IDs of the followers of the specified user
+            </summary>
+            <param name="instance">The instance.</param>
+            <param name="id">The id of the user whos followers to get.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.ForFollowersOf(Dimebrain.TweetSharp.Fluent.ITwitterSocialGraphIds,System.Int64)">
+            <summary>
+            Gets the IDs of the followers of the specified user
+            </summary>
+            <param name="instance">The instance.</param>
+            <param name="id">The id of the user whos followers to get.</param>
+            <returns>the instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.ForFollowersOf(Dimebrain.TweetSharp.Fluent.ITwitterSocialGraphIds,System.String)">
+            <summary>
+            Gets the IDs of the followers of the specified user
+            </summary>
+            <param name="instance">The instance.</param>
+            <param name="screenName">The screen name of the user whos followers to get</param>
+            <returns>the instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.UsingHttpPost(Dimebrain.TweetSharp.Fluent.ITwitterStatusDestroy)">
+            <summary>
+            Specifies that the expression query should be sent as an HTTP POST.
+            </summary>
+            <param name="instance">The current expression node</param>
+            <returns>The current expression node</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.UsingHttpDelete(Dimebrain.TweetSharp.Fluent.ITwitterStatusDestroy)">
+            <summary>
+            Specifies that the expression query should be sent as an HTTP DELETE.
+            </summary>
+            <param name="instance">The current expression node</param>
+            <returns>The current expression node</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.UsingHttpPost(Dimebrain.TweetSharp.Fluent.ITwitterFriendshipsDestroy)">
+            <summary>
+            Use the POST verb to perform this action
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>The instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.UsingHttpDelete(Dimebrain.TweetSharp.Fluent.ITwitterFriendshipsDestroy)">
+            <summary>
+            Use the DELETE verb to perform this action
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>The instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.PostPhoto(Dimebrain.TweetSharp.Fluent.ITwitterPhotos,System.String)">
+            <summary>
+            Posts a photo inline to TwitPic during a request before making an API call to Twitter.
+            This method should only be used with updating status, retweeting, or sending direct messages,
+            as the new photo's URL is injected in the outgoing message; otherwise, the photo is posted but 
+            the URL is lost.
+            </summary>
+            <param name="instance">The current query expression</param>
+            <param name="path">A path to the image</param>
+            <returns>The current query expression</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.PostPhoto(Dimebrain.TweetSharp.Fluent.ITwitterPhotos,System.String,Dimebrain.TweetSharp.Fluent.Services.SendPhotoServiceProvider)">
+            <summary>
+            Posts a photo inline during a request to a given provider, before making an API call to Twitter.
+            This method should only be used with updating status, retweeting, or sending direct messages,
+            as the new photo's URL is injected in the outgoing message; otherwise, the photo is posted but 
+            the URL is lost.
+            </summary>
+            <param name="instance">The current query expression</param>
+            <param name="path">A path to the image</param>
+            <param name="provider">A photo posting service provider</param>
+            <returns>The current query expression</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.UsingHttpPost(Dimebrain.TweetSharp.Fluent.ITwitterDirectMessagesDestroy)">
+            <summary>
+            Uses the HTTP POST verb to perform the action
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>The instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.UsingHttpDelete(Dimebrain.TweetSharp.Fluent.ITwitterDirectMessagesDestroy)">
+            <summary>
+            Uses the HTTP DELETE verb to perform the action
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>The instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.InLanguage(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.String)">
+            <summary>
+            Searches for tweets in a given language. Uses the two-letter ISO code, i.e. "EN" to represent
+            the language.
+            </summary>
+            <param name="instance"></param>
+            <param name="languageCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.InLanguage(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.Globalization.CultureInfo)">
+            <summary>
+            Searches for tweets in a given language. Uses the given CultureInfo to locate a two-letter ISO
+            code for the language.
+            </summary>
+            <param name="instance"></param>
+            <param name="cultureInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.Take(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.Int32)">
+            <summary>
+            Specifies the number of tweets to return per page result.
+            </summary>
+            <param name="instance"></param>
+            <param name="tweetsPerPage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.Return(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.Int32)">
+            <summary>
+            Specifies the number of tweets to return per page result.
+            </summary>
+            <param name="instance"></param>
+            <param name="tweetsPerPage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.Skip(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.Int32)">
+            <summary>
+            Specifies the page of tweets to return. Omitting this expression is equivalent to
+            requesting the first page. The number of tweets per page is either a Twitter default,
+            or the value provided using <seealso cref="M:Dimebrain.TweetSharp.Fluent.Extensions.Take(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.Int32)"/>.
+            </summary>
+            <param name="instance"></param>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.Since(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.Int32)">
+            <summary>
+            Returns only tweets since the last status ID.
+            </summary>
+            <param name="instance"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.Since(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.Int64)">
+            <summary>
+            Returns only tweets since the last status ID.
+            </summary>
+            <param name="instance"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.Within(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.Double)">
+            <summary>
+            Searches tweets within a given mile radius. This method must be used with the
+            <seealso cref="M:Dimebrain.TweetSharp.Fluent.Extensions.Of(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.Double,System.Double)"/> expression to provide a complete
+            command. This will likely change with evolution of the Twitter API.
+            </summary>
+            <param name="instance"></param>
+            <param name="miles"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.Since(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.DateTime)">
+            <summary>
+            Returns only tweets that fall on or after the given date. Use the convenient
+            extension methods provided for spanning time, i.e.
+            <example>
+                .Since(10.Days.Ago())
+            </example>
+            </summary>
+            <param name="instance"></param>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.SinceUntil(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.DateTime)">
+            <summary>
+            Returns only tweets that fall on or before a given date. Use the convenient
+            extension methods provided for spanning time, i.e.
+            <example>
+                .SinceUntil(30.Minutes.Ago())
+            </example>
+            </summary>
+            <param name="instance"></param>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.Of(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,System.Double,System.Double)">
+            <summary>
+            Use this method combined with <code>Within(double miles)</code> to search areas around geo locations
+            </summary>
+            <param name="instance"></param>
+            <param name="latitude"></param>
+            <param name="longitude"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.Of(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery,Dimebrain.TweetSharp.Core.Geo.GeoLocation)">
+            <summary>
+            Use this method combined with <code>Within(double miles)</code> to search areas around geo locations
+            </summary>
+            <param name="instance"></param>
+            <param name="location"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.WithUser(Dimebrain.TweetSharp.Fluent.ITwitterSearchQuery)">
+            <summary>
+            Using this parameter will pre-pend the user's name before the status message in a search status
+            result.
+            </summary>
+            <param name="instance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.InReplyToStatus(Dimebrain.TweetSharp.Fluent.ITwitterStatusUpdate,System.Int32)">
+            <summary>
+            Sets the ID of the tweet that this status is in reply to
+            </summary>
+            <param name="instance">The instance.</param>
+            <param name="id">The id of the tweet that this status is in reply to.</param>
+            <returns>the instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.InReplyToStatus(Dimebrain.TweetSharp.Fluent.ITwitterStatusUpdate,System.Int64)">
+            <summary>
+            Sets the ID of the tweet that this status is in reply to
+            </summary>
+            <param name="instance">The instance.</param>
+            <param name="id">The id of the tweet that this status is in reply to.</param>
+            <returns>the instance</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.Extensions.InReplyToStatus(Dimebrain.TweetSharp.Fluent.ITwitterStatusUpdate,Dimebrain.TweetSharp.Model.TwitterStatus)">
+            <summary>
+            Sets the ID of the tweet that this status is in reply to
+            </summary>
+            <param name="instance">The instance.</param>
+            <param name="status">The tweet that this status is in reply to.</param>
+            <returns>the instance</returns>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.IFluentTwitterProfile">
+            <summary>
+            Interface representing a user profile
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterProfile.ProfileName">
+            <summary>
+            Gets or sets the name of the user.
+            </summary>
+            <value>The name of the user.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterProfile.ProfileUrl">
+            <summary>
+            Gets or sets the profile URL.
+            </summary>
+            <value>The profile URL.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterProfile.ProfileLocation">
+            <summary>
+            Gets or sets the user location.
+            </summary>
+            <value>The user location.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterProfile.ProfileDescription">
+            <summary>
+            Gets or sets the user description.
+            </summary>
+            <value>The user description.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterProfile.ProfileDeliveryDevice">
+            <summary>
+            Gets or sets the profile delivery device.
+            </summary>
+            <value>The profile delivery device.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterProfile.ProfileBackgroundColor">
+            <summary>
+            Gets or sets the color of the profile background.
+            </summary>
+            <value>The color of the profile background.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterProfile.ProfileTextColor">
+            <summary>
+            Gets or sets the color of the profile text.
+            </summary>
+            <value>The color of the profile text.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterProfile.ProfileLinkColor">
+            <summary>
+            Gets or sets the color of the profile link.
+            </summary>
+            <value>The color of the profile link.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterProfile.ProfileSidebarFillColor">
+            <summary>
+            Gets or sets the color of the profile sidebar fill.
+            </summary>
+            <value>The color of the profile sidebar fill.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterProfile.ProfileSidebarBorderColor">
+            <summary>
+            Gets or sets the color of the profile sidebar border.
+            </summary>
+            <value>The color of the profile sidebar border.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterProfile.ProfileImagePath">
+            <summary>
+            Gets or sets the profile image path.
+            </summary>
+            <value>The profile image path.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterProfile.ProfileBackgroundImagePath">
+            <summary>
+            Gets or sets the profile background image path.
+            </summary>
+            <value>The profile background image path.</value>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Web.WebParameter">
+            <summary>
+             A name value pair used in web requests.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Core.Web.WebParameter.Value">
+            <summary>
+             The parameter value.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Core.Web.WebParameter.Name">
+            <summary>
+            The parameter name.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Model.IYammerModel">
+            <summary>
+            Interface for classes that represent the Yammer data model. 
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.FluentTwitter">
+            <summary>
+            This is the main fluent class for building expressions
+            bound for the Twitter API.
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.FluentTwitter.CreateRequest(Dimebrain.TweetSharp.TwitterClientInfo)">
+            <summary>
+            Creates a new composable query, using a specified client and a default platform.
+            </summary>
+            <param name="clientInfo">The client making the request</param>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.FluentTwitter.CreateRequest">
+            <summary>
+            Creates a new composable query, using the default client and platform.
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.FluentTwitter.ToString">
+            <summary>
+            Returns the human-readable query to Twitter representing the current expression.
+            If you are storing URLs for sending later, you can use <code>AsUrl()</code> to return
+            a URL-encoded string instead.
+            </summary>
+            <returns>A URL-decoded string representing this expression's query to Twitter</returns>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.FluentTwitter.AuthenticationPair">
+            <summary>
+            Gets the authentication pair used to authenticate to twitter.
+            </summary>
+            <value>The authentication pair, typically a username and password or a oauth token and tokensecret.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.FluentTwitter.SecondaryAuthenticationPair">
+            <summary>
+            Gets the authentication pair used to authenticate to 3rd party services such as image hosts
+            </summary>
+            <value>The authentication pair, typically a username and password or a oauth token and tokensecret.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.FluentTwitter.CacheKey">
+            <summary>
+            Returns the key prepended to the URL when caching queries.
+            If using basic authentication, this will be the authenticated user's username.
+            If using OAuth, this will be the authenticated token.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.ITwitterFavoritesCreate">
+            <summary>
+            Interface for nodes that create favorites. 
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Model.YammerAttachmentContent">
+            <summary>
+            Represents the content of a yammer attachment
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Model.YammerAttachmentContent.Size">
+            <summary>
+            Gets or sets the size of the attachment content
+            </summary>
+            <value>The size.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Model.YammerAttachmentContent.Url">
+            <summary>
+            Gets or sets the URL of the attachment content.
+            </summary>
+            <value>The URL.</value>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Model.TwitterUser">
+            <summary>
+            This data class provides more information than the basic data provided by
+            <see cref="T:Dimebrain.TweetSharp.Model.TwitterUser"/> returned in other calls for friends and followers.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Model.ITwitterModel">
+            <summary>
+            Inteface for classes that are part of the twitter data model
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Model.IModel">
+            <summary>
+            Interface for classes that are part of the data model
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.RetweetMode">
+            <summary>
+            Determines the possible ways to handle retweeting
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Fluent.RetweetMode.Prefix">
+            <summary>
+            Uses 'RT' at the beginning of an update.
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Fluent.RetweetMode.SymbolPrefix">
+            <summary>
+            Uses a Unicode character (U2672) at the beginning of an update.
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Fluent.RetweetMode.Suffix">
+            <summary>
+            Uses 'via (@screen_name)' at the end of an update.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Model.YammerAttachment">
+            <summary>
+            Class representing an attachment to a yammer message
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Model.YammerAttachment.Type">
+            <summary>
+            Gets or sets the type of attachment
+            </summary>
+            <value>The type.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Model.YammerAttachment.Id">
+            <summary>
+            Gets or sets the id of the attachment.
+            </summary>
+            <value>The id.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Model.YammerAttachment.Name">
+            <summary>
+            Gets or sets the name of the attachment
+            </summary>
+            <value>The name of the attachment.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Model.YammerAttachment.WebUrl">
+            <summary>
+            Gets or sets the web URL for the attachment
+            </summary>
+            <value>The web URL.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Model.YammerAttachment.Content">
+            <summary>
+            Gets or sets the content of the attachment.
+            </summary>
+            <value>The content.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Model.YammerAttachment.Size">
+            <summary>
+            Gets or sets the size of the attachment
+            </summary>
+            <value>The size.</value>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Web.Query.WebQueryBase">
+            <summary>
+            A general-purpose web query engine. Supports asynchronous calls, caching,
+            and dynamic header / parameter generation.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.OAuth.OAuthSignatureMethod">
+            <summary>
+            Hashing strategies supported by OAuth.
+            </summary>
+            <seealso cref="!:http://oauth.net/core/1.0#signing_process"/>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Core.OAuth.OAuthSignatureMethod.PlainText">
+            <summary>
+            Plain text is only permitted when combined with the HTTPS protocol.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Web.OAuth.OAuthWorkflow">
+            <summary>
+            A class to encapsulate OAuth authentication flow.
+            <seealso cref="!:http://oauth.net/core/1.0#anchor9"/>
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Web.OAuth.OAuthWorkflow.BuildRequestTokenInfo(Dimebrain.TweetSharp.Core.Web.WebMethod)">
+            <summary>
+            Generates a <see cref="T:Dimebrain.TweetSharp.Core.Web.Query.OAuth.OAuthWebQueryInfo"/> instance to pass to an
+            <see cref="T:Dimebrain.TweetSharp.Core.Web.Query.OAuth.OAuthWebQuery"/> for the purpose of requesting an
+            unauthorized request token.
+            </summary>
+            <param name="method">The HTTP method for the intended request</param>
+            <seealso cref="!:http://oauth.net/core/1.0#anchor9"/>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Web.OAuth.OAuthWorkflow.BuildRequestTokenInfo(Dimebrain.TweetSharp.Core.Web.WebMethod,Dimebrain.TweetSharp.Core.Web.WebParameterCollection)">
+            <summary>
+            Generates a <see cref="T:Dimebrain.TweetSharp.Core.Web.Query.OAuth.OAuthWebQueryInfo"/> instance to pass to an
+            <see cref="T:Dimebrain.TweetSharp.Core.Web.Query.OAuth.OAuthWebQuery"/> for the purpose of requesting an
+            unauthorized request token.
+            </summary>
+            <param name="method">The HTTP method for the intended request</param>
+            <param name="parameters">Any existing, non-OAuth query parameters desired in the request</param>
+            <seealso cref="!:http://oauth.net/core/1.0#anchor9"/>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Web.OAuth.OAuthWorkflow.BuildAccessTokenInfo(Dimebrain.TweetSharp.Core.Web.WebMethod)">
+            <summary>
+            Generates a <see cref="T:Dimebrain.TweetSharp.Core.Web.Query.OAuth.OAuthWebQueryInfo"/> instance to pass to an
+            <see cref="T:Dimebrain.TweetSharp.Core.Web.Query.OAuth.OAuthWebQuery"/> for the purpose of exchanging a request token
+            for an access token authorized by the user at the Service Provider site.
+            </summary>
+            <param name="method">The HTTP method for the intended request</param>
+            <seealso cref="!:http://oauth.net/core/1.0#anchor9"/>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Web.OAuth.OAuthWorkflow.BuildAccessTokenInfo(Dimebrain.TweetSharp.Core.Web.WebMethod,Dimebrain.TweetSharp.Core.Web.WebParameterCollection)">
+            <summary>
+            Generates a <see cref="T:Dimebrain.TweetSharp.Core.Web.Query.OAuth.OAuthWebQueryInfo"/> instance to pass to an
+            <see cref="T:Dimebrain.TweetSharp.Core.Web.Query.OAuth.OAuthWebQuery"/> for the purpose of exchanging a request token
+            for an access token authorized by the user at the Service Provider site.
+            </summary>
+            <param name="method">The HTTP method for the intended request</param>
+            <seealso cref="!:http://oauth.net/core/1.0#anchor9"/>
+            <param name="parameters">Any existing, non-OAuth query parameters desired in the request</param>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Core.Web.OAuth.OAuthWorkflow.RequestTokenUrl">
+            <summary>
+            The request token url.
+            </summary>
+            <seealso cref="!:http://oauth.net/core/1.0#request_urls"/>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Core.Web.OAuth.OAuthWorkflow.AccessTokenUrl">
+            <summary>
+            The access token url.
+            </summary>
+            <seealso cref="!:http://oauth.net/core/1.0#request_urls"/>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Core.Web.OAuth.OAuthWorkflow.UserAuthorizationUrl">
+            <summary>
+            THe user authorization url.
+            </summary>
+            <seealso cref="!:http://oauth.net/core/1.0#request_urls"/>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Web.HttpPostParameterType">
+            <summary>
+            The list of possible HTTP POST parameters sent with requests.
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Core.Web.HttpPostParameterType.Field">
+            <summary>
+            A POST field.
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Core.Web.HttpPostParameterType.File">
+            <summary>
+            A POST file, sent as multi-part.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Web.HttpPostParameter">
+            <summary>
+             A <see cref="T:Dimebrain.TweetSharp.Core.Web.WebParameter"/> that maps to HTTP POST
+             parameters in an HTTP body.
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Web.HttpPostParameter.CreateFile(System.String,System.String,System.String,System.String)">
+            <summary>
+             Creates a new HTTP POST parameter representing
+             a file to transfer as multi-part form data.
+            </summary>
+            <param name="name">The logical name of the file</param>
+            <param name="fileName">The physical file name</param>
+            <param name="filePath">The path to the file</param>
+            <param name="contentType">The file's content type</param>
+            <returns>The created HTTP POST parameter</returns>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Core.Web.HttpPostParameter.Type">
+            <summary>
+             The HTTP POST parameter type.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Core.Web.HttpPostParameter.FileName">
+            <summary>
+            The physical file name.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Core.Web.HttpPostParameter.FilePath">
+            <summary>
+            The path to the physical file.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Core.Web.HttpPostParameter.ContentType">
+            <summary>
+            The content type of the file.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Model.YammerAttachmentType">
+            <summary>
+            The type of yammer attachment
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Model.YammerAttachmentType.Image">
+            <summary>
+            Image attachment
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Model.YammerAttachmentType.File">
+            <summary>
+            File attachment
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.ITwitterLeafNodeAll">
+            <summary>
+            Inteface for nodes that can return all supported formats
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.ITwitterLeafNodeSyndicates">
+            <summary>
+            Interface for nodes that can return either RSS or Atom
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.ITwitterLeafNodeRss">
+            <summary>
+            Interface for nodes that return results as RSS
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.ITwitterLeafNodeRss.AsRss">
+            <summary>
+            Gets the results formatted as RSS
+            </summary>
+            <returns>the RSS formatted results</returns>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.IFluentTwitterExtensions">
+            <summary>
+            Extension methods for the IFluentTwitter Interface
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.IFluentTwitterExtensions.Statuses(Dimebrain.TweetSharp.Fluent.IFluentTwitter)">
+            <summary>
+            Accesses the "Statuses" (aka. Tweets) subset of the REST API
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>An ITwitterStatuses instance with methods for dealing with Statuses</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.IFluentTwitterExtensions.Users(Dimebrain.TweetSharp.Fluent.IFluentTwitter)">
+            <summary>
+            Accesses the "Users" subset of the REST API
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>An ITwitterUsers instance with methods for dealing with Users</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.IFluentTwitterExtensions.DirectMessages(Dimebrain.TweetSharp.Fluent.IFluentTwitter)">
+            <summary>
+            Accesses the "Direct Messages" subset of the REST API
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>An ITwitterDirectMessages instance with methods for dealing with Direct Messages</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.IFluentTwitterExtensions.Friendships(Dimebrain.TweetSharp.Fluent.IFluentTwitter)">
+            <summary>
+            Accesses the "Friendships" subset of the REST API
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>An ITwitterFriendships instance with methods for dealing with Friendships</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.IFluentTwitterExtensions.SocialGraph(Dimebrain.TweetSharp.Fluent.IFluentTwitter)">
+            <summary>
+            Accesses the "Social Graph" subset of the REST API
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>An ITwitterSocialGraph instance with methods for dealing with the Social Graph</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.IFluentTwitterExtensions.Account(Dimebrain.TweetSharp.Fluent.IFluentTwitter)">
+            <summary>
+            Accesses the "Account" subset of the REST API
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>An ITwitterAccount instance with methods for dealing with Accounts</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.IFluentTwitterExtensions.Favorites(Dimebrain.TweetSharp.Fluent.IFluentTwitter)">
+            <summary>
+            Accesses the "Favorites" subset of the REST API
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>An ITwitterFavoites instance with methods for dealing with Favorites</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.IFluentTwitterExtensions.Notifications(Dimebrain.TweetSharp.Fluent.IFluentTwitter)">
+            <summary>
+            Accesses the "Notifications" subset of the REST API
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>An ITwitterNotifications instance with methods for dealing with Notifications</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.IFluentTwitterExtensions.Blocking(Dimebrain.TweetSharp.Fluent.IFluentTwitter)">
+            <summary>
+            Accesses the "Blocking" subset of the REST API
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>An ITwitterBlocks instance with methods for adding/removing Blocks</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.IFluentTwitterExtensions.Help(Dimebrain.TweetSharp.Fluent.IFluentTwitter)">
+            <summary>
+            Accesses the "Help" subset of the REST API
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>An ITwitterHelp instance with methods for querying the twitter service status</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.IFluentTwitterExtensions.Search(Dimebrain.TweetSharp.Fluent.IFluentTwitter)">
+            <summary>
+            Accesses the Search API
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>An ITwitterSearch instance with methods for performing searches</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.IFluentTwitterExtensions.Photos(Dimebrain.TweetSharp.Fluent.IFluentTwitter)">
+            <summary>
+            Accesses the Photo Posting features
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>An ITwitterPhotos instance with methods for performing searches</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.IFluentTwitterExtensions.CallbackTo(Dimebrain.TweetSharp.Fluent.IFluentTwitter,Dimebrain.TweetSharp.Core.Web.WebCallback)">
+            <summary>
+            Calling this method will establish the asynchronous callback used when the request receives a response.
+            </summary>
+            <param name="instance">The current location in the fluent expression</param>
+            <param name="callback">The callback executed when a request completes in the background</param>
+            <returns>The current location in the fluent expression</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.IFluentTwitterExtensions.Expect(Dimebrain.TweetSharp.Fluent.IFluentTwitter,System.Collections.Generic.IEnumerable{Dimebrain.TweetSharp.Model.IModel})">
+            <summary>
+            Calling this method will enable mocking support, and return the Twitter object graph
+            specified when the request is executed. 
+            </summary>
+            <param name="graph">A graph of objects expected in the response</param>
+            <returns>The current location in the fluent expression</returns>
+            <param name="instance">The current location in the fluent expression</param>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Web.Query.Basic.BasicAuthWebQuery">
+            <summary>
+            A web query engine for making requests that use basic HTTP authorization.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.ITwitterAccountRateLimitStatus">
+            <summary>
+            Interface for nodes that query the rate limit status
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Extensions.TwitterExtensions.AsUsers(System.String)">
+            <summary>
+            This method attempts to cast an XML or JSON string into a <see cref="T:Dimebrain.TweetSharp.Model.TwitterUser"/> collection.
+            instance. If this method is not successful, null is returned.
+            </summary>
+            <param name="xmlOrJson">The XML or JSON input to convert</param>
+            <returns>An user collection instance, or null if the input cannot cast to a user collection</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Extensions.TwitterExtensions.AsUser(System.String)">
+            <summary>
+            This method attempts to cast an XML or JSON string into a <see cref="T:Dimebrain.TweetSharp.Model.TwitterUser"/>
+            instance. If this method is not successful, null is returned.
+            </summary>
+            <param name="xmlOrJson">The XML or JSON input to convert</param>
+            <returns>A user instance, or null if the input cannot cast to a user</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Extensions.TwitterExtensions.AsStatuses(System.String)">
+            <summary>
+            This method attempts to cast an XML or JSON string into a <see cref="T:Dimebrain.TweetSharp.Model.TwitterStatus"/> collection
+            instance. If this method is not successful, null is returned.
+            </summary>
+            <param name="xmlOrJson">The XML or JSON input to convert</param>
+            <returns>A status collection instance, or null if the input cannot cast to a status collection</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Extensions.TwitterExtensions.AsError(System.String)">
+            <summary>
+            This method attempts to cast an XML or JSON string into a <see cref="T:Dimebrain.TweetSharp.Model.TwitterError"/>
+            instance. If this method is not successful, null is returned.
+            </summary>
+            <param name="xmlOrJson">The XML or JSON input to convert</param>
+            <returns>An error instance, or null if the input cannot cast to an error</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Extensions.TwitterExtensions.AsSearchResult(System.String)">
+            <summary>
+            This method attempts to cast an XML or JSON string into a <see cref="T:Dimebrain.TweetSharp.Model.TwitterSearchResult"/>
+            instance. If this method is not successful, null is returned.
+            </summary>
+            <param name="xmlOrJson">The XML or JSON input to convert</param>
+            <returns>A search result instance, or null if the input cannot cast to a search result</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Extensions.TwitterExtensions.AsTrends(System.String)">
+            <summary>
+            This method attempts to cast JSON string into a <see cref="T:Dimebrain.TweetSharp.Model.Twitter.TwitterSearchTrends"/>
+            instance. If this method is not successful, null is returned.
+            </summary>
+            <param name="xmlOrJson">The JSON input to convert</param>
+            <returns>A search result instance, or null if the input cannot cast to a search result</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Extensions.TwitterExtensions.As``1(System.String)">
+            <summary>
+            This method attempts to cast an XML or JSON string into an arbitrary class instance. 
+            If this method is not successful, null is returned.
+            </summary>
+            <param name="xmlOrJson">The XML or JSON input to convert</param>
+            <returns>An T instance, or null if the input cannot cast to T</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Extensions.TwitterExtensions.AsToken(System.String)">
+            <summary>
+            This method attempts to cast a string response into an <see cref="T:Dimebrain.TweetSharp.Model.OAuthToken"/>.
+            If unsuccessful, null is returned.
+            </summary>
+            <param name="xmlOrJson">The XML or JSON input to convert</param>
+            <returns>A token instance, or null if the input cannot cast to a token pair.</returns>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.ITwitterSocialGraphExtensions">
+            <summary>
+            Extension methods for querying the SocialGraph
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Fluent.ITwitterSocialGraphExtensions.Ids(Dimebrain.TweetSharp.Fluent.ITwitterSocialGraph)">
+            <summary>
+            Gets user IDs
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>the instance</returns>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.ShortenUrlServiceProvider">
+            <summary>
+            A list of supported URL shortening services.
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Fluent.ShortenUrlServiceProvider.Tomato">
+            <summary>
+            http://to.m8.to
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Fluent.ShortenUrlServiceProvider.Trim">
+            <summary>
+            http://tr.im
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Fluent.ShortenUrlServiceProvider.Bitly">
+            <summary>
+            http://bit.ly
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Fluent.ShortenUrlServiceProvider.IsGd">
+            <summary>
+            http://is.gd
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Fluent.ShortenUrlServiceProvider.TinyUrl">
+            <summary>
+            http://tinyurl.com
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Model.Twitter.Converters.TwitterWonkyBooleanConverter">
+            <summary>
+            Sometimes Twitter returns "0" for "true", instead of true. For that,
+            and possibly future issues, this converter exists.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.ITwitterSocialGraph">
+            <summary>
+            Inteface for nodes that query the social graph
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters">
+            <summary>
+            Paramters used in Twitter queries
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.Activity">
+            <summary>
+            Gets or sets the activity.
+            </summary>
+            <value>The activity.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.Action">
+            <summary>
+            Gets or sets the action.
+            </summary>
+            <value>The action.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.SinceDate">
+            <summary>
+            Gets or sets the since date.
+            </summary>
+            <value>The since date.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.SinceId">
+            <summary>
+            Gets or sets the since id.
+            </summary>
+            <value>The since id.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.MaxId">
+            <summary>
+            Gets or sets the max id.
+            </summary>
+            <value>The max id.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.Count">
+            <summary>
+            Gets or sets the count of objects to return.
+            </summary>
+            <value>The count.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.Page">
+            <summary>
+            Gets or sets the page of objects to request.
+            </summary>
+            <value>The page.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.ReturnPerPage">
+            <summary>
+            Gets or sets the number if items per page to return
+            </summary>
+            <value>The return per page.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.Id">
+            <summary>
+            Gets or sets the requested id.
+            </summary>
+            <value>The id.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.ScreenName">
+            <summary>
+            Gets or sets the requested screenname
+            </summary>
+            <value>The screenname</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.Text">
+            <summary>
+            Gets or sets the text.
+            </summary>
+            <value>The text.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.InReplyToStatusId">
+            <summary>
+            Gets or sets the "in reply to status id" parameter
+            </summary>
+            <value>The in reply to status id.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.Email">
+            <summary>
+            Gets or sets the email address parameter.
+            </summary>
+            <value>The email.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.UserScreenName">
+            <summary>
+            Gets or sets the user screen name parameter
+            </summary>
+            <value>The user screen name parameter.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.UserId">
+            <summary>
+            Gets or sets the user id parameter.
+            </summary>
+            <value>The user id parameter.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.Follow">
+            <summary>
+            Gets or sets the follow parameter.
+            </summary>
+            <value>The follow parameter.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.VerifyId">
+            <summary>
+            Gets or sets the verify id parameter.
+            </summary>
+            <value>The verify id.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.VerifyScreenName">
+            <summary>
+            Gets or sets the verify screen name parameter.
+            </summary>
+            <value>The verify screen name parameter.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.PostImagePath">
+            <summary>
+            Gets or sets the post image path.
+            </summary>
+            <value>The post image path.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Fluent.IFluentTwitterParameters.PostImageProvider">
+            <summary>
+            Gets or sets the post image provider.
+            </summary>
+            <value>The post image provider.</value>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Model.YammerClientType">
+            <summary>
+            The type of yammer client
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Model.YammerClientType.Web">
+            <summary>
+            a web client
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Tasks.TimedTask">
+            <summary>
+            Class representing a recurring task
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Tasks.TimedTask.#ctor(System.TimeSpan,System.TimeSpan,System.Boolean,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Dimebrain.TweetSharp.Core.Tasks.TimedTask"/> class.
+            </summary>
+            <param name="due">The next time to perform the task.</param>
+            <param name="interval">The recurrance interval for the task.</param>
+            <param name="continueOnError">if set to <c>true</c> [continue on error].</param>
+            <param name="action">The action to perform.</param>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Tasks.TimedTask.Start">
+            <summary>
+            Starts this instance.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Core.Tasks.TimedTask.Action">
+            <summary>
+            Gets or sets the action to perform periodically.
+            </summary>
+            <value>The action.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Core.Tasks.TimedTask.Exception">
+            <summary>
+            The last exception that occurred during a timed action.
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Fluent.Services.SendPhotoServiceProvider.TwitPic">
+            <summary>
+            http://twitpic.com
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Fluent.Services.SendPhotoServiceProvider.YFrog">
+            <summary>
+            http://yfrog.com
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Fluent.Services.SendPhotoServiceProvider.TwitGoo">
+            <summary>
+            http://twitgoo.com
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.ITwitterFavoritesGet">
+            <summary>
+            Interface for nodes that get twitter favorites
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Model.TwitterSearchStatus">
+            <summary>
+            This data class represents a <see cref="T:Dimebrain.TweetSharp.Model.TwitterStatus"/> originating from a Search API result. 
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Model.TwitterSearchStatus.op_Implicit(Dimebrain.TweetSharp.Model.TwitterSearchStatus)~Dimebrain.TweetSharp.Model.TwitterStatus">
+            <summary>
+             This implicit conversion supports treating a search status as if it were a 
+             regular <see cref="T:Dimebrain.TweetSharp.Model.TwitterStatus"/>. This is useful if you need to combine search
+             results and regular results in the same UI context.
+            </summary>
+            <param name="searchStatus"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Model.TwitterSearchStatus.Id">
+            <summary>
+            The unique identifier for this status.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Model.TwitterSearchStatus.CreatedDate">
+            <summary>
+            The date the status was created.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Model.TwitterSearchStatus.ToUserId">
+            <summary>
+            This represents the internal ID for the user who received a status in a search
+            result. Keep in mind that this ID is currently meaningless to the Twitter API
+            as it is not the same ID as the user's ID. It will eventually provide the
+            correct ID for the target user.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Model.TwitterSearchStatus.FromUserId">
+            <summary>
+            This represents the internal ID for the user who wrote a status in a search
+            result. Keep in mind that this ID is currently meaningless to the Twitter API
+            as it is not the same ID as the user's ID. It will eventually provide the
+            correct ID for the originating user.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Model.ITwitterEntity">
+            <summary>
+            Interface for a twitter object that contans an ID and CreatedDate
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.OAuth.OAuthTools">
+            <summary>
+            A utility class to generate required request parameters for an OAuth query.
+            <seealso cref="!:http://www.hueniverse.com/hueniverse/2007/10/beginners-gui-1.html"/>
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Core.OAuth.OAuthTools._encoding">
+            <summary>
+            All text parameters are UTF-8 encoded (per section 5.1).
+            </summary>
+            <seealso cref="!:http://www.hueniverse.com/hueniverse/2008/10/beginners-gui-1.html"/> 
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.OAuth.OAuthTools.GetNonce">
+            <summary>
+            Generates a random 16-byte lowercase alphanumeric string. 
+            </summary>
+            <seealso cref="!:http://oauth.net/core/1.0#nonce"/>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.OAuth.OAuthTools.GetTimestamp">
+            <summary>
+            Generates a timestamp based on the current elapsed seconds since '01/01/1970 0000 GMT"
+            </summary>
+            <seealso cref="!:http://oauth.net/core/1.0#nonce"/>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.OAuth.OAuthTools.GetTimestamp(System.DateTime)">
+            <summary>
+            Generates a timestamp based on the elapsed seconds of a given time since '01/01/1970 0000 GMT"
+            </summary>
+            <seealso cref="!:http://oauth.net/core/1.0#nonce"/>
+            <param name="dateTime">A specified point in time.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.OAuth.OAuthTools.UrlEncode(System.String)">
+            <summary>
+            URL encodes a string based on section 5.1 of the OAuth spec.
+            Namely, percent encoding with [RFC3986], avoiding unreserved characters,
+            upper-casing hexadecimal characters, and UTF-8 encoding for text value pairs.
+            </summary>
+            <param name="value"></param>
+            <seealso cref="!:http://oauth.net/core/1.0#encoding_parameters"/>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.OAuth.OAuthTools.UrlEncodeParameterString(System.String)">
+            <summary>
+            URL encodes a string based on section 5.1 of the OAuth spec.
+            Namely, percent encoding with [RFC3986], avoiding unreserved characters,
+            upper-casing hexadecimal characters, and UTF-8 encoding for text value pairs.
+            </summary>
+            <param name="value"></param>
+            <seealso cref="!:http://oauth.net/core/1.0#encoding_parameters"/>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.OAuth.OAuthTools.NormalizeRequestParameters(Dimebrain.TweetSharp.Core.Web.WebParameterCollection)">
+            <summary>
+            Sorts a collection of key-value pairs by name, and then value if equal,
+            concatenating them into a single string. This string should be encoded
+            prior to, or after normalization is run.
+            </summary>
+            <seealso cref="!:http://oauth.net/core/1.0#rfc.section.9.1.1"/>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.OAuth.OAuthTools.SortParametersExcludingSignature(Dimebrain.TweetSharp.Core.Web.WebParameterCollection)">
+            <summary>
+            Sorts a <see cref="T:Dimebrain.TweetSharp.Core.Web.WebParameterCollection"/> by name, and then value if equal.
+            </summary>
+            <param name="parameters">A collection of parameters to sort</param>
+            <returns>A sorted parameter collection</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.OAuth.OAuthTools.ConstructRequestUrl(System.Uri)">
+            <summary>
+            Creates a request URL suitable for making OAuth requests.
+            Resulting URLs must exclude port 80 or port 443 when accompanied by HTTP and HTTPS, respectively.
+            Resulting URLs must be lower case.
+            </summary>
+            <seealso cref="!:http://oauth.net/core/1.0#rfc.section.9.1.2"/>
+            <param name="url">The original request URL</param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.OAuth.OAuthTools.ConcatenateRequestElements(Dimebrain.TweetSharp.Core.Web.WebMethod,System.String,Dimebrain.TweetSharp.Core.Web.WebParameterCollection)">
+            <summary>
+            Creates a request elements concatentation value to send with a request. 
+            This is also known as the signature base.
+            </summary>
+            <seealso cref="!:http://oauth.net/core/1.0#rfc.section.9.1.3"/>
+            <seealso cref="!:http://oauth.net/core/1.0#sig_base_example"/>
+            <param name="method">The request's HTTP method type</param>
+            <param name="url">The request URL</param>
+            <param name="parameters">The request's parameters</param>
+            <returns>A signature base string</returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.OAuth.OAuthTools.GetSignature(Dimebrain.TweetSharp.Core.OAuth.OAuthSignatureMethod,System.String,System.String)">
+            <summary>
+            Creates a signature value given a signature base and the consumer secret.
+            This method is used when the token secret is currently unknown.
+            </summary>
+            <seealso cref="!:http://oauth.net/core/1.0#rfc.section.9.2"/>
+            <param name="signatureMethod">The hashing method</param>
+            <param name="signatureBase">The signature base</param>
+            <param name="consumerSecret">The consumer key</param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.OAuth.OAuthTools.GetSignature(Dimebrain.TweetSharp.Core.OAuth.OAuthSignatureMethod,System.String,System.String,System.String)">
+            <summary>
+            Creates a signature value given a signature base and the consumer secret and a known token secret.
+            </summary>
+            <seealso cref="!:http://oauth.net/core/1.0#rfc.section.9.2"/>
+            <param name="signatureMethod">The hashing method</param>
+            <param name="signatureBase">The signature base</param>
+            <param name="consumerSecret">The consumer secret</param>
+            <param name="tokenSecret">The token secret</param>
+            <returns></returns>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Model.OAuthToken">
+            <summary>
+            A data class representing either a request or an access token returned during an OAuth session.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Model.OAuthToken.Token">
+            <summary>
+            Gets or sets the token.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Model.OAuthToken.TokenSecret">
+            <summary>
+            Gets or sets the token secret.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Attributes.INamedAttribute">
+            <summary>
+            Interface for attributes that have a name
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Core.Attributes.INamedAttribute.Name">
+            <summary>
+            Gets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Caching.CacheFactory">
+            <summary>
+            The default cache factory for creating new caches. Currently, TweetSharp
+            only supports caches that implement <see cref="T:Dimebrain.TweetSharp.Core.Caching.IClientCache"/>.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Core.Caching.CacheFactory.AspNetCache">
+            <summary>
+            Gets the ASP net cache.
+            </summary>
+            <value>The ASP net cache.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Core.Caching.CacheFactory.InMemoryCache">
+            <summary>
+            Gets the in memory cache.
+            </summary>
+            <value>The in memory cache.</value>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.TwitterClientInfo">
+            <summary>
+             This class provides meta-data for your specific Twitter application, that is
+             used to identify your client to Twitter, store OAuth credentials for all future
+             request, and in some cases define a transparent proxy to redirect API calls to.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.TwitterClientInfo.ClientName">
+            <summary>
+            This is the name of your client application. It is used to
+            identify your client when a user updates their status, or when
+            your application makes a Twitter Search API request.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.TwitterClientInfo.ClientVersion">
+            <summary>
+            This is the version of your application. This is meta-data only,
+            and not used by Twitter for client processing.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.TwitterClientInfo.ClientUrl">
+            <summary>
+            This is the URL of your application. This is meta-data only,
+            and not used by Twitter for client processing. Your application's URL
+            is stored by Twitter when you apply for a 'Source' attribute or register
+            your application for OAuth.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.TwitterClientInfo.ConsumerKey">
+            <summary>
+            If your client is using OAuth authentication, this value should be set
+            to the value of your consumer key. This avoids having to provide the key
+            in every query.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.TwitterClientInfo.ConsumerSecret">
+            <summary>
+            If your client is using OAuth authentication, this value should be set
+            to the value of your consumer secret. This avoids having to provide the secret
+            in every query.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Web.Query.OAuth.OAuthWebQuery">
+            <summary>
+            A web query engine for OAuth requests.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Model.YammerMessageBody">
+            <summary>
+            Represents the body of a yammer message
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Model.YammerMessageBody.Plain">
+            <summary>
+            Gets or sets the unparsed version of the yammer message body.
+            </summary>
+            <value>String representing the unparsed version of the yammer message body.</value>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Model.YammerMessageBody.Parsed">
+            <summary>
+            Gets or sets the unparsed version of the yammer message body.
+            </summary>
+            <value>String representing the unparsed version of the yammer message body.</value>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Model.YammerMessageType">
+            <summary>
+            The type of yammer message
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Model.YammerMessageType.Update">
+            <summary>
+            An update type message
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Web.Query.OAuth.OAuthWebQueryInfo">
+            <summary>
+            Mandatory OAuth parameters travelling with the request.
+            <seealso cref="!:http://www.hueniverse.com/hueniverse/2008/10/beginners-gui-1.html"/>
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Caching.IWebCache">
+            <summary>
+            A cache that uses ASP.NET's web cache dependency and priority features.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Caching.IClientCache">
+            <summary>
+            A simple caching interface that supports absolute and sliding expiration.
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Caching.IClientCache.Insert(System.String,System.Object)">
+            <summary>
+            Caches a new value under the specified key. 
+            </summary>
+            <param name="key">The key</param>
+            <param name="value">The value</param>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Caching.IClientCache.Insert(System.String,System.Object,System.DateTime)">
+            <summary>
+            Caches a new value under the specified key, with an absolute expiration.
+            </summary>
+            <param name="key">The key</param>
+            <param name="value">The value</param>
+            <param name="absoluteExpiration">The absolute expiration of the cached value</param>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Caching.IClientCache.Insert(System.String,System.Object,System.TimeSpan)">
+            <summary>
+            Caches a new value under the specified key, with an absolute expiration.
+            </summary>
+            <param name="key">The key</param>
+            <param name="value">The value</param>
+            <param name="slidingExpiration">The sliding inactivity expiration of the cached value</param>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Caching.IClientCache.Get``1(System.String)">
+            <summary>
+            Retrieves a value from the cache, strongly typed to the value's type.
+            </summary>
+            <typeparam name="T">The expected type of the cached value</typeparam>
+            <param name="key">The key</param>
+            <returns></returns>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Caching.IClientCache.Remove(System.String)">
+            <summary>
+            Removes a value from the cache by its key.
+            </summary>
+            <param name="key">The key</param>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Core.Caching.IClientCache.Count">
+            <summary>
+             The number of stored key value pairs currently in the cache.
+            </summary>
+        </member>
+        <member name="P:Dimebrain.TweetSharp.Core.Caching.IClientCache.Keys">
+            <summary>
+            All of the keys currently in the cache.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Web.WebPlatform">
+            <summary>
+            The web social networking platform
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Core.Web.WebPlatform.Twitter">
+            <summary>
+            http://twitter.com
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Core.Web.WebPlatform.Identica">
+            <summary>
+            http://identi.ca
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Web.WebQueryClient">
+            <summary>
+            A web query instance that tracks its <see cref="T:System.Net.WebRequest"/>
+            and <see cref="T:System.Net.WebResponse"/> pair in order to inform a consumer.
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Web.WebQueryClient.Dimebrain#TweetSharp#Core#Web#IWebQueryClient#get_Credentials">
+            <summary>
+            A web query instance that tracks its <see cref="T:System.Net.WebRequest"/>
+            and <see cref="T:System.Net.WebResponse"/> pair in order to inform a consumer.
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Web.WebQueryClient.Dimebrain#TweetSharp#Core#Web#IWebQueryClient#set_Credentials(System.Net.ICredentials)">
+            <summary>
+            A web query instance that tracks its <see cref="T:System.Net.WebRequest"/>
+            and <see cref="T:System.Net.WebResponse"/> pair in order to inform a consumer.
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Web.WebQueryClient.Dimebrain#TweetSharp#Core#Web#IWebQueryClient#OpenReadAsync(System.Uri)">
+            <summary>
+            A web query instance that tracks its <see cref="T:System.Net.WebRequest"/>
+            and <see cref="T:System.Net.WebResponse"/> pair in order to inform a consumer.
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Web.WebQueryClient.Dimebrain#TweetSharp#Core#Web#IWebQueryClient#OpenReadAsync(System.Uri,System.Object)">
+            <summary>
+            A web query instance that tracks its <see cref="T:System.Net.WebRequest"/>
+            and <see cref="T:System.Net.WebResponse"/> pair in order to inform a consumer.
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Web.WebQueryClient.Dimebrain#TweetSharp#Core#Web#IWebQueryClient#add_OpenReadCompleted(System.Net.OpenReadCompletedEventHandler)">
+            <summary>
+            A web query instance that tracks its <see cref="T:System.Net.WebRequest"/>
+            and <see cref="T:System.Net.WebResponse"/> pair in order to inform a consumer.
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Web.WebQueryClient.Dimebrain#TweetSharp#Core#Web#IWebQueryClient#remove_OpenReadCompleted(System.Net.OpenReadCompletedEventHandler)">
+            <summary>
+            A web query instance that tracks its <see cref="T:System.Net.WebRequest"/>
+            and <see cref="T:System.Net.WebResponse"/> pair in order to inform a consumer.
+            </summary>
+        </member>
+        <member name="M:Dimebrain.TweetSharp.Core.Web.WebQueryClient.Dimebrain#TweetSharp#Core#Web#IWebQueryClient#OpenRead(System.String)">
+            <summary>
+            A web query instance that tracks its <see cref="T:System.Net.WebRequest"/>
+            and <see cref="T:System.Net.WebResponse"/> pair in order to inform a consumer.
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.Twitter.Authentication.AuthenticationMode">
+            <summary>
+            Authentication mode to use
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Fluent.Twitter.Authentication.AuthenticationMode.Basic">
+            <summary>
+            Use Basic Auth
+            </summary>
+        </member>
+        <member name="F:Dimebrain.TweetSharp.Fluent.Twitter.Authentication.AuthenticationMode.OAuth">
+            <summary>
+            Use the OAuth Protocol
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.SocialGraph.Extensions">
+            <summary>
+            Extension methods for the SocialGraph APIs
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Caching.AspNetCache">
+            <summary>
+            The ASP.NET Cache system implemented behind <see cref="T:Dimebrain.TweetSharp.Core.Caching.IWebCache"/>
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Fluent.ITwitterSocialGraphIds">
+            <summary>
+            interface for nodes that deal with social graph ids
+            </summary>
+        </member>
+        <member name="T:Dimebrain.TweetSharp.Core.Caching.SimpleCache">
+            <summary>
+            A basic in-memory cache.
+            </summary>
+        </member>
+    </members>
+</doc>
