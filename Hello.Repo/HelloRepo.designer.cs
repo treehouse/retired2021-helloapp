@@ -45,9 +45,6 @@ namespace Hello.Repo
     partial void InsertMessage(Message instance);
     partial void UpdateMessage(Message instance);
     partial void DeleteMessage(Message instance);
-    partial void InsertSeat(Seat instance);
-    partial void UpdateSeat(Seat instance);
-    partial void DeleteSeat(Seat instance);
     partial void InsertSession(Session instance);
     partial void UpdateSession(Session instance);
     partial void DeleteSession(Session instance);
@@ -63,6 +60,9 @@ namespace Hello.Repo
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertSeat(Seat instance);
+    partial void UpdateSeat(Seat instance);
+    partial void DeleteSeat(Seat instance);
     #endregion
 		
 		public HelloRepoDataContext() : 
@@ -159,14 +159,6 @@ namespace Hello.Repo
 			}
 		}
 		
-		public System.Data.Linq.Table<Seat> Seats
-		{
-			get
-			{
-				return this.GetTable<Seat>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Session> Sessions
 		{
 			get
@@ -228,6 +220,14 @@ namespace Hello.Repo
 			get
 			{
 				return this.GetTable<TideMark>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Seat> Seats
+		{
+			get
+			{
+				return this.GetTable<Seat>();
 			}
 		}
 	}
@@ -797,9 +797,9 @@ namespace Hello.Repo
 		
 		private EntitySet<UserType> _UserTypes;
 		
-		private EntitySet<Seat> _Seats;
-		
 		private EntitySet<Session> _Sessions;
+		
+		private EntitySet<Seat> _Seats;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -816,8 +816,8 @@ namespace Hello.Repo
 		public Event()
 		{
 			this._UserTypes = new EntitySet<UserType>(new Action<UserType>(this.attach_UserTypes), new Action<UserType>(this.detach_UserTypes));
-			this._Seats = new EntitySet<Seat>(new Action<Seat>(this.attach_Seats), new Action<Seat>(this.detach_Seats));
 			this._Sessions = new EntitySet<Session>(new Action<Session>(this.attach_Sessions), new Action<Session>(this.detach_Sessions));
+			this._Seats = new EntitySet<Seat>(new Action<Seat>(this.attach_Seats), new Action<Seat>(this.detach_Seats));
 			OnCreated();
 		}
 		
@@ -894,19 +894,6 @@ namespace Hello.Repo
 			}
 		}
 		
-		[Association(Name="Event_Seat", Storage="_Seats", ThisKey="EventID", OtherKey="EventID")]
-		public EntitySet<Seat> Seats
-		{
-			get
-			{
-				return this._Seats;
-			}
-			set
-			{
-				this._Seats.Assign(value);
-			}
-		}
-		
 		[Association(Name="Event_Session", Storage="_Sessions", ThisKey="EventID", OtherKey="EventID")]
 		public EntitySet<Session> Sessions
 		{
@@ -917,6 +904,19 @@ namespace Hello.Repo
 			set
 			{
 				this._Sessions.Assign(value);
+			}
+		}
+		
+		[Association(Name="Event_Seat", Storage="_Seats", ThisKey="EventID", OtherKey="EventID")]
+		public EntitySet<Seat> Seats
+		{
+			get
+			{
+				return this._Seats;
+			}
+			set
+			{
+				this._Seats.Assign(value);
 			}
 		}
 		
@@ -952,18 +952,6 @@ namespace Hello.Repo
 			entity.Event = null;
 		}
 		
-		private void attach_Seats(Seat entity)
-		{
-			this.SendPropertyChanging();
-			entity.Event = this;
-		}
-		
-		private void detach_Seats(Seat entity)
-		{
-			this.SendPropertyChanging();
-			entity.Event = null;
-		}
-		
 		private void attach_Sessions(Session entity)
 		{
 			this.SendPropertyChanging();
@@ -971,6 +959,18 @@ namespace Hello.Repo
 		}
 		
 		private void detach_Sessions(Session entity)
+		{
+			this.SendPropertyChanging();
+			entity.Event = null;
+		}
+		
+		private void attach_Seats(Seat entity)
+		{
+			this.SendPropertyChanging();
+			entity.Event = this;
+		}
+		
+		private void detach_Seats(Seat entity)
 		{
 			this.SendPropertyChanging();
 			entity.Event = null;
@@ -1313,205 +1313,6 @@ namespace Hello.Repo
 				{
 					this._Created = value;
 				}
-			}
-		}
-	}
-	
-	[Table(Name="dbo.Seats")]
-	public partial class Seat : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _SeatNumber;
-		
-		private string _Row;
-		
-		private string _Section;
-		
-		private int _EventID;
-		
-		private string _Password;
-		
-		private EntityRef<Event> _Event;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnSeatNumberChanging(string value);
-    partial void OnSeatNumberChanged();
-    partial void OnRowChanging(string value);
-    partial void OnRowChanged();
-    partial void OnSectionChanging(string value);
-    partial void OnSectionChanged();
-    partial void OnEventIDChanging(int value);
-    partial void OnEventIDChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    #endregion
-		
-		public Seat()
-		{
-			this._Event = default(EntityRef<Event>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_SeatNumber", DbType="Char(2) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string SeatNumber
-		{
-			get
-			{
-				return this._SeatNumber;
-			}
-			set
-			{
-				if ((this._SeatNumber != value))
-				{
-					this.OnSeatNumberChanging(value);
-					this.SendPropertyChanging();
-					this._SeatNumber = value;
-					this.SendPropertyChanged("SeatNumber");
-					this.OnSeatNumberChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Row", DbType="Char(2) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string Row
-		{
-			get
-			{
-				return this._Row;
-			}
-			set
-			{
-				if ((this._Row != value))
-				{
-					this.OnRowChanging(value);
-					this.SendPropertyChanging();
-					this._Row = value;
-					this.SendPropertyChanged("Row");
-					this.OnRowChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Section", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string Section
-		{
-			get
-			{
-				return this._Section;
-			}
-			set
-			{
-				if ((this._Section != value))
-				{
-					this.OnSectionChanging(value);
-					this.SendPropertyChanging();
-					this._Section = value;
-					this.SendPropertyChanged("Section");
-					this.OnSectionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_EventID", DbType="Int NOT NULL")]
-		public int EventID
-		{
-			get
-			{
-				return this._EventID;
-			}
-			set
-			{
-				if ((this._EventID != value))
-				{
-					if (this._Event.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnEventIDChanging(value);
-					this.SendPropertyChanging();
-					this._EventID = value;
-					this.SendPropertyChanged("EventID");
-					this.OnEventIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Password", DbType="Char(5) NOT NULL", CanBeNull=false)]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Event_Seat", Storage="_Event", ThisKey="EventID", OtherKey="EventID", IsForeignKey=true)]
-		public Event Event
-		{
-			get
-			{
-				return this._Event.Entity;
-			}
-			set
-			{
-				Event previousValue = this._Event.Entity;
-				if (((previousValue != value) 
-							|| (this._Event.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Event.Entity = null;
-						previousValue.Seats.Remove(this);
-					}
-					this._Event.Entity = value;
-					if ((value != null))
-					{
-						value.Seats.Add(this);
-						this._EventID = value.EventID;
-					}
-					else
-					{
-						this._EventID = default(int);
-					}
-					this.SendPropertyChanged("Event");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -2645,6 +2446,205 @@ namespace Hello.Repo
 				{
 					this._LastId = value;
 				}
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Seats")]
+	public partial class Seat : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _SeatNumber;
+		
+		private string _Row;
+		
+		private string _Section;
+		
+		private int _EventID;
+		
+		private string _Code;
+		
+		private EntityRef<Event> _Event;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSeatNumberChanging(string value);
+    partial void OnSeatNumberChanged();
+    partial void OnRowChanging(string value);
+    partial void OnRowChanged();
+    partial void OnSectionChanging(string value);
+    partial void OnSectionChanged();
+    partial void OnEventIDChanging(int value);
+    partial void OnEventIDChanged();
+    partial void OnCodeChanging(string value);
+    partial void OnCodeChanged();
+    #endregion
+		
+		public Seat()
+		{
+			this._Event = default(EntityRef<Event>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_SeatNumber", DbType="Char(2) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string SeatNumber
+		{
+			get
+			{
+				return this._SeatNumber;
+			}
+			set
+			{
+				if ((this._SeatNumber != value))
+				{
+					this.OnSeatNumberChanging(value);
+					this.SendPropertyChanging();
+					this._SeatNumber = value;
+					this.SendPropertyChanged("SeatNumber");
+					this.OnSeatNumberChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Row", DbType="Char(2) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Row
+		{
+			get
+			{
+				return this._Row;
+			}
+			set
+			{
+				if ((this._Row != value))
+				{
+					this.OnRowChanging(value);
+					this.SendPropertyChanging();
+					this._Row = value;
+					this.SendPropertyChanged("Row");
+					this.OnRowChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Section", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Section
+		{
+			get
+			{
+				return this._Section;
+			}
+			set
+			{
+				if ((this._Section != value))
+				{
+					this.OnSectionChanging(value);
+					this.SendPropertyChanging();
+					this._Section = value;
+					this.SendPropertyChanged("Section");
+					this.OnSectionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EventID", DbType="Int NOT NULL")]
+		public int EventID
+		{
+			get
+			{
+				return this._EventID;
+			}
+			set
+			{
+				if ((this._EventID != value))
+				{
+					if (this._Event.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEventIDChanging(value);
+					this.SendPropertyChanging();
+					this._EventID = value;
+					this.SendPropertyChanged("EventID");
+					this.OnEventIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Code", DbType="Char(5) NOT NULL", CanBeNull=false)]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this.OnCodeChanging(value);
+					this.SendPropertyChanging();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Event_Seat", Storage="_Event", ThisKey="EventID", OtherKey="EventID", IsForeignKey=true)]
+		public Event Event
+		{
+			get
+			{
+				return this._Event.Entity;
+			}
+			set
+			{
+				Event previousValue = this._Event.Entity;
+				if (((previousValue != value) 
+							|| (this._Event.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Event.Entity = null;
+						previousValue.Seats.Remove(this);
+					}
+					this._Event.Entity = value;
+					if ((value != null))
+					{
+						value.Seats.Add(this);
+						this._EventID = value.EventID;
+					}
+					else
+					{
+						this._EventID = default(int);
+					}
+					this.SendPropertyChanged("Event");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
