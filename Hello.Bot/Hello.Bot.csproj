@@ -64,7 +64,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HelloRepo\Hello.Repo.csproj">
+    <ProjectReference Include="..\Hello.Repo\Hello.Repo.csproj">
       <Project>{4B550601-FA2D-42CC-A1AA-9A710D57FF34}</Project>
       <Name>Hello.Repo</Name>
     </ProjectReference>

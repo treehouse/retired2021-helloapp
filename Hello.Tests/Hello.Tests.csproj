@@ -57,11 +57,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HelloBot\Hello.Bot.csproj">
+    <ProjectReference Include="..\Hello.Bot\Hello.Bot.csproj">
       <Project>{14718FEE-E4D8-4C34-BE23-85D55927F03C}</Project>
       <Name>Hello.Bot</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HelloRepo\Hello.Repo.csproj">
+    <ProjectReference Include="..\Hello.Repo\Hello.Repo.csproj">
       <Project>{4B550601-FA2D-42CC-A1AA-9A710D57FF34}</Project>
       <Name>Hello.Repo</Name>
     </ProjectReference>
