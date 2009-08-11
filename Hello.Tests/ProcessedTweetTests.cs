@@ -17,7 +17,7 @@ namespace Hello.Tests
             var pt = new ProcessedTweet("");
 
             Assert.Equal(pt.Friends.Count, 0);
-            Assert.Equal(pt.SeatPassword, null);
+            Assert.Equal(pt.SeatCode, null);
             Assert.Equal(pt.Tags.Count, 0);
             Assert.Equal(pt.Token, null);
             Assert.Equal(pt.UserType, null);
@@ -32,6 +32,22 @@ namespace Hello.Tests
             Assert.True(pt.Friends.Contains("ryan"));
             Assert.True(pt.Friends.Contains("matt"));
             Assert.True(pt.Friends.Contains("kier"));
+        }
+
+        [Fact]
+        public static void TokenTest()
+        {
+            var pt = new ProcessedTweet("ASDF1234");
+
+            Assert.Equal(pt.Token, "ASDF1234".ToLower());
+        }
+
+        [Fact]
+        public static void SeatCodeTest()
+        {
+            var pt = new ProcessedTweet("ASD12");
+
+            Assert.Equal(pt.SeatCode, "ASD12".ToLower());
         }
     }
 }

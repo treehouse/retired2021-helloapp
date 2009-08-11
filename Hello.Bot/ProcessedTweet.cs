@@ -10,7 +10,7 @@ namespace Hello.Bot
     {
         public string UserType { get; set; }
         public List<string> Tags { get; set; }
-        public string SeatPassword { get; set; }
+        public string SeatCode { get; set; }
         public List<string> Friends { get; set; }
         public string Token { get; set; }
 
@@ -41,10 +41,10 @@ namespace Hello.Bot
                     UserType = token.Substring(1);
                 else if (token.StartsWith("#"))
                     Tags.Add(token.Substring(1));
-                else
-                {
-                    // TODO : it is a Token or a SeatPassword
-                }
+                else if (token.Length <= 5)
+                    SeatCode = token;
+                else if (token.Length <= 10)
+                    Token = token;
             }
         }
     }
