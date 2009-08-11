@@ -47,6 +47,27 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQL\RedGateDatabaseInfo.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SQL\Tables\dbo.Badges.sql" />
+    <None Include="SQL\Tables\dbo.Campaigns.sql" />
+    <None Include="SQL\Tables\dbo.Events.sql" />
+    <None Include="SQL\Tables\dbo.Friendships.sql" />
+    <None Include="SQL\Tables\dbo.Messages.sql" />
+    <None Include="SQL\Tables\dbo.Points.sql" />
+    <None Include="SQL\Tables\dbo.Redemptions.sql" />
+    <None Include="SQL\Tables\dbo.Seats.sql" />
+    <None Include="SQL\Tables\dbo.Sessions.sql" />
+    <None Include="SQL\Tables\dbo.Sits.sql" />
+    <None Include="SQL\Tables\dbo.TagAggregates.sql" />
+    <None Include="SQL\Tables\dbo.Tags.sql" />
+    <None Include="SQL\Tables\dbo.Tokens.sql" />
+    <None Include="SQL\Tables\dbo.UserBadges.sql" />
+    <None Include="SQL\Tables\dbo.Users.sql" />
+    <None Include="SQL\Tables\dbo.UserTypes.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
