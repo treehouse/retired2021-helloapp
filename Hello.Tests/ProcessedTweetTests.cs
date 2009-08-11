@@ -35,6 +35,17 @@ namespace Hello.Tests
         }
 
         [Fact]
+        public static void MetWithAtsTest()
+        {
+            var pt = new ProcessedTweet("met @ryan @matt @kier");
+
+            Assert.Equal(pt.Friends.Count, 3);
+            Assert.True(pt.Friends.Contains("ryan"));
+            Assert.True(pt.Friends.Contains("matt"));
+            Assert.True(pt.Friends.Contains("kier"));
+        }
+
+        [Fact]
         public static void TokenTest()
         {
             var pt = new ProcessedTweet("ASDF1234");

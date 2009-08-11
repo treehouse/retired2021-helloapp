@@ -32,7 +32,11 @@ namespace Hello.Bot
 
             if (tokens[0].Equals("met"))
             {
-                Friends = new List<string>(tokens.Skip(1));
+                Friends = new List<string>(
+                    tokens
+                        .Skip(1)
+                        .Select(f => f.Replace("@", ""))
+                );
             }
 
             foreach (var token in tokens)
