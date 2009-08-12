@@ -6,59 +6,93 @@ using Xunit;
 using Xunit.Extensions;
 using Hello.Bot;
 using Hello.Repo;
+using Moq;
 
 namespace Hello.Tests
 {
     public class ProcessedTweetTests
     {
-        [Fact]
-        public static void BlankTest()
+        public ProcessedTweetTests()
         {
-            var pt = new ProcessedTweet("");
-
-            Assert.Equal(pt.Friends.Count, 0);
-            Assert.Equal(pt.SeatCode, null);
-            Assert.Equal(pt.Tags.Count, 0);
-            Assert.Equal(pt.Token, null);
-            Assert.Equal(pt.UserType, null);
+            var mockSettings = new Mock<ISettingsImpl>();
+            mockSettings.Setup(s => s.Get("TwitterBotUsername")).Returns("apphandle");
+            mockSettings.Setup(s => s.Get("TwitterHashTag")).Returns("thetag");
+            Settings.SettingsImplementation = mockSettings.Object;
         }
 
         [Fact]
-        public static void MetTest()
+        public void BlankTest()
         {
-            var pt = new ProcessedTweet("met ryan matt kier");
+            var t = TweetProcessor.Process("");
 
-            Assert.Equal(pt.Friends.Count, 3);
-            Assert.True(pt.Friends.Contains("ryan"));
-            Assert.True(pt.Friends.Contains("matt"));
-            Assert.True(pt.Friends.Contains("kier"));
+            Assert.Null(t);
+        }
+
+        [Theory]
+        [InlineData("hello !dev #csharp #dotnet #jquery")]
+        [InlineData("@apphandle hello !dev #csharp #dotnet #jquery")]
+        [InlineData("#thetag hello !dev #csharp #dotnet #jquery")]
+        public void HelloTest(string tweet)
+        {
+            var t = TweetProcessor.Process(tweet) as HelloTweet;
+
+            Assert.NotNull(t);
+            Assert.Equal(t.UserType, "dev");
+            Assert.Equal(3, t.Tags.Count);
+            Assert.True(t.Tags.Contains("csharp"));
+            Assert.True(t.Tags.Contains("dotnet"));
+            Assert.True(t.Tags.Contains("jquery"));
         }
 
         [Fact]
-        public static void MetWithAtsTest()
+        public void MetTest()
         {
-            var pt = new ProcessedTweet("met @ryan @matt @kier");
+            var t = TweetProcessor.Process("met ryan matt kier") as MetTweet;
 
-            Assert.Equal(pt.Friends.Count, 3);
-            Assert.True(pt.Friends.Contains("ryan"));
-            Assert.True(pt.Friends.Contains("matt"));
-            Assert.True(pt.Friends.Contains("kier"));
+            Assert.NotNull(t);
+            Assert.Equal(3, t.Friends.Count);
+            Assert.True(t.Friends.Contains("ryan"));
+            Assert.True(t.Friends.Contains("matt"));
+            Assert.True(t.Friends.Contains("kier"));
         }
 
         [Fact]
-        public static void TokenTest()
+        public void MetWithAtsTest()
         {
-            var pt = new ProcessedTweet("ASDF1234");
+            var t = TweetProcessor.Process("met @ryan @matt @kier") as MetTweet;
 
-            Assert.Equal(pt.Token, "ASDF1234".ToLower());
+            Assert.NotNull(t);
+            Assert.Equal(3, t.Friends.Count);
+            Assert.True(t.Friends.Contains("ryan"));
+            Assert.True(t.Friends.Contains("matt"));
+            Assert.True(t.Friends.Contains("kier"));
         }
 
         [Fact]
-        public static void SeatCodeTest()
+        public void ClaimTest()
         {
-            var pt = new ProcessedTweet("ASD12");
+            var t = TweetProcessor.Process("claim ASDF1234") as ClaimTweet;
 
-            Assert.Equal(pt.SeatCode, "ASD12".ToLower());
+            Assert.NotNull(t);
+            Assert.Equal("ASDF1234".ToLower(), t.Token);
+        }
+
+        [Fact]
+        public void SatTest()
+        {
+            var t = TweetProcessor.Process("sat ASD12") as SatTweet;
+
+            Assert.NotNull(t);
+            Assert.Equal("ASD12".ToLower(), t.SeatCode);
+        }
+
+        [Fact]
+        public void MessageTest()
+        {
+            var t = TweetProcessor.Process("This is my shout out to everyone at Carsonified!") as MessageTweet;
+
+            Assert.NotNull(t);
+            Assert.Equal(t.Message, "This is my shout out to everyone at Carsonified!");
         }
     }
 }

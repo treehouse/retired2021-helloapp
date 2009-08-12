@@ -1,9 +1,10 @@
 CREATE TABLE [dbo].[Tokens]
 (
-[TokenID] [int] NOT NULL,
+[TokenID] [int] NOT NULL IDENTITY(1, 1),
 [CampaignID] [int] NOT NULL,
 [Token] [varchar] (10) COLLATE Latin1_General_CI_AS NOT NULL
-) ON [PRIMARY]
+)
+
 GO
 ALTER TABLE [dbo].[Tokens] ADD CONSTRAINT [PK_Tokens] PRIMARY KEY CLUSTERED  ([TokenID]) ON [PRIMARY]
 GO

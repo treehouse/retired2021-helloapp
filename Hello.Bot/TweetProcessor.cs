@@ -1,0 +1,105 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Hello.Repo;
+using System.Configuration;
+
+namespace Hello.Bot
+{
+    public static class TweetProcessor
+    {
+        public static ProcessedTweet Process(string tweetText)
+        {
+            var tokens = tweetText
+                .ToLower()
+                .Replace(',', ' ')
+                .Replace("@", "")
+                .Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+
+            if (tokens.Length == 0)
+                return null;
+
+            // skip the first token if it is #OurTag or @OurApp
+            if (tokens[0] == Settings.TwitterBotUsername || tokens[0] == "#" + Settings.TwitterHashTag)
+                tokens = tokens.Skip(1).ToArray();
+
+            if (tokens.Length == 1)
+                return null;
+
+            switch (tokens[0])
+            {
+                case "hello":
+                    var helloTweet = new HelloTweet();
+                    foreach (var token in tokens.Skip(1))
+                    {
+                        if (token.StartsWith("!"))
+                            helloTweet.UserType = token.Substring(1);
+                        else if (token.StartsWith("#"))
+                            helloTweet.Tags.Add(token.Substring(1));
+                    }
+                    return helloTweet;
+                case "sat":
+                    var sitTweet = new SatTweet();
+                    sitTweet.SeatCode = tokens[1];
+                    return sitTweet;
+                case "claim":
+                    var claimTweet = new ClaimTweet();
+                    claimTweet.Token = tokens[1];
+                    return claimTweet;
+                case "met":
+                    var metTweet = new MetTweet();
+                    metTweet.Friends = new List<string>(
+                        tokens
+                            .Skip(1)
+                            .Select(f => f)
+                    );
+                    return metTweet;
+                default:
+                    var messageTweet = new MessageTweet();
+                    messageTweet.Message = tweetText;
+                    return messageTweet;
+            }
+        }
+    }
+
+    public class ProcessedTweet
+    {
+    }
+
+    public class HelloTweet : ProcessedTweet
+    {
+        public string UserType { get; set; }
+        public List<string> Tags { get; set; }
+
+        public HelloTweet()
+        {
+            Tags = new List<string>();
+        }
+    }
+
+    public class SatTweet : ProcessedTweet
+    {
+        public string SeatCode { get; set; }
+    }
+
+    public class ClaimTweet : ProcessedTweet
+    {
+        public string Token { get; set; }
+    }
+
+    public class MetTweet : ProcessedTweet
+    {
+        public List<string> Friends { get; set; }
+
+        public MetTweet()
+        {
+            Friends = new List<string>();
+        }
+    }
+
+    public class MessageTweet : ProcessedTweet
+    {
+        public string Message { get; set; }
+    }
+}

@@ -61,9 +61,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SQL\RedGateDatabaseInfo.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="HelloRepo.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
@@ -77,25 +74,33 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="SQL\Tables\dbo.Badges.sql" />
-    <None Include="SQL\Tables\dbo.Campaigns.sql" />
-    <None Include="SQL\Tables\dbo.Events.sql" />
-    <None Include="SQL\Tables\dbo.Friendships.sql" />
-    <None Include="SQL\Tables\dbo.Messages.sql" />
-    <None Include="SQL\Tables\dbo.Points.sql" />
-    <None Include="SQL\Tables\dbo.Redemptions.sql" />
-    <None Include="SQL\Tables\dbo.Seats.sql" />
-    <None Include="SQL\Tables\dbo.Sessions.sql" />
-    <None Include="SQL\Tables\dbo.Sits.sql" />
-    <None Include="SQL\Tables\dbo.TagAggregates.sql" />
-    <None Include="SQL\Tables\dbo.Tags.sql" />
-    <None Include="SQL\Tables\dbo.Tokens.sql" />
-    <None Include="SQL\Tables\dbo.UserBadges.sql" />
-    <None Include="SQL\Tables\dbo.Users.sql" />
-    <None Include="SQL\Tables\dbo.UserTypes.sql" />
+    <None Include="SQL\Schema\Tables\dbo.Badges.sql" />
+    <None Include="SQL\Schema\Tables\dbo.Campaigns.sql" />
+    <None Include="SQL\Schema\Tables\dbo.Events.sql" />
+    <None Include="SQL\Schema\Tables\dbo.Friendships.sql" />
+    <None Include="SQL\Schema\Tables\dbo.Messages.sql" />
+    <None Include="SQL\Schema\Tables\dbo.Points.sql" />
+    <None Include="SQL\Schema\Tables\dbo.QueuedTweets.sql" />
+    <None Include="SQL\Schema\Tables\dbo.Redemptions.sql" />
+    <None Include="SQL\Schema\Tables\dbo.Seats.sql" />
+    <None Include="SQL\Schema\Tables\dbo.Sessions.sql" />
+    <None Include="SQL\Schema\Tables\dbo.Sits.sql" />
+    <None Include="SQL\Schema\Tables\dbo.TagAggregates.sql" />
+    <None Include="SQL\Schema\Tables\dbo.Tags.sql" />
+    <None Include="SQL\Schema\Tables\dbo.TideMarks.sql" />
+    <None Include="SQL\Schema\Tables\dbo.Tokens.sql" />
+    <None Include="SQL\Schema\Tables\dbo.UserBadges.sql" />
+    <None Include="SQL\Schema\Tables\dbo.Users.sql" />
+    <None Include="SQL\Schema\Tables\dbo.UserTypes.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQL\Schema\RedGateDatabaseInfo.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SQL\Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

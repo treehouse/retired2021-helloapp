@@ -30,27 +30,39 @@ namespace Hello.Repo
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertUserType(UserType instance);
-    partial void UpdateUserType(UserType instance);
-    partial void DeleteUserType(UserType instance);
     partial void InsertBadge(Badge instance);
     partial void UpdateBadge(Badge instance);
     partial void DeleteBadge(Badge instance);
+    partial void InsertUserType(UserType instance);
+    partial void UpdateUserType(UserType instance);
+    partial void DeleteUserType(UserType instance);
     partial void InsertCampaign(Campaign instance);
     partial void UpdateCampaign(Campaign instance);
     partial void DeleteCampaign(Campaign instance);
     partial void InsertEvent(Event instance);
     partial void UpdateEvent(Event instance);
     partial void DeleteEvent(Event instance);
-    partial void InsertMessage(Message instance);
-    partial void UpdateMessage(Message instance);
-    partial void DeleteMessage(Message instance);
+    partial void InsertFriendship(Friendship instance);
+    partial void UpdateFriendship(Friendship instance);
+    partial void DeleteFriendship(Friendship instance);
+    partial void InsertPoint(Point instance);
+    partial void UpdatePoint(Point instance);
+    partial void DeletePoint(Point instance);
+    partial void InsertQueuedTweet(QueuedTweet instance);
+    partial void UpdateQueuedTweet(QueuedTweet instance);
+    partial void DeleteQueuedTweet(QueuedTweet instance);
+    partial void InsertRedemption(Redemption instance);
+    partial void UpdateRedemption(Redemption instance);
+    partial void DeleteRedemption(Redemption instance);
+    partial void InsertSeat(Seat instance);
+    partial void UpdateSeat(Seat instance);
+    partial void DeleteSeat(Seat instance);
     partial void InsertSession(Session instance);
     partial void UpdateSession(Session instance);
     partial void DeleteSession(Session instance);
-    partial void InsertTag(Tag instance);
-    partial void UpdateTag(Tag instance);
-    partial void DeleteTag(Tag instance);
+    partial void InsertTideMark(TideMark instance);
+    partial void UpdateTideMark(TideMark instance);
+    partial void DeleteTideMark(TideMark instance);
     partial void InsertToken(Token instance);
     partial void UpdateToken(Token instance);
     partial void DeleteToken(Token instance);
@@ -60,9 +72,15 @@ namespace Hello.Repo
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
-    partial void InsertSeat(Seat instance);
-    partial void UpdateSeat(Seat instance);
-    partial void DeleteSeat(Seat instance);
+    partial void InsertMessage(Message instance);
+    partial void UpdateMessage(Message instance);
+    partial void DeleteMessage(Message instance);
+    partial void InsertTag(Tag instance);
+    partial void UpdateTag(Tag instance);
+    partial void DeleteTag(Tag instance);
+    partial void InsertSat(Sat instance);
+    partial void UpdateSat(Sat instance);
+    partial void DeleteSat(Sat instance);
     #endregion
 		
 		public HelloRepoDataContext() : 
@@ -95,19 +113,19 @@ namespace Hello.Repo
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<UserType> UserTypes
-		{
-			get
-			{
-				return this.GetTable<UserType>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Badge> Badges
 		{
 			get
 			{
 				return this.GetTable<Badge>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserType> UserTypes
+		{
+			get
+			{
+				return this.GetTable<UserType>();
 			}
 		}
 		
@@ -135,19 +153,19 @@ namespace Hello.Repo
 			}
 		}
 		
-		public System.Data.Linq.Table<Message> Messages
-		{
-			get
-			{
-				return this.GetTable<Message>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Point> Points
 		{
 			get
 			{
 				return this.GetTable<Point>();
+			}
+		}
+		
+		public System.Data.Linq.Table<QueuedTweet> QueuedTweets
+		{
+			get
+			{
+				return this.GetTable<QueuedTweet>();
 			}
 		}
 		
@@ -159,19 +177,19 @@ namespace Hello.Repo
 			}
 		}
 		
+		public System.Data.Linq.Table<Seat> Seats
+		{
+			get
+			{
+				return this.GetTable<Seat>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Session> Sessions
 		{
 			get
 			{
 				return this.GetTable<Session>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Sit> Sits
-		{
-			get
-			{
-				return this.GetTable<Sit>();
 			}
 		}
 		
@@ -183,11 +201,11 @@ namespace Hello.Repo
 			}
 		}
 		
-		public System.Data.Linq.Table<Tag> Tags
+		public System.Data.Linq.Table<TideMark> TideMarks
 		{
 			get
 			{
-				return this.GetTable<Tag>();
+				return this.GetTable<TideMark>();
 			}
 		}
 		
@@ -215,28 +233,166 @@ namespace Hello.Repo
 			}
 		}
 		
-		public System.Data.Linq.Table<TideMark> TideMarks
+		public System.Data.Linq.Table<Message> Messages
 		{
 			get
 			{
-				return this.GetTable<TideMark>();
+				return this.GetTable<Message>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Seat> Seats
+		public System.Data.Linq.Table<Tag> Tags
 		{
 			get
 			{
-				return this.GetTable<Seat>();
+				return this.GetTable<Tag>();
 			}
 		}
 		
-		public System.Data.Linq.Table<QueuedTweet> QueuedTweets
+		public System.Data.Linq.Table<Sat> Sats
 		{
 			get
 			{
-				return this.GetTable<QueuedTweet>();
+				return this.GetTable<Sat>();
 			}
+		}
+	}
+	
+	[Table(Name="dbo.Badges")]
+	public partial class Badge : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _BadgeID;
+		
+		private string _Name;
+		
+		private string _ImageUrl;
+		
+		private EntitySet<UserBadge> _UserBadges;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBadgeIDChanging(int value);
+    partial void OnBadgeIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnImageUrlChanging(string value);
+    partial void OnImageUrlChanged();
+    #endregion
+		
+		public Badge()
+		{
+			this._UserBadges = new EntitySet<UserBadge>(new Action<UserBadge>(this.attach_UserBadges), new Action<UserBadge>(this.detach_UserBadges));
+			OnCreated();
+		}
+		
+		[Column(Storage="_BadgeID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int BadgeID
+		{
+			get
+			{
+				return this._BadgeID;
+			}
+			set
+			{
+				if ((this._BadgeID != value))
+				{
+					this.OnBadgeIDChanging(value);
+					this.SendPropertyChanging();
+					this._BadgeID = value;
+					this.SendPropertyChanged("BadgeID");
+					this.OnBadgeIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ImageUrl", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string ImageUrl
+		{
+			get
+			{
+				return this._ImageUrl;
+			}
+			set
+			{
+				if ((this._ImageUrl != value))
+				{
+					this.OnImageUrlChanging(value);
+					this.SendPropertyChanging();
+					this._ImageUrl = value;
+					this.SendPropertyChanged("ImageUrl");
+					this.OnImageUrlChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Badge_UserBadge", Storage="_UserBadges", ThisKey="BadgeID", OtherKey="BadgeID")]
+		public EntitySet<UserBadge> UserBadges
+		{
+			get
+			{
+				return this._UserBadges;
+			}
+			set
+			{
+				this._UserBadges.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_UserBadges(UserBadge entity)
+		{
+			this.SendPropertyChanging();
+			entity.Badge = this;
+		}
+		
+		private void detach_UserBadges(UserBadge entity)
+		{
+			this.SendPropertyChanging();
+			entity.Badge = null;
 		}
 	}
 	
@@ -515,144 +671,6 @@ namespace Hello.Repo
 		}
 	}
 	
-	[Table(Name="dbo.Badges")]
-	public partial class Badge : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _BadgeID;
-		
-		private string _Name;
-		
-		private string _ImageUrl;
-		
-		private EntitySet<UserBadge> _UserBadges;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnBadgeIDChanging(int value);
-    partial void OnBadgeIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnImageUrlChanging(string value);
-    partial void OnImageUrlChanged();
-    #endregion
-		
-		public Badge()
-		{
-			this._UserBadges = new EntitySet<UserBadge>(new Action<UserBadge>(this.attach_UserBadges), new Action<UserBadge>(this.detach_UserBadges));
-			OnCreated();
-		}
-		
-		[Column(Storage="_BadgeID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int BadgeID
-		{
-			get
-			{
-				return this._BadgeID;
-			}
-			set
-			{
-				if ((this._BadgeID != value))
-				{
-					this.OnBadgeIDChanging(value);
-					this.SendPropertyChanging();
-					this._BadgeID = value;
-					this.SendPropertyChanged("BadgeID");
-					this.OnBadgeIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ImageUrl", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string ImageUrl
-		{
-			get
-			{
-				return this._ImageUrl;
-			}
-			set
-			{
-				if ((this._ImageUrl != value))
-				{
-					this.OnImageUrlChanging(value);
-					this.SendPropertyChanging();
-					this._ImageUrl = value;
-					this.SendPropertyChanged("ImageUrl");
-					this.OnImageUrlChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Badge_UserBadge", Storage="_UserBadges", ThisKey="BadgeID", OtherKey="BadgeID")]
-		public EntitySet<UserBadge> UserBadges
-		{
-			get
-			{
-				return this._UserBadges;
-			}
-			set
-			{
-				this._UserBadges.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_UserBadges(UserBadge entity)
-		{
-			this.SendPropertyChanging();
-			entity.Badge = this;
-		}
-		
-		private void detach_UserBadges(UserBadge entity)
-		{
-			this.SendPropertyChanging();
-			entity.Badge = null;
-		}
-	}
-	
 	[Table(Name="dbo.Campaigns")]
 	public partial class Campaign : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -685,7 +703,7 @@ namespace Hello.Repo
 			OnCreated();
 		}
 		
-		[Column(Storage="_CampaignID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_CampaignID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int CampaignID
 		{
 			get
@@ -805,9 +823,9 @@ namespace Hello.Repo
 		
 		private EntitySet<UserType> _UserTypes;
 		
-		private EntitySet<Session> _Sessions;
-		
 		private EntitySet<Seat> _Seats;
+		
+		private EntitySet<Session> _Sessions;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -824,12 +842,12 @@ namespace Hello.Repo
 		public Event()
 		{
 			this._UserTypes = new EntitySet<UserType>(new Action<UserType>(this.attach_UserTypes), new Action<UserType>(this.detach_UserTypes));
-			this._Sessions = new EntitySet<Session>(new Action<Session>(this.attach_Sessions), new Action<Session>(this.detach_Sessions));
 			this._Seats = new EntitySet<Seat>(new Action<Seat>(this.attach_Seats), new Action<Seat>(this.detach_Seats));
+			this._Sessions = new EntitySet<Session>(new Action<Session>(this.attach_Sessions), new Action<Session>(this.detach_Sessions));
 			OnCreated();
 		}
 		
-		[Column(Storage="_EventID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_EventID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int EventID
 		{
 			get
@@ -902,19 +920,6 @@ namespace Hello.Repo
 			}
 		}
 		
-		[Association(Name="Event_Session", Storage="_Sessions", ThisKey="EventID", OtherKey="EventID")]
-		public EntitySet<Session> Sessions
-		{
-			get
-			{
-				return this._Sessions;
-			}
-			set
-			{
-				this._Sessions.Assign(value);
-			}
-		}
-		
 		[Association(Name="Event_Seat", Storage="_Seats", ThisKey="EventID", OtherKey="EventID")]
 		public EntitySet<Seat> Seats
 		{
@@ -925,6 +930,19 @@ namespace Hello.Repo
 			set
 			{
 				this._Seats.Assign(value);
+			}
+		}
+		
+		[Association(Name="Event_Session", Storage="_Sessions", ThisKey="EventID", OtherKey="EventID")]
+		public EntitySet<Session> Sessions
+		{
+			get
+			{
+				return this._Sessions;
+			}
+			set
+			{
+				this._Sessions.Assign(value);
 			}
 		}
 		
@@ -960,18 +978,6 @@ namespace Hello.Repo
 			entity.Event = null;
 		}
 		
-		private void attach_Sessions(Session entity)
-		{
-			this.SendPropertyChanging();
-			entity.Event = this;
-		}
-		
-		private void detach_Sessions(Session entity)
-		{
-			this.SendPropertyChanging();
-			entity.Event = null;
-		}
-		
 		private void attach_Seats(Seat entity)
 		{
 			this.SendPropertyChanging();
@@ -983,21 +989,52 @@ namespace Hello.Repo
 			this.SendPropertyChanging();
 			entity.Event = null;
 		}
+		
+		private void attach_Sessions(Session entity)
+		{
+			this.SendPropertyChanging();
+			entity.Event = this;
+		}
+		
+		private void detach_Sessions(Session entity)
+		{
+			this.SendPropertyChanging();
+			entity.Event = null;
+		}
 	}
 	
 	[Table(Name="dbo.Friendships")]
-	public partial class Friendship
+	public partial class Friendship : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _Befriender;
 		
 		private string _Befriendee;
 		
+		private EntityRef<User> _User;
+		
+		private EntityRef<User> _User1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBefrienderChanging(string value);
+    partial void OnBefrienderChanged();
+    partial void OnBefriendeeChanging(string value);
+    partial void OnBefriendeeChanged();
+    #endregion
+		
 		public Friendship()
 		{
+			this._User = default(EntityRef<User>);
+			this._User1 = default(EntityRef<User>);
+			OnCreated();
 		}
 		
-		[Column(Storage="_Befriender", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Befriender", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string Befriender
 		{
 			get
@@ -1008,12 +1045,20 @@ namespace Hello.Repo
 			{
 				if ((this._Befriender != value))
 				{
+					if (this._User1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBefrienderChanging(value);
+					this.SendPropertyChanging();
 					this._Befriender = value;
+					this.SendPropertyChanged("Befriender");
+					this.OnBefrienderChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Befriendee", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Befriendee", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string Befriendee
 		{
 			get
@@ -1024,23 +1069,123 @@ namespace Hello.Repo
 			{
 				if ((this._Befriendee != value))
 				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBefriendeeChanging(value);
+					this.SendPropertyChanging();
 					this._Befriendee = value;
+					this.SendPropertyChanged("Befriendee");
+					this.OnBefriendeeChanged();
 				}
+			}
+		}
+		
+		[Association(Name="User_Friendship", Storage="_User", ThisKey="Befriendee", OtherKey="Username", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Friendships.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Friendships.Add(this);
+						this._Befriendee = value.Username;
+					}
+					else
+					{
+						this._Befriendee = default(string);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[Association(Name="User_Friendship1", Storage="_User1", ThisKey="Befriender", OtherKey="Username", IsForeignKey=true)]
+		public User User1
+		{
+			get
+			{
+				return this._User1.Entity;
+			}
+			set
+			{
+				User previousValue = this._User1.Entity;
+				if (((previousValue != value) 
+							|| (this._User1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User1.Entity = null;
+						previousValue.Friendships1.Remove(this);
+					}
+					this._User1.Entity = value;
+					if ((value != null))
+					{
+						value.Friendships1.Add(this);
+						this._Befriender = value.Username;
+					}
+					else
+					{
+						this._Befriender = default(string);
+					}
+					this.SendPropertyChanged("User1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
 	
-	[Table(Name="dbo.Messages")]
-	public partial class Message : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="dbo.Points")]
+	public partial class Point : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private int _PointID;
+		
 		private string _Username;
 		
-		private string _Message1;
+		private System.DateTime _Issued;
 		
-		private bool _Offensive;
+		private int _Amount;
+		
+		private string _Details;
 		
 		private EntityRef<User> _User;
 		
@@ -1048,21 +1193,45 @@ namespace Hello.Repo
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnPointIDChanging(int value);
+    partial void OnPointIDChanged();
     partial void OnUsernameChanging(string value);
     partial void OnUsernameChanged();
-    partial void OnMessage1Changing(string value);
-    partial void OnMessage1Changed();
-    partial void OnOffensiveChanging(bool value);
-    partial void OnOffensiveChanged();
+    partial void OnIssuedChanging(System.DateTime value);
+    partial void OnIssuedChanged();
+    partial void OnAmountChanging(int value);
+    partial void OnAmountChanged();
+    partial void OnDetailsChanging(string value);
+    partial void OnDetailsChanged();
     #endregion
 		
-		public Message()
+		public Point()
 		{
 			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
-		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[Column(Storage="_PointID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int PointID
+		{
+			get
+			{
+				return this._PointID;
+			}
+			set
+			{
+				if ((this._PointID != value))
+				{
+					this.OnPointIDChanging(value);
+					this.SendPropertyChanging();
+					this._PointID = value;
+					this.SendPropertyChanged("PointID");
+					this.OnPointIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Username
 		{
 			get
@@ -1086,47 +1255,67 @@ namespace Hello.Repo
 			}
 		}
 		
-		[Column(Name="Message", Storage="_Message1", DbType="NVarChar(140) NOT NULL", CanBeNull=false)]
-		public string Message1
+		[Column(Storage="_Issued", DbType="DateTime NOT NULL")]
+		public System.DateTime Issued
 		{
 			get
 			{
-				return this._Message1;
+				return this._Issued;
 			}
 			set
 			{
-				if ((this._Message1 != value))
+				if ((this._Issued != value))
 				{
-					this.OnMessage1Changing(value);
+					this.OnIssuedChanging(value);
 					this.SendPropertyChanging();
-					this._Message1 = value;
-					this.SendPropertyChanged("Message1");
-					this.OnMessage1Changed();
+					this._Issued = value;
+					this.SendPropertyChanged("Issued");
+					this.OnIssuedChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Offensive", DbType="Bit NOT NULL")]
-		public bool Offensive
+		[Column(Storage="_Amount", DbType="Int NOT NULL")]
+		public int Amount
 		{
 			get
 			{
-				return this._Offensive;
+				return this._Amount;
 			}
 			set
 			{
-				if ((this._Offensive != value))
+				if ((this._Amount != value))
 				{
-					this.OnOffensiveChanging(value);
+					this.OnAmountChanging(value);
 					this.SendPropertyChanging();
-					this._Offensive = value;
-					this.SendPropertyChanged("Offensive");
-					this.OnOffensiveChanged();
+					this._Amount = value;
+					this.SendPropertyChanged("Amount");
+					this.OnAmountChanged();
 				}
 			}
 		}
 		
-		[Association(Name="User_Message", Storage="_User", ThisKey="Username", OtherKey="Username", IsForeignKey=true)]
+		[Column(Storage="_Details", DbType="NChar(20) NOT NULL", CanBeNull=false)]
+		public string Details
+		{
+			get
+			{
+				return this._Details;
+			}
+			set
+			{
+				if ((this._Details != value))
+				{
+					this.OnDetailsChanging(value);
+					this.SendPropertyChanging();
+					this._Details = value;
+					this.SendPropertyChanged("Details");
+					this.OnDetailsChanged();
+				}
+			}
+		}
+		
+		[Association(Name="User_Point", Storage="_User", ThisKey="Username", OtherKey="Username", IsForeignKey=true)]
 		public User User
 		{
 			get
@@ -1143,12 +1332,12 @@ namespace Hello.Repo
 					if ((previousValue != null))
 					{
 						this._User.Entity = null;
-						previousValue.Message = null;
+						previousValue.Points.Remove(this);
 					}
 					this._User.Entity = value;
 					if ((value != null))
 					{
-						value.Message = this;
+						value.Points.Add(this);
 						this._Username = value.Username;
 					}
 					else
@@ -1181,99 +1370,61 @@ namespace Hello.Repo
 		}
 	}
 	
-	[Table(Name="dbo.Points")]
-	public partial class Point
+	[Table(Name="dbo.QueuedTweets")]
+	public partial class QueuedTweet : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _QueuedTweetID;
 		
 		private string _Username;
 		
-		private System.DateTime _Issued;
-		
-		private int _Amount;
-		
-		private string _Details;
-		
-		public Point()
-		{
-		}
-		
-		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Username
-		{
-			get
-			{
-				return this._Username;
-			}
-			set
-			{
-				if ((this._Username != value))
-				{
-					this._Username = value;
-				}
-			}
-		}
-		
-		[Column(Storage="_Issued", DbType="DateTime NOT NULL")]
-		public System.DateTime Issued
-		{
-			get
-			{
-				return this._Issued;
-			}
-			set
-			{
-				if ((this._Issued != value))
-				{
-					this._Issued = value;
-				}
-			}
-		}
-		
-		[Column(Storage="_Amount", DbType="Int NOT NULL")]
-		public int Amount
-		{
-			get
-			{
-				return this._Amount;
-			}
-			set
-			{
-				if ((this._Amount != value))
-				{
-					this._Amount = value;
-				}
-			}
-		}
-		
-		[Column(Storage="_Details", DbType="NChar(20) NOT NULL", CanBeNull=false)]
-		public string Details
-		{
-			get
-			{
-				return this._Details;
-			}
-			set
-			{
-				if ((this._Details != value))
-				{
-					this._Details = value;
-				}
-			}
-		}
-	}
-	
-	[Table(Name="dbo.Redemptions")]
-	public partial class Redemption
-	{
-		
-		private string _Username;
-		
-		private int _TokenID;
+		private string _Message;
 		
 		private System.DateTime _Created;
 		
-		public Redemption()
+		private bool _Processed;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQueuedTweetIDChanging(int value);
+    partial void OnQueuedTweetIDChanged();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnMessageChanging(string value);
+    partial void OnMessageChanged();
+    partial void OnCreatedChanging(System.DateTime value);
+    partial void OnCreatedChanged();
+    partial void OnProcessedChanging(bool value);
+    partial void OnProcessedChanged();
+    #endregion
+		
+		public QueuedTweet()
 		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_QueuedTweetID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int QueuedTweetID
+		{
+			get
+			{
+				return this._QueuedTweetID;
+			}
+			set
+			{
+				if ((this._QueuedTweetID != value))
+				{
+					this.OnQueuedTweetIDChanging(value);
+					this.SendPropertyChanging();
+					this._QueuedTweetID = value;
+					this.SendPropertyChanged("QueuedTweetID");
+					this.OnQueuedTweetIDChanged();
+				}
+			}
 		}
 		
 		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
@@ -1287,23 +1438,31 @@ namespace Hello.Repo
 			{
 				if ((this._Username != value))
 				{
+					this.OnUsernameChanging(value);
+					this.SendPropertyChanging();
 					this._Username = value;
+					this.SendPropertyChanged("Username");
+					this.OnUsernameChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_TokenID", DbType="Int NOT NULL")]
-		public int TokenID
+		[Column(Storage="_Message", DbType="NVarChar(140) NOT NULL", CanBeNull=false)]
+		public string Message
 		{
 			get
 			{
-				return this._TokenID;
+				return this._Message;
 			}
 			set
 			{
-				if ((this._TokenID != value))
+				if ((this._Message != value))
 				{
-					this._TokenID = value;
+					this.OnMessageChanging(value);
+					this.SendPropertyChanging();
+					this._Message = value;
+					this.SendPropertyChanged("Message");
+					this.OnMessageChanged();
 				}
 			}
 		}
@@ -1319,8 +1478,467 @@ namespace Hello.Repo
 			{
 				if ((this._Created != value))
 				{
+					this.OnCreatedChanging(value);
+					this.SendPropertyChanging();
 					this._Created = value;
+					this.SendPropertyChanged("Created");
+					this.OnCreatedChanged();
 				}
+			}
+		}
+		
+		[Column(Storage="_Processed", DbType="Bit NOT NULL")]
+		public bool Processed
+		{
+			get
+			{
+				return this._Processed;
+			}
+			set
+			{
+				if ((this._Processed != value))
+				{
+					this.OnProcessedChanging(value);
+					this.SendPropertyChanging();
+					this._Processed = value;
+					this.SendPropertyChanged("Processed");
+					this.OnProcessedChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Redemptions")]
+	public partial class Redemption : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RedemptionID;
+		
+		private string _Username;
+		
+		private int _TokenID;
+		
+		private System.DateTime _Created;
+		
+		private EntityRef<Token> _Token;
+		
+		private EntityRef<User> _User;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRedemptionIDChanging(int value);
+    partial void OnRedemptionIDChanged();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnTokenIDChanging(int value);
+    partial void OnTokenIDChanged();
+    partial void OnCreatedChanging(System.DateTime value);
+    partial void OnCreatedChanged();
+    #endregion
+		
+		public Redemption()
+		{
+			this._Token = default(EntityRef<Token>);
+			this._User = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_RedemptionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RedemptionID
+		{
+			get
+			{
+				return this._RedemptionID;
+			}
+			set
+			{
+				if ((this._RedemptionID != value))
+				{
+					this.OnRedemptionIDChanging(value);
+					this.SendPropertyChanging();
+					this._RedemptionID = value;
+					this.SendPropertyChanged("RedemptionID");
+					this.OnRedemptionIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Username
+		{
+			get
+			{
+				return this._Username;
+			}
+			set
+			{
+				if ((this._Username != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUsernameChanging(value);
+					this.SendPropertyChanging();
+					this._Username = value;
+					this.SendPropertyChanged("Username");
+					this.OnUsernameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TokenID", DbType="Int NOT NULL")]
+		public int TokenID
+		{
+			get
+			{
+				return this._TokenID;
+			}
+			set
+			{
+				if ((this._TokenID != value))
+				{
+					if (this._Token.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTokenIDChanging(value);
+					this.SendPropertyChanging();
+					this._TokenID = value;
+					this.SendPropertyChanged("TokenID");
+					this.OnTokenIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
+		public System.DateTime Created
+		{
+			get
+			{
+				return this._Created;
+			}
+			set
+			{
+				if ((this._Created != value))
+				{
+					this.OnCreatedChanging(value);
+					this.SendPropertyChanging();
+					this._Created = value;
+					this.SendPropertyChanged("Created");
+					this.OnCreatedChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Token_Redemption", Storage="_Token", ThisKey="TokenID", OtherKey="TokenID", IsForeignKey=true)]
+		public Token Token
+		{
+			get
+			{
+				return this._Token.Entity;
+			}
+			set
+			{
+				Token previousValue = this._Token.Entity;
+				if (((previousValue != value) 
+							|| (this._Token.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Token.Entity = null;
+						previousValue.Redemptions.Remove(this);
+					}
+					this._Token.Entity = value;
+					if ((value != null))
+					{
+						value.Redemptions.Add(this);
+						this._TokenID = value.TokenID;
+					}
+					else
+					{
+						this._TokenID = default(int);
+					}
+					this.SendPropertyChanged("Token");
+				}
+			}
+		}
+		
+		[Association(Name="User_Redemption", Storage="_User", ThisKey="Username", OtherKey="Username", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Redemptions.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Redemptions.Add(this);
+						this._Username = value.Username;
+					}
+					else
+					{
+						this._Username = default(string);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Seats")]
+	public partial class Seat : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _SeatNumber;
+		
+		private string _Row;
+		
+		private string _Section;
+		
+		private int _EventID;
+		
+		private string _Code;
+		
+		private EntityRef<Event> _Event;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSeatNumberChanging(string value);
+    partial void OnSeatNumberChanged();
+    partial void OnRowChanging(string value);
+    partial void OnRowChanged();
+    partial void OnSectionChanging(string value);
+    partial void OnSectionChanged();
+    partial void OnEventIDChanging(int value);
+    partial void OnEventIDChanged();
+    partial void OnCodeChanging(string value);
+    partial void OnCodeChanged();
+    #endregion
+		
+		public Seat()
+		{
+			this._Event = default(EntityRef<Event>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_SeatNumber", DbType="Char(2) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string SeatNumber
+		{
+			get
+			{
+				return this._SeatNumber;
+			}
+			set
+			{
+				if ((this._SeatNumber != value))
+				{
+					this.OnSeatNumberChanging(value);
+					this.SendPropertyChanging();
+					this._SeatNumber = value;
+					this.SendPropertyChanged("SeatNumber");
+					this.OnSeatNumberChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Row", DbType="Char(2) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Row
+		{
+			get
+			{
+				return this._Row;
+			}
+			set
+			{
+				if ((this._Row != value))
+				{
+					this.OnRowChanging(value);
+					this.SendPropertyChanging();
+					this._Row = value;
+					this.SendPropertyChanged("Row");
+					this.OnRowChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Section", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Section
+		{
+			get
+			{
+				return this._Section;
+			}
+			set
+			{
+				if ((this._Section != value))
+				{
+					this.OnSectionChanging(value);
+					this.SendPropertyChanging();
+					this._Section = value;
+					this.SendPropertyChanged("Section");
+					this.OnSectionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EventID", DbType="Int NOT NULL")]
+		public int EventID
+		{
+			get
+			{
+				return this._EventID;
+			}
+			set
+			{
+				if ((this._EventID != value))
+				{
+					if (this._Event.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEventIDChanging(value);
+					this.SendPropertyChanging();
+					this._EventID = value;
+					this.SendPropertyChanged("EventID");
+					this.OnEventIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Code", DbType="Char(5) NOT NULL", CanBeNull=false)]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this.OnCodeChanging(value);
+					this.SendPropertyChanging();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Event_Seat", Storage="_Event", ThisKey="EventID", OtherKey="EventID", IsForeignKey=true)]
+		public Event Event
+		{
+			get
+			{
+				return this._Event.Entity;
+			}
+			set
+			{
+				Event previousValue = this._Event.Entity;
+				if (((previousValue != value) 
+							|| (this._Event.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Event.Entity = null;
+						previousValue.Seats.Remove(this);
+					}
+					this._Event.Entity = value;
+					if ((value != null))
+					{
+						value.Seats.Add(this);
+						this._EventID = value.EventID;
+					}
+					else
+					{
+						this._EventID = default(int);
+					}
+					this.SendPropertyChanged("Event");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -1365,7 +1983,7 @@ namespace Hello.Repo
 			OnCreated();
 		}
 		
-		[Column(Storage="_SessionID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_SessionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int SessionID
 		{
 			get
@@ -1524,54 +2142,11 @@ namespace Hello.Repo
 		}
 	}
 	
-	[Table(Name="dbo.Sits")]
-	public partial class Sit
-	{
-		
-		private string _Username;
-		
-		private int _SessionID;
-		
-		public Sit()
-		{
-		}
-		
-		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Username
-		{
-			get
-			{
-				return this._Username;
-			}
-			set
-			{
-				if ((this._Username != value))
-				{
-					this._Username = value;
-				}
-			}
-		}
-		
-		[Column(Storage="_SessionID", DbType="Int NOT NULL")]
-		public int SessionID
-		{
-			get
-			{
-				return this._SessionID;
-			}
-			set
-			{
-				if ((this._SessionID != value))
-				{
-					this._SessionID = value;
-				}
-			}
-		}
-	}
-	
 	[Table(Name="dbo.TagAggregates")]
 	public partial class TagAggregate
 	{
+		
+		private int _TagAggregateID;
 		
 		private string _Tag;
 		
@@ -1581,6 +2156,22 @@ namespace Hello.Repo
 		
 		public TagAggregate()
 		{
+		}
+		
+		[Column(Storage="_TagAggregateID", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int TagAggregateID
+		{
+			get
+			{
+				return this._TagAggregateID;
+			}
+			set
+			{
+				if ((this._TagAggregateID != value))
+				{
+					this._TagAggregateID = value;
+				}
+			}
 		}
 		
 		[Column(Storage="_Tag", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
@@ -1632,132 +2223,67 @@ namespace Hello.Repo
 		}
 	}
 	
-	[Table(Name="dbo.Tags")]
-	public partial class Tag : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="dbo.TideMarks")]
+	public partial class TideMark : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _Tag1;
+		private string _Name;
 		
-		private string _Username;
-		
-		private System.DateTime _Created;
-		
-		private EntityRef<User> _User;
+		private int _LastId;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnTag1Changing(string value);
-    partial void OnTag1Changed();
-    partial void OnUsernameChanging(string value);
-    partial void OnUsernameChanged();
-    partial void OnCreatedChanging(System.DateTime value);
-    partial void OnCreatedChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnLastIdChanging(int value);
+    partial void OnLastIdChanged();
     #endregion
 		
-		public Tag()
+		public TideMark()
 		{
-			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
-		[Column(Name="Tag", Storage="_Tag1", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string Tag1
+		[Column(Storage="_Name", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Name
 		{
 			get
 			{
-				return this._Tag1;
+				return this._Name;
 			}
 			set
 			{
-				if ((this._Tag1 != value))
+				if ((this._Name != value))
 				{
-					this.OnTag1Changing(value);
+					this.OnNameChanging(value);
 					this.SendPropertyChanging();
-					this._Tag1 = value;
-					this.SendPropertyChanged("Tag1");
-					this.OnTag1Changed();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string Username
+		[Column(Storage="_LastId", DbType="Int NOT NULL")]
+		public int LastId
 		{
 			get
 			{
-				return this._Username;
+				return this._LastId;
 			}
 			set
 			{
-				if ((this._Username != value))
+				if ((this._LastId != value))
 				{
-					if (this._User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUsernameChanging(value);
+					this.OnLastIdChanging(value);
 					this.SendPropertyChanging();
-					this._Username = value;
-					this.SendPropertyChanged("Username");
-					this.OnUsernameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
-		public System.DateTime Created
-		{
-			get
-			{
-				return this._Created;
-			}
-			set
-			{
-				if ((this._Created != value))
-				{
-					this.OnCreatedChanging(value);
-					this.SendPropertyChanging();
-					this._Created = value;
-					this.SendPropertyChanged("Created");
-					this.OnCreatedChanged();
-				}
-			}
-		}
-		
-		[Association(Name="User_Tag", Storage="_User", ThisKey="Username", OtherKey="Username", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.Tags.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.Tags.Add(this);
-						this._Username = value.Username;
-					}
-					else
-					{
-						this._Username = default(string);
-					}
-					this.SendPropertyChanged("User");
+					this._LastId = value;
+					this.SendPropertyChanged("LastId");
+					this.OnLastIdChanged();
 				}
 			}
 		}
@@ -1795,6 +2321,8 @@ namespace Hello.Repo
 		
 		private string _Token1;
 		
+		private EntitySet<Redemption> _Redemptions;
+		
 		private EntityRef<Campaign> _Campaign;
 		
     #region Extensibility Method Definitions
@@ -1811,11 +2339,12 @@ namespace Hello.Repo
 		
 		public Token()
 		{
+			this._Redemptions = new EntitySet<Redemption>(new Action<Redemption>(this.attach_Redemptions), new Action<Redemption>(this.detach_Redemptions));
 			this._Campaign = default(EntityRef<Campaign>);
 			OnCreated();
 		}
 		
-		[Column(Storage="_TokenID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_TokenID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int TokenID
 		{
 			get
@@ -1879,6 +2408,19 @@ namespace Hello.Repo
 			}
 		}
 		
+		[Association(Name="Token_Redemption", Storage="_Redemptions", ThisKey="TokenID", OtherKey="TokenID")]
+		public EntitySet<Redemption> Redemptions
+		{
+			get
+			{
+				return this._Redemptions;
+			}
+			set
+			{
+				this._Redemptions.Assign(value);
+			}
+		}
+		
 		[Association(Name="Campaign_Token", Storage="_Campaign", ThisKey="CampaignID", OtherKey="CampaignID", IsForeignKey=true)]
 		public Campaign Campaign
 		{
@@ -1931,6 +2473,18 @@ namespace Hello.Repo
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Redemptions(Redemption entity)
+		{
+			this.SendPropertyChanging();
+			entity.Token = this;
+		}
+		
+		private void detach_Redemptions(Redemption entity)
+		{
+			this.SendPropertyChanging();
+			entity.Token = null;
 		}
 	}
 	
@@ -2142,11 +2696,21 @@ namespace Hello.Repo
 		
 		private string _UserTypeID;
 		
+		private EntitySet<Friendship> _Friendships;
+		
+		private EntitySet<Friendship> _Friendships1;
+		
+		private EntitySet<Point> _Points;
+		
+		private EntitySet<Redemption> _Redemptions;
+		
+		private EntitySet<UserBadge> _UserBadges;
+		
 		private EntityRef<Message> _Message;
 		
 		private EntitySet<Tag> _Tags;
 		
-		private EntitySet<UserBadge> _UserBadges;
+		private EntitySet<Sat> _Sats;
 		
 		private EntityRef<UserType> _UserType;
 		
@@ -2168,9 +2732,14 @@ namespace Hello.Repo
 		
 		public User()
 		{
+			this._Friendships = new EntitySet<Friendship>(new Action<Friendship>(this.attach_Friendships), new Action<Friendship>(this.detach_Friendships));
+			this._Friendships1 = new EntitySet<Friendship>(new Action<Friendship>(this.attach_Friendships1), new Action<Friendship>(this.detach_Friendships1));
+			this._Points = new EntitySet<Point>(new Action<Point>(this.attach_Points), new Action<Point>(this.detach_Points));
+			this._Redemptions = new EntitySet<Redemption>(new Action<Redemption>(this.attach_Redemptions), new Action<Redemption>(this.detach_Redemptions));
+			this._UserBadges = new EntitySet<UserBadge>(new Action<UserBadge>(this.attach_UserBadges), new Action<UserBadge>(this.detach_UserBadges));
 			this._Message = default(EntityRef<Message>);
 			this._Tags = new EntitySet<Tag>(new Action<Tag>(this.attach_Tags), new Action<Tag>(this.detach_Tags));
-			this._UserBadges = new EntitySet<UserBadge>(new Action<UserBadge>(this.attach_UserBadges), new Action<UserBadge>(this.detach_UserBadges));
+			this._Sats = new EntitySet<Sat>(new Action<Sat>(this.attach_Sats), new Action<Sat>(this.detach_Sats));
 			this._UserType = default(EntityRef<UserType>);
 			OnCreated();
 		}
@@ -2279,6 +2848,71 @@ namespace Hello.Repo
 			}
 		}
 		
+		[Association(Name="User_Friendship", Storage="_Friendships", ThisKey="Username", OtherKey="Befriendee")]
+		public EntitySet<Friendship> Friendships
+		{
+			get
+			{
+				return this._Friendships;
+			}
+			set
+			{
+				this._Friendships.Assign(value);
+			}
+		}
+		
+		[Association(Name="User_Friendship1", Storage="_Friendships1", ThisKey="Username", OtherKey="Befriender")]
+		public EntitySet<Friendship> Friendships1
+		{
+			get
+			{
+				return this._Friendships1;
+			}
+			set
+			{
+				this._Friendships1.Assign(value);
+			}
+		}
+		
+		[Association(Name="User_Point", Storage="_Points", ThisKey="Username", OtherKey="Username")]
+		public EntitySet<Point> Points
+		{
+			get
+			{
+				return this._Points;
+			}
+			set
+			{
+				this._Points.Assign(value);
+			}
+		}
+		
+		[Association(Name="User_Redemption", Storage="_Redemptions", ThisKey="Username", OtherKey="Username")]
+		public EntitySet<Redemption> Redemptions
+		{
+			get
+			{
+				return this._Redemptions;
+			}
+			set
+			{
+				this._Redemptions.Assign(value);
+			}
+		}
+		
+		[Association(Name="User_UserBadge", Storage="_UserBadges", ThisKey="Username", OtherKey="Username")]
+		public EntitySet<UserBadge> UserBadges
+		{
+			get
+			{
+				return this._UserBadges;
+			}
+			set
+			{
+				this._UserBadges.Assign(value);
+			}
+		}
+		
 		[Association(Name="User_Message", Storage="_Message", ThisKey="Username", OtherKey="Username", IsUnique=true, IsForeignKey=false)]
 		public Message Message
 		{
@@ -2321,16 +2955,16 @@ namespace Hello.Repo
 			}
 		}
 		
-		[Association(Name="User_UserBadge", Storage="_UserBadges", ThisKey="Username", OtherKey="Username")]
-		public EntitySet<UserBadge> UserBadges
+		[Association(Name="User_Sat", Storage="_Sats", ThisKey="Username", OtherKey="Username")]
+		public EntitySet<Sat> Sats
 		{
 			get
 			{
-				return this._UserBadges;
+				return this._Sats;
 			}
 			set
 			{
-				this._UserBadges.Assign(value);
+				this._Sats.Assign(value);
 			}
 		}
 		
@@ -2388,13 +3022,49 @@ namespace Hello.Repo
 			}
 		}
 		
-		private void attach_Tags(Tag entity)
+		private void attach_Friendships(Friendship entity)
 		{
 			this.SendPropertyChanging();
 			entity.User = this;
 		}
 		
-		private void detach_Tags(Tag entity)
+		private void detach_Friendships(Friendship entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Friendships1(Friendship entity)
+		{
+			this.SendPropertyChanging();
+			entity.User1 = this;
+		}
+		
+		private void detach_Friendships1(Friendship entity)
+		{
+			this.SendPropertyChanging();
+			entity.User1 = null;
+		}
+		
+		private void attach_Points(Point entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Points(Point entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Redemptions(Redemption entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Redemptions(Redemption entity)
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
@@ -2411,227 +3081,158 @@ namespace Hello.Repo
 			this.SendPropertyChanging();
 			entity.User = null;
 		}
-	}
-	
-	[Table(Name="dbo.TideMarks")]
-	public partial class TideMark
-	{
 		
-		private string _Name;
-		
-		private int _LastId;
-		
-		public TideMark()
+		private void attach_Tags(Tag entity)
 		{
+			this.SendPropertyChanging();
+			entity.User = this;
 		}
 		
-		[Column(Storage="_Name", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string Name
+		private void detach_Tags(Tag entity)
 		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this._Name = value;
-				}
-			}
+			this.SendPropertyChanging();
+			entity.User = null;
 		}
 		
-		[Column(Storage="_LastId", DbType="Int NOT NULL")]
-		public int LastId
+		private void attach_Sats(Sat entity)
 		{
-			get
-			{
-				return this._LastId;
-			}
-			set
-			{
-				if ((this._LastId != value))
-				{
-					this._LastId = value;
-				}
-			}
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Sats(Sat entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
 		}
 	}
 	
-	[Table(Name="dbo.Seats")]
-	public partial class Seat : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="dbo.Messages")]
+	public partial class Message : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _SeatNumber;
+		private string _Username;
 		
-		private string _Row;
+		private string _Text;
 		
-		private string _Section;
+		private bool _Offensive;
 		
-		private int _EventID;
-		
-		private string _Code;
-		
-		private EntityRef<Event> _Event;
+		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnSeatNumberChanging(string value);
-    partial void OnSeatNumberChanged();
-    partial void OnRowChanging(string value);
-    partial void OnRowChanged();
-    partial void OnSectionChanging(string value);
-    partial void OnSectionChanged();
-    partial void OnEventIDChanging(int value);
-    partial void OnEventIDChanged();
-    partial void OnCodeChanging(string value);
-    partial void OnCodeChanged();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnTextChanging(string value);
+    partial void OnTextChanged();
+    partial void OnOffensiveChanging(bool value);
+    partial void OnOffensiveChanged();
     #endregion
 		
-		public Seat()
+		public Message()
 		{
-			this._Event = default(EntityRef<Event>);
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
-		[Column(Storage="_SeatNumber", DbType="Char(2) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string SeatNumber
+		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Username
 		{
 			get
 			{
-				return this._SeatNumber;
+				return this._Username;
 			}
 			set
 			{
-				if ((this._SeatNumber != value))
+				if ((this._Username != value))
 				{
-					this.OnSeatNumberChanging(value);
-					this.SendPropertyChanging();
-					this._SeatNumber = value;
-					this.SendPropertyChanged("SeatNumber");
-					this.OnSeatNumberChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Row", DbType="Char(2) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string Row
-		{
-			get
-			{
-				return this._Row;
-			}
-			set
-			{
-				if ((this._Row != value))
-				{
-					this.OnRowChanging(value);
-					this.SendPropertyChanging();
-					this._Row = value;
-					this.SendPropertyChanged("Row");
-					this.OnRowChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Section", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string Section
-		{
-			get
-			{
-				return this._Section;
-			}
-			set
-			{
-				if ((this._Section != value))
-				{
-					this.OnSectionChanging(value);
-					this.SendPropertyChanging();
-					this._Section = value;
-					this.SendPropertyChanged("Section");
-					this.OnSectionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_EventID", DbType="Int NOT NULL")]
-		public int EventID
-		{
-			get
-			{
-				return this._EventID;
-			}
-			set
-			{
-				if ((this._EventID != value))
-				{
-					if (this._Event.HasLoadedOrAssignedValue)
+					if (this._User.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnEventIDChanging(value);
+					this.OnUsernameChanging(value);
 					this.SendPropertyChanging();
-					this._EventID = value;
-					this.SendPropertyChanged("EventID");
-					this.OnEventIDChanged();
+					this._Username = value;
+					this.SendPropertyChanged("Username");
+					this.OnUsernameChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Code", DbType="Char(5) NOT NULL", CanBeNull=false)]
-		public string Code
+		[Column(Storage="_Text", DbType="NVarChar(140) NOT NULL", CanBeNull=false)]
+		public string Text
 		{
 			get
 			{
-				return this._Code;
+				return this._Text;
 			}
 			set
 			{
-				if ((this._Code != value))
+				if ((this._Text != value))
 				{
-					this.OnCodeChanging(value);
+					this.OnTextChanging(value);
 					this.SendPropertyChanging();
-					this._Code = value;
-					this.SendPropertyChanged("Code");
-					this.OnCodeChanged();
+					this._Text = value;
+					this.SendPropertyChanged("Text");
+					this.OnTextChanged();
 				}
 			}
 		}
 		
-		[Association(Name="Event_Seat", Storage="_Event", ThisKey="EventID", OtherKey="EventID", IsForeignKey=true)]
-		public Event Event
+		[Column(Storage="_Offensive", DbType="Bit NOT NULL")]
+		public bool Offensive
 		{
 			get
 			{
-				return this._Event.Entity;
+				return this._Offensive;
 			}
 			set
 			{
-				Event previousValue = this._Event.Entity;
+				if ((this._Offensive != value))
+				{
+					this.OnOffensiveChanging(value);
+					this.SendPropertyChanging();
+					this._Offensive = value;
+					this.SendPropertyChanged("Offensive");
+					this.OnOffensiveChanged();
+				}
+			}
+		}
+		
+		[Association(Name="User_Message", Storage="_User", ThisKey="Username", OtherKey="Username", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
 				if (((previousValue != value) 
-							|| (this._Event.HasLoadedOrAssignedValue == false)))
+							|| (this._User.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Event.Entity = null;
-						previousValue.Seats.Remove(this);
+						this._User.Entity = null;
+						previousValue.Message = null;
 					}
-					this._Event.Entity = value;
+					this._User.Entity = value;
 					if ((value != null))
 					{
-						value.Seats.Add(this);
-						this._EventID = value.EventID;
+						value.Message = this;
+						this._Username = value.Username;
 					}
 					else
 					{
-						this._EventID = default(int);
+						this._Username = default(string);
 					}
-					this.SendPropertyChanged("Event");
+					this.SendPropertyChanged("User");
 				}
 			}
 		}
@@ -2657,23 +3258,59 @@ namespace Hello.Repo
 		}
 	}
 	
-	[Table(Name="dbo.QueuedTweets")]
-	public partial class QueuedTweet
+	[Table(Name="dbo.Tags")]
+	public partial class Tag : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Name;
 		
 		private string _Username;
 		
-		private string _Message;
-		
 		private System.DateTime _Created;
 		
-		private bool _Processed;
+		private EntityRef<User> _User;
 		
-		public QueuedTweet()
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnCreatedChanging(System.DateTime value);
+    partial void OnCreatedChanged();
+    #endregion
+		
+		public Tag()
 		{
+			this._User = default(EntityRef<User>);
+			OnCreated();
 		}
 		
-		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Name", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string Username
 		{
 			get
@@ -2684,23 +3321,15 @@ namespace Hello.Repo
 			{
 				if ((this._Username != value))
 				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUsernameChanging(value);
+					this.SendPropertyChanging();
 					this._Username = value;
-				}
-			}
-		}
-		
-		[Column(Storage="_Message", DbType="NVarChar(140) NOT NULL", CanBeNull=false)]
-		public string Message
-		{
-			get
-			{
-				return this._Message;
-			}
-			set
-			{
-				if ((this._Message != value))
-				{
-					this._Message = value;
+					this.SendPropertyChanged("Username");
+					this.OnUsernameChanged();
 				}
 			}
 		}
@@ -2716,24 +3345,193 @@ namespace Hello.Repo
 			{
 				if ((this._Created != value))
 				{
+					this.OnCreatedChanging(value);
+					this.SendPropertyChanging();
 					this._Created = value;
+					this.SendPropertyChanged("Created");
+					this.OnCreatedChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Processed", DbType="Bit NOT NULL")]
-		public bool Processed
+		[Association(Name="User_Tag", Storage="_User", ThisKey="Username", OtherKey="Username", IsForeignKey=true)]
+		public User User
 		{
 			get
 			{
-				return this._Processed;
+				return this._User.Entity;
 			}
 			set
 			{
-				if ((this._Processed != value))
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
 				{
-					this._Processed = value;
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Tags.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Tags.Add(this);
+						this._Username = value.Username;
+					}
+					else
+					{
+						this._Username = default(string);
+					}
+					this.SendPropertyChanged("User");
 				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Sats")]
+	public partial class Sat : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Username;
+		
+		private int _SessionID;
+		
+		private EntityRef<User> _User;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnSessionIDChanging(int value);
+    partial void OnSessionIDChanged();
+    #endregion
+		
+		public Sat()
+		{
+			this._User = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Username
+		{
+			get
+			{
+				return this._Username;
+			}
+			set
+			{
+				if ((this._Username != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUsernameChanging(value);
+					this.SendPropertyChanging();
+					this._Username = value;
+					this.SendPropertyChanged("Username");
+					this.OnUsernameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SessionID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int SessionID
+		{
+			get
+			{
+				return this._SessionID;
+			}
+			set
+			{
+				if ((this._SessionID != value))
+				{
+					this.OnSessionIDChanging(value);
+					this.SendPropertyChanging();
+					this._SessionID = value;
+					this.SendPropertyChanged("SessionID");
+					this.OnSessionIDChanged();
+				}
+			}
+		}
+		
+		[Association(Name="User_Sat", Storage="_User", ThisKey="Username", OtherKey="Username", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Sats.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Sats.Add(this);
+						this._Username = value.Username;
+					}
+					else
+					{
+						this._Username = default(string);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
