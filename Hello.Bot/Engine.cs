@@ -88,6 +88,7 @@ namespace Hello.Bot
                     .AsStatuses();
                 
                 var queuedTweets = statuses
+                    .Where(s => s.Id != lastID)
                     .Select(s => new QueuedTweet
                     {
                         Username = s.User.ScreenName,
@@ -126,6 +127,7 @@ namespace Hello.Bot
                     .AsDirectMessages();
 
                 var queuedTweets = statuses
+                    .Where(s => s.Id != lastID)
                     .Select(s => new QueuedTweet
                     {
                         Username = s.SenderScreenName,
@@ -145,9 +147,11 @@ namespace Hello.Bot
 
         private void StoreTweets(IEnumerable<QueuedTweet> tweets)
         {
-            _repo.QueuedTweets.InsertAllOnSubmit(tweets);
-
-            _repo.SubmitChanges();
+            if (tweets.Count() > 0)
+            {
+                _repo.QueuedTweets.InsertAllOnSubmit(tweets);
+                _repo.SubmitChanges();
+            }
         }
 
         //public void SendDirectMessage(string username, string message)

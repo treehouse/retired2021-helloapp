@@ -20,7 +20,7 @@ namespace Hello.Bot
                 return null;
 
             // skip the first token if it is #OurTag or @OurApp
-            if (tokens[0] == Settings.TwitterBotUsername || tokens[0] == "#" + Settings.TwitterHashTag)
+            if (tokens[0] == Settings.TwitterBotUsername.ToLower() || tokens[0] == "#" + Settings.TwitterHashTag.ToLower())
                 tokens = tokens.Skip(1).ToArray();
 
             if (tokens.Length == 1)
