@@ -168,7 +168,10 @@ namespace Hello.Bot
                 var messageTweet = processedTweet as MessageTweet;
                 if (messageTweet != null)
                 {
-                    user.Message.Text = messageTweet.Message;
+                    var message = user.Message ?? new Message { Username = tweet.Username };
+
+                    message.Offensive = false;
+                    message.Text = messageTweet.Message;
                 }
 
                 var helloTweet = processedTweet as HelloTweet;
