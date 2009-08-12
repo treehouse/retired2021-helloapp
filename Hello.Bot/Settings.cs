@@ -14,22 +14,19 @@ namespace Hello.Bot
         {
             get
             {
-                Console.WriteLine(_settings == null);
                 if (_settings == null)
                     _settings = new SettingsImpl();
                 return _settings;
             }
             set
             {
-                Console.WriteLine(_settings);
-                Console.WriteLine(_settings == null);
                 _settings = value;
             }
         }
 
         public static string TwitterBotUsername
         {
-            get { return _settings.Get("TwitterBotUsername"); }
+            get { return SettingsImplementation.Get("TwitterBotUsername"); }
         }
 
         public static string TwitterBotPassword
