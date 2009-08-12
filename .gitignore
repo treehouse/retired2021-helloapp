@@ -1,5 +1,7 @@
 *.suo
 *.csproj.user
 *.local.config
+._*
+Thumbs.db
 obj/
 bin/

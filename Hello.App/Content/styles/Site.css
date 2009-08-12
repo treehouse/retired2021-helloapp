@@ -1,0 +1,698 @@
+﻿/*
+Theme Name: HelloApp
+Theme URI: http://hello.carsonified.com/
+Description: Hello App
+Version: 1
+Author: Mike Kus (mike@carsonified.com)
+*/
+
+
+/********** Reset **********/
+/* Adapted from http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+body {
+	line-height: 1;
+	color: black;
+	background: white;
+}
+ol, ul {
+	list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+
+/* End Reset */
+
+
+
+
+
+
+
+
+
+
+/* Typography ______________________________________________________ */
+
+body {
+	font-family: Georgia, "Times New Roman", serif;
+    font-size: 100%;
+    line-height: 1.125em; /* 16×1.125=18px */
+}
+
+h4 {
+	font-size:110%;
+	font-weight:bold;
+	color:#3e3d36;
+	letter-spacing:-0.05em;
+	padding:0px 0px 5px 0px;
+}
+
+p.intro {
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:95%;
+	font-style:italic;
+	letter-spacing:-0.05em;
+	color:#5a5852;
+	padding:26px 0px 0px 47px;
+	float:left;
+}
+
+p.intro span {
+	font-weight:bold;
+}
+
+/* End Typography */
+
+
+
+
+
+
+
+
+
+
+
+/* Links ______________________________________________________ */
+
+a {
+	color:#dc3d2a;
+	text-decoration:underline;
+}
+
+a:hover {
+	color:#4fa431;
+	text-decoration:none;
+}
+
+
+
+
+
+
+
+
+
+
+/* General ______________________________________________________ */
+
+body {
+	background:url(../images/presentation/solar_system_02.png) #ebe7d5 center 137px repeat-x;
+	font-family:Helvetica, Arial, sans-serif;
+    font-size: 100%;
+    line-height: 1.125em; /* 16×1.125=18px */
+	color:#000;
+	padding-bottom:50px;
+}
+
+.content {
+	width:980px;
+	margin:0 auto;
+}
+
+.contentMain {
+
+}
+
+.listings {
+	padding:0px 150px 0px 150px;
+}
+
+.seating {
+	position:relative;
+}
+
+.randomAvatars {
+	height:500px;
+	position:relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Header ______________ */
+
+.header {
+	width:980px;
+	border-bottom:1px dashed #727068;
+}
+
+.branding {
+	width:490px;
+	float:left;
+	height:142px;
+	padding:37px 0px 5px 0px;
+	border-right:1px dashed #727068;
+}
+
+a.logo {
+	float:left;
+	background:url(../images/presentation/logo_hello.png) top left no-repeat;
+	display: block;
+	width:439px;
+	height:102px;
+	border:none;
+	padding:0px;
+	text-indent:-9999px;
+	}
+	
+.headerRight {
+	float:left;
+	width:489px;
+}
+
+ul.mainNav {
+	border-bottom:1px dashed #727068;
+	width:458px;
+	padding:0px 0px 0px 33px;
+	float:left;
+}
+
+ul.mainNav li a {
+	float:left;
+	text-decoration:none;
+	padding:21px 15px 21px 15px;
+	color:#181715;
+}
+
+ul.mainNav li a:hover {
+	background:#bfd5ce;
+}
+
+body#home ul.mainNav li a.home,
+body#about ul.mainNav li a.about,
+body#faq ul.mainNav li a.faq {
+	background:url(../images/presentation/stripes.png) #c8c5b5 top left repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Tweet Header ______________ */
+
+.tweetHeader {
+	background:url(../images/presentation/bird.png) #181715 13px 10px no-repeat;;
+	position:relative;
+	padding:10px 20px 32px 70px;
+	-moz-border-radius-bottomleft: 13px;			
+	-moz-border-radius-bottomright: 13px;
+	-webkit-border-bottom-left-radius: 13px;
+	-webkit-border-bottom-right-radius: 13px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.tweetHeader p {
+	color:#ebe7d5;
+	font-size:85%;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-style:italic;
+}
+
+.tweetHeader p span {
+	font-family:Helvetica, Arial, sans-serif;
+	font-style:normal;
+	margin:5px 0px 0px 3px;
+}
+
+.tweetHeader ul {
+	position:absolute;
+	top:40px;
+	right:20px;
+}
+
+.tweetHeader ul li {
+	display:inline;
+	font-size:85%;
+	margin-left:10px;
+}
+
+.tweetHeader ul li a {
+	text-decoration:none;
+	background:#62605d;
+	color:#ebe7d5;
+	padding:3px 5px 3px 5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+
+.tweetHeader ul li a:hover {
+	text-decoration:none;
+	background:#4fa431;
+}
+
+
+
+
+
+
+
+
+
+
+/* Join or Search __________________________________________________________ */
+
+.joinOrSearch {
+	width:980px;
+	height:90px;
+	border-bottom:1px dashed #727068;
+	margin-bottom:100px;
+}
+
+a.joinInSticker {
+	position:relative;
+	top:-20px;
+	left:178px;
+	float:left;
+	background:url(../images/presentation/join_in.png) top left no-repeat;
+	display: block;
+	width:131px;
+	height:131px;
+	border:none;
+	padding:0px;
+	text-indent:-9999px;
+	}
+	
+a.joinInSticker:hover {
+	background:url(../images/presentation/join_in.png) 0px -140px no-repeat;
+	}	
+
+form#search {
+	position:relative;
+	float:right;
+	width:515px;
+	margin:19px 0px 0px 0px;
+}
+
+form#search label {
+	float:left;
+	font-size:230%;
+	letter-spacing:-0.05em;
+	color:#3e3d36;
+	font-weight:bold;
+	padding:17px 12px 0px 0px;
+}
+
+form#search label span {
+	color:#319db8;
+	font-style:italic;
+	font-size:130%;
+	padding:0px 15px 0px 0px;
+}
+
+form#search input#searchTerm {
+	float:left;
+	width:230px;
+	height:40px;
+	border: none;
+	-moz-border-radius-topleft: 6px;			
+	-moz-border-radius-bottomleft: 6px;
+	-webkit-border-top-left-radius: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+	padding:12px 0px 0px 9px;
+	font-size:140%;
+}
+
+form#search input#submit {
+	float:left;
+	background:url(../images/presentation/mag_glass.png) top left no-repeat;
+	display: block;
+	width:56px;
+	height:52px;
+	border:none;
+	cursor:pointer;
+	padding:0px;
+	text-indent:-9999px;
+}
+
+form#search input#submit:hover {
+	background:url(../images/presentation/mag_glass.png) 0px -60px no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Check in __________________________________________________________ */
+
+.checkInBar {
+	width:980px;
+	height:90px;
+	border-bottom:1px dashed #727068;
+	margin-bottom:100px;
+	position:relative;
+}
+
+a.checkIn {
+	position:absolute;
+	top:-33px;
+	left:330px;
+	float:left;
+	background:url(../images/presentation/check_in.png) top left no-repeat;
+	display: block;
+	width:319px;
+	height:158px;
+	border:none;
+	padding:0px;
+	text-indent:-9999px;
+	}
+	
+a.checkIn:hover {
+	background:url(../images/presentation/check_in.png) 0px -170px no-repeat;
+	}	
+
+.checkInBar h2 {
+	float:left;
+	font-size:230%;
+	letter-spacing:-0.05em;
+	color:#3e3d36;
+	font-weight:bold;
+	padding:37px 0px 0px 0px;
+	}	
+	
+.checkInBar h2.right {
+	float:right;
+	}	
+
+
+
+
+
+
+
+
+
+
+/* Seating Plan __________________________________________________________ */
+
+table.seatingPlan {
+	float:left;
+	margin:0px 40px 40px 0px;
+}
+
+table.seatingPlan3,
+table.seatingPlan4  {
+	margin:0px 0px 40px 0px;
+}
+
+table.seatingPlan tr {
+
+}
+
+table.seatingPlan td,
+table.seatingPlan3 td,
+table.seatingPlan4 td {
+	width:24px;
+	height:24px;
+	border-right:1px solid #ebe7d5;
+	border-bottom:1px solid #ebe7d5;
+	background:#b7b3a3;
+}
+
+table.seatingPlan4  {
+	position:relative;
+	top:0;
+	left:240px;
+}
+
+
+
+
+
+/* Profile Box ______________________________________________________ */
+
+.profileBox {
+	width:450px;
+	padding:20px 20px 20px 20px;
+	background:#fff;
+	border:1px dashed #dc3d2a;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-webkit-box-shadow: 0px 0px 10px #9f9c91;  
+    -moz-box-shadow: 0px 0px 10px #9f9c91;  
+	box-shadow: 0px 0px 10px #9f9c91;  
+	margin:0px 0px 40px 0px;
+}
+
+.twitterProfile {
+	position:relative;
+	border-bottom:1px dashed #afaca1;
+	padding:0px 0px 20px 0px;
+	margin:0px 0px 20px 0px;
+}
+
+.profileBox p {
+	font-size:80%;
+	letter-spacing:-0.03em;
+	color:#797979;
+}
+
+.twitterProfile img {
+	float:left;
+	margin:0px 0px 0px 0px;
+}
+
+.bio {
+	margin:0px 25px 0px 90px;
+}
+
+ul.categories {
+	margin:0px 0px 10px 0px;
+}
+
+ul.categories li {
+	display:inline;
+	text-decoration:none;
+	color:#fff;
+	font-size:90%;
+	letter-spacing:-0.05em;
+	padding:2px 4px 2px 4px;
+	background:#a2a2a2;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+}
+
+ul.categories li.selected {
+	background:#000;
+}
+
+a.close {
+	background:url(../images/presentation/close.png) top left no-repeat;
+	display: block;
+	width:20px;
+	height:20px;
+	border:none;
+	cursor:pointer;
+	padding:0px;
+	text-indent:-9999px;
+	position:absolute;
+	top:0px;
+	left:430px;
+}
+
+a.close:hover {
+	background:url(../images/presentation/close.png) 0px -30px no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Round Avatars __________________________________________________________ */
+
+.roundAvatars {
+	position:absolute;
+	top:100px;
+	left:100px;
+	height:73px;
+	width:73px;
+	background:url(../images/content/greg.jpg) top left no-repeat;
+	-moz-border-radius:37px;
+	-webkit-border-radius:35px;
+	border-radius:37px;
+	-webkit-box-shadow: 0px 0px 5px #75736a;  
+    -moz-box-shadow: 0px 0px 5px #75736a;  
+	box-shadow: 0px 0px 5px #75736a; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Footer ____________________________________________________________ */
+
+.footer {
+	border-top:1px dashed #727068;
+	margin:50px 0px 0px 0px;
+}
+
+.company {
+	float:left;
+	width:247px;
+	padding:40px 0px 0px 0px;
+	border-right:1px dashed #727068;
+}
+
+a.carsonifiedLogo {
+	float:left;
+	background:url(../images/presentation/logo_carsonified.png) top left no-repeat;
+	display: block;
+	width:207px;
+	height:100px;
+	border:none;
+	padding:0px;
+	text-indent:-9999px;
+	}
+	
+a.carsonifiedLogo:hover {
+	background:url(../images/presentation/logo_carsonified.png) 0px -120px no-repeat;
+	}	
+
+.builtBy {
+	float:left;
+	width:207px;
+	border-right:1px dashed #727068;
+	padding:40px 35px 0px 35px;
+}
+
+.builtBy p, 
+.contact p {
+	font-size:85%;
+	letter-spacing:-0.05em;
+	color:#5a5852;
+}
+
+.builtBy p span,
+.contact p span {
+	font-weight:bold;
+}
+
+.contact {
+	float:left;
+	width:190px;
+	padding:40px 0px 0px 35px;
+}
+
+
+
+
+
+
+
+
+
+
+/* Misc ____________________________________________________________ */
+
+.left {
+	float:left;
+}
+
+.right {
+	float:right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Clearfix ____________________________________________________________________ */
+
+.header:after,
+.seating:after,
+.checkInBar:after,
+.twitterProfile:after,
+.listings:after,
+.joinOrSearch:after,
+.content:after,
+.nav.categories:after {
+	content: "."; 
+	display: block; 
+	height: 0; 
+	clear: both; 
+	visibility: hidden;
+}
+/* End Clearfix */

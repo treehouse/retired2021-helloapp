@@ -4,38 +4,62 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
-    <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/styles/Site.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-    <div class="page">
 
-        <div id="header">
-            <div id="title">
-                <h2>Turn to the person next to you and say...</h2>
-                <h1>Hello</h1>
-            </div>
-              
-            <div id="logindisplay">
-                &nbsp;
-            </div> 
-            
-            <div id="menucontainer">
-            
-                <ul id="menu">              
-                    <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
-                    <li><%= Html.ActionLink("About", "About", "Home")%></li>
-                </ul>
-            
-            </div>
-        </div>
+<div class="section content">
 
-        <div id="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+	<div class="header">
+	
+		<div class="branding">
+			<a class="logo" href="index.html">Turn to your neighbour and say... Hello</a>
+		</div><!-- /.branding -->
 
-            <div id="footer">
-            </div>
-        </div>
+			<div class="headerRight">
+            <ul class="mainNav">
+                <li><%= Html.ActionLink("home", "Index", "Home", null, new { @class = "home" }) %></li>
+                <li><%= Html.ActionLink("about", "About", "Home", null, new { @class = "about" })%></li>
+                <li><%= Html.ActionLink("faq", "Faq", "Home", null, new { @class = "faq" })%></li>
+			</ul>
+           
+           <p class="intro">Hello helps you to <span>meet interesting people at FOWA London.</span> You can say where you're sitting, earn points, badges and post messages to the whole audience. You can also watch the event, even if you're not attending. Come on and <a href="#">join in</a>!</p> 
+           </div>
+		
+	</div><!-- /.header .page -->
+	
+	<div class="section contentMain">
+    
+    <div class="joinOrSearch">
+    <a class="joinInSticker" href="#">Join In</a>
+        <% using (Html.BeginForm("Search", "Users", FormMethod.Get, new { id = "search" })) { %>
+            <p><label><span>or</span> Search:</label><input type="text" id="searchTerm" name="search" value="" /></p>
+            <p><input type="submit" id="submit" /></p>
+        <% } %>
     </div>
+    
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    
+    </div><!-- /.section .contentMain -->
+	
+	<div class="footer">
+        <div class="company">
+        <a href="http://carsonified.com" class="carsonifiedLogo" target="_blank">Carsonified</a>        
+        </div>
+        
+        <div class="builtBy">
+        <p><span>Hello</span> was designed &amp; built by the peeps at <a href="http://carsonified.com" target="_blank">Carsonified</a> with a little help from <a href="http://twitter.com/thatismatt" target="_blank">Matt Lee</a> at <a href="http://www.red-gate.com" target="_blank">Red Gate</a>. <span>Hello</span> was built using <a href="http://www.asp.net/mvc" target="_blank">ASP .NET MVC</a>.</p>
+        </div>
+        
+        <div class="contact">
+        <h4>Contact:</h4>
+        <p>T: +44 1225 324 980<br />E: <a href="mailto:&#104;&#101;&#108;&#108;&#111;&#64;&#99;&#97;&#114;&#115;&#111;&#110;&#105;&#102;&#105;&#101;d&#46;&#99;&#111;&#109;">h&#101;&#108;l&#111;&#64;ca&#114;&#115;&#111;n&#105;&#102;&#105;&#101;&#100;&#46;&#99;&#111;&#109;</a></p>
+        </div>
+
+	</div><!-- /.footer -->
+
+</div><!-- /.section .content -->
+
 </body>
 </html>
