@@ -10,6 +10,8 @@ namespace Hello.Bot
 {
     public class Engine
     {
+        private const long MIN_TWEET_ID = 2; // twitter doesn't like 0, and we do a lastID - 1 below, so... 2, it's the magic number
+
         private HelloRepoDataContext _repo;
 
         public Engine(HelloRepoDataContext repo)
@@ -27,92 +29,134 @@ namespace Hello.Bot
 
         public void QueueHashTagged()
         {
-            // TODO: Check max id
+            var lastID = GetLastTideMark("HashTagged");
+            var seenLastTweet = false;
+            var maxID = 0L;
+            var page = 1;
 
-            var statuses = GetTwitterRequest()
-                .Search()
-                .Query()
-                .ContainingHashTag(Settings.TwitterHashTag)
-                //.Since(123456789)
-                //.Skip(2)
-                .Take(int.MaxValue)
-                .Request()
-                .AsSearchResult()
-                .Statuses
-                .Select(s => new QueuedTweet
-                {
-                    Username = s.FromUserScreenName,
-                    Message = s.Text
-                });
+            while (!seenLastTweet)
+            {
+                var request = GetTwitterRequest()
+                    .Search()
+                    .Query()
+                    .ContainingHashTag(Settings.TwitterHashTag)
+                    .Since(lastID - 1)
+                    .Skip(page)
+                    .Take(int.MaxValue)
+                    .Request();
+                var statuses = request
+                    .AsSearchResult()
+                    .Statuses;
 
-            // TODO: record max id
+                var tweetsToQueue = statuses
+                    .Where(s => s.Id != lastID)
+                    .Select(s => new QueuedTweet
+                    {
+                        Username = s.FromUserScreenName,
+                        Message = s.Text,
+                        Created = DateTime.Now,
+                        ImageURL = s.ProfileImageUrl
+                    });
 
-            StoreTweets(statuses);
+                StoreTweets(tweetsToQueue);
+
+                seenLastTweet = lastID == MIN_TWEET_ID || statuses.Any(s => s.Id == lastID);
+                maxID = Math.Max(maxID, statuses.Max(s => s.Id));
+                page++;
+            }
+
+            MarkTide("HashTagged", maxID);
         }
 
         public void QueueMentions()
         {
-            // TODO: Check max id
+            var lastID = GetLastTideMark("Mentions");
+            var seenLastTweet = false;
+            var maxID = 0L;
+            var page = 1;
 
-            var statuses = GetTwitterRequest()
-                .Statuses()
-                .Mentions()
-                //.Since(123456789)
-                .Request()
-                .AsStatuses()
-                .Select(s => new QueuedTweet
-                {
-                    Username = s.User.ScreenName,
-                    Message = s.Text
-                });
+            while (!seenLastTweet)
+            {
+                var request = GetTwitterRequest()
+                    .Statuses()
+                    .Mentions()
+                    .Since(lastID - 1)
+                    .Skip(page)
+                    .Take(int.MaxValue)
+                    .Request();
+                var statuses = request
+                    .AsStatuses();
+                
+                var queuedTweets = statuses
+                    .Select(s => new QueuedTweet
+                    {
+                        Username = s.User.ScreenName,
+                        Message = s.Text,
+                        Created = DateTime.Now,
+                        ImageURL = s.User.ProfileImageUrl
+                    });
 
-            // TODO: record max id
+                StoreTweets(queuedTweets);
 
-            StoreTweets(statuses);
+                seenLastTweet = lastID == MIN_TWEET_ID || statuses.Any(s => s.Id == lastID);
+                maxID = Math.Max(maxID, statuses.Max(s => s.Id));
+                page++;
+            }
+
+            MarkTide("Mentions", maxID);
         }
 
         public void QueueDirectMessages()
         {
-            // TODO: Check max id
+            var lastID = GetLastTideMark("DirectMessages");
+            var seenLastTweet = false;
+            var maxID = 0L;
+            var page = 1;
 
-            var statuses = GetTwitterRequest()
-                .DirectMessages()
-                .Received()
-                //.Since()
-                .Request()
-                .AsDirectMessages()
-                .Select(s => new QueuedTweet
-                {
-                    Username = s.SenderScreenName,
-                    Message = s.Text
-                });
+            while (!seenLastTweet)
+            {
+                var request = GetTwitterRequest()
+                    .DirectMessages()
+                    .Received()
+                    .Since(lastID - 1)
+                    .Skip(page)
+                    .Take(int.MaxValue)
+                    .Request();
+                var statuses = request
+                    .AsDirectMessages();
 
-            // TODO: record max id
+                var queuedTweets = statuses
+                    .Select(s => new QueuedTweet
+                    {
+                        Username = s.SenderScreenName,
+                        Message = s.Text,
+                        Created = DateTime.Now,
+                        ImageURL = s.Sender.ProfileImageUrl
+                    });
 
-            StoreTweets(statuses);
+                StoreTweets(queuedTweets);
+
+                seenLastTweet = lastID == MIN_TWEET_ID || statuses.Any(s => s.Id == lastID);
+                maxID = Math.Max(maxID, statuses.Max(s => s.Id));
+                page++;
+            }
+            MarkTide("DirectMessages", maxID);
         }
 
         private void StoreTweets(IEnumerable<QueuedTweet> tweets)
         {
-            _repo.QueuedTweets.InsertAllOnSubmit(
-                tweets.Select(t => new QueuedTweet
-                {
-                    Username = t.Username,
-                    Message = t.Message,
-                    Created = DateTime.Now
-                })
-            );
+            _repo.QueuedTweets.InsertAllOnSubmit(tweets);
 
             _repo.SubmitChanges();
         }
 
-        public void SendDirectMessage(string username, string message)
-        {
-            var response = GetTwitterRequest()
-                .Statuses()
-                .Update(String.Format("d {0} {1}", username, message))
-                .Request();
-        }
+        //public void SendDirectMessage(string username, string message)
+        //{
+        //    var response = GetTwitterRequest()
+        //        .Statuses()
+        //        .Update(String.Format("d {0} {1}", username, message))
+        //        .Request();
+        //}
 
         public void ProcessTweets()
         {
@@ -126,10 +170,12 @@ namespace Hello.Bot
 
             _repo.SubmitChanges();
 
+            // Unprocessed tweets
             var tweets = _repo
                 .QueuedTweets
                 .Where(t => !t.Processed);
 
+            // Grab the UserTypes only once
             var userTypes = _repo
                 .UserTypes
                 .Select(ut => ut.UserTypeID)
@@ -142,10 +188,17 @@ namespace Hello.Bot
                     .SingleOrDefault(u => u.Username == tweet.Username);
 
                 if (user == null)
+                {
                     user = new User
                     {
-                        Username = tweet.Username
+                        ImageURL = tweet.ImageURL,
+                        Username = tweet.Username,
+                        Created = DateTime.Now,
+                        Updated = DateTime.Now
                     };
+                    _repo.Users.InsertOnSubmit(user);
+                }
+                
 
                 var processedTweet = TweetProcessor.Process(tweet.Message);
 
@@ -242,6 +295,35 @@ namespace Hello.Bot
 
                 _repo.SubmitChanges();
             }
+        }
+
+        private long GetLastTideMark(string name)
+        {
+            var lastTideMark = _repo
+                .TideMarks
+                .Where(m => m.Name == name)
+                .OrderByDescending(m => m.TimeStamp)
+                .FirstOrDefault();
+
+            var lastID = MIN_TWEET_ID;
+            if (lastTideMark != null)
+                lastID = lastTideMark.LastID;
+
+            return lastID;
+        }
+
+        private void MarkTide(string name, long lastID)
+        {
+            _repo
+                .TideMarks
+                .InsertOnSubmit(new TideMark
+                {
+                    LastID = lastID,
+                    TimeStamp = DateTime.Now,
+                    Name = name
+                });
+
+            _repo.SubmitChanges();
         }
     }
 }

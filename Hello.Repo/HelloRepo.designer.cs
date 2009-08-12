@@ -48,9 +48,6 @@ namespace Hello.Repo
     partial void InsertPoint(Point instance);
     partial void UpdatePoint(Point instance);
     partial void DeletePoint(Point instance);
-    partial void InsertQueuedTweet(QueuedTweet instance);
-    partial void UpdateQueuedTweet(QueuedTweet instance);
-    partial void DeleteQueuedTweet(QueuedTweet instance);
     partial void InsertRedemption(Redemption instance);
     partial void UpdateRedemption(Redemption instance);
     partial void DeleteRedemption(Redemption instance);
@@ -60,18 +57,12 @@ namespace Hello.Repo
     partial void InsertSession(Session instance);
     partial void UpdateSession(Session instance);
     partial void DeleteSession(Session instance);
-    partial void InsertTideMark(TideMark instance);
-    partial void UpdateTideMark(TideMark instance);
-    partial void DeleteTideMark(TideMark instance);
     partial void InsertToken(Token instance);
     partial void UpdateToken(Token instance);
     partial void DeleteToken(Token instance);
     partial void InsertUserBadge(UserBadge instance);
     partial void UpdateUserBadge(UserBadge instance);
     partial void DeleteUserBadge(UserBadge instance);
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
     partial void InsertMessage(Message instance);
     partial void UpdateMessage(Message instance);
     partial void DeleteMessage(Message instance);
@@ -81,6 +72,15 @@ namespace Hello.Repo
     partial void InsertSat(Sat instance);
     partial void UpdateSat(Sat instance);
     partial void DeleteSat(Sat instance);
+    partial void InsertQueuedTweet(QueuedTweet instance);
+    partial void UpdateQueuedTweet(QueuedTweet instance);
+    partial void DeleteQueuedTweet(QueuedTweet instance);
+    partial void InsertTideMark(TideMark instance);
+    partial void UpdateTideMark(TideMark instance);
+    partial void DeleteTideMark(TideMark instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
     #endregion
 		
 		public HelloRepoDataContext() : 
@@ -161,14 +161,6 @@ namespace Hello.Repo
 			}
 		}
 		
-		public System.Data.Linq.Table<QueuedTweet> QueuedTweets
-		{
-			get
-			{
-				return this.GetTable<QueuedTweet>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Redemption> Redemptions
 		{
 			get
@@ -201,14 +193,6 @@ namespace Hello.Repo
 			}
 		}
 		
-		public System.Data.Linq.Table<TideMark> TideMarks
-		{
-			get
-			{
-				return this.GetTable<TideMark>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Token> Tokens
 		{
 			get
@@ -222,14 +206,6 @@ namespace Hello.Repo
 			get
 			{
 				return this.GetTable<UserBadge>();
-			}
-		}
-		
-		public System.Data.Linq.Table<User> Users
-		{
-			get
-			{
-				return this.GetTable<User>();
 			}
 		}
 		
@@ -254,6 +230,30 @@ namespace Hello.Repo
 			get
 			{
 				return this.GetTable<Sat>();
+			}
+		}
+		
+		public System.Data.Linq.Table<QueuedTweet> QueuedTweets
+		{
+			get
+			{
+				return this.GetTable<QueuedTweet>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TideMark> TideMarks
+		{
+			get
+			{
+				return this.GetTable<TideMark>();
+			}
+		}
+		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
 			}
 		}
 	}
@@ -1370,164 +1370,6 @@ namespace Hello.Repo
 		}
 	}
 	
-	[Table(Name="dbo.QueuedTweets")]
-	public partial class QueuedTweet : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _QueuedTweetID;
-		
-		private string _Username;
-		
-		private string _Message;
-		
-		private System.DateTime _Created;
-		
-		private bool _Processed;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnQueuedTweetIDChanging(int value);
-    partial void OnQueuedTweetIDChanged();
-    partial void OnUsernameChanging(string value);
-    partial void OnUsernameChanged();
-    partial void OnMessageChanging(string value);
-    partial void OnMessageChanged();
-    partial void OnCreatedChanging(System.DateTime value);
-    partial void OnCreatedChanged();
-    partial void OnProcessedChanging(bool value);
-    partial void OnProcessedChanged();
-    #endregion
-		
-		public QueuedTweet()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_QueuedTweetID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int QueuedTweetID
-		{
-			get
-			{
-				return this._QueuedTweetID;
-			}
-			set
-			{
-				if ((this._QueuedTweetID != value))
-				{
-					this.OnQueuedTweetIDChanging(value);
-					this.SendPropertyChanging();
-					this._QueuedTweetID = value;
-					this.SendPropertyChanged("QueuedTweetID");
-					this.OnQueuedTweetIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Username
-		{
-			get
-			{
-				return this._Username;
-			}
-			set
-			{
-				if ((this._Username != value))
-				{
-					this.OnUsernameChanging(value);
-					this.SendPropertyChanging();
-					this._Username = value;
-					this.SendPropertyChanged("Username");
-					this.OnUsernameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Message", DbType="NVarChar(140) NOT NULL", CanBeNull=false)]
-		public string Message
-		{
-			get
-			{
-				return this._Message;
-			}
-			set
-			{
-				if ((this._Message != value))
-				{
-					this.OnMessageChanging(value);
-					this.SendPropertyChanging();
-					this._Message = value;
-					this.SendPropertyChanged("Message");
-					this.OnMessageChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
-		public System.DateTime Created
-		{
-			get
-			{
-				return this._Created;
-			}
-			set
-			{
-				if ((this._Created != value))
-				{
-					this.OnCreatedChanging(value);
-					this.SendPropertyChanging();
-					this._Created = value;
-					this.SendPropertyChanged("Created");
-					this.OnCreatedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Processed", DbType="Bit NOT NULL")]
-		public bool Processed
-		{
-			get
-			{
-				return this._Processed;
-			}
-			set
-			{
-				if ((this._Processed != value))
-				{
-					this.OnProcessedChanging(value);
-					this.SendPropertyChanging();
-					this._Processed = value;
-					this.SendPropertyChanged("Processed");
-					this.OnProcessedChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[Table(Name="dbo.Redemptions")]
 	public partial class Redemption : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2223,92 +2065,6 @@ namespace Hello.Repo
 		}
 	}
 	
-	[Table(Name="dbo.TideMarks")]
-	public partial class TideMark : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _Name;
-		
-		private int _LastId;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnLastIdChanging(int value);
-    partial void OnLastIdChanged();
-    #endregion
-		
-		public TideMark()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_Name", DbType="VarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_LastId", DbType="Int NOT NULL")]
-		public int LastId
-		{
-			get
-			{
-				return this._LastId;
-			}
-			set
-			{
-				if ((this._LastId != value))
-				{
-					this.OnLastIdChanging(value);
-					this.SendPropertyChanging();
-					this._LastId = value;
-					this.SendPropertyChanged("LastId");
-					this.OnLastIdChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[Table(Name="dbo.Tokens")]
 	public partial class Token : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2677,433 +2433,6 @@ namespace Hello.Repo
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[Table(Name="dbo.Users")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _Username;
-		
-		private string _ImageUrl;
-		
-		private System.DateTime _Created;
-		
-		private System.DateTime _Updated;
-		
-		private string _UserTypeID;
-		
-		private EntitySet<Friendship> _Friendships;
-		
-		private EntitySet<Friendship> _Friendships1;
-		
-		private EntitySet<Point> _Points;
-		
-		private EntitySet<Redemption> _Redemptions;
-		
-		private EntitySet<UserBadge> _UserBadges;
-		
-		private EntityRef<Message> _Message;
-		
-		private EntitySet<Tag> _Tags;
-		
-		private EntitySet<Sat> _Sats;
-		
-		private EntityRef<UserType> _UserType;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUsernameChanging(string value);
-    partial void OnUsernameChanged();
-    partial void OnImageUrlChanging(string value);
-    partial void OnImageUrlChanged();
-    partial void OnCreatedChanging(System.DateTime value);
-    partial void OnCreatedChanged();
-    partial void OnUpdatedChanging(System.DateTime value);
-    partial void OnUpdatedChanged();
-    partial void OnUserTypeIDChanging(string value);
-    partial void OnUserTypeIDChanged();
-    #endregion
-		
-		public User()
-		{
-			this._Friendships = new EntitySet<Friendship>(new Action<Friendship>(this.attach_Friendships), new Action<Friendship>(this.detach_Friendships));
-			this._Friendships1 = new EntitySet<Friendship>(new Action<Friendship>(this.attach_Friendships1), new Action<Friendship>(this.detach_Friendships1));
-			this._Points = new EntitySet<Point>(new Action<Point>(this.attach_Points), new Action<Point>(this.detach_Points));
-			this._Redemptions = new EntitySet<Redemption>(new Action<Redemption>(this.attach_Redemptions), new Action<Redemption>(this.detach_Redemptions));
-			this._UserBadges = new EntitySet<UserBadge>(new Action<UserBadge>(this.attach_UserBadges), new Action<UserBadge>(this.detach_UserBadges));
-			this._Message = default(EntityRef<Message>);
-			this._Tags = new EntitySet<Tag>(new Action<Tag>(this.attach_Tags), new Action<Tag>(this.detach_Tags));
-			this._Sats = new EntitySet<Sat>(new Action<Sat>(this.attach_Sats), new Action<Sat>(this.detach_Sats));
-			this._UserType = default(EntityRef<UserType>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string Username
-		{
-			get
-			{
-				return this._Username;
-			}
-			set
-			{
-				if ((this._Username != value))
-				{
-					this.OnUsernameChanging(value);
-					this.SendPropertyChanging();
-					this._Username = value;
-					this.SendPropertyChanged("Username");
-					this.OnUsernameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ImageUrl", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string ImageUrl
-		{
-			get
-			{
-				return this._ImageUrl;
-			}
-			set
-			{
-				if ((this._ImageUrl != value))
-				{
-					this.OnImageUrlChanging(value);
-					this.SendPropertyChanging();
-					this._ImageUrl = value;
-					this.SendPropertyChanged("ImageUrl");
-					this.OnImageUrlChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
-		public System.DateTime Created
-		{
-			get
-			{
-				return this._Created;
-			}
-			set
-			{
-				if ((this._Created != value))
-				{
-					this.OnCreatedChanging(value);
-					this.SendPropertyChanging();
-					this._Created = value;
-					this.SendPropertyChanged("Created");
-					this.OnCreatedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Updated", DbType="DateTime NOT NULL")]
-		public System.DateTime Updated
-		{
-			get
-			{
-				return this._Updated;
-			}
-			set
-			{
-				if ((this._Updated != value))
-				{
-					this.OnUpdatedChanging(value);
-					this.SendPropertyChanging();
-					this._Updated = value;
-					this.SendPropertyChanged("Updated");
-					this.OnUpdatedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserTypeID", DbType="Char(3) NOT NULL", CanBeNull=false)]
-		public string UserTypeID
-		{
-			get
-			{
-				return this._UserTypeID;
-			}
-			set
-			{
-				if ((this._UserTypeID != value))
-				{
-					if (this._UserType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUserTypeIDChanging(value);
-					this.SendPropertyChanging();
-					this._UserTypeID = value;
-					this.SendPropertyChanged("UserTypeID");
-					this.OnUserTypeIDChanged();
-				}
-			}
-		}
-		
-		[Association(Name="User_Friendship", Storage="_Friendships", ThisKey="Username", OtherKey="Befriendee")]
-		public EntitySet<Friendship> Friendships
-		{
-			get
-			{
-				return this._Friendships;
-			}
-			set
-			{
-				this._Friendships.Assign(value);
-			}
-		}
-		
-		[Association(Name="User_Friendship1", Storage="_Friendships1", ThisKey="Username", OtherKey="Befriender")]
-		public EntitySet<Friendship> Friendships1
-		{
-			get
-			{
-				return this._Friendships1;
-			}
-			set
-			{
-				this._Friendships1.Assign(value);
-			}
-		}
-		
-		[Association(Name="User_Point", Storage="_Points", ThisKey="Username", OtherKey="Username")]
-		public EntitySet<Point> Points
-		{
-			get
-			{
-				return this._Points;
-			}
-			set
-			{
-				this._Points.Assign(value);
-			}
-		}
-		
-		[Association(Name="User_Redemption", Storage="_Redemptions", ThisKey="Username", OtherKey="Username")]
-		public EntitySet<Redemption> Redemptions
-		{
-			get
-			{
-				return this._Redemptions;
-			}
-			set
-			{
-				this._Redemptions.Assign(value);
-			}
-		}
-		
-		[Association(Name="User_UserBadge", Storage="_UserBadges", ThisKey="Username", OtherKey="Username")]
-		public EntitySet<UserBadge> UserBadges
-		{
-			get
-			{
-				return this._UserBadges;
-			}
-			set
-			{
-				this._UserBadges.Assign(value);
-			}
-		}
-		
-		[Association(Name="User_Message", Storage="_Message", ThisKey="Username", OtherKey="Username", IsUnique=true, IsForeignKey=false)]
-		public Message Message
-		{
-			get
-			{
-				return this._Message.Entity;
-			}
-			set
-			{
-				Message previousValue = this._Message.Entity;
-				if (((previousValue != value) 
-							|| (this._Message.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Message.Entity = null;
-						previousValue.User = null;
-					}
-					this._Message.Entity = value;
-					if ((value != null))
-					{
-						value.User = this;
-					}
-					this.SendPropertyChanged("Message");
-				}
-			}
-		}
-		
-		[Association(Name="User_Tag", Storage="_Tags", ThisKey="Username", OtherKey="Username")]
-		public EntitySet<Tag> Tags
-		{
-			get
-			{
-				return this._Tags;
-			}
-			set
-			{
-				this._Tags.Assign(value);
-			}
-		}
-		
-		[Association(Name="User_Sat", Storage="_Sats", ThisKey="Username", OtherKey="Username")]
-		public EntitySet<Sat> Sats
-		{
-			get
-			{
-				return this._Sats;
-			}
-			set
-			{
-				this._Sats.Assign(value);
-			}
-		}
-		
-		[Association(Name="UserType_User", Storage="_UserType", ThisKey="UserTypeID", OtherKey="UserTypeID", IsForeignKey=true)]
-		public UserType UserType
-		{
-			get
-			{
-				return this._UserType.Entity;
-			}
-			set
-			{
-				UserType previousValue = this._UserType.Entity;
-				if (((previousValue != value) 
-							|| (this._UserType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._UserType.Entity = null;
-						previousValue.Users.Remove(this);
-					}
-					this._UserType.Entity = value;
-					if ((value != null))
-					{
-						value.Users.Add(this);
-						this._UserTypeID = value.UserTypeID;
-					}
-					else
-					{
-						this._UserTypeID = default(string);
-					}
-					this.SendPropertyChanged("UserType");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Friendships(Friendship entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Friendships(Friendship entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_Friendships1(Friendship entity)
-		{
-			this.SendPropertyChanging();
-			entity.User1 = this;
-		}
-		
-		private void detach_Friendships1(Friendship entity)
-		{
-			this.SendPropertyChanging();
-			entity.User1 = null;
-		}
-		
-		private void attach_Points(Point entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Points(Point entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_Redemptions(Redemption entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Redemptions(Redemption entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_UserBadges(UserBadge entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserBadges(UserBadge entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_Tags(Tag entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Tags(Tag entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_Sats(Sat entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Sats(Sat entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
 		}
 	}
 	
@@ -3533,6 +2862,749 @@ namespace Hello.Repo
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[Table(Name="dbo.QueuedTweets")]
+	public partial class QueuedTweet : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _QueuedTweetID;
+		
+		private string _Username;
+		
+		private string _Message;
+		
+		private System.DateTime _Created;
+		
+		private bool _Processed;
+		
+		private string _ImageURL;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQueuedTweetIDChanging(int value);
+    partial void OnQueuedTweetIDChanged();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnMessageChanging(string value);
+    partial void OnMessageChanged();
+    partial void OnCreatedChanging(System.DateTime value);
+    partial void OnCreatedChanged();
+    partial void OnProcessedChanging(bool value);
+    partial void OnProcessedChanged();
+    partial void OnImageURLChanging(string value);
+    partial void OnImageURLChanged();
+    #endregion
+		
+		public QueuedTweet()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_QueuedTweetID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int QueuedTweetID
+		{
+			get
+			{
+				return this._QueuedTweetID;
+			}
+			set
+			{
+				if ((this._QueuedTweetID != value))
+				{
+					this.OnQueuedTweetIDChanging(value);
+					this.SendPropertyChanging();
+					this._QueuedTweetID = value;
+					this.SendPropertyChanged("QueuedTweetID");
+					this.OnQueuedTweetIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Username
+		{
+			get
+			{
+				return this._Username;
+			}
+			set
+			{
+				if ((this._Username != value))
+				{
+					this.OnUsernameChanging(value);
+					this.SendPropertyChanging();
+					this._Username = value;
+					this.SendPropertyChanged("Username");
+					this.OnUsernameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Message", DbType="NVarChar(140) NOT NULL", CanBeNull=false)]
+		public string Message
+		{
+			get
+			{
+				return this._Message;
+			}
+			set
+			{
+				if ((this._Message != value))
+				{
+					this.OnMessageChanging(value);
+					this.SendPropertyChanging();
+					this._Message = value;
+					this.SendPropertyChanged("Message");
+					this.OnMessageChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
+		public System.DateTime Created
+		{
+			get
+			{
+				return this._Created;
+			}
+			set
+			{
+				if ((this._Created != value))
+				{
+					this.OnCreatedChanging(value);
+					this.SendPropertyChanging();
+					this._Created = value;
+					this.SendPropertyChanged("Created");
+					this.OnCreatedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Processed", DbType="Bit NOT NULL")]
+		public bool Processed
+		{
+			get
+			{
+				return this._Processed;
+			}
+			set
+			{
+				if ((this._Processed != value))
+				{
+					this.OnProcessedChanging(value);
+					this.SendPropertyChanging();
+					this._Processed = value;
+					this.SendPropertyChanged("Processed");
+					this.OnProcessedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ImageURL", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string ImageURL
+		{
+			get
+			{
+				return this._ImageURL;
+			}
+			set
+			{
+				if ((this._ImageURL != value))
+				{
+					this.OnImageURLChanging(value);
+					this.SendPropertyChanging();
+					this._ImageURL = value;
+					this.SendPropertyChanged("ImageURL");
+					this.OnImageURLChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.TideMarks")]
+	public partial class TideMark : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TideMarkID;
+		
+		private string _Name;
+		
+		private long _LastID;
+		
+		private System.DateTime _TimeStamp;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTideMarkIDChanging(int value);
+    partial void OnTideMarkIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnLastIDChanging(long value);
+    partial void OnLastIDChanged();
+    partial void OnTimeStampChanging(System.DateTime value);
+    partial void OnTimeStampChanged();
+    #endregion
+		
+		public TideMark()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_TideMarkID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TideMarkID
+		{
+			get
+			{
+				return this._TideMarkID;
+			}
+			set
+			{
+				if ((this._TideMarkID != value))
+				{
+					this.OnTideMarkIDChanging(value);
+					this.SendPropertyChanging();
+					this._TideMarkID = value;
+					this.SendPropertyChanged("TideMarkID");
+					this.OnTideMarkIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LastID", DbType="BigInt NOT NULL")]
+		public long LastID
+		{
+			get
+			{
+				return this._LastID;
+			}
+			set
+			{
+				if ((this._LastID != value))
+				{
+					this.OnLastIDChanging(value);
+					this.SendPropertyChanging();
+					this._LastID = value;
+					this.SendPropertyChanged("LastID");
+					this.OnLastIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TimeStamp", DbType="DateTime NOT NULL")]
+		public System.DateTime TimeStamp
+		{
+			get
+			{
+				return this._TimeStamp;
+			}
+			set
+			{
+				if ((this._TimeStamp != value))
+				{
+					this.OnTimeStampChanging(value);
+					this.SendPropertyChanging();
+					this._TimeStamp = value;
+					this.SendPropertyChanged("TimeStamp");
+					this.OnTimeStampChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Username;
+		
+		private string _ImageURL;
+		
+		private System.DateTime _Created;
+		
+		private System.DateTime _Updated;
+		
+		private string _UserTypeID;
+		
+		private EntitySet<Friendship> _Friendships;
+		
+		private EntitySet<Friendship> _Friendships1;
+		
+		private EntitySet<Point> _Points;
+		
+		private EntitySet<Redemption> _Redemptions;
+		
+		private EntitySet<UserBadge> _UserBadges;
+		
+		private EntityRef<Message> _Message;
+		
+		private EntitySet<Tag> _Tags;
+		
+		private EntitySet<Sat> _Sats;
+		
+		private EntityRef<UserType> _UserType;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnImageURLChanging(string value);
+    partial void OnImageURLChanged();
+    partial void OnCreatedChanging(System.DateTime value);
+    partial void OnCreatedChanged();
+    partial void OnUpdatedChanging(System.DateTime value);
+    partial void OnUpdatedChanged();
+    partial void OnUserTypeIDChanging(string value);
+    partial void OnUserTypeIDChanged();
+    #endregion
+		
+		public User()
+		{
+			this._Friendships = new EntitySet<Friendship>(new Action<Friendship>(this.attach_Friendships), new Action<Friendship>(this.detach_Friendships));
+			this._Friendships1 = new EntitySet<Friendship>(new Action<Friendship>(this.attach_Friendships1), new Action<Friendship>(this.detach_Friendships1));
+			this._Points = new EntitySet<Point>(new Action<Point>(this.attach_Points), new Action<Point>(this.detach_Points));
+			this._Redemptions = new EntitySet<Redemption>(new Action<Redemption>(this.attach_Redemptions), new Action<Redemption>(this.detach_Redemptions));
+			this._UserBadges = new EntitySet<UserBadge>(new Action<UserBadge>(this.attach_UserBadges), new Action<UserBadge>(this.detach_UserBadges));
+			this._Message = default(EntityRef<Message>);
+			this._Tags = new EntitySet<Tag>(new Action<Tag>(this.attach_Tags), new Action<Tag>(this.detach_Tags));
+			this._Sats = new EntitySet<Sat>(new Action<Sat>(this.attach_Sats), new Action<Sat>(this.detach_Sats));
+			this._UserType = default(EntityRef<UserType>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Username
+		{
+			get
+			{
+				return this._Username;
+			}
+			set
+			{
+				if ((this._Username != value))
+				{
+					this.OnUsernameChanging(value);
+					this.SendPropertyChanging();
+					this._Username = value;
+					this.SendPropertyChanged("Username");
+					this.OnUsernameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ImageURL", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string ImageURL
+		{
+			get
+			{
+				return this._ImageURL;
+			}
+			set
+			{
+				if ((this._ImageURL != value))
+				{
+					this.OnImageURLChanging(value);
+					this.SendPropertyChanging();
+					this._ImageURL = value;
+					this.SendPropertyChanged("ImageURL");
+					this.OnImageURLChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Created", DbType="DateTime NOT NULL")]
+		public System.DateTime Created
+		{
+			get
+			{
+				return this._Created;
+			}
+			set
+			{
+				if ((this._Created != value))
+				{
+					this.OnCreatedChanging(value);
+					this.SendPropertyChanging();
+					this._Created = value;
+					this.SendPropertyChanged("Created");
+					this.OnCreatedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Updated", DbType="DateTime NOT NULL")]
+		public System.DateTime Updated
+		{
+			get
+			{
+				return this._Updated;
+			}
+			set
+			{
+				if ((this._Updated != value))
+				{
+					this.OnUpdatedChanging(value);
+					this.SendPropertyChanging();
+					this._Updated = value;
+					this.SendPropertyChanged("Updated");
+					this.OnUpdatedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserTypeID", DbType="Char(3)")]
+		public string UserTypeID
+		{
+			get
+			{
+				return this._UserTypeID;
+			}
+			set
+			{
+				if ((this._UserTypeID != value))
+				{
+					if (this._UserType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserTypeID = value;
+					this.SendPropertyChanged("UserTypeID");
+					this.OnUserTypeIDChanged();
+				}
+			}
+		}
+		
+		[Association(Name="User_Friendship", Storage="_Friendships", ThisKey="Username", OtherKey="Befriendee")]
+		public EntitySet<Friendship> Friendships
+		{
+			get
+			{
+				return this._Friendships;
+			}
+			set
+			{
+				this._Friendships.Assign(value);
+			}
+		}
+		
+		[Association(Name="User_Friendship1", Storage="_Friendships1", ThisKey="Username", OtherKey="Befriender")]
+		public EntitySet<Friendship> Friendships1
+		{
+			get
+			{
+				return this._Friendships1;
+			}
+			set
+			{
+				this._Friendships1.Assign(value);
+			}
+		}
+		
+		[Association(Name="User_Point", Storage="_Points", ThisKey="Username", OtherKey="Username")]
+		public EntitySet<Point> Points
+		{
+			get
+			{
+				return this._Points;
+			}
+			set
+			{
+				this._Points.Assign(value);
+			}
+		}
+		
+		[Association(Name="User_Redemption", Storage="_Redemptions", ThisKey="Username", OtherKey="Username")]
+		public EntitySet<Redemption> Redemptions
+		{
+			get
+			{
+				return this._Redemptions;
+			}
+			set
+			{
+				this._Redemptions.Assign(value);
+			}
+		}
+		
+		[Association(Name="User_UserBadge", Storage="_UserBadges", ThisKey="Username", OtherKey="Username")]
+		public EntitySet<UserBadge> UserBadges
+		{
+			get
+			{
+				return this._UserBadges;
+			}
+			set
+			{
+				this._UserBadges.Assign(value);
+			}
+		}
+		
+		[Association(Name="User_Message", Storage="_Message", ThisKey="Username", OtherKey="Username", IsUnique=true, IsForeignKey=false)]
+		public Message Message
+		{
+			get
+			{
+				return this._Message.Entity;
+			}
+			set
+			{
+				Message previousValue = this._Message.Entity;
+				if (((previousValue != value) 
+							|| (this._Message.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Message.Entity = null;
+						previousValue.User = null;
+					}
+					this._Message.Entity = value;
+					if ((value != null))
+					{
+						value.User = this;
+					}
+					this.SendPropertyChanged("Message");
+				}
+			}
+		}
+		
+		[Association(Name="User_Tag", Storage="_Tags", ThisKey="Username", OtherKey="Username")]
+		public EntitySet<Tag> Tags
+		{
+			get
+			{
+				return this._Tags;
+			}
+			set
+			{
+				this._Tags.Assign(value);
+			}
+		}
+		
+		[Association(Name="User_Sat", Storage="_Sats", ThisKey="Username", OtherKey="Username")]
+		public EntitySet<Sat> Sats
+		{
+			get
+			{
+				return this._Sats;
+			}
+			set
+			{
+				this._Sats.Assign(value);
+			}
+		}
+		
+		[Association(Name="UserType_User", Storage="_UserType", ThisKey="UserTypeID", OtherKey="UserTypeID", IsForeignKey=true)]
+		public UserType UserType
+		{
+			get
+			{
+				return this._UserType.Entity;
+			}
+			set
+			{
+				UserType previousValue = this._UserType.Entity;
+				if (((previousValue != value) 
+							|| (this._UserType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._UserType.Entity = null;
+						previousValue.Users.Remove(this);
+					}
+					this._UserType.Entity = value;
+					if ((value != null))
+					{
+						value.Users.Add(this);
+						this._UserTypeID = value.UserTypeID;
+					}
+					else
+					{
+						this._UserTypeID = default(string);
+					}
+					this.SendPropertyChanged("UserType");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Friendships(Friendship entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Friendships(Friendship entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Friendships1(Friendship entity)
+		{
+			this.SendPropertyChanging();
+			entity.User1 = this;
+		}
+		
+		private void detach_Friendships1(Friendship entity)
+		{
+			this.SendPropertyChanging();
+			entity.User1 = null;
+		}
+		
+		private void attach_Points(Point entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Points(Point entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Redemptions(Redemption entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Redemptions(Redemption entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_UserBadges(UserBadge entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserBadges(UserBadge entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Tags(Tag entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Tags(Tag entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Sats(Sat entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Sats(Sat entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
 		}
 	}
 }
