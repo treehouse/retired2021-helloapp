@@ -52,7 +52,7 @@ namespace Hello.Bot
                     .Where(s => s.Id != lastID)
                     .Select(s => new QueuedTweet
                     {
-                        Username = s.FromUserScreenName,
+                        Username = s.FromUserScreenName.ToLower(),
                         Message = s.Text,
                         Created = DateTime.Now,
                         ImageURL = s.ProfileImageUrl
@@ -91,7 +91,7 @@ namespace Hello.Bot
                     .Where(s => s.Id != lastID)
                     .Select(s => new QueuedTweet
                     {
-                        Username = s.User.ScreenName,
+                        Username = s.User.ScreenName.ToLower(),
                         Message = s.Text,
                         Created = DateTime.Now,
                         ImageURL = s.User.ProfileImageUrl
@@ -130,7 +130,7 @@ namespace Hello.Bot
                     .Where(s => s.Id != lastID)
                     .Select(s => new QueuedTweet
                     {
-                        Username = s.SenderScreenName,
+                        Username = s.SenderScreenName.ToLower(),
                         Message = s.Text,
                         Created = DateTime.Now,
                         ImageURL = s.Sender.ProfileImageUrl
@@ -195,46 +195,21 @@ namespace Hello.Bot
                 {
                     user = new User
                     {
-                        ImageURL = tweet.ImageURL,
-                        Username = tweet.Username,
+                        ImageURL = user.ImageURL,
+                        Username = user.Username,
                         Created = DateTime.Now,
                         Updated = DateTime.Now
                     };
                     _repo.Users.InsertOnSubmit(user);
                 }
                 
-
                 var processedTweet = TweetProcessor.Process(tweet.Message);
-
-                var metTweet = processedTweet as MetTweet;
-                if (metTweet != null)
-                {
-                    _repo
-                        .Friendships
-                        .InsertAllOnSubmit(
-                            metTweet
-                                .Friends
-                                .Select(friend => new Friendship
-                                {
-                                    Befriender = tweet.Username,
-                                    Befriendee = friend
-                                })
-                        );
-                }
-
-                var messageTweet = processedTweet as MessageTweet;
-                if (messageTweet != null)
-                {
-                    var message = user.Message ?? new Message { Username = tweet.Username };
-
-                    message.Offensive = false;
-                    message.Text = messageTweet.Message;
-                }
 
                 var helloTweet = processedTweet as HelloTweet;
                 if (helloTweet != null)
                 {
                     user.UserTypeID = helloTweet.UserType;
+                    user.ShadowAccount = false;
 
                     if (helloTweet.Tags.Count > 0)
                         _repo
@@ -246,13 +221,13 @@ namespace Hello.Bot
                                     {
                                         Created = DateTime.Now,
                                         Name = tag,
-                                        Username = tweet.Username
+                                        Username = user.Username
                                     })
                             );
                 }
 
-                var sitTweet = processedTweet as SatTweet;
-                if (sitTweet != null)
+                var satTweet = processedTweet as SatTweet;
+                if (satTweet != null)
                 {
                     var sessions = _repo
                         .Sessions
@@ -261,7 +236,11 @@ namespace Hello.Bot
                               && s.Finish > DateTime.Now            // hasn't finished
                         );
 
-                    if (sessions.Count() == 1)
+                    var seat = _repo
+                        .Seats
+                        .SingleOrDefault(s => s.Code == satTweet.SeatCode);
+
+                    if (sessions.Count() == 1 && seat != null)
                     {
                         var session = sessions.First();
 
@@ -269,7 +248,9 @@ namespace Hello.Bot
                             .Sats
                             .InsertOnSubmit(new Sat
                             {
-                                SessionID = session.SessionID
+                                Username = user.Username,
+                                SessionID = session.SessionID,
+                                SeatID = seat.SeatID
                             });
                     }
                 }
@@ -290,11 +271,57 @@ namespace Hello.Bot
                             .InsertOnSubmit(new Redemption
                             {
                                 Created = DateTime.Now,
-                                Username = tweet.Username,
+                                Username = user.Username,
                                 TokenID = token.TokenID
                             });
                     }
                 }
+
+                var metTweet = processedTweet as MetTweet;
+                if (metTweet != null)
+                {
+                    foreach (var friend in metTweet.Friends)
+                    {
+                        var friendUser = _repo
+                            .Users
+                            .SingleOrDefault(u => u.Username == friend);
+
+                        if (friendUser == null)
+                        {
+                            friendUser = new User
+                            {
+                                Username = friend,
+                                ImageURL = Settings.DefaultImageURL,
+                                Created = DateTime.Now,
+                                Updated = DateTime.Now,
+                                ShadowAccount = true
+                            };
+                            _repo.Users.InsertOnSubmit(friendUser);
+                        }
+                    }
+
+                    _repo
+                        .Friendships
+                        .InsertAllOnSubmit(
+                            metTweet
+                                .Friends
+                                .Select(friend => new Friendship
+                                {
+                                    Befriender = user.Username,
+                                    Befriendee = friend
+                                })
+                        );
+                }
+
+                var messageTweet = processedTweet as MessageTweet;
+                if (messageTweet != null)
+                {
+                    var message = user.Message ?? new Message { Username = user.Username };
+
+                    message.Offensive = false;
+                    message.Text = messageTweet.Message;
+                }
+
                 tweet.Processed = true;
 
                 _repo.SubmitChanges();

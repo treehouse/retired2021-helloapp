@@ -38,6 +38,11 @@ namespace Hello.Bot
         {
             get { return SettingsImplementation.Get("TwitterHashTag"); }
         }
+
+        public static string DefaultImageURL
+        {
+            get { return SettingsImplementation.Get("DefaultImageURL"); }
+        }
     }
 
     public class SettingsImpl : ISettingsImpl

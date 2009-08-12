@@ -4,8 +4,10 @@ CREATE TABLE [dbo].[Users]
 [ImageURL] [varchar] (100) COLLATE Latin1_General_CI_AS NOT NULL,
 [Created] [datetime] NOT NULL,
 [Updated] [datetime] NOT NULL,
-[UserTypeID] [char] (3) COLLATE Latin1_General_CI_AS NULL
+[UserTypeID] [char] (3) COLLATE Latin1_General_CI_AS NULL,
+[ShadowAccount] [bit] NOT NULL CONSTRAINT [DF_Users_ShadowAccount] DEFAULT ((0))
 )
+
 
 GO
 ALTER TABLE [dbo].[Users] ADD CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED  ([Username]) ON [PRIMARY]
