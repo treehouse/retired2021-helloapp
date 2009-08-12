@@ -56,6 +56,10 @@ namespace Hello.Bot
                     return metTweet;
                 default:
                     var messageTweet = new MessageTweet();
+                    if (tweetText.StartsWith("@" + Settings.TwitterBotUsername + " "))
+                        tweetText = tweetText.Substring(("@" + Settings.TwitterBotUsername + " ").Length);
+                    if (tweetText.StartsWith("#" + Settings.TwitterHashTag + " "))
+                        tweetText = tweetText.Substring(("#" + Settings.TwitterBotUsername + " ").Length);
                     messageTweet.Message = tweetText;
                     return messageTweet;
             }

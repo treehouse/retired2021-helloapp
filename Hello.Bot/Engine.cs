@@ -316,7 +316,13 @@ namespace Hello.Bot
                 var messageTweet = processedTweet as MessageTweet;
                 if (messageTweet != null)
                 {
-                    var message = user.Message ?? new Message { Username = user.Username };
+                    var message = user.Message;
+
+                    if (message == null)
+                    {
+                        message = new Message { Username = user.Username };
+                        _repo.Messages.InsertOnSubmit(message);
+                    }
 
                     message.Offensive = false;
                     message.Text = messageTweet.Message;
