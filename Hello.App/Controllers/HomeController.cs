@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace HelloApp.Controllers
+namespace Hello.App.Controllers
 {
     [HandleError]
     public class HomeController : Controller
@@ -15,6 +15,11 @@ namespace HelloApp.Controllers
         }
 
         public ActionResult About()
+        {
+            return View();
+        }
+
+        public ActionResult Faq()
         {
             return View();
         }

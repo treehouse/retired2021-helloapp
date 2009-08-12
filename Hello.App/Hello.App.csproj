@@ -63,13 +63,30 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\presentation\bird.png" />
+    <Content Include="Content\images\presentation\check_in.png" />
+    <Content Include="Content\images\presentation\close.png" />
+    <Content Include="Content\images\presentation\join_in.png" />
+    <Content Include="Content\images\presentation\join_in_off.png" />
+    <Content Include="Content\images\presentation\join_in_on.png" />
+    <Content Include="Content\images\presentation\logo_carsonified.png" />
+    <Content Include="Content\images\presentation\logo_hello.png" />
+    <Content Include="Content\images\presentation\mag_glass.png" />
+    <Content Include="Content\images\presentation\mag_glass_off.png" />
+    <Content Include="Content\images\presentation\mag_glass_on.png" />
+    <Content Include="Content\images\presentation\smiley.png" />
+    <Content Include="Content\images\presentation\solar_system.png" />
+    <Content Include="Content\images\presentation\solar_system_02.png" />
+    <Content Include="Content\images\presentation\stripes.png" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Home\Faq.aspx" />
     <Content Include="Web.config" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\styles\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />
     <Content Include="Scripts\jquery-1.3.2.min.js" />
     <Content Include="Scripts\jquery-1.3.2-vsdoc.js" />

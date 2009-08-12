@@ -242,7 +242,7 @@ body#faq ul.mainNav li a.faq {
 /* Tweet Header ______________ */
 
 .tweetHeader {
-	background:url(../images/presentation/bird.png) #181715 13px 10px no-repeat;;
+	background:url(../images/presentation/bird.png) #181715 13px 10px no-repeat;
 	position:relative;
 	padding:10px 20px 32px 70px;
 	-moz-border-radius-bottomleft: 13px;			

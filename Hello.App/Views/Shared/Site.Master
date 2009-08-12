@@ -7,7 +7,7 @@
     <link href="~/Content/styles/Site.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
+<body id="<%= Html.BodyClass() %>">
 
 <div class="section content">
 
