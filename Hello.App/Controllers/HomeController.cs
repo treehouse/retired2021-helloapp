@@ -24,6 +24,7 @@ namespace Hello.App.Controllers
         {
             var users = _repo
                 .Users
+                .Where(u => !u.ShadowAccount)
                 .Take(25);
 
             var userTypes = _repo

@@ -55,9 +55,10 @@ namespace Hello.App.Controllers
                 var users = _repo
                     .Users
                     .Where(
-                        u => u.Username.Contains(search)
-                          || u.Tags.Any(t => t.Name.Contains(search))
-                          || u.UserTypeID.Contains(search))
+                        u => (u.Username.Contains(search)
+                           || u.Tags.Any(t => t.Name.Contains(search))
+                           || u.UserTypeID.Contains(search))
+                           && !u.ShadowAccount)
                     .Take(100);
 
                 return View(users);
