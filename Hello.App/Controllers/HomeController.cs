@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Hello.Repo;
+using Hello.Utils;
 
 namespace Hello.App.Controllers
 {
@@ -56,9 +57,9 @@ namespace Hello.App.Controllers
                 Url.Encode(String.Format("@{0} !{1} #{2} #{3} #{4}",
                     Settings.TwitterBotUsername,
                     userType,
-                    tag1.Replace("#", String.Empty),
-                    tag2.Replace("#", String.Empty),
-                    tag3.Replace("#", String.Empty))));
+                    TagHelper.Clean(tag1),
+                    TagHelper.Clean(tag2),
+                    TagHelper.Clean(tag3))));
         }
 
         public ActionResult About()

@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="ProcessedTweetTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hello.Bot\Hello.Bot.csproj">
@@ -68,6 +69,10 @@
     <ProjectReference Include="..\Hello.Repo\Hello.Repo.csproj">
       <Project>{4B550601-FA2D-42CC-A1AA-9A710D57FF34}</Project>
       <Name>Hello.Repo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hello.Utils\Hello.Utils.csproj">
+      <Project>{1A6EB4D7-57B3-44F5-A0F4-5CF6E1F98C02}</Project>
+      <Name>Hello.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

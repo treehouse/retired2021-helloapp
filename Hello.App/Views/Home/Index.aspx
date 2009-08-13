@@ -12,9 +12,10 @@
                 var username = $('input[name=Username]', $this).val();
 
                 // Image
+                var img = $('img', popup);
                 // HACK: to stop image glitching
-                var img = $('img', popup)
                 img.attr('src', '');
+                img.attr('src', $('input[name=ImageURL]', $this).val());
                 img.attr('alt', username);
 
                 // Username

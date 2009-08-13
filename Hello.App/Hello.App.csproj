@@ -109,6 +109,10 @@
       <Project>{4B550601-FA2D-42CC-A1AA-9A710D57FF34}</Project>
       <Name>Hello.Repo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hello.Utils\Hello.Utils.csproj">
+      <Project>{1A6EB4D7-57B3-44F5-A0F4-5CF6E1F98C02}</Project>
+      <Name>Hello.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="appsettings.local.config">

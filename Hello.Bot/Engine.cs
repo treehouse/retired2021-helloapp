@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Hello.Repo;
+using Hello.Utils;
 using Dimebrain.TweetSharp.Fluent;
 using Dimebrain.TweetSharp.Extensions;
 
@@ -226,7 +227,7 @@ namespace Hello.Bot
                                     .Select(tag => new Tag
                                     {
                                         Created = DateTime.Now,
-                                        Name = tag.Length > 20 ? tag.Substring(0, 20) : tag,
+                                        Name = tag,
                                         Username = user.Username
                                     })
                             );

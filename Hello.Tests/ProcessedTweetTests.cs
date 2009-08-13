@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using Xunit;
 using Xunit.Extensions;
+using Hello.Utils;
 using Hello.Bot;
-using Hello.Repo;
 using Moq;
 
 namespace Hello.Tests
