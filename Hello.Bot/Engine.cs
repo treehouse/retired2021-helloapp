@@ -188,6 +188,12 @@ namespace Hello.Bot
 
             foreach (var tweet in tweets)
             {
+                var processedTweet = TweetProcessor.Process(tweet.Message);
+
+                // Not interested in this tweet... move along...
+                if (processedTweet == null)
+                    continue;
+
                 var user = _repo
                     .Users
                     .SingleOrDefault(u => u.Username == tweet.Username);
@@ -203,8 +209,6 @@ namespace Hello.Bot
                     };
                     _repo.Users.InsertOnSubmit(user);
                 }
-                
-                var processedTweet = TweetProcessor.Process(tweet.Message);
 
                 var helloTweet = processedTweet as HelloTweet;
                 if (helloTweet != null)

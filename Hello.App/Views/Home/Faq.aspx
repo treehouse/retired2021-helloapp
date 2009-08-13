@@ -44,7 +44,7 @@
 
 	<h4>Picking your skill and tagging yourself</h4>
 
-	<p><span class="read">Choose what your best at (Design, Development, Business) and choose three tags for yourself:</span><br><code>@helloapp !design #ux #html5 #movies</code><br><code>@helloapp !dev #php #django #mysql</code><br><code>@helloapp !biz #piano #entrepreneur #marketing</code></p>
+	<p><span class="read">Choose what your best at (Design, Development, Business) and choose three tags for yourself:</span><br><code>@helloapp hello !des #ux #html5 #movies</code><br><code>@helloapp hello !dev #php #django #mysql</code><br><code>@helloapp hello !biz #piano #entrepreneur #marketing</code></p>
 
 	<p><span class="read">You'll be assigned a colour, based on whether you choose Design, Development or Business. You can view the seating chart based on skillset:</span></p>
     
@@ -66,7 +66,7 @@
     
     <h3>Frequently Asked Questions</h3>
 
-	<p><span class="read">Q: Can I change my category (Design, Development, Business)?</span><br><span class="read">A: Yes, just re-check-in by tweeting:</span><br><code>@helloapp !design #tag-one #tag-two #tag-three</code></p>
+	<p><span class="read">Q: Can I change my category (Design, Development, Business)?</span><br><span class="read">A: Yes, just re-check-in by tweeting:</span><br><code>@helloapp hello !des #tag-one #tag-two #tag-three</code></p>
     
     <p><span class="read">If you have any more questions just email: <a href="mailto:&#104;&#101;&#108;&#108;&#111;&#64;&#99;&#97;&#114;&#115;&#111;&#110;&#105;&#102;&#105;&#101;d&#46;&#99;&#111;&#109;">h&#101;&#108;l&#111;&#64;ca&#114;&#115;&#111;n&#105;&#102;&#105;&#101;&#100;&#46;&#99;&#111;&#109;</a></span></p>
     

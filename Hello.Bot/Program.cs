@@ -6,6 +6,7 @@ using System.Text;
 using Hello.Repo;
 using System.Net;
 using log4net;
+using Hello.Utils;
 
 namespace Hello.Bot
 {
@@ -17,7 +18,7 @@ namespace Hello.Bot
         {
             log4net.Config.XmlConfigurator.Configure();
 
-            var repo = new HelloRepoDataContext();
+            var repo = new HelloRepoDataContext(Settings.ConnectionString);
             var engine = new Engine(repo);
 
             // Collect & store tweets

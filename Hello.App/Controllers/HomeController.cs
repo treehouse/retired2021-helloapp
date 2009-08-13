@@ -13,7 +13,7 @@ namespace Hello.App.Controllers
     {
         private HelloRepoDataContext _repo;
 
-        public HomeController() : this(new HelloRepoDataContext()) { }
+        public HomeController() : this(new HelloRepoDataContext(Settings.ConnectionString)) { }
 
         public HomeController(HelloRepoDataContext repo)
         {
@@ -55,7 +55,7 @@ namespace Hello.App.Controllers
         {
             return Redirect(
                 "http://twitter.com/?status=" + 
-                Url.Encode(String.Format("@{0} !{1} #{2} #{3} #{4}",
+                Url.Encode(String.Format("@{0} hello !{1} #{2} #{3} #{4}",
                     Settings.TwitterBotUsername,
                     userType,
                     TagHelper.Clean(tag1),

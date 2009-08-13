@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Hello.Repo;
+using Hello.Utils;
 
 namespace Hello.App.Controllers
 {
@@ -12,7 +13,7 @@ namespace Hello.App.Controllers
     {
         private HelloRepoDataContext _repo;
 
-        public SearchController() : this(new HelloRepoDataContext()) { }
+        public SearchController() : this(new HelloRepoDataContext(Settings.ConnectionString)) { }
 
         public SearchController(HelloRepoDataContext repo)
         {

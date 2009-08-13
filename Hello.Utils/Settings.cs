@@ -43,12 +43,19 @@ namespace Hello.Utils
         {
             get { return SettingsImplementation.Get("DefaultImageURL"); }
         }
+
+        public static string ConnectionString
+        {
+            get { return SettingsImplementation.Get("ConnectionString"); }
+        }
     }
 
     public class SettingsImpl : ISettingsImpl
     {
         public string Get(string value)
         {
+            if (value == "ConnectionString")
+                return ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             return ConfigurationManager.AppSettings[value];
         }
     }
