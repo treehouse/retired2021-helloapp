@@ -26,7 +26,7 @@
                 <li><%= Html.ActionLink("instructions", "Faq", "Home", null, new { @class = "faq" }) %></li>
 			</ul>
            
-           <p class="intro">Hello helps you to <span>meet interesting people at FOWA London.</span> You can say where you're sitting, earn points, badges and post messages to the whole audience. You can also watch the event, even if you're not attending. Come on and <a href="#">join in</a>!</p> 
+           <p class="intro">Hello helps you to <span>meet interesting people at FOWA London.</span> You can say where you're sitting, earn points, badges and post messages to the whole audience. You can also watch the event, even if you're not attending. Come on and <%= Html.ActionLink("join in", "Join", "Home") %>!</p> 
            </div>
 		
 	</div><!-- /.header .page -->
