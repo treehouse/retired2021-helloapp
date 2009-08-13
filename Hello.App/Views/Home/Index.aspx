@@ -73,7 +73,7 @@
                     <%= Html.Hidden("Username", user.Username) %>
                     <%= Html.Hidden("ImageURL", user.ImageURL)%>
                     <%= Html.Hidden("UserType", user.UserTypeID) %>
-                    <% foreach (var tag in user.Tags) { %>
+                    <% foreach (var tag in user.Tags.OrderByDescending(t => t.Created).Take(3)) { %>
                         <%= Html.Hidden("Tag", tag.Name) %>
                     <% } %>
                 </form>

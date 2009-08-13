@@ -34,7 +34,7 @@
                         <% } %>
                     </ul>
                     <p>
-                        <% foreach (var tag in user.Tags) { %>
+                        <% foreach (var tag in user.Tags.OrderByDescending(t => t.Created).Take(3)) { %>
                             #<a href="#"><%= tag.Name %></a> 
                         <% } %>
                     </p>
