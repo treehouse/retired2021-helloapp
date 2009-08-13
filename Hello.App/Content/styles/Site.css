@@ -80,11 +80,13 @@ h2 {
 	letter-spacing:-0.05em;
 	color:#3e3d36;
 	font-weight:bold;
+	margin-bottom:30px;
 	}
 	
 h3 {
 	font-size:130%;
 	letter-spacing:-0.05em;
+	line-height:22px;
 	color:#3e3d36;
 	font-weight:bold;
 	margin-bottom:25px;
@@ -97,6 +99,21 @@ h4 {
 	letter-spacing:-0.05em;
 	padding:0px 0px 5px 0px;
 }
+
+body#about .narrowContent p,
+body#instructions .narrowContent p {
+	font-size:90%;
+	letter-spacing:-0.03em;
+	color:#43413d;
+	padding-bottom:30px;
+	
+}
+
+body#about .narrowContent p span.read,
+body#instructions .narrowContent p span.read {
+	background:#fff;
+}
+
 
 p.intro {
 	font-family:Georgia, "Times New Roman", Times, serif;
@@ -459,7 +476,7 @@ h2.right {
 
 table.seatingPlan {
 	float:left;
-	margin:0px 40px 40px 0px;
+	margin:0px 41px 40px 0px;
 }
 
 table.seatingPlan3,
@@ -478,7 +495,7 @@ table.seatingPlan4 td {
 	height:24px;
 	border-right:1px solid #ebe7d5;
 	border-bottom:1px solid #ebe7d5;
-	background:#b7b3a3;
+	background:url(../images/presentation/smiley.jpg) top left no-repeat;
 }
 
 table.seatingPlan4  {
@@ -486,7 +503,6 @@ table.seatingPlan4  {
 	top:0;
 	left:240px;
 }
-
 
 
 
@@ -599,9 +615,9 @@ a.close:hover {
 	-moz-border-radius:37px;
 	-webkit-border-radius:35px;
 	border-radius:37px;
-	-webkit-box-shadow: 0px 0px 5px #75736a;  
-    -moz-box-shadow: 0px 0px 5px #75736a;  
-	box-shadow: 0px 0px 5px #75736a; 
+	-webkit-box-shadow: 0px 0px 5px #838078;  
+    -moz-box-shadow: 0px 0px 5px #838078;  
+	box-shadow: 0px 0px 5px #838078; 
 }
 
 
@@ -763,6 +779,147 @@ form#tags input#submit:hover {
 
 
 
+/* About __________________________________________________________ */
+
+.narrowContent {
+	width:580px;
+	float:left;
+	margin-top:30px;
+}
+
+
+.castWrapper {
+	float:right;
+	width:300px;
+	padding:20px 20px 0px 20px;
+	background:#fff;
+	border:1px dashed #dc3d2a;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-webkit-box-shadow: 0px 0px 10px #9f9c91;  
+    -moz-box-shadow: 0px 0px 10px #9f9c91;  
+	box-shadow: 0px 0px 10px #9f9c91;  
+	margin:0px 0px 40px 0px;
+}
+
+.castWrapper h3 {
+	margin:0px 0px 20px 0px;
+	float:left;
+}
+
+ul.cast {
+	margin:0px 0px 0px 40px;
+}
+
+ul.cast li {
+	float:left;
+	margin-bottom:25px;
+}
+
+body#about ul.cast li .role p {
+	padding-bottom:3px;
+}
+
+ul.cast li img {
+	float:left;
+}
+
+ul.cast li .role {
+	margin:0px 0px 0px 90px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Instructions __________________________________________________________ */
+
+body#instructions .narrowContent {
+	width:580px;
+	float:left;
+	margin:0px 0px 0px 100px;
+}
+
+body#instructions .narrowContent h3 {
+	margin:40px 0px 5px 0px;
+	border-top:1px dashed #727068;
+	padding:10px 0px 0px 0px;
+}
+
+ul.subNav {
+	margin-bottom:30px;
+}
+
+ul.subNav li {
+	display:inline;
+}
+
+ul.subNav li a {
+	text-decoration:none;
+	color:#fff;
+	font-size:90%;
+	letter-spacing:-0.05em;
+	padding:4px 8px 4px 8px;
+	background:#dc3d2a;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	margin-right:6px;
+}
+
+ul.subNav li a:hover {
+	background:#4fa431;
+}
+
+code {
+	color:#319db8;
+	background:#f5f3e9;
+	margin:0px 0px 0px 30px;
+}
+
+ul.badges {
+	margin:30px 0px 0px 0px;
+	width:300px;
+	padding:20px 20px 0px 20px;
+	background:#fff;
+	border:1px dashed #dc3d2a;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-webkit-box-shadow: 0px 0px 10px #9f9c91;  
+    -moz-box-shadow: 0px 0px 10px #9f9c91;  
+	box-shadow: 0px 0px 10px #9f9c91;  
+}
+
+ul.badges p span,
+ul.badges p strong {
+	font-weight:bold;
+}
+
+ul.badges li img {
+	float:left;
+}
+
+ul.badges li p {
+	margin-left:50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /* Footer ____________________________________________________________ */
 
 .footer {
@@ -825,6 +982,32 @@ a.carsonifiedLogo:hover {
 
 
 
+/* images __________________________________________________________ */
+
+.genImg {
+	margin:0px 0px 30px 0px;
+	border:5px solid #fff;
+	-webkit-box-shadow: 0px 0px 10px #9f9c91;  
+    -moz-box-shadow: 0px 0px 10px #9f9c91;  
+	box-shadow: 0px 0px 10px #9f9c91;  
+}
+
+.genImg2 {
+	margin:0px 0px 30px -50px;
+	border:5px solid #fff;
+	-webkit-box-shadow: 0px 0px 10px #9f9c91;  
+    -moz-box-shadow: 0px 0px 10px #9f9c91;  
+	box-shadow: 0px 0px 10px #9f9c91;  
+}
+
+
+
+
+
+
+
+
+
 
 /* Misc ____________________________________________________________ */
 
@@ -850,6 +1033,8 @@ a.carsonifiedLogo:hover {
 /* Clearfix ____________________________________________________________________ */
 
 .header:after,
+.cast:after,
+.contentMain:after,
 .whatIdo:after,
 .generalContent:after,
 .seating:after,
