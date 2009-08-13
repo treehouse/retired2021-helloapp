@@ -21,6 +21,8 @@ namespace Hello.App.Controllers
 
         public ActionResult Index(string search)
         {
+            search = search.Trim();
+
             var userTypes = _repo
                 .UserTypes
                 .OrderBy(ut => ut.Ordering)
@@ -35,12 +37,28 @@ namespace Hello.App.Controllers
             }
             else
             {
+                // TODO: Split search terms and return something sensible...
+
+                //var searchTerms = search.Split(' ');
+
+                //foreach (var term in searchTerms)
+                //{
+                //    users = _repo
+                //        .Users
+                //        .Select(u => new
+                //        {
+                //            User = u,
+                //            Weight = ...
+                //        });
+                //}
+
                 var users = _repo
                     .Users
                     .Where(
                         u => u.Username.Contains(search)
                           || u.Tags.Any(t => t.Name.Contains(search))
-                          || u.UserTypeID.Contains(search));
+                          || u.UserTypeID.Contains(search))
+                    .Take(100);
 
                 return View(users);
             }

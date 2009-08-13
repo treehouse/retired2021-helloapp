@@ -35,7 +35,7 @@
                 var tagHtml = '';
                 tags.each(function(i, tagInput) {
                     var tag = $(tagInput).val();
-                    tagHtml += '#<a href="#">' + tag + '</a> '
+                    tagHtml += '#<a href="<%= Url.Action("Index", "Search", new { search = " " }) %>' + tag + '">' + tag + '</a> '
 
                 });
                 $('.tagsPara', popup).html(tagHtml);
@@ -47,6 +47,19 @@
                     top: pos.top - height - 20,
                     left: (pos.left > 980 / 2) ? pos.left - 420 : pos.left + 48
                 });
+
+                $('#latestTweet', popup).text("Loading...");
+
+                // Latest Tweet
+                $.getJSON('http://twitter.com/statuses/user_timeline/' +
+                    username +
+                    '.json?count=1&callback=?',
+                    function(tweets) {
+                        $('#latestTweet', popup).text(tweets[0].text);
+                    }
+                );
+
+                // Display
                 popup.fadeIn();
             });
 
@@ -65,13 +78,14 @@
     <% Html.RenderPartial("SearchBar", ""); %>
 
     <div class="section randomAvatars">
+    
         <% var r = new Random(); %>
         
         <% foreach (var user in Model) { %>
             <div class="roundAvatars" style="background-image: url(<%= user.ImageURL %>); top: <%= r.Next(500 - 73) %>px; left: <%= r.Next(980 - 73) %>px">
                 <form>
                     <%= Html.Hidden("Username", user.Username) %>
-                    <%= Html.Hidden("ImageURL", user.ImageURL)%>
+                    <%= Html.Hidden("ImageURL", user.ImageURL) %>
                     <%= Html.Hidden("UserType", user.UserTypeID) %>
                     <% foreach (var tag in user.Tags.OrderByDescending(t => t.Created).Take(3)) { %>
                         <%= Html.Hidden("Tag", tag.Name) %>
@@ -82,19 +96,19 @@
         
         <div class="profileBox avatarPopup">
             <div class="twitterProfile">
-            <img src="images/content/ryan_large.jpg" alt="Ryan Carson" />
-            <div class="bio">
-            <p>@<a class="twitterLink" href="http://twitter.com/ryancarson">Ryancarson</a></p>
-            <p>American living in England - I'm a Father, Internet entrepreneur and lover of movies. Founder of Carsonified.com</p>
-            </div>
-            <a href="#" class="close">Close</a>
+                <img height="73px" />
+                <div class="bio">
+                    <p>@<a class="twitterLink" href="http://twitter.com/ryancarson">Ryancarson</a></p>
+                    <p id="latestTweet">Loading...</p>
+                </div>
+                <a href="#" class="close">Close</a>
             </div>
             <ul class="categories">
                 <% foreach (var ut in ViewData["UserTypes"] as List<UserType>) { %>
                     <li class="<%= ut.UserTypeID %>"><%= ut.Name %></li>
                 <% } %>
             </ul>
-            <p class="tagsPara">#<a href="#">Reallylonggoogleytagye</a> #<a href="#">Reallylonggoogleytagye</a> #<a href="#">Reallylonggoogleytagye</a></p>
+            <p class="tagsPara">#<a href="#">Fake</a> #<a href="#">Fake</a> #<a href="#">Fake</a></p>
         </div>
         
     </div>

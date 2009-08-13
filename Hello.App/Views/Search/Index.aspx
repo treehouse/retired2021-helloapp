@@ -23,7 +23,7 @@
                         <img src="<%= user.ImageURL %>" alt="<%= user.Username %>" />
                         <div class="bio">
                             <p>@<a href="http://twitter.com/<%= user.Username %>"><%= user.Username %></a></p>
-                            <p>American living in England - I'm a Father, Internet entrepreneur and lover of movies. Founder of Carsonified.com</p>
+                            <p id="latestTweet">Loading...</p>
                         </div>
                     </div>
                     <ul class="categories">
@@ -34,7 +34,7 @@
                     </ul>
                     <p>
                         <% foreach (var tag in user.Tags.OrderByDescending(t => t.Created).Take(3)) { %>
-                            #<a href="#"><%= tag.Name %></a> 
+                            #<%= Html.ActionLink(tag.Name, "Index", new { search = tag.Name }) %>
                         <% } %>
                     </p>
                 </div>
