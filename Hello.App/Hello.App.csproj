@@ -118,6 +118,32 @@
     <Content Include="appsettings.local.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\images\content\badges_01.jpg" />
+    <Content Include="Content\images\content\bronze.png" />
+    <Content Include="Content\images\content\carsonified.jpg" />
+    <Content Include="Content\images\content\diamond.png" />
+    <Content Include="Content\images\content\gold.png" />
+    <Content Include="Content\images\content\greg.jpg" />
+    <Content Include="Content\images\content\heat_map.jpg" />
+    <Content Include="Content\images\content\high_five.jpg" />
+    <Content Include="Content\images\content\high_five.png" />
+    <Content Include="Content\images\content\keir.jpg" />
+    <Content Include="Content\images\content\mark_j.jpg" />
+    <Content Include="Content\images\content\mark_quirk.jpg" />
+    <Content Include="Content\images\content\matt.jpg" />
+    <Content Include="Content\images\content\message.jpg" />
+    <Content Include="Content\images\content\microsoft.jpg" />
+    <Content Include="Content\images\content\mike.jpg" />
+    <Content Include="Content\images\content\red_gate.jpg" />
+    <Content Include="Content\images\content\ryan.jpg" />
+    <Content Include="Content\images\content\ryan_large.jpg" />
+    <Content Include="Content\images\content\screen_01.jpg" />
+    <Content Include="Content\images\content\silver.png" />
+    <Content Include="Content\images\content\skill_set.jpg" />
+    <Content Include="Content\images\content\smiley.png" />
+    <Content Include="Content\images\content\ux_map.jpg" />
+    <Content Include="Content\images\presentation\smiley.jpg" />
+    <Content Include="Content\images\presentation\solar_system_section.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

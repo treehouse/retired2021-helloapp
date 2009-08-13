@@ -256,7 +256,7 @@ ul.mainNav li a:hover {
 
 body#home ul.mainNav li a.home,
 body#about ul.mainNav li a.about,
-body#faq ul.mainNav li a.faq {
+body#instructions ul.mainNav li a.faq {
 	background:url(../images/presentation/stripes.png) #c8c5b5 top left repeat;
 }
 
@@ -784,7 +784,7 @@ form#tags input#submit:hover {
 .narrowContent {
 	width:580px;
 	float:left;
-	margin-top:30px;
+	margin-top:80px;
 }
 
 
@@ -799,7 +799,7 @@ form#tags input#submit:hover {
 	-webkit-box-shadow: 0px 0px 10px #9f9c91;  
     -moz-box-shadow: 0px 0px 10px #9f9c91;  
 	box-shadow: 0px 0px 10px #9f9c91;  
-	margin:0px 0px 40px 0px;
+	margin:50px 0px 40px 0px;
 }
 
 .castWrapper h3 {
@@ -843,7 +843,7 @@ ul.cast li .role {
 body#instructions .narrowContent {
 	width:580px;
 	float:left;
-	margin:0px 0px 0px 100px;
+	margin:80px 0 0 70px;
 }
 
 body#instructions .narrowContent h3 {

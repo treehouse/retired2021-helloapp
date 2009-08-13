@@ -16,14 +16,14 @@
 	<div class="header">
 	
 		<div class="branding">
-            <%= Html.ActionLink("home", "Index", "Home", null, new { @class = "logo" })%>
+            <%= Html.ActionLink("home", "Index", "Home", null, new { @class = "logo" }) %>
 		</div><!-- /.branding -->
 
 			<div class="headerRight">
             <ul class="mainNav">
                 <li><%= Html.ActionLink("home", "Index", "Home", null, new { @class = "home" }) %></li>
-                <li><%= Html.ActionLink("about", "About", "Home", null, new { @class = "about" })%></li>
-                <li><%= Html.ActionLink("faq", "Faq", "Home", null, new { @class = "faq" })%></li>
+                <li><%= Html.ActionLink("about", "About", "Home", null, new { @class = "about" }) %></li>
+                <li><%= Html.ActionLink("instructions", "Faq", "Home", null, new { @class = "faq" }) %></li>
 			</ul>
            
            <p class="intro">Hello helps you to <span>meet interesting people at FOWA London.</span> You can say where you're sitting, earn points, badges and post messages to the whole audience. You can also watch the event, even if you're not attending. Come on and <a href="#">join in</a>!</p> 

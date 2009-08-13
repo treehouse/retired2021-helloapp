@@ -15,7 +15,13 @@ namespace Hello.App.Helpers
             if (html.ViewContext.Controller is HomeController)
             {
                 var action = html.ViewContext.RouteData.Values["action"].ToString().ToLower();
-                return action == "index" ? "home" : action;
+
+                if (action == "index")
+                    return "home";
+                else if (action == "faq")
+                    return "instructions";
+                else
+                    return action;
             }
             else
                 return String.Empty;
@@ -28,18 +34,18 @@ namespace Hello.App.Helpers
             switch (html.ViewContext.RouteData.Values["action"].ToString().ToLower())
             {
                 case "index":
-                    title += " >> Home";
+                    title += " » Home";
                     break;
                 case "about":
-                    title += " >> About";
+                    title += " » About";
                     break;
                 case "faq":
-                    title += " >> FAQ";
+                    title += " » FAQ";
                     break;
                 default:
                     break;
             }
-            return title;
+            return html.Encode(title);
         }
     }
 }
