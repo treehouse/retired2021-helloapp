@@ -72,6 +72,8 @@
     
     <h3 id="badges">Badges</h3>
     
+	<p><span class="read">The more people you meet and special tasks you complete during the conference, the more points and "badges" you'll be awarded. If you earn a high enough rank, you'll be able to post public messages to the entire audience and win awesome prizes.</span></p>
+    
     <ul class="badges">
     <li>
     <img src='<%= Url.Content("~/Content/images/content/bronze.png") %>' alt="bronze badge" />
