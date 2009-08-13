@@ -20,12 +20,11 @@
                { %>
                 <div class="profileBox <%= (stripe = !stripe) ? "right" : "left" %>">
                     <div class="twitterProfile">
-                    <img src="<%= user.ImageURL %>" alt="<%= user.Username %>" />
-                    <div class="bio">
-                    <p>@<a href="http://twitter.com/<%= user.Username %>"><%= user.Username %></a></p>
-                    <p>American living in England - I'm a Father, Internet entrepreneur and lover of movies. Founder of Carsonified.com</p>
-                    </div>
-                    <%--<a href="#" class="close">Close</a>--%>
+                        <img src="<%= user.ImageURL %>" alt="<%= user.Username %>" />
+                        <div class="bio">
+                            <p>@<a href="http://twitter.com/<%= user.Username %>"><%= user.Username %></a></p>
+                            <p>American living in England - I'm a Father, Internet entrepreneur and lover of movies. Founder of Carsonified.com</p>
+                        </div>
                     </div>
                     <ul class="categories">
                         <% foreach (var ut in ViewData["UserTypes"] as List<UserType>)
