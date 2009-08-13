@@ -20,5 +20,26 @@ namespace Hello.App.Helpers
             else
                 return String.Empty;
         }
+
+        public static string Title(this HtmlHelper html)
+        {
+            string title = "Hello";
+
+            switch (html.ViewContext.RouteData.Values["action"].ToString().ToLower())
+            {
+                case "index":
+                    title += " >> Home";
+                    break;
+                case "about":
+                    title += " >> About";
+                    break;
+                case "faq":
+                    title += " >> FAQ";
+                    break;
+                default:
+                    break;
+            }
+            return title;
+        }
     }
 }

@@ -9,19 +9,6 @@
       <Association Name="Badge_UserBadge" Member="UserBadges" ThisKey="BadgeID" OtherKey="BadgeID" Type="UserBadge" />
     </Type>
   </Table>
-  <Table Name="dbo.UserTypes" Member="UserTypes">
-    <Type Name="UserType">
-      <Column Name="UserTypeID" Type="System.String" DbType="Char(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="DefaultColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
-      <Column Name="BurningColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
-      <Column Name="HotColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
-      <Column Name="WarmColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
-      <Association Name="UserType_User" Member="Users" ThisKey="UserTypeID" OtherKey="UserTypeID" Type="User" />
-      <Association Name="Event_UserType" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Campaigns" Member="Campaigns">
     <Type Name="Campaign">
       <Column Name="CampaignID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -35,9 +22,9 @@
       <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Slug" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Association Name="Event_UserType" Member="UserTypes" ThisKey="EventID" OtherKey="EventID" Type="UserType" />
       <Association Name="Event_Seat" Member="Seats" ThisKey="EventID" OtherKey="EventID" Type="Seat" />
       <Association Name="Event_Session" Member="Sessions" ThisKey="EventID" OtherKey="EventID" Type="Session" />
+      <Association Name="Event_UserType" Member="UserTypes" ThisKey="EventID" OtherKey="EventID" Type="UserType" />
     </Type>
   </Table>
   <Table Name="dbo.Friendships" Member="Friendships">
@@ -136,8 +123,8 @@
       <Column Name="Updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="UserTypeID" Type="System.String" DbType="Char(3)" CanBeNull="true" />
       <Column Name="ShadowAccount" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="User_Friendship" Member="Friendships" ThisKey="Username" OtherKey="Befriendee" Type="Friendship" />
-      <Association Name="User_Friendship1" Member="Friendships1" ThisKey="Username" OtherKey="Befriender" Type="Friendship" />
+      <Association Name="User_Friendship" Member="Befriendees" Storage="_Friendships" ThisKey="Username" OtherKey="Befriendee" Type="Friendship" />
+      <Association Name="User_Friendship1" Member="Befrienders" Storage="_Friendships1" ThisKey="Username" OtherKey="Befriender" Type="Friendship" />
       <Association Name="User_Point" Member="Points" ThisKey="Username" OtherKey="Username" Type="Point" />
       <Association Name="User_Redemption" Member="Redemptions" ThisKey="Username" OtherKey="Username" Type="Redemption" />
       <Association Name="User_UserBadge" Member="UserBadges" ThisKey="Username" OtherKey="Username" Type="UserBadge" />
@@ -178,6 +165,20 @@
       <Column Name="Finish" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="Session_Sat" Member="Sats" ThisKey="SessionID" OtherKey="SessionID" Type="Sat" />
       <Association Name="Event_Session" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserTypes" Member="UserTypes">
+    <Type Name="UserType">
+      <Column Name="UserTypeID" Type="System.String" DbType="Char(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Ordering" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DefaultColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="BurningColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="HotColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="WarmColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Association Name="UserType_User" Member="Users" ThisKey="UserTypeID" OtherKey="UserTypeID" Type="User" />
+      <Association Name="Event_UserType" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -195,8 +195,8 @@ namespace Hello.Bot
                 {
                     user = new User
                     {
-                        ImageURL = user.ImageURL,
-                        Username = user.Username,
+                        ImageURL = tweet.ImageURL.Replace("_normal.", "_bigger."), // we want the larger twitter image if it exists
+                        Username = tweet.Username,
                         Created = DateTime.Now,
                         Updated = DateTime.Now
                     };
@@ -212,18 +212,25 @@ namespace Hello.Bot
                     user.ShadowAccount = false;
 
                     if (helloTweet.Tags.Count > 0)
+                    {
+                        var oldTags = _repo
+                            .Tags
+                            .Where(t => t.Username == user.Username)
+                            .Select(t => t.Name);
                         _repo
                             .Tags
                             .InsertAllOnSubmit(
                                 helloTweet
                                     .Tags
+                                    .Where(t => !oldTags.Contains(t))
                                     .Select(tag => new Tag
                                     {
                                         Created = DateTime.Now,
-                                        Name = tag,
+                                        Name = tag.Length > 20 ? tag.Substring(0, 20) : tag,
                                         Username = user.Username
                                     })
                             );
+                    }
                 }
 
                 var satTweet = processedTweet as SatTweet;
@@ -300,11 +307,14 @@ namespace Hello.Bot
                         }
                     }
 
+                    var befriendees = user.Befrienders.Select(f => f.Befriendee).ToList();
+
                     _repo
                         .Friendships
                         .InsertAllOnSubmit(
                             metTweet
                                 .Friends
+                                .Where(f => !befriendees.Contains(f))
                                 .Select(friend => new Friendship
                                 {
                                     Befriender = user.Username,

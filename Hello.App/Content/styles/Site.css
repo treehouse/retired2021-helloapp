@@ -75,6 +75,21 @@ body {
     line-height: 1.125em; /* 16×1.125=18px */
 }
 
+h2 {
+	font-size:230%;
+	letter-spacing:-0.05em;
+	color:#3e3d36;
+	font-weight:bold;
+	}
+	
+h3 {
+	font-size:130%;
+	letter-spacing:-0.05em;
+	color:#3e3d36;
+	font-weight:bold;
+	margin-bottom:25px;
+	}		
+
 h4 {
 	font-size:110%;
 	font-weight:bold;
@@ -424,14 +439,10 @@ a.checkIn:hover {
 
 .checkInBar h2 {
 	float:left;
-	font-size:230%;
-	letter-spacing:-0.05em;
-	color:#3e3d36;
-	font-weight:bold;
 	padding:37px 0px 0px 0px;
 	}	
 	
-.checkInBar h2.right {
+h2.right {
 	float:right;
 	}	
 
@@ -480,10 +491,16 @@ table.seatingPlan4  {
 
 
 
+
+
+
+
+
+
 /* Profile Box ______________________________________________________ */
 
 .profileBox {
-	width:450px;
+	width:400px;
 	padding:20px 20px 20px 20px;
 	background:#fff;
 	border:1px dashed #dc3d2a;
@@ -505,7 +522,7 @@ table.seatingPlan4  {
 .profileBox p {
 	font-size:80%;
 	letter-spacing:-0.03em;
-	color:#797979;
+	color:#5b5b5b;
 }
 
 .twitterProfile img {
@@ -549,11 +566,15 @@ a.close {
 	text-indent:-9999px;
 	position:absolute;
 	top:0px;
-	left:430px;
+	left:380px;
 }
 
 a.close:hover {
 	background:url(../images/presentation/close.png) 0px -30px no-repeat;
+}
+
+.avatarPopup {
+    position: absolute
 }
 
 
@@ -585,6 +606,153 @@ a.close:hover {
 
 
 
+
+
+
+
+
+
+
+
+
+/* Join In Form __________________________________________________________ */
+
+
+.joinInBox {
+	position:relative;
+	width:440px;
+	padding:20px 0px 0px 0px;
+	background:url(../images/presentation/thick_stripe.png) #fff top left repeat;
+	border:1px dashed #dc3d2a;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-webkit-box-shadow: 0px 0px 10px #9f9c91;  
+    -moz-box-shadow: 0px 0px 10px #9f9c91;  
+	box-shadow: 0px 0px 10px #9f9c91;  
+	margin:50px auto 0px auto;
+}
+
+.joinInBox h2 {
+	text-align:center;
+	margin:15px 0px 30px 0px;
+}
+
+.joinInBox p {
+	font-size:80%;
+	letter-spacing:-0.03em;
+	color:#797979;
+}
+
+.whatIdo {
+    padding-bottom: 23px; 
+}
+
+.whatIdo ul {
+	margin:0px 0px 10px 26px;
+}
+
+.whatIdo ul li {
+	display:inline;
+}
+
+.whatIdo ul li a {
+	float:left;
+	width:123px;
+	text-decoration:none;
+	text-align:center;
+	color:#fff;
+	font-size:170%;
+	font-weight:bold;
+	letter-spacing:-0.05em;
+	padding:8px 0px 8px 0px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+
+.whatIdo ul li a.dev {
+	background:#319db8;
+	margin:0px 10px 0px 0px;
+}
+
+.whatIdo ul li a.des {
+	background:#dc3d2a;
+	margin:0px 10px 0px 0px;
+}
+
+.whatIdo ul li a.biz {
+	background:#dcc12a;
+}
+
+.whatIdo ul li a:hover {
+	background:#181715;
+	-webkit-box-shadow: 0px 0px 10px #9f9c91;  
+    -moz-box-shadow: 0px 0px 10px #9f9c91;  
+	box-shadow: 0px 0px 10px #9f9c91;
+}
+
+.joinInBox .close {
+	position:absolute;
+	top:15px;
+	left:396px;
+}
+
+.tags {
+	padding:25px 25px 15px 25px;
+	border-top:1px dashed #afaca1;
+	position:relative;
+}
+
+.tags.biz {
+	background:url(../images/presentation/trans_yellow.png) top left repeat;
+}
+
+.tags.des {
+	background:url(../images/presentation/trans_red.png) top left repeat;
+}
+
+.tags.dev {
+	background:url(../images/presentation/trans_blue.png) top left repeat;
+}
+
+form#tags {
+
+}
+
+form#tags #tag1,
+form#tags #tag2,
+form#tags #tag3 {
+	border:1px dashed #dc3d2a;
+	width:210px;
+	height:30px;
+	margin:0px 0px 12px 0px;
+	padding:6px 0px 0px 10px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	-webkit-box-shadow: 0px 0px 5px #c1c1c1;  
+    -moz-box-shadow: inset 0px 0px 10px #c1c1c1;  
+	box-shadow: 0px 0px 5px #c1c1c1;
+	font-size:130%;
+}
+
+form#tags input#submit {
+	position:absolute;
+	top:76px;
+	left:288px;
+	float:left;
+	background:url(../images/presentation/im_in.png) top left no-repeat;
+	display: block;
+	width:111px;
+	height:111px;
+	border:none;
+	cursor:pointer;
+	padding:0px;
+	text-indent:-9999px;
+}
+
+form#tags input#submit:hover {
+	background:url(../images/presentation/im_in.png) 0px -120px no-repeat;
+}
 
 
 
@@ -682,6 +850,8 @@ a.carsonifiedLogo:hover {
 /* Clearfix ____________________________________________________________________ */
 
 .header:after,
+.whatIdo:after,
+.generalContent:after,
 .seating:after,
 .checkInBar:after,
 .twitterProfile:after,

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Configuration;
+using System.Text.RegularExpressions;
+using Hello.Repo;
 
 namespace Hello.Bot
 {
@@ -35,7 +37,8 @@ namespace Hello.Bot
                         if (token.StartsWith("!"))
                             helloTweet.UserType = token.Substring(1);
                         else if (token.StartsWith("#"))
-                            helloTweet.Tags.Add(token.Substring(1));
+                            helloTweet.Tags.Add(
+                                Regex.Replace(token.Substring(1), @"[\W]", ""));
                     }
                     return helloTweet;
                 case "sat":

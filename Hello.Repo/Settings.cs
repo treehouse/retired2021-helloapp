@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Configuration;
 
-namespace Hello.Bot
+namespace Hello.Repo
 {
     public static class Settings
     {

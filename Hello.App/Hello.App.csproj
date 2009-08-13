@@ -39,6 +39,9 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -56,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -70,6 +74,7 @@
     <Content Include="Content\images\presentation\bird.png" />
     <Content Include="Content\images\presentation\check_in.png" />
     <Content Include="Content\images\presentation\close.png" />
+    <Content Include="Content\images\presentation\im_in.png" />
     <Content Include="Content\images\presentation\join_in.png" />
     <Content Include="Content\images\presentation\join_in_off.png" />
     <Content Include="Content\images\presentation\join_in_on.png" />
@@ -82,19 +87,33 @@
     <Content Include="Content\images\presentation\solar_system.png" />
     <Content Include="Content\images\presentation\solar_system_02.png" />
     <Content Include="Content\images\presentation\stripes.png" />
+    <Content Include="Content\images\presentation\thick_stripe.png" />
+    <Content Include="Content\images\presentation\trans_blue.png" />
+    <Content Include="Content\images\presentation\trans_red.png" />
+    <Content Include="Content\images\presentation\trans_yellow.png" />
+    <Content Include="Content\styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Views\Home\Faq.aspx" />
-    <Content Include="Web.config" />
-    <Content Include="Content\styles\Site.css" />
-    <Content Include="Scripts\jquery-1.3.2.js" />
-    <Content Include="Scripts\jquery-1.3.2.min.js" />
-    <Content Include="Scripts\jquery-1.3.2-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.3.2.min-vsdoc.js" />
-    <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Home\Join.aspx" />
+    <Content Include="Views\Shared\SearchBar.ascx" />
+    <Content Include="Views\Search\Index.aspx" />
+    <Content Include="Web.config" />
+    <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Shared\Site.Master" />
     <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hello.Repo\Hello.Repo.csproj">
+      <Project>{4B550601-FA2D-42CC-A1AA-9A710D57FF34}</Project>
+      <Name>Hello.Repo</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="appsettings.local.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
