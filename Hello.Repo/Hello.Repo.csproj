@@ -73,12 +73,19 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Scripts\CreationScript.sql" />
+    <None Include="Scripts\DataScript.sql" />
+    <None Include="Scripts\ResetScript.sql" />
     <None Include="SQL\Data\dbo.Events_Data.sql" />
     <None Include="SQL\Data\dbo.Events_Meta.sdcs" />
     <None Include="SQL\Data\dbo.QueuedTweets_Data.sql" />
     <None Include="SQL\Data\dbo.QueuedTweets_Meta.sdcs" />
     <None Include="SQL\Data\dbo.UserTypes_Data.sql" />
     <None Include="SQL\Data\dbo.UserTypes_Meta.sdcs" />
+    <None Include="SQL\Security\Roles\db_datareader.sql" />
+    <None Include="SQL\Security\Roles\db_datawriter.sql" />
+    <None Include="SQL\Security\Users\hello_bot.sql" />
+    <None Include="SQL\Security\Users\hello_web.sql" />
     <None Include="SQL\Tables\dbo.Badges.sql" />
     <None Include="SQL\Tables\dbo.Campaigns.sql" />
     <None Include="SQL\Tables\dbo.Events.sql" />
