@@ -165,12 +165,19 @@ namespace Hello.Bot
 
         public void ProcessTweets()
         {
-            // ignore tweets that we sent
+            // ignore our tweets and vias
             var myTweets = _repo
                 .QueuedTweets
                 .Where(t => !t.Processed
                          && t.Username == Settings.TwitterBotUsername);
             foreach (var tweet in myTweets)
+                tweet.Processed = true;
+
+            var viaTweets = _repo
+                .QueuedTweets
+                .Where(t => !t.Processed
+                         && t.Message.Contains("via @"));
+            foreach (var tweet in viaTweets)
                 tweet.Processed = true;
 
             _repo.SubmitChanges();
@@ -192,7 +199,11 @@ namespace Hello.Bot
 
                 // Not interested in this tweet... move along...
                 if (processedTweet == null)
+                {
+                    tweet.Processed = true;
+                    _repo.SubmitChanges();
                     continue;
+                }
 
                 var user = _repo
                     .Users

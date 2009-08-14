@@ -1,21 +1,307 @@
 <publishData>
+  <publishTarget publishUrl="D:\code\HelloApp\deploy\v6\">
+    <file relUrl="Content/images/presentation/smiley.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/mike.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/smiley.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/message.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/mag_glass_off.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/solar_system.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.Repo.pdb" publishTime="08/14/2009 17:07:02" />
+    <file relUrl="Content/images/content/silver.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/stripes.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/carsonified.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/ux_map.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/matt.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/appsettings.local.config" publishTime="08/14/2009 15:43:22" />
+    <file relUrl="Content/images/content/ryan.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.Utils.pdb" publishTime="08/14/2009 16:22:57" />
+    <file relUrl="Content/images/presentation/close.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/mag_glass_on.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Web.config" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/content/diamond.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Home/Faq.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/content/ryan_large.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/mark_quirk.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/greg.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/trans_yellow.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/heat_map.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/favicon.ico" publishTime="08/14/2009 17:11:57" />
+    <file relUrl="Content/images/content/keir.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Home/About.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="bin/Hello.App.pdb" publishTime="08/14/2009 17:17:24" />
+    <file relUrl="Content/images/content/screen_01.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/bird.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="connectionstrings.local.config" publishTime="08/14/2009 15:07:00" />
+    <file relUrl="bin/Hello.App.dll" publishTime="08/14/2009 17:17:24" />
+    <file relUrl="Web.config" publishTime="08/14/2009 16:11:24" />
+    <file relUrl="Content/images/content/skill_set.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Home/Join.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/presentation/join_in.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/connectionstrings.local.config" publishTime="08/14/2009 15:07:00" />
+    <file relUrl="Views/Home/Index.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="appsettings.local.config" publishTime="08/14/2009 15:43:22" />
+    <file relUrl="Content/images/content/microsoft.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/thick_stripe.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/logo_carsonified.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Shared/Site.Master" publishTime="08/14/2009 17:17:08" />
+    <file relUrl="Content/images/content/bronze.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/logo_hello.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/red_gate.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/trans_blue.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/mag_glass.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/join_in_off.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/mark_j.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/im_in.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/solar_system_section.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/high_five.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/gold.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.Utils.dll" publishTime="08/14/2009 16:22:57" />
+    <file relUrl="Content/images/presentation/check_in.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.Repo.dll" publishTime="08/14/2009 17:07:03" />
+    <file relUrl="Content/styles/Site.css" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/content/badges_01.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/trans_red.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/solar_system_02.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Shared/SearchBar.ascx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Global.asax" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/presentation/join_in_on.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/smiley.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/high_five.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Default.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Views/Search/Index.aspx" publishTime="08/14/2009 14:51:26" />
+  </publishTarget>
+  <publishTarget publishUrl="D:\code\HelloApp\deploy\v5\">
+    <file relUrl="Content/images/presentation/smiley.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/mike.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/smiley.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/message.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/mag_glass_off.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/solar_system.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.Repo.pdb" publishTime="08/14/2009 17:07:02" />
+    <file relUrl="Content/images/content/silver.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/stripes.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/carsonified.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/ux_map.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/matt.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/appsettings.local.config" publishTime="08/14/2009 15:43:22" />
+    <file relUrl="Content/images/content/ryan.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.Utils.pdb" publishTime="08/14/2009 16:22:57" />
+    <file relUrl="Content/images/presentation/close.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/mag_glass_on.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Web.config" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/content/diamond.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Home/Faq.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/content/ryan_large.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/mark_quirk.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/greg.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/trans_yellow.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/heat_map.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/favicon.ico" publishTime="08/14/2009 17:11:57" />
+    <file relUrl="Content/images/content/keir.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Home/About.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="bin/Hello.App.pdb" publishTime="08/14/2009 17:17:24" />
+    <file relUrl="Content/images/content/screen_01.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/bird.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="connectionstrings.local.config" publishTime="08/14/2009 15:07:00" />
+    <file relUrl="bin/Hello.App.dll" publishTime="08/14/2009 17:17:24" />
+    <file relUrl="Web.config" publishTime="08/14/2009 16:11:24" />
+    <file relUrl="Content/images/content/skill_set.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Home/Join.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/presentation/join_in.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/connectionstrings.local.config" publishTime="08/14/2009 15:07:00" />
+    <file relUrl="Views/Home/Index.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="appsettings.local.config" publishTime="08/14/2009 15:43:22" />
+    <file relUrl="Content/images/content/microsoft.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/thick_stripe.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/logo_carsonified.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Shared/Site.Master" publishTime="08/14/2009 17:17:08" />
+    <file relUrl="Content/images/content/bronze.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/logo_hello.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/red_gate.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/trans_blue.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/mag_glass.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/join_in_off.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/mark_j.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/im_in.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/solar_system_section.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/high_five.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/gold.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.Utils.dll" publishTime="08/14/2009 16:22:57" />
+    <file relUrl="Content/images/presentation/check_in.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.Repo.dll" publishTime="08/14/2009 17:07:03" />
+    <file relUrl="Content/styles/Site.css" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/content/badges_01.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/trans_red.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/solar_system_02.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Shared/SearchBar.ascx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Global.asax" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/presentation/join_in_on.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/smiley.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/high_five.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Default.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Views/Search/Index.aspx" publishTime="08/14/2009 14:51:26" />
+  </publishTarget>
+  <publishTarget publishUrl="D:\code\HelloApp\deploy\v4.1\">
+    <file relUrl="Content/images/presentation/smiley.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/im_in.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/smiley.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.Utils.dll" publishTime="08/14/2009 16:22:57" />
+    <file relUrl="Content/images/content/message.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/mag_glass_off.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/solar_system.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.Repo.pdb" publishTime="08/14/2009 16:22:57" />
+    <file relUrl="Content/images/content/silver.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/stripes.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/carsonified.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/ux_map.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/matt.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/appsettings.local.config" publishTime="08/14/2009 15:43:22" />
+    <file relUrl="Content/images/content/ryan.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/close.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/mag_glass_on.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Web.config" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/content/diamond.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/ryan_large.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/mark_quirk.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/greg.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/trans_yellow.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/heat_map.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Home/Join.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/content/keir.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Home/About.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="bin/Hello.App.pdb" publishTime="08/14/2009 16:22:58" />
+    <file relUrl="Content/images/content/screen_01.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/bird.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="connectionstrings.local.config" publishTime="08/14/2009 15:07:00" />
+    <file relUrl="bin/Hello.App.dll" publishTime="08/14/2009 16:22:58" />
+    <file relUrl="Web.config" publishTime="08/14/2009 16:11:24" />
+    <file relUrl="Content/images/content/skill_set.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.Utils.pdb" publishTime="08/14/2009 16:22:57" />
+    <file relUrl="Content/images/presentation/join_in.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/connectionstrings.local.config" publishTime="08/14/2009 15:07:00" />
+    <file relUrl="Views/Home/Index.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="appsettings.local.config" publishTime="08/14/2009 15:43:22" />
+    <file relUrl="Content/images/content/microsoft.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/thick_stripe.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/logo_carsonified.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Shared/Site.Master" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/content/bronze.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/logo_hello.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/red_gate.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/trans_blue.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/mag_glass.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/join_in_off.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/mark_j.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Home/Faq.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/presentation/solar_system_section.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/high_five.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/gold.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/app.config" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/content/mike.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/check_in.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.Repo.dll" publishTime="08/14/2009 16:22:57" />
+    <file relUrl="Content/styles/Site.css" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/content/badges_01.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/trans_red.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/solar_system_02.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Shared/SearchBar.ascx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Global.asax" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/presentation/join_in_on.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/smiley.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/high_five.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Default.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Views/Search/Index.aspx" publishTime="08/14/2009 14:51:26" />
+  </publishTarget>
+  <publishTarget publishUrl="D:\code\HelloApp\deploy\">
+    <file relUrl="Content/images/presentation/smiley.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/im_in.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/smiley.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/message.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/mag_glass_off.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/solar_system.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.Repo.pdb" publishTime="08/14/2009 14:53:33" />
+    <file relUrl="Content/images/content/silver.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/stripes.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/carsonified.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/ux_map.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/mike.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/appsettings.local.config" publishTime="08/14/2009 15:43:22" />
+    <file relUrl="bin/Hello.App.dll" publishTime="08/14/2009 15:21:59" />
+    <file relUrl="Content/images/content/ryan.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/close.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/mag_glass_on.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Web.config" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/content/diamond.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/ryan_large.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/mark_quirk.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/greg.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/trans_yellow.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/heat_map.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Home/Join.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/content/keir.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Home/About.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/content/matt.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/screen_01.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/bird.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.Utils.dll" publishTime="08/14/2009 14:53:42" />
+    <file relUrl="connectionstrings.config" publishTime="08/14/2009 15:07:00" />
+    <file relUrl="Web.config" publishTime="08/14/2009 15:06:59" />
+    <file relUrl="Content/images/content/skill_set.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.Utils.pdb" publishTime="08/14/2009 14:53:42" />
+    <file relUrl="Content/images/presentation/join_in.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.App.pdb" publishTime="08/14/2009 15:21:59" />
+    <file relUrl="Views/Home/Index.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="appsettings.local.config" publishTime="08/14/2009 15:43:22" />
+    <file relUrl="bin/connectionstrings.config" publishTime="08/14/2009 15:07:00" />
+    <file relUrl="Content/images/content/microsoft.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/thick_stripe.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/logo_carsonified.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Shared/Site.Master" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/content/bronze.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/logo_hello.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/red_gate.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/trans_blue.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/mag_glass.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/join_in_off.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/mark_j.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Home/Faq.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/presentation/solar_system_section.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/high_five.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/gold.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/app.config" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/presentation/check_in.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="bin/Hello.Repo.dll" publishTime="08/14/2009 14:53:38" />
+    <file relUrl="Content/styles/Site.css" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/content/badges_01.jpg" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/trans_red.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/presentation/solar_system_02.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Views/Shared/SearchBar.ascx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Global.asax" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Content/images/presentation/join_in_on.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/smiley.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Content/images/content/high_five.png" publishTime="08/14/2009 14:51:25" />
+    <file relUrl="Default.aspx" publishTime="08/14/2009 14:51:26" />
+    <file relUrl="Views/Search/Index.aspx" publishTime="08/14/2009 14:51:26" />
+  </publishTarget>
   <publishTarget publishUrl="C:\dev\deploy\v3\">
     <file relUrl="Content/images/presentation/smiley.jpg" publishTime="08/13/2009 10:29:00" />
     <file relUrl="Content/images/presentation/im_in.png" publishTime="08/12/2009 22:53:00" />
     <file relUrl="Content/images/presentation/smiley.png" publishTime="08/12/2009 16:37:00" />
-    <file relUrl="Content/images/content/message.jpg" publishTime="08/13/2009 15:47:00" />
+    <file relUrl="Content/images/content/badges_01.jpg" publishTime="08/13/2009 15:05:00" />
+    <file relUrl="Content/images/presentation/check_in.png" publishTime="08/12/2009 15:17:00" />
+    <file relUrl="bin/Hello.App.dll" publishTime="08/13/2009 22:56:47" />
     <file relUrl="Content/images/presentation/mag_glass_off.png" publishTime="08/11/2009 17:02:00" />
     <file relUrl="Content/images/presentation/solar_system.png" publishTime="08/11/2009 16:28:00" />
     <file relUrl="bin/Hello.Repo.pdb" publishTime="08/13/2009 22:56:46" />
-    <file relUrl="Content/images/content/silver.png" publishTime="08/13/2009 16:08:00" />
-    <file relUrl="Content/images/presentation/stripes.png" publishTime="08/11/2009 16:22:00" />
+    <file relUrl="Content/images/content/smiley.png" publishTime="08/13/2009 16:11:00" />
+    <file relUrl="Views/Shared/SearchBar.ascx" publishTime="08/13/2009 17:27:44" />
     <file relUrl="Content/images/content/carsonified.jpg" publishTime="08/13/2009 12:17:00" />
     <file relUrl="Content/images/content/ux_map.jpg" publishTime="08/13/2009 15:35:00" />
     <file relUrl="Content/images/content/matt.jpg" publishTime="08/13/2009 12:25:00" />
-    <file relUrl="bin/appsettings.local.config" publishTime="08/13/2009 14:58:40" />
     <file relUrl="Content/images/content/ryan.jpg" publishTime="08/12/2009 09:53:00" />
+    <file relUrl="Content/images/content/high_five.jpg" publishTime="08/13/2009 15:10:00" />
     <file relUrl="Content/images/presentation/close.png" publishTime="08/12/2009 11:05:00" />
-    <file relUrl="Content/images/presentation/mag_glass_on.png" publishTime="08/11/2009 17:02:00" />
+    <file relUrl="Content/images/presentation/stripes.png" publishTime="08/11/2009 16:22:00" />
     <file relUrl="Views/Web.config" publishTime="08/10/2009 16:58:30" />
     <file relUrl="Content/images/content/diamond.png" publishTime="08/13/2009 16:10:00" />
     <file relUrl="Content/images/content/ryan_large.jpg" publishTime="08/12/2009 10:15:00" />
@@ -25,24 +311,22 @@
     <file relUrl="Content/images/content/heat_map.jpg" publishTime="08/13/2009 14:29:00" />
     <file relUrl="Views/Home/Join.aspx" publishTime="08/13/2009 15:03:10" />
     <file relUrl="Content/images/content/keir.jpg" publishTime="08/13/2009 12:23:00" />
-    <file relUrl="Views/Home/About.aspx" publishTime="08/13/2009 17:59:02" />
+    <file relUrl="Content/images/presentation/logo_hello.png" publishTime="08/12/2009 10:58:00" />
     <file relUrl="Content/images/content/screen_01.jpg" publishTime="08/13/2009 13:58:00" />
     <file relUrl="Content/images/presentation/bird.png" publishTime="08/12/2009 14:52:00" />
-    <file relUrl="bin/Hello.Utils.dll" publishTime="08/13/2009 22:56:47" />
-    <file relUrl="bin/Hello.App.dll" publishTime="08/13/2009 22:56:47" />
     <file relUrl="Web.config" publishTime="08/13/2009 21:41:24" />
     <file relUrl="Content/images/content/skill_set.jpg" publishTime="08/13/2009 14:52:00" />
-    <file relUrl="bin/Hello.Utils.pdb" publishTime="08/13/2009 22:56:47" />
     <file relUrl="Content/images/presentation/join_in.png" publishTime="08/11/2009 17:20:00" />
+    <file relUrl="Content/images/content/message.jpg" publishTime="08/13/2009 15:47:00" />
     <file relUrl="bin/Hello.App.pdb" publishTime="08/13/2009 22:56:47" />
+    <file relUrl="Content/images/content/high_five.png" publishTime="08/13/2009 16:11:00" />
+    <file relUrl="bin/Hello.Utils.pdb" publishTime="08/13/2009 22:56:47" />
     <file relUrl="Views/Home/Index.aspx" publishTime="08/13/2009 16:46:39" />
-    <file relUrl="appsettings.local.config" publishTime="08/13/2009 14:58:40" />
-    <file relUrl="Content/images/content/microsoft.jpg" publishTime="08/13/2009 12:36:00" />
-    <file relUrl="Content/images/presentation/thick_stripe.png" publishTime="08/12/2009 22:24:00" />
     <file relUrl="Content/images/presentation/logo_carsonified.png" publishTime="08/11/2009 21:36:00" />
-    <file relUrl="Views/Shared/Site.Master" publishTime="08/13/2009 18:23:18" />
     <file relUrl="Content/images/content/bronze.png" publishTime="08/13/2009 16:08:00" />
-    <file relUrl="Content/images/presentation/logo_hello.png" publishTime="08/12/2009 10:58:00" />
+    <file relUrl="Content/images/presentation/join_in_on.png" publishTime="08/11/2009 14:46:00" />
+    <file relUrl="Content/images/presentation/mag_glass_on.png" publishTime="08/11/2009 17:02:00" />
+    <file relUrl="Views/Search/Index.aspx" publishTime="08/13/2009 18:16:00" />
     <file relUrl="Content/images/content/red_gate.jpg" publishTime="08/13/2009 12:44:00" />
     <file relUrl="Content/images/presentation/trans_blue.png" publishTime="08/13/2009 09:42:00" />
     <file relUrl="Content/images/presentation/mag_glass.png" publishTime="08/11/2009 17:30:00" />
@@ -50,41 +334,43 @@
     <file relUrl="Content/images/content/mark_j.jpg" publishTime="08/13/2009 12:30:00" />
     <file relUrl="Views/Home/Faq.aspx" publishTime="08/13/2009 22:53:43" />
     <file relUrl="Content/images/presentation/solar_system_section.png" publishTime="08/12/2009 23:04:00" />
-    <file relUrl="Content/images/content/high_five.jpg" publishTime="08/13/2009 15:10:00" />
-    <file relUrl="Content/images/content/gold.png" publishTime="08/13/2009 16:10:00" />
-    <file relUrl="bin/app.config" publishTime="08/13/2009 21:41:16" />
+    <file relUrl="Views/Home/About.aspx" publishTime="08/13/2009 17:59:02" />
+    <file relUrl="Content/images/content/silver.png" publishTime="08/13/2009 16:08:00" />
+    <file relUrl="bin/Hello.Utils.dll" publishTime="08/13/2009 22:56:47" />
     <file relUrl="Content/images/content/mike.jpg" publishTime="08/13/2009 12:21:00" />
-    <file relUrl="Content/images/presentation/check_in.png" publishTime="08/12/2009 15:17:00" />
+    <file relUrl="Content/images/content/microsoft.jpg" publishTime="08/13/2009 12:36:00" />
     <file relUrl="bin/Hello.Repo.dll" publishTime="08/13/2009 22:56:46" />
+    <file relUrl="Views/Shared/Site.Master" publishTime="08/13/2009 18:23:18" />
     <file relUrl="Content/styles/Site.css" publishTime="08/13/2009 18:09:04" />
-    <file relUrl="Content/images/content/badges_01.jpg" publishTime="08/13/2009 15:05:00" />
     <file relUrl="Content/images/presentation/trans_red.png" publishTime="08/13/2009 09:43:00" />
     <file relUrl="Content/images/presentation/solar_system_02.png" publishTime="08/12/2009 10:34:00" />
-    <file relUrl="Views/Shared/SearchBar.ascx" publishTime="08/13/2009 17:27:44" />
+    <file relUrl="Content/images/content/gold.png" publishTime="08/13/2009 16:10:00" />
+    <file relUrl="bin/appsettings.local.config" publishTime="08/13/2009 14:58:40" />
     <file relUrl="Global.asax" publishTime="08/10/2009 16:58:30" />
-    <file relUrl="Content/images/presentation/join_in_on.png" publishTime="08/11/2009 14:46:00" />
-    <file relUrl="Content/images/content/smiley.png" publishTime="08/13/2009 16:11:00" />
-    <file relUrl="Content/images/content/high_five.png" publishTime="08/13/2009 16:11:00" />
+    <file relUrl="bin/app.config" publishTime="08/13/2009 21:41:16" />
+    <file relUrl="Content/images/presentation/thick_stripe.png" publishTime="08/12/2009 22:24:00" />
     <file relUrl="Default.aspx" publishTime="08/10/2009 16:58:30" />
-    <file relUrl="Views/Search/Index.aspx" publishTime="08/13/2009 18:16:00" />
+    <file relUrl="appsettings.local.config" publishTime="08/13/2009 14:58:40" />
   </publishTarget>
   <publishTarget publishUrl="C:\dev\deploy\v2\">
     <file relUrl="Content/images/presentation/smiley.jpg" publishTime="08/13/2009 10:29:00" />
     <file relUrl="Content/images/presentation/im_in.png" publishTime="08/12/2009 22:53:00" />
     <file relUrl="Content/images/presentation/smiley.png" publishTime="08/12/2009 16:37:00" />
-    <file relUrl="Content/images/content/message.jpg" publishTime="08/13/2009 15:47:00" />
+    <file relUrl="Content/images/content/badges_01.jpg" publishTime="08/13/2009 15:05:00" />
+    <file relUrl="Content/images/presentation/check_in.png" publishTime="08/12/2009 15:17:00" />
+    <file relUrl="bin/Hello.App.dll" publishTime="08/13/2009 21:38:03" />
     <file relUrl="Content/images/presentation/mag_glass_off.png" publishTime="08/11/2009 17:02:00" />
     <file relUrl="Content/images/presentation/solar_system.png" publishTime="08/11/2009 16:28:00" />
     <file relUrl="bin/Hello.Repo.pdb" publishTime="08/13/2009 15:28:14" />
-    <file relUrl="Content/images/content/silver.png" publishTime="08/13/2009 16:08:00" />
-    <file relUrl="Content/images/presentation/stripes.png" publishTime="08/11/2009 16:22:00" />
+    <file relUrl="Content/images/content/smiley.png" publishTime="08/13/2009 16:11:00" />
+    <file relUrl="Views/Shared/SearchBar.ascx" publishTime="08/13/2009 17:27:44" />
     <file relUrl="Content/images/content/carsonified.jpg" publishTime="08/13/2009 12:17:00" />
     <file relUrl="Content/images/content/ux_map.jpg" publishTime="08/13/2009 15:35:00" />
     <file relUrl="Content/images/content/matt.jpg" publishTime="08/13/2009 12:25:00" />
-    <file relUrl="bin/appsettings.local.config" publishTime="08/13/2009 14:58:40" />
     <file relUrl="Content/images/content/ryan.jpg" publishTime="08/12/2009 09:53:00" />
+    <file relUrl="Content/images/content/high_five.jpg" publishTime="08/13/2009 15:10:00" />
     <file relUrl="Content/images/presentation/close.png" publishTime="08/12/2009 11:05:00" />
-    <file relUrl="Content/images/presentation/mag_glass_on.png" publishTime="08/11/2009 17:02:00" />
+    <file relUrl="Content/images/presentation/stripes.png" publishTime="08/11/2009 16:22:00" />
     <file relUrl="Views/Web.config" publishTime="08/10/2009 16:58:30" />
     <file relUrl="Content/images/content/diamond.png" publishTime="08/13/2009 16:10:00" />
     <file relUrl="Content/images/content/ryan_large.jpg" publishTime="08/12/2009 10:15:00" />
@@ -94,24 +380,22 @@
     <file relUrl="Content/images/content/heat_map.jpg" publishTime="08/13/2009 14:29:00" />
     <file relUrl="Views/Home/Join.aspx" publishTime="08/13/2009 15:03:10" />
     <file relUrl="Content/images/content/keir.jpg" publishTime="08/13/2009 12:23:00" />
-    <file relUrl="Views/Home/About.aspx" publishTime="08/13/2009 17:59:02" />
+    <file relUrl="Content/images/presentation/logo_hello.png" publishTime="08/12/2009 10:58:00" />
     <file relUrl="Content/images/content/screen_01.jpg" publishTime="08/13/2009 13:58:00" />
     <file relUrl="Content/images/presentation/bird.png" publishTime="08/12/2009 14:52:00" />
-    <file relUrl="bin/Hello.Utils.dll" publishTime="08/13/2009 21:38:02" />
-    <file relUrl="bin/Hello.App.dll" publishTime="08/13/2009 21:38:03" />
     <file relUrl="Web.config" publishTime="08/13/2009 21:41:24" />
     <file relUrl="Content/images/content/skill_set.jpg" publishTime="08/13/2009 14:52:00" />
-    <file relUrl="bin/Hello.Utils.pdb" publishTime="08/13/2009 21:38:02" />
     <file relUrl="Content/images/presentation/join_in.png" publishTime="08/11/2009 17:20:00" />
+    <file relUrl="Content/images/content/message.jpg" publishTime="08/13/2009 15:47:00" />
     <file relUrl="bin/Hello.App.pdb" publishTime="08/13/2009 21:38:03" />
+    <file relUrl="Content/images/content/high_five.png" publishTime="08/13/2009 16:11:00" />
+    <file relUrl="bin/Hello.Utils.pdb" publishTime="08/13/2009 21:38:02" />
     <file relUrl="Views/Home/Index.aspx" publishTime="08/13/2009 16:46:39" />
-    <file relUrl="appsettings.local.config" publishTime="08/13/2009 14:58:40" />
-    <file relUrl="Content/images/content/microsoft.jpg" publishTime="08/13/2009 12:36:00" />
-    <file relUrl="Content/images/presentation/thick_stripe.png" publishTime="08/12/2009 22:24:00" />
     <file relUrl="Content/images/presentation/logo_carsonified.png" publishTime="08/11/2009 21:36:00" />
-    <file relUrl="Views/Shared/Site.Master" publishTime="08/13/2009 18:23:18" />
     <file relUrl="Content/images/content/bronze.png" publishTime="08/13/2009 16:08:00" />
-    <file relUrl="Content/images/presentation/logo_hello.png" publishTime="08/12/2009 10:58:00" />
+    <file relUrl="Content/images/presentation/join_in_on.png" publishTime="08/11/2009 14:46:00" />
+    <file relUrl="Content/images/presentation/mag_glass_on.png" publishTime="08/11/2009 17:02:00" />
+    <file relUrl="Views/Search/Index.aspx" publishTime="08/13/2009 18:16:00" />
     <file relUrl="Content/images/content/red_gate.jpg" publishTime="08/13/2009 12:44:00" />
     <file relUrl="Content/images/presentation/trans_blue.png" publishTime="08/13/2009 09:42:00" />
     <file relUrl="Content/images/presentation/mag_glass.png" publishTime="08/11/2009 17:30:00" />
@@ -119,41 +403,43 @@
     <file relUrl="Content/images/content/mark_j.jpg" publishTime="08/13/2009 12:30:00" />
     <file relUrl="Views/Home/Faq.aspx" publishTime="08/13/2009 18:35:28" />
     <file relUrl="Content/images/presentation/solar_system_section.png" publishTime="08/12/2009 23:04:00" />
-    <file relUrl="Content/images/content/high_five.jpg" publishTime="08/13/2009 15:10:00" />
-    <file relUrl="Content/images/content/gold.png" publishTime="08/13/2009 16:10:00" />
-    <file relUrl="bin/app.config" publishTime="08/13/2009 21:41:16" />
+    <file relUrl="Views/Home/About.aspx" publishTime="08/13/2009 17:59:02" />
+    <file relUrl="Content/images/content/silver.png" publishTime="08/13/2009 16:08:00" />
+    <file relUrl="bin/Hello.Utils.dll" publishTime="08/13/2009 21:38:02" />
     <file relUrl="Content/images/content/mike.jpg" publishTime="08/13/2009 12:21:00" />
-    <file relUrl="Content/images/presentation/check_in.png" publishTime="08/12/2009 15:17:00" />
+    <file relUrl="Content/images/content/microsoft.jpg" publishTime="08/13/2009 12:36:00" />
     <file relUrl="bin/Hello.Repo.dll" publishTime="08/13/2009 15:28:14" />
+    <file relUrl="Views/Shared/Site.Master" publishTime="08/13/2009 18:23:18" />
     <file relUrl="Content/styles/Site.css" publishTime="08/13/2009 18:09:04" />
-    <file relUrl="Content/images/content/badges_01.jpg" publishTime="08/13/2009 15:05:00" />
     <file relUrl="Content/images/presentation/trans_red.png" publishTime="08/13/2009 09:43:00" />
     <file relUrl="Content/images/presentation/solar_system_02.png" publishTime="08/12/2009 10:34:00" />
-    <file relUrl="Views/Shared/SearchBar.ascx" publishTime="08/13/2009 17:27:44" />
+    <file relUrl="Content/images/content/gold.png" publishTime="08/13/2009 16:10:00" />
+    <file relUrl="bin/appsettings.local.config" publishTime="08/13/2009 14:58:40" />
     <file relUrl="Global.asax" publishTime="08/10/2009 16:58:30" />
-    <file relUrl="Content/images/presentation/join_in_on.png" publishTime="08/11/2009 14:46:00" />
-    <file relUrl="Content/images/content/smiley.png" publishTime="08/13/2009 16:11:00" />
-    <file relUrl="Content/images/content/high_five.png" publishTime="08/13/2009 16:11:00" />
+    <file relUrl="bin/app.config" publishTime="08/13/2009 21:41:16" />
+    <file relUrl="Content/images/presentation/thick_stripe.png" publishTime="08/12/2009 22:24:00" />
     <file relUrl="Default.aspx" publishTime="08/10/2009 16:58:30" />
-    <file relUrl="Views/Search/Index.aspx" publishTime="08/13/2009 18:16:00" />
+    <file relUrl="appsettings.local.config" publishTime="08/13/2009 14:58:40" />
   </publishTarget>
   <publishTarget publishUrl="C:\dev\deploy\">
     <file relUrl="Content/images/presentation/smiley.jpg" publishTime="08/13/2009 10:29:00" />
     <file relUrl="Content/images/presentation/im_in.png" publishTime="08/12/2009 22:53:00" />
     <file relUrl="Content/images/presentation/smiley.png" publishTime="08/12/2009 16:37:00" />
-    <file relUrl="Content/images/content/message.jpg" publishTime="08/13/2009 15:47:00" />
+    <file relUrl="Content/images/content/badges_01.jpg" publishTime="08/13/2009 15:05:00" />
+    <file relUrl="Content/images/presentation/check_in.png" publishTime="08/12/2009 15:17:00" />
+    <file relUrl="bin/Hello.App.dll" publishTime="08/13/2009 18:50:25" />
     <file relUrl="Content/images/presentation/mag_glass_off.png" publishTime="08/11/2009 17:02:00" />
     <file relUrl="Content/images/presentation/solar_system.png" publishTime="08/11/2009 16:28:00" />
     <file relUrl="bin/Hello.Repo.pdb" publishTime="08/13/2009 15:28:14" />
-    <file relUrl="Content/images/content/silver.png" publishTime="08/13/2009 16:08:00" />
-    <file relUrl="Content/images/presentation/stripes.png" publishTime="08/11/2009 16:22:00" />
+    <file relUrl="Content/images/content/smiley.png" publishTime="08/13/2009 16:11:00" />
+    <file relUrl="Views/Shared/SearchBar.ascx" publishTime="08/13/2009 17:27:44" />
     <file relUrl="Content/images/content/carsonified.jpg" publishTime="08/13/2009 12:17:00" />
     <file relUrl="Content/images/content/ux_map.jpg" publishTime="08/13/2009 15:35:00" />
     <file relUrl="Content/images/content/matt.jpg" publishTime="08/13/2009 12:25:00" />
-    <file relUrl="bin/appsettings.local.config" publishTime="08/13/2009 14:58:40" />
     <file relUrl="Content/images/content/ryan.jpg" publishTime="08/12/2009 09:53:00" />
+    <file relUrl="Content/images/content/high_five.jpg" publishTime="08/13/2009 15:10:00" />
     <file relUrl="Content/images/presentation/close.png" publishTime="08/12/2009 11:05:00" />
-    <file relUrl="Content/images/presentation/mag_glass_on.png" publishTime="08/11/2009 17:02:00" />
+    <file relUrl="Content/images/presentation/stripes.png" publishTime="08/11/2009 16:22:00" />
     <file relUrl="Views/Web.config" publishTime="08/10/2009 16:58:30" />
     <file relUrl="Content/images/content/diamond.png" publishTime="08/13/2009 16:10:00" />
     <file relUrl="Content/images/content/ryan_large.jpg" publishTime="08/12/2009 10:15:00" />
@@ -163,24 +449,22 @@
     <file relUrl="Content/images/content/heat_map.jpg" publishTime="08/13/2009 14:29:00" />
     <file relUrl="Views/Home/Join.aspx" publishTime="08/13/2009 15:03:10" />
     <file relUrl="Content/images/content/keir.jpg" publishTime="08/13/2009 12:23:00" />
-    <file relUrl="Views/Home/About.aspx" publishTime="08/13/2009 17:59:02" />
+    <file relUrl="Content/images/presentation/logo_hello.png" publishTime="08/12/2009 10:58:00" />
     <file relUrl="Content/images/content/screen_01.jpg" publishTime="08/13/2009 13:58:00" />
     <file relUrl="Content/images/presentation/bird.png" publishTime="08/12/2009 14:52:00" />
-    <file relUrl="bin/Hello.Utils.dll" publishTime="08/13/2009 15:44:12" />
-    <file relUrl="bin/Hello.App.dll" publishTime="08/13/2009 18:50:25" />
     <file relUrl="Web.config" publishTime="08/13/2009 14:56:24" />
     <file relUrl="Content/images/content/skill_set.jpg" publishTime="08/13/2009 14:52:00" />
-    <file relUrl="bin/Hello.Utils.pdb" publishTime="08/13/2009 15:44:12" />
     <file relUrl="Content/images/presentation/join_in.png" publishTime="08/11/2009 17:20:00" />
+    <file relUrl="Content/images/content/message.jpg" publishTime="08/13/2009 15:47:00" />
     <file relUrl="bin/Hello.App.pdb" publishTime="08/13/2009 18:50:25" />
+    <file relUrl="Content/images/content/high_five.png" publishTime="08/13/2009 16:11:00" />
+    <file relUrl="bin/Hello.Utils.pdb" publishTime="08/13/2009 15:44:12" />
     <file relUrl="Views/Home/Index.aspx" publishTime="08/13/2009 16:46:39" />
-    <file relUrl="appsettings.local.config" publishTime="08/13/2009 14:58:40" />
-    <file relUrl="Content/images/content/microsoft.jpg" publishTime="08/13/2009 12:36:00" />
-    <file relUrl="Content/images/presentation/thick_stripe.png" publishTime="08/12/2009 22:24:00" />
     <file relUrl="Content/images/presentation/logo_carsonified.png" publishTime="08/11/2009 21:36:00" />
-    <file relUrl="Views/Shared/Site.Master" publishTime="08/13/2009 18:23:18" />
     <file relUrl="Content/images/content/bronze.png" publishTime="08/13/2009 16:08:00" />
-    <file relUrl="Content/images/presentation/logo_hello.png" publishTime="08/12/2009 10:58:00" />
+    <file relUrl="Content/images/presentation/join_in_on.png" publishTime="08/11/2009 14:46:00" />
+    <file relUrl="Content/images/presentation/mag_glass_on.png" publishTime="08/11/2009 17:02:00" />
+    <file relUrl="Views/Search/Index.aspx" publishTime="08/13/2009 18:16:00" />
     <file relUrl="Content/images/content/red_gate.jpg" publishTime="08/13/2009 12:44:00" />
     <file relUrl="Content/images/presentation/trans_blue.png" publishTime="08/13/2009 09:42:00" />
     <file relUrl="Content/images/presentation/mag_glass.png" publishTime="08/11/2009 17:30:00" />
@@ -188,22 +472,22 @@
     <file relUrl="Content/images/content/mark_j.jpg" publishTime="08/13/2009 12:30:00" />
     <file relUrl="Views/Home/Faq.aspx" publishTime="08/13/2009 18:35:28" />
     <file relUrl="Content/images/presentation/solar_system_section.png" publishTime="08/12/2009 23:04:00" />
-    <file relUrl="Content/images/content/high_five.jpg" publishTime="08/13/2009 15:10:00" />
-    <file relUrl="Content/images/content/gold.png" publishTime="08/13/2009 16:10:00" />
-    <file relUrl="bin/app.config" publishTime="08/13/2009 15:11:44" />
+    <file relUrl="Views/Home/About.aspx" publishTime="08/13/2009 17:59:02" />
+    <file relUrl="Content/images/content/silver.png" publishTime="08/13/2009 16:08:00" />
+    <file relUrl="bin/Hello.Utils.dll" publishTime="08/13/2009 15:44:12" />
     <file relUrl="Content/images/content/mike.jpg" publishTime="08/13/2009 12:21:00" />
-    <file relUrl="Content/images/presentation/check_in.png" publishTime="08/12/2009 15:17:00" />
+    <file relUrl="Content/images/content/microsoft.jpg" publishTime="08/13/2009 12:36:00" />
     <file relUrl="bin/Hello.Repo.dll" publishTime="08/13/2009 15:28:14" />
+    <file relUrl="Views/Shared/Site.Master" publishTime="08/13/2009 18:23:18" />
     <file relUrl="Content/styles/Site.css" publishTime="08/13/2009 18:09:04" />
-    <file relUrl="Content/images/content/badges_01.jpg" publishTime="08/13/2009 15:05:00" />
     <file relUrl="Content/images/presentation/trans_red.png" publishTime="08/13/2009 09:43:00" />
     <file relUrl="Content/images/presentation/solar_system_02.png" publishTime="08/12/2009 10:34:00" />
-    <file relUrl="Views/Shared/SearchBar.ascx" publishTime="08/13/2009 17:27:44" />
+    <file relUrl="Content/images/content/gold.png" publishTime="08/13/2009 16:10:00" />
+    <file relUrl="bin/appsettings.local.config" publishTime="08/13/2009 14:58:40" />
     <file relUrl="Global.asax" publishTime="08/10/2009 16:58:30" />
-    <file relUrl="Content/images/presentation/join_in_on.png" publishTime="08/11/2009 14:46:00" />
-    <file relUrl="Content/images/content/smiley.png" publishTime="08/13/2009 16:11:00" />
-    <file relUrl="Content/images/content/high_five.png" publishTime="08/13/2009 16:11:00" />
+    <file relUrl="bin/app.config" publishTime="08/13/2009 15:11:44" />
+    <file relUrl="Content/images/presentation/thick_stripe.png" publishTime="08/12/2009 22:24:00" />
     <file relUrl="Default.aspx" publishTime="08/10/2009 16:58:30" />
-    <file relUrl="Views/Search/Index.aspx" publishTime="08/13/2009 18:16:00" />
+    <file relUrl="appsettings.local.config" publishTime="08/13/2009 14:58:40" />
   </publishTarget>
 </publishData>

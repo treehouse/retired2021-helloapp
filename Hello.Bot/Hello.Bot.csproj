@@ -79,6 +79,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="connectionstrings.local.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="appsettings.local.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

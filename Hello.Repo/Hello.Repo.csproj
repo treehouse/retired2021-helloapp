@@ -61,9 +61,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="HelloRepo.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>HelloRepo.designer.cs</LastGenOutput>
