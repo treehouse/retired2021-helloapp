@@ -28,6 +28,7 @@ namespace Hello.Bot
             // Collect & store tweets
             if (queue)
             {
+                _log.Info("About to queue Mentions");
                 try
                 {
                     queuer.QueueMentions();
@@ -40,8 +41,9 @@ namespace Hello.Bot
 
             if (process)
             {
+                _log.Info("About to process Tweets");
                 // Process tweets
-                // processor.ProcessTweets();
+                processor.ProcessTweets();
             }
         }
     }
