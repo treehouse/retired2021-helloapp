@@ -24,14 +24,16 @@ namespace Hello.Bot
                 .QueuedTweets
                 .Where(t => !t.Processed
                          && t.Username == Settings.TwitterBotUsername);
-            foreach (var tweet in myTweets)
+            
+            foreach (QueuedTweet tweet in myTweets)
                 tweet.Processed = true;
 
             var viaTweets = _repo
                 .QueuedTweets
                 .Where(t => !t.Processed
                          && t.Message.Contains("via @"));
-            foreach (var tweet in viaTweets)
+            
+            foreach (QueuedTweet tweet in viaTweets)
                 tweet.Processed = true;
 
             _repo.SubmitChanges();
@@ -41,15 +43,9 @@ namespace Hello.Bot
                 .QueuedTweets
                 .Where(t => !t.Processed);
 
-            // Grab the UserTypes only once
-            var userTypes = _repo
-                .UserTypes
-                .Select(ut => ut.UserTypeID)
-                .ToList();
-
-            foreach (var tweet in tweets)
+            foreach (QueuedTweet tweet in tweets)
             {
-                var processedTweet = TweetParser.Parse(tweet.Message);
+                ProcessedTweet processedTweet = TweetParser.Parse(tweet.Message);
 
                 // Not interested in this tweet... move along...
                 if (processedTweet == null)
@@ -59,7 +55,7 @@ namespace Hello.Bot
                     continue;
                 }
 
-                var user = _repo
+                User user = _repo
                     .Users
                     .SingleOrDefault(u => u.Username == tweet.Username);
 
@@ -75,143 +71,179 @@ namespace Hello.Bot
                     _repo.Users.InsertOnSubmit(user);
                 }
 
-                var helloTweet = processedTweet as HelloTweet;
+                HelloTweet helloTweet = processedTweet as HelloTweet;
                 if (helloTweet != null)
                 {
-                    user.UserTypeID = helloTweet.UserType;
-                    user.ShadowAccount = false;
-
-                    if (helloTweet.Tags.Count > 0)
-                    {
-                        var oldTags = _repo
-                            .Tags
-                            .Where(t => t.Username == user.Username)
-                            .Select(t => t.Name);
-                        _repo
-                            .Tags
-                            .InsertAllOnSubmit(
-                                helloTweet
-                                    .Tags
-                                    .Where(t => !oldTags.Contains(t))
-                                    .Select(tag => new Tag
-                                    {
-                                        Created = DateTime.Now,
-                                        Name = tag,
-                                        Username = user.Username
-                                    })
-                            );
-                    }
+                    ProcessTweet(user, helloTweet);
+                    tweet.Processed = true;
+                    _repo.SubmitChanges();
+                    continue;
                 }
 
-                var satTweet = processedTweet as SatTweet;
+                SatTweet satTweet = processedTweet as SatTweet;
                 if (satTweet != null)
                 {
-                    var sessions = _repo
+                    ProcessTweet(user, satTweet);
+                    tweet.Processed = true;
+                    _repo.SubmitChanges();
+                    continue;
+                }
+
+                ClaimTweet claimTweet = processedTweet as ClaimTweet;
+                if (claimTweet != null)
+                {
+                    ProcessTweet(user, claimTweet);
+                    tweet.Processed = true;
+                    _repo.SubmitChanges();
+                    continue;
+                }
+
+                MetTweet metTweet = processedTweet as MetTweet;
+                if (metTweet != null)
+                {
+                    ProcessTweet(user, metTweet);
+                    tweet.Processed = true;
+                    _repo.SubmitChanges();
+                    continue;
+                }
+
+                MessageTweet messageTweet = processedTweet as MessageTweet;
+                if (messageTweet != null)
+                {
+                    ProcessTweet(user, messageTweet);
+                    tweet.Processed = true;
+                    _repo.SubmitChanges();
+                    continue;
+                }
+            }
+        }
+
+        private void ProcessTweet(User user, HelloTweet tweet)
+        {
+            user.UserTypeID = tweet.UserType;
+            user.ShadowAccount = false;
+
+            if (tweet.Tags.Count > 0)
+            {
+                var oldTags = _repo
+                    .Tags
+                    .Where(t => t.Username == user.Username)
+                    .Select(t => t.Name);
+                _repo
+                    .Tags
+                    .InsertAllOnSubmit(
+                        tweet
+                            .Tags
+                            .Where(t => !oldTags.Contains(t))
+                            .Select(tag => new Tag
+                            {
+                                Created = DateTime.Now,
+                                Name = tag,
+                                Username = user.Username
+                            })
+                    );
+            }
+        }
+
+        private void ProcessTweet(User user, SatTweet tweet)
+        {
+            var sessions = _repo
                         .Sessions
                         .Where(
                             s => s.Start < DateTime.Now.AddHours(1) // starts with an hours time
                               && s.Finish > DateTime.Now            // hasn't finished
                         );
 
-                    var seat = _repo
-                        .Seats
-                        .SingleOrDefault(s => s.Code == satTweet.SeatCode);
+            Seat seat = _repo
+                .Seats
+                .SingleOrDefault(s => s.Code == tweet.SeatCode);
 
-                    if (sessions.Count() == 1 && seat != null)
+            if (sessions.Count() == 1 && seat != null)
+            {
+                Session session = sessions.First();
+
+                _repo
+                    .Sats
+                    .InsertOnSubmit(new Sat
                     {
-                        var session = sessions.First();
-
-                        _repo
-                            .Sats
-                            .InsertOnSubmit(new Sat
-                            {
-                                Username = user.Username,
-                                SessionID = session.SessionID,
-                                SeatID = seat.SeatID
-                            });
-                    }
-                }
-
-                var claimTweet = processedTweet as ClaimTweet;
-                if (claimTweet != null)
-                {
-                    var tokens = _repo
-                        .Tokens
-                        .Where(t => t.Token1 == claimTweet.Token);
-
-                    if (tokens.Count() == 1)
-                    {
-                        var token = tokens.First();
-
-                        _repo
-                            .Redemptions
-                            .InsertOnSubmit(new Redemption
-                            {
-                                Created = DateTime.Now,
-                                Username = user.Username,
-                                TokenID = token.TokenID
-                            });
-                    }
-                }
-
-                var metTweet = processedTweet as MetTweet;
-                if (metTweet != null)
-                {
-                    foreach (var friend in metTweet.Friends)
-                    {
-                        var friendUser = _repo
-                            .Users
-                            .SingleOrDefault(u => u.Username == friend);
-
-                        if (friendUser == null)
-                        {
-                            friendUser = new User
-                            {
-                                Username = friend,
-                                ImageURL = Settings.DefaultImageURL,
-                                Created = DateTime.Now,
-                                Updated = DateTime.Now,
-                                ShadowAccount = true
-                            };
-                            _repo.Users.InsertOnSubmit(friendUser);
-                        }
-                    }
-
-                    var befriendees = user.Befrienders.Select(f => f.Befriendee).ToList();
-
-                    _repo
-                        .Friendships
-                        .InsertAllOnSubmit(
-                            metTweet
-                                .Friends
-                                .Where(f => !befriendees.Contains(f))
-                                .Select(friend => new Friendship
-                                {
-                                    Befriender = user.Username,
-                                    Befriendee = friend
-                                })
-                        );
-                }
-
-                var messageTweet = processedTweet as MessageTweet;
-                if (messageTweet != null)
-                {
-                    var message = user.Message;
-
-                    if (message == null)
-                    {
-                        message = new Message { Username = user.Username };
-                        _repo.Messages.InsertOnSubmit(message);
-                    }
-
-                    message.Offensive = false;
-                    message.Text = messageTweet.Message;
-                }
-
-                tweet.Processed = true;
-
-                _repo.SubmitChanges();
+                        Username = user.Username,
+                        SessionID = session.SessionID,
+                        SeatID = seat.SeatID
+                    });
             }
+        }
+
+        private void ProcessTweet(User user, ClaimTweet tweet)
+        {
+            var tokens = _repo
+                        .Tokens
+                        .Where(t => t.Token1 == tweet.Token);
+
+            if (tokens.Count() == 1)
+            {
+                Token token = tokens.First();
+
+                _repo
+                    .Redemptions
+                    .InsertOnSubmit(new Redemption
+                    {
+                        Created = DateTime.Now,
+                        Username = user.Username,
+                        TokenID = token.TokenID
+                    });
+            }
+        }
+
+        private void ProcessTweet(User user, MetTweet tweet)
+        {
+            foreach (string friend in tweet.Friends)
+            {
+                User friendUser = _repo
+                    .Users
+                    .SingleOrDefault(u => u.Username == friend);
+
+                if (friendUser == null)
+                {
+                    friendUser = new User
+                    {
+                        Username = friend,
+                        ImageURL = Settings.DefaultImageURL,
+                        Created = DateTime.Now,
+                        Updated = DateTime.Now,
+                        ShadowAccount = true
+                    };
+                    _repo.Users.InsertOnSubmit(friendUser);
+                }
+            }
+
+            List<string> befriendees = user.Befrienders.Select(f => f.Befriendee).ToList();
+
+            _repo
+                .Friendships
+                .InsertAllOnSubmit(
+                    tweet
+                        .Friends
+                        .Where(f => !befriendees.Contains(f))
+                        .Select(friend => new Friendship
+                        {
+                            Befriender = user.Username,
+                            Befriendee = friend
+                        })
+                );
+        }
+
+        private void ProcessTweet(User user, MessageTweet tweet)
+        {
+            Message message = user.Message;
+
+            if (message == null)
+            {
+                message = new Message { Username = user.Username };
+                _repo.Messages.InsertOnSubmit(message);
+            }
+
+            message.Offensive = false;
+            message.Text = tweet.Message;
         }
     }
 }
