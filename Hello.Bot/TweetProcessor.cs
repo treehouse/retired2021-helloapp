@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Hello.Repo;
 using Hello.Utils;
+using Hello.Bot.TweetTypes;
 
 namespace Hello.Bot
 {
