@@ -48,16 +48,23 @@
                     left: (pos.left > 980 / 2) ? pos.left - 420 : pos.left + 48
                 });
 
-                $('#latestTweet', popup).text("Loading...");
-
                 // Latest Tweet
-                $.getJSON('http://twitter.com/statuses/user_timeline/' +
-                    username +
-                    '.json?count=1&callback=?',
-                    function(tweets) {
-                        $('#latestTweet', popup).text(tweets[0].text);
-                    }
-                );
+                var latestTweetInput = $('input[name=LatestTweet]', $this);
+                if (latestTweetInput.length == 0) {
+                    $('#latestTweet', popup).text('Loading...');
+                    $.getJSON('http://twitter.com/statuses/user_timeline/' +
+                        username +
+                        '.json?count=1&callback=?',
+                        function(tweets) {
+                            console.log(tweets[0].user.screen_name);
+                            console.log(tweets[0].text);
+                            $('#' + tweets[0].user.screen_name.toLowerCase() + ' form').append('<input name="LatestTweet" value="' + tweets[0].text + '" type="hidden" />');
+                            $('#latestTweet', popup).html(tweets[0].text);
+                        }
+                    );
+                } else {
+                    $('#latestTweet', popup).html(latestTweetInput.val());
+                }
 
                 // Display
                 popup.fadeIn();
@@ -82,7 +89,7 @@
         <% var r = new Random(); %>
         
         <% foreach (var user in Model) { %>
-            <div class="roundAvatars" style="background-image: url(<%= user.ImageURL %>); top: <%= r.Next(500 - 73) %>px; left: <%= r.Next(980 - 73) %>px">
+            <div id="<%= user.Username %>" class="roundAvatars" style="background-image: url(<%= user.ImageURL %>); top: <%= r.Next(500 - 73) %>px; left: <%= r.Next(980 - 73) %>px">
                 <form>
                     <%= Html.Hidden("Username", user.Username) %>
                     <%= Html.Hidden("ImageURL", user.ImageURL) %>
