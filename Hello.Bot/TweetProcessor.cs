@@ -19,25 +19,6 @@ namespace Hello.Bot
 
         public void ProcessTweets()
         {
-            // ignore our tweets and vias
-            var myTweets = _repo
-                .QueuedTweets
-                .Where(t => !t.Processed
-                         && t.Username == Settings.TwitterBotUsername);
-            
-            foreach (QueuedTweet tweet in myTweets)
-                tweet.Processed = true;
-
-            var viaTweets = _repo
-                .QueuedTweets
-                .Where(t => !t.Processed
-                         && t.Message.Contains("via @"));
-            
-            foreach (QueuedTweet tweet in viaTweets)
-                tweet.Processed = true;
-
-            _repo.SubmitChanges();
-
             // Unprocessed tweets
             var tweets = _repo
                 .QueuedTweets
@@ -45,6 +26,15 @@ namespace Hello.Bot
 
             foreach (QueuedTweet tweet in tweets)
             {
+                // ignore our tweets and vias
+                if (tweet.Username == Settings.TwitterBotUsername
+                    || tweet.Message.Contains("via @"))
+                {
+                    tweet.Processed = true;
+                    _repo.SubmitChanges();
+                    continue;
+                }
+
                 ProcessedTweet processedTweet = TweetParser.Parse(tweet.Message);
 
                 // Not interested in this tweet... move along...
