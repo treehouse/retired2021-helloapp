@@ -7,6 +7,7 @@ using Xunit.Extensions;
 using Hello.Utils;
 using Hello.Bot;
 using Moq;
+using Hello.Bot.TweetTypes;
 
 namespace Hello.Tests
 {

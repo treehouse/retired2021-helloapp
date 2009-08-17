@@ -40,11 +40,11 @@
 
 	<h4>Checking in and grabbing your seat</h4>
 
-	<p><span class="read">Once you sit down, there will be a password attached to your seat. Checkin to Hello by tweeting:</span><br><code>@helloapp sit your-pass-code</code></p>
+	<p><span class="read">Once you've sat down, there will be a password attached to your seat. Checkin to Hello by tweeting:</span><br><code>@helloapp sat your-pass-code</code></p>
 
 	<h4>Picking your skill and tagging yourself</h4>
 
-	<p><span class="read">Choose what your best at (Design, Development, Business) and choose three tags for yourself:</span><br><code>@helloapp hello !des #ux #html5 #movies</code><br><code>@helloapp hello !dev #php #django #mysql</code><br><code>@helloapp hello !biz #piano #entrepreneur #marketing</code></p>
+	<p><span class="read">Choose what you're best at (Design, Development, Business) and choose three tags for yourself:</span><br><code>@helloapp hello !des #ux #html5 #movies</code><br><code>@helloapp hello !dev #php #django #mysql</code><br><code>@helloapp hello !biz #piano #entrepreneur #marketing</code></p>
 
 	<p><span class="read">You'll be assigned a colour, based on whether you choose Design, Development or Business. You can view the seating chart based on skillset:</span></p>
     
