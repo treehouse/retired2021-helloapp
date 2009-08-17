@@ -39,10 +39,10 @@ namespace Hello.Bot
                 }
             }
 
+            // Process tweets
             if (process)
             {
                 _log.Info("About to process Tweets");
-                // Process tweets
                 processor.ProcessTweets();
             }
         }
