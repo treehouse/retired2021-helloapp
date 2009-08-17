@@ -99,7 +99,7 @@ namespace Hello.Tests
         [Theory]
         [InlineData("hello !dev #csharp #dotnet #jquery (via @helloapptest1)")]
         [InlineData("(via @helloapptest2) hello !des #html #css #js")]
-        public void IgnoreVias(string tweet)
+        public void IgnoreViasTest(string tweet)
         {
             var t = TweetParser.Parse(tweet) as HelloTweet;
             Assert.Null(t);
