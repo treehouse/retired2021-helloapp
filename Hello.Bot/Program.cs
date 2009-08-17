@@ -18,22 +18,31 @@ namespace Hello.Bot
         {
             log4net.Config.XmlConfigurator.Configure();
 
+            var queue = args.Length == 0 || args[0].Equals("queue", StringComparison.InvariantCultureIgnoreCase);
+            var process = args.Length == 0 || args[0].Equals("process", StringComparison.InvariantCultureIgnoreCase);
+
             HelloRepoDataContext repo = new HelloRepoDataContext(Settings.ConnectionString);
             TweetQueuer queuer = new TweetQueuer(repo);
             TweetProcessor processor = new TweetProcessor(repo);
 
             // Collect & store tweets
-            try
+            if (queue)
             {
-                queuer.QueueMentions();
-            }
-            catch (WebException e)
-            {
-                _log.Error("WebException in Engine.QueueMentions", e);
+                try
+                {
+                    queuer.QueueMentions();
+                }
+                catch (WebException e)
+                {
+                    _log.Error("WebException in Engine.QueueMentions", e);
+                }
             }
 
-            // Process tweets
-            processor.ProcessTweets();
+            if (process)
+            {
+                // Process tweets
+                // processor.ProcessTweets();
+            }
         }
     }
 }
