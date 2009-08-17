@@ -6,24 +6,32 @@ using System.Configuration;
 using System.Text.RegularExpressions;
 using Hello.Utils;
 using Hello.Bot.TweetTypes;
+using Hello.Repo;
 
 namespace Hello.Bot
 {
     public static class TweetParser
     {
-        public static ProcessedTweet Parse(string tweetText)
+        public static ProcessedTweet Parse(QueuedTweet tweet)
         {
-            string[] tokens = tweetText
+            // ignore our tweets and vias
+            if (tweet.Username == Settings.TwitterBotUsername
+                || tweet.Message.Contains("via @"))
+            {
+                return null;
+            }
+
+            string[] tokens = tweet
+                .Message
                 .ToLower()
                 .Replace(',', ' ')
-                .Replace("@", "")
                 .Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
 
             if (tokens.Length == 0)
                 return null;
 
             // skip the first token if it is #OurTag or @OurApp
-            if (tokens[0].Equals(Settings.TwitterBotUsername, StringComparison.InvariantCultureIgnoreCase)
+            if (tokens[0].Equals("@" + Settings.TwitterBotUsername, StringComparison.InvariantCultureIgnoreCase)
                 || tokens[0].Equals("#" + Settings.TwitterHashTag, StringComparison.InvariantCultureIgnoreCase))
                 tokens = tokens.Skip(1).ToArray();
 
@@ -60,11 +68,11 @@ namespace Hello.Bot
                     return metTweet;
                 case "message":
                     MessageTweet messageTweet = new MessageTweet();
-                    if (tweetText.StartsWith("@" + Settings.TwitterBotUsername + " "))
-                        tweetText = tweetText.Substring(("@" + Settings.TwitterBotUsername + " ").Length);
-                    if (tweetText.StartsWith("#" + Settings.TwitterHashTag + " "))
-                        tweetText = tweetText.Substring(("#" + Settings.TwitterBotUsername + " ").Length);
-                    messageTweet.Message = tweetText.Substring("message ".Length);
+                    if (tweet.Message.StartsWith("@" + Settings.TwitterBotUsername + " "))
+                        tweet.Message = tweet.Message.Substring(("@" + Settings.TwitterBotUsername + " ").Length);
+                    if (tweet.Message.StartsWith("#" + Settings.TwitterHashTag + " "))
+                        tweet.Message = tweet.Message.Substring(("#" + Settings.TwitterBotUsername + " ").Length);
+                    messageTweet.Message = tweet.Message.Substring("message ".Length);
                     return messageTweet;
                 default:
                     return null;

@@ -18,7 +18,7 @@ namespace Hello.Bot.TweetTypes
         {
             foreach (string friend in friends)
             {
-                Friends.Add(friend);
+                Friends.Add(friend.Replace("@", ""));
             }
         }
     }

@@ -26,16 +26,7 @@ namespace Hello.Bot
 
             foreach (QueuedTweet tweet in tweets)
             {
-                // ignore our tweets and vias
-                if (tweet.Username == Settings.TwitterBotUsername
-                    || tweet.Message.Contains("via @"))
-                {
-                    tweet.Processed = true;
-                    _repo.SubmitChanges();
-                    continue;
-                }
-
-                ProcessedTweet processedTweet = TweetParser.Parse(tweet.Message);
+                ProcessedTweet processedTweet = TweetParser.Parse(tweet);
 
                 // Not interested in this tweet... move along...
                 if (processedTweet == null)

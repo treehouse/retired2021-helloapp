@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Hello.Repo;
 using Hello.Utils;
+using System.Text;
 
 namespace Hello.App.Controllers
 {
@@ -53,6 +54,8 @@ namespace Hello.App.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Join(string userType, string tag1, string tag2, string tag3)
         {
+            //var twitterUrl = new StringBuilder("http://twitter.com/?status=");
+
             return Redirect(
                 "http://twitter.com/?status=" + 
                 Url.Encode(String.Format("@{0} hello !{1} #{2} #{3} #{4}",
