@@ -13,5 +13,13 @@ namespace Hello.Bot.TweetTypes
         {
             Friends = new List<string>();
         }
+
+        public void AddFriends(IEnumerable<string> friends)
+        {
+            foreach (string friend in friends)
+            {
+                Friends.Add(friend);
+            }
+        }
     }
 }

@@ -56,11 +56,7 @@ namespace Hello.Bot
                     return claimTweet;
                 case "met":
                     MetTweet metTweet = new MetTweet();
-                    metTweet.Friends = new List<string>(
-                        tokens
-                            .Skip(1)
-                            .Select(f => f)
-                    );
+                    metTweet.AddFriends(tokens.Skip(1));
                     return metTweet;
                 case "message":
                     MessageTweet messageTweet = new MessageTweet();
