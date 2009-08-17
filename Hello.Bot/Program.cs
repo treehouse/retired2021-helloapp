@@ -18,9 +18,9 @@ namespace Hello.Bot
         {
             log4net.Config.XmlConfigurator.Configure();
 
-            var repo = new HelloRepoDataContext(Settings.ConnectionString);
-            var queuer = new TweetQueuer(repo);
-            var processor = new TweetProcessor(repo);
+            HelloRepoDataContext repo = new HelloRepoDataContext(Settings.ConnectionString);
+            TweetQueuer queuer = new TweetQueuer(repo);
+            TweetProcessor processor = new TweetProcessor(repo);
 
             // Collect & store tweets
             try

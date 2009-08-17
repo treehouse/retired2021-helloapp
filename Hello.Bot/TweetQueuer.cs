@@ -6,6 +6,7 @@ using Hello.Repo;
 using Hello.Utils;
 using Dimebrain.TweetSharp.Fluent;
 using Dimebrain.TweetSharp.Extensions;
+using Dimebrain.TweetSharp.Model;
 
 namespace Hello.Bot
 {
@@ -30,14 +31,14 @@ namespace Hello.Bot
 
         public void QueueMentions()
         {
-            var lastID = GetLastTideMark("Mentions");
-            var seenLastTweet = false;
-            var maxID = 0L;
-            var page = 1;
+            long lastID = GetLastTideMark("Mentions");
+            bool seenLastTweet = false;
+            long maxID = 0;
+            int page = 1;
 
             while (!seenLastTweet)
             {
-                var request = GetTwitterRequest()
+                string request = GetTwitterRequest()
                     .Statuses()
                     .Mentions()
                     .Since(lastID - 1)
@@ -50,9 +51,9 @@ namespace Hello.Bot
 
                 if (statuses == null)
                 {
-                    var error = request.AsError();
+                    TwitterError error = request.AsError();
                     if (error != null)
-                        throw new Exception (error.ErrorMessage);
+                        throw new HelloAppException(error.ErrorMessage);
                 }
 
                 var queuedTweets = statuses
@@ -86,17 +87,13 @@ namespace Hello.Bot
 
         private long GetLastTideMark(string name)
         {
-            var lastTideMark = _repo
+            TideMark lastTideMark = _repo
                 .TideMarks
                 .Where(m => m.Name == name)
                 .OrderByDescending(m => m.TimeStamp)
                 .FirstOrDefault();
 
-            var lastID = MIN_TWEET_ID;
-            if (lastTideMark != null)
-                lastID = lastTideMark.LastID;
-
-            return lastID;
+            return lastTideMark != null ? lastTideMark.LastID : MIN_TWEET_ID;
         }
 
         private void MarkTide(string name, long lastID)
