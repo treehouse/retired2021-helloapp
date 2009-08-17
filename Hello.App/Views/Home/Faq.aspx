@@ -102,7 +102,7 @@
     
     <li>
     <img src='<%= Url.Content("~/Content/images/content/smiley.png") %>' alt="smiley badge" />
-    <p><span>Smiley Badge:</span> The person who meets the most folks during the conference gets the mighty 'Super Friendly' badge.</p>
+    <p><span>Smiley Badge:</span> The person who meets the most folk during the conference gets the mighty 'Super Friendly' badge.</p>
     </li>
     </ul>
 
