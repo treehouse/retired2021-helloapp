@@ -47,30 +47,30 @@ namespace Hello.Bot
                 
                 // Ignore other tweets in this initial version
 
-                //case "sat":
-                //    var sitTweet = new SatTweet();
-                //    sitTweet.SeatCode = tokens[1];
-                //    return sitTweet;
-                //case "claim":
-                //    var claimTweet = new ClaimTweet();
-                //    claimTweet.Token = tokens[1];
-                //    return claimTweet;
-                //case "met":
-                //    var metTweet = new MetTweet();
-                //    metTweet.Friends = new List<string>(
-                //        tokens
-                //            .Skip(1)
-                //            .Select(f => f)
-                //    );
-                //    return metTweet;
-                //case "message":
-                //    var messageTweet = new MessageTweet();
-                //    if (tweetText.StartsWith("@" + Settings.TwitterBotUsername + " "))
-                //        tweetText = tweetText.Substring(("@" + Settings.TwitterBotUsername + " ").Length);
-                //    if (tweetText.StartsWith("#" + Settings.TwitterHashTag + " "))
-                //        tweetText = tweetText.Substring(("#" + Settings.TwitterBotUsername + " ").Length);
-                //    messageTweet.Message = tweetText;
-                //    return messageTweet;
+                case "sat":
+                    var sitTweet = new SatTweet();
+                    sitTweet.SeatCode = tokens[1];
+                    return sitTweet;
+                case "claim":
+                    var claimTweet = new ClaimTweet();
+                    claimTweet.Token = tokens[1];
+                    return claimTweet;
+                case "met":
+                    var metTweet = new MetTweet();
+                    metTweet.Friends = new List<string>(
+                        tokens
+                            .Skip(1)
+                            .Select(f => f)
+                    );
+                    return metTweet;
+                case "message":
+                    var messageTweet = new MessageTweet();
+                    if (tweetText.StartsWith("@" + Settings.TwitterBotUsername + " "))
+                        tweetText = tweetText.Substring(("@" + Settings.TwitterBotUsername + " ").Length);
+                    if (tweetText.StartsWith("#" + Settings.TwitterHashTag + " "))
+                        tweetText = tweetText.Substring(("#" + Settings.TwitterBotUsername + " ").Length);
+                    messageTweet.Message = tweetText;
+                    return messageTweet;
                 default:
                     return null;
             }

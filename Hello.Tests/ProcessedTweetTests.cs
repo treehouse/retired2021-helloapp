@@ -89,7 +89,7 @@ namespace Hello.Tests
         [Fact]
         public void MessageTest()
         {
-            var t = TweetProcessor.Process("This is my shout out to everyone at Carsonified!") as MessageTweet;
+            var t = TweetProcessor.Process("message This is my shout out to everyone at Carsonified!") as MessageTweet;
 
             Assert.NotNull(t);
             Assert.Equal(t.Message, "This is my shout out to everyone at Carsonified!");
