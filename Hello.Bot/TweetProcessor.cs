@@ -62,7 +62,7 @@ namespace Hello.Bot
                         tweetText = tweetText.Substring(("@" + Settings.TwitterBotUsername + " ").Length);
                     if (tweetText.StartsWith("#" + Settings.TwitterHashTag + " "))
                         tweetText = tweetText.Substring(("#" + Settings.TwitterBotUsername + " ").Length);
-                    messageTweet.Message = tweetText;
+                    messageTweet.Message = tweetText.Substring("message ".Length);
                     return messageTweet;
                 default:
                     return null;
