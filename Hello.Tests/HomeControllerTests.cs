@@ -47,5 +47,25 @@ namespace Hello.Tests
 
             Assert.Equal(join.Url, expectedResult);
         }
+
+        [Fact]
+        public void AboutReturnsActionResult()
+        {
+            var homeController = new HomeController();
+
+            var About = homeController.About();
+
+            Assert.IsType(typeof (ViewResult), About);
+        }
+
+        [Fact]
+        public void FaqReturnsActionResult()
+        {
+            var homeController = new HomeController();
+
+            var faq = homeController.Faq(); 
+
+            Assert.IsType(typeof(ViewResult), faq);
+        }
     }
 }
