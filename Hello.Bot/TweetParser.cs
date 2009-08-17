@@ -44,9 +44,6 @@ namespace Hello.Bot
                         }
                     }
                     return helloTweet;
-                
-                // Ignore other tweets in this initial version
-
                 case "sat":
                     var sitTweet = new SatTweet();
                     sitTweet.SeatCode = tokens[1];
