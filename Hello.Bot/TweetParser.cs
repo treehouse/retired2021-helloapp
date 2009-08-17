@@ -8,9 +8,9 @@ using Hello.Utils;
 
 namespace Hello.Bot
 {
-    public static class TweetProcessor
+    public static class TweetParser
     {
-        public static ProcessedTweet Process(string tweetText)
+        public static ProcessedTweet Parse(string tweetText)
         {
             var tokens = tweetText
                 .ToLower()

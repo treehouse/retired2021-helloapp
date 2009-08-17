@@ -9,13 +9,13 @@ using Dimebrain.TweetSharp.Extensions;
 
 namespace Hello.Bot
 {
-    public class Engine
+    public class TweetQueuer
     {
         private const long MIN_TWEET_ID = 2; // twitter doesn't like 0, and we do a lastID - 1 below, so... 2, it's the magic number
 
         private HelloRepoDataContext _repo;
 
-        public Engine(HelloRepoDataContext repo)
+        public TweetQueuer(HelloRepoDataContext repo)
         {
             _repo = repo;
         }
@@ -85,9 +85,17 @@ namespace Hello.Bot
                     .Skip(page)
                     .Take(int.MaxValue)
                     .Request();
+
                 var statuses = request
                     .AsStatuses();
-                
+
+                if (statuses == null)
+                {
+                    var error = request.AsError();
+                    if (error != null)
+                        throw new Exception (error.ErrorMessage);
+                }
+
                 var queuedTweets = statuses
                     .Where(s => s.Id != lastID)
                     .Select(s => new QueuedTweet
@@ -195,7 +203,7 @@ namespace Hello.Bot
 
             foreach (var tweet in tweets)
             {
-                var processedTweet = TweetProcessor.Process(tweet.Message);
+                var processedTweet = TweetParser.Parse(tweet.Message);
 
                 // Not interested in this tweet... move along...
                 if (processedTweet == null)

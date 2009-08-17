@@ -23,7 +23,7 @@ namespace Hello.Tests
         [Fact]
         public void BlankTest()
         {
-            var t = TweetProcessor.Process("");
+            var t = TweetParser.Parse("");
 
             Assert.Null(t);
         }
@@ -34,7 +34,7 @@ namespace Hello.Tests
         [InlineData("#thetag hello !dev #csharp #dotnet #jquery")]
         public void HelloTest(string tweet)
         {
-            var t = TweetProcessor.Process(tweet) as HelloTweet;
+            var t = TweetParser.Parse(tweet) as HelloTweet;
 
             Assert.NotNull(t);
             Assert.Equal(t.UserType, "dev");
@@ -47,7 +47,7 @@ namespace Hello.Tests
         [Fact]
         public void MetTest()
         {
-            var t = TweetProcessor.Process("met ryan matt kier") as MetTweet;
+            var t = TweetParser.Parse("met ryan matt kier") as MetTweet;
 
             Assert.NotNull(t);
             Assert.Equal(3, t.Friends.Count);
@@ -59,7 +59,7 @@ namespace Hello.Tests
         [Fact]
         public void MetWithAtsTest()
         {
-            var t = TweetProcessor.Process("met @ryan @matt @kier") as MetTweet;
+            var t = TweetParser.Parse("met @ryan @matt @kier") as MetTweet;
 
             Assert.NotNull(t);
             Assert.Equal(3, t.Friends.Count);
@@ -71,7 +71,7 @@ namespace Hello.Tests
         [Fact]
         public void ClaimTest()
         {
-            var t = TweetProcessor.Process("claim ASDF1234") as ClaimTweet;
+            var t = TweetParser.Parse("claim ASDF1234") as ClaimTweet;
 
             Assert.NotNull(t);
             Assert.Equal("ASDF1234".ToLower(), t.Token);
@@ -80,7 +80,7 @@ namespace Hello.Tests
         [Fact]
         public void SatTest()
         {
-            var t = TweetProcessor.Process("sat ASD12") as SatTweet;
+            var t = TweetParser.Parse("sat ASD12") as SatTweet;
 
             Assert.NotNull(t);
             Assert.Equal("ASD12".ToLower(), t.SeatCode);
@@ -89,7 +89,7 @@ namespace Hello.Tests
         [Fact]
         public void MessageTest()
         {
-            var t = TweetProcessor.Process("message This is my shout out to everyone at Carsonified!") as MessageTweet;
+            var t = TweetParser.Parse("message This is my shout out to everyone at Carsonified!") as MessageTweet;
 
             Assert.NotNull(t);
             Assert.Equal(t.Message, "This is my shout out to everyone at Carsonified!");
@@ -100,7 +100,7 @@ namespace Hello.Tests
         [InlineData("(via @helloapptest2) hello !des #html #css #js")]
         public void IgnoreVias(string tweet)
         {
-            var t = TweetProcessor.Process(tweet) as HelloTweet;
+            var t = TweetParser.Parse(tweet) as HelloTweet;
             Assert.Null(t);
         }
     }

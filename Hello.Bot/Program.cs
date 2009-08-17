@@ -19,7 +19,7 @@ namespace Hello.Bot
             log4net.Config.XmlConfigurator.Configure();
 
             var repo = new HelloRepoDataContext(Settings.ConnectionString);
-            var engine = new Engine(repo);
+            var engine = new TweetQueuer(repo);
 
             // Collect & store tweets
             
