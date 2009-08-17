@@ -19,12 +19,13 @@ namespace Hello.Bot
             log4net.Config.XmlConfigurator.Configure();
 
             var repo = new HelloRepoDataContext(Settings.ConnectionString);
-            var engine = new TweetQueuer(repo);
+            var queuer = new TweetQueuer(repo);
+            var processor = new TweetProcessor(repo);
 
             // Collect & store tweets
             try
             {
-                engine.QueueMentions();
+                queuer.QueueMentions();
             }
             catch (WebException e)
             {
@@ -32,7 +33,7 @@ namespace Hello.Bot
             }
 
             // Process tweets
-            engine.ProcessTweets();
+            processor.ProcessTweets();
         }
     }
 }
