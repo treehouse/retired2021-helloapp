@@ -54,16 +54,24 @@ namespace Hello.App.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Join(string userType, string tag1, string tag2, string tag3)
         {
-            //var twitterUrl = new StringBuilder("http://twitter.com/?status=");
+            var twitterUrl = new StringBuilder("http://twitter.com/?status=");
 
-            return Redirect(
-                "http://twitter.com/?status=" + 
-                Url.Encode(String.Format("@{0} hello !{1} #{2} #{3} #{4}",
-                    Settings.TwitterBotUsername,
-                    userType,
-                    TagHelper.Clean(tag1),
-                    TagHelper.Clean(tag2),
-                    TagHelper.Clean(tag3))));
+            twitterUrl.Append(
+                Url.Encode("@" + Settings.TwitterBotUsername + " hello !" + userType));
+
+            if (!String.IsNullOrEmpty(tag1))
+                twitterUrl.Append(
+                    Url.Encode(" #" + TagHelper.Clean(tag1)));
+
+            if (!String.IsNullOrEmpty(tag2))
+                twitterUrl.Append(
+                    Url.Encode(" #" + TagHelper.Clean(tag2)));
+
+            if (!String.IsNullOrEmpty(tag3))
+                twitterUrl.Append(
+                    Url.Encode(" #" + TagHelper.Clean(tag3)));
+
+            return Redirect(twitterUrl.ToString());
         }
 
         public ActionResult About()

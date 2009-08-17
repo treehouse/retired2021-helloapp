@@ -24,7 +24,7 @@ namespace Hello.Tests
         }
 
         [Theory]
-        [InlineData("", "", "", "", "http://twitter.com/?status=%40apphandle+hello+!+%23+%23+%23")]
+        [InlineData("des", "", "", "", "http://twitter.com/?status=%40apphandle+hello+!des")]
         [InlineData("dev", "tag1", "tag2", "", "http://twitter.com/?status=%40apphandle+hello+!dev+%23tag1+%23tag2")]
         public void JoinTest(string userType, string tag1, string tag2, string tag3, string expectedResult)
         {
