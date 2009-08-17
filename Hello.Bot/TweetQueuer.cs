@@ -32,32 +32,25 @@ namespace Hello.Bot
         public void QueueMentions()
         {
             long lastID = GetLastTideMark("Mentions");
-            bool seenLastTweet = false;
-            long maxID = 0;
-            int page = 1;
-
-            while (!seenLastTweet)
-            {
-                string request = GetTwitterRequest()
+            
+            string request = GetTwitterRequest()
                     .Statuses()
                     .Mentions()
-                    .Since(lastID - 1)
-                    .Skip(page)
+                    .Since(lastID)
                     .Take(int.MaxValue)
                     .Request();
 
-                var statuses = request
+            var statuses = request
                     .AsStatuses();
 
-                if (statuses == null)
-                {
-                    TwitterError error = request.AsError();
-                    if (error != null)
-                        throw new HelloAppException(error.ErrorMessage);
-                }
+            if (statuses == null)
+            {
+                TwitterError error = request.AsError();
+                if (error != null)
+                    throw new HelloAppException(error.ErrorMessage);
+            }
 
-                var queuedTweets = statuses
-                    .Where(s => s.Id != lastID)
+            var queuedTweets = statuses
                     .Select(s => new QueuedTweet
                     {
                         Username = s.User.ScreenName.ToLower(),
@@ -66,13 +59,9 @@ namespace Hello.Bot
                         ImageURL = s.User.ProfileImageUrl
                     });
 
-                StoreTweets(queuedTweets);
+            StoreTweets(queuedTweets);
 
-                seenLastTweet = lastID == MIN_TWEET_ID || statuses.Any(s => s.Id == lastID);
-                maxID = Math.Max(maxID, statuses.Max(s => s.Id));
-                page++;
-            }
-
+            long maxID = statuses.Count() > 0 ? statuses.Max(s => s.Id) : lastID;
             MarkTide("Mentions", maxID);
         }
 
