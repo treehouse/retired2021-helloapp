@@ -94,5 +94,14 @@ namespace Hello.Tests
             Assert.NotNull(t);
             Assert.Equal(t.Message, "This is my shout out to everyone at Carsonified!");
         }
+
+        [Theory]
+        [InlineData("hello !dev #csharp #dotnet #jquery (via @helloapptest1)")]
+        [InlineData("(via @helloapptest2) hello !des #html #css #js")]
+        public void IgnoreVias(string tweet)
+        {
+            var t = TweetProcessor.Process(tweet) as HelloTweet;
+            Assert.Null(t);
+        }
     }
 }
