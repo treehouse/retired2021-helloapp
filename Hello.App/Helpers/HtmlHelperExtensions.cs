@@ -40,7 +40,10 @@ namespace Hello.App.Helpers
                     title += " » About";
                     break;
                 case "faq":
-                    title += " » FAQ";
+                    title += " » Instructions";
+                    break;
+                case "join":
+                    title += " » Join";
                     break;
                 default:
                     break;

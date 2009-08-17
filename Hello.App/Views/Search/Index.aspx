@@ -41,7 +41,7 @@
                { %>
                 <div class="profileBox <%= (stripe = !stripe) ? "right" : "left" %>">
                     <div class="twitterProfile">
-                        <img src="<%= user.ImageURL %>" alt="<%= user.Username %>" />
+                        <img height="73px" src="<%= user.ImageURL %>" alt="<%= user.Username %>" />
                         <div class="bio">
                             <p>@<a class="username" href="http://twitter.com/<%= user.Username %>"><%= user.Username %></a></p>
                             <p id="latestTweet<%= user.Username %>">Loading...</p>

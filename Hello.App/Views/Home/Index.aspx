@@ -56,8 +56,6 @@
                         username +
                         '.json?count=1&callback=?',
                         function(tweets) {
-                            console.log(tweets[0].user.screen_name);
-                            console.log(tweets[0].text);
                             $('#' + tweets[0].user.screen_name.toLowerCase() + ' form').append('<input name="LatestTweet" value="' + tweets[0].text + '" type="hidden" />');
                             $('#latestTweet', popup).html(tweets[0].text);
                         }
