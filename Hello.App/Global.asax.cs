@@ -17,24 +17,6 @@ namespace HelloApp
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(null,
-                "user/random{format}",
-                new { controller = "User", action = "Random" }
-                //, new { username = "[fdas]+" }
-            );
-
-            //routes.MapRoute(null,
-            //    "user/{username}",
-            //    new { controller = "User", action = "Index", format = "html" }
-            //    //, new { username = "[fdas]+" }
-            //);
-
-            routes.MapRoute(null,
-                "{eventslug}",
-                new { controller = "Event", action = "Index" },
-                new { eventslug = @"[0-9a-fA-F\-]+" }
-            );
-
-            routes.MapRoute(null,
                 "{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = "" }
             );
