@@ -22,16 +22,6 @@ namespace Hello.Bot
             var engine = new TweetQueuer(repo);
 
             // Collect & store tweets
-            
-            //try
-            //{
-            //    engine.QueueHashTagged();
-            //}
-            //catch (WebException e)
-            //{
-            //    _log.Error("WebException in Engine.QueueHashTagged", e);
-            //}
-
             try
             {
                 engine.QueueMentions();
@@ -40,21 +30,9 @@ namespace Hello.Bot
             {
                 _log.Error("WebException in Engine.QueueMentions", e);
             }
-            
-            //try
-            //{
-            //    engine.QueueDirectMessages();
-            //}
-            //catch (WebException e)
-            //{
-            //    _log.Error("WebException in Engine.QueueDirectMessages", e);
-            //}
 
             // Process tweets
             engine.ProcessTweets();
-
-            //Console.WriteLine("Done");
-            //Console.ReadKey();
         }
     }
 }

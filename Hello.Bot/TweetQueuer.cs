@@ -28,47 +28,6 @@ namespace Hello.Bot
                                     Settings.TwitterBotPassword);
         }
 
-        public void QueueHashTagged()
-        {
-            var lastID = GetLastTideMark("HashTagged");
-            var seenLastTweet = false;
-            var maxID = 0L;
-            var page = 1;
-
-            while (!seenLastTweet)
-            {
-                var request = GetTwitterRequest()
-                    .Search()
-                    .Query()
-                    .ContainingHashTag(Settings.TwitterHashTag)
-                    .Since(lastID - 1)
-                    .Skip(page)
-                    .Take(int.MaxValue)
-                    .Request();
-                var statuses = request
-                    .AsSearchResult()
-                    .Statuses;
-
-                var tweetsToQueue = statuses
-                    .Where(s => s.Id != lastID)
-                    .Select(s => new QueuedTweet
-                    {
-                        Username = s.FromUserScreenName.ToLower(),
-                        Message = s.Text,
-                        Created = DateTime.Now,
-                        ImageURL = s.ProfileImageUrl
-                    });
-
-                StoreTweets(tweetsToQueue);
-
-                seenLastTweet = lastID == MIN_TWEET_ID || statuses.Any(s => s.Id == lastID);
-                maxID = Math.Max(maxID, statuses.Max(s => s.Id));
-                page++;
-            }
-
-            MarkTide("HashTagged", maxID);
-        }
-
         public void QueueMentions()
         {
             var lastID = GetLastTideMark("Mentions");
@@ -116,44 +75,6 @@ namespace Hello.Bot
             MarkTide("Mentions", maxID);
         }
 
-        public void QueueDirectMessages()
-        {
-            var lastID = GetLastTideMark("DirectMessages");
-            var seenLastTweet = false;
-            var maxID = 0L;
-            var page = 1;
-
-            while (!seenLastTweet)
-            {
-                var request = GetTwitterRequest()
-                    .DirectMessages()
-                    .Received()
-                    .Since(lastID - 1)
-                    .Skip(page)
-                    .Take(int.MaxValue)
-                    .Request();
-                var statuses = request
-                    .AsDirectMessages();
-
-                var queuedTweets = statuses
-                    .Where(s => s.Id != lastID)
-                    .Select(s => new QueuedTweet
-                    {
-                        Username = s.SenderScreenName.ToLower(),
-                        Message = s.Text,
-                        Created = DateTime.Now,
-                        ImageURL = s.Sender.ProfileImageUrl
-                    });
-
-                StoreTweets(queuedTweets);
-
-                seenLastTweet = lastID == MIN_TWEET_ID || statuses.Any(s => s.Id == lastID);
-                maxID = Math.Max(maxID, statuses.Max(s => s.Id));
-                page++;
-            }
-            MarkTide("DirectMessages", maxID);
-        }
-
         private void StoreTweets(IEnumerable<QueuedTweet> tweets)
         {
             if (tweets.Count() > 0)
@@ -162,14 +83,6 @@ namespace Hello.Bot
                 _repo.SubmitChanges();
             }
         }
-
-        //public void SendDirectMessage(string username, string message)
-        //{
-        //    var response = GetTwitterRequest()
-        //        .Statuses()
-        //        .Update(String.Format("d {0} {1}", username, message))
-        //        .Request();
-        //}
 
         public void ProcessTweets()
         {
