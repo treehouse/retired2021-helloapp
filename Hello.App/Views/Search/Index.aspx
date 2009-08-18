@@ -37,7 +37,7 @@
     
         <% if (Model.Count() == Settings.MaxSearchResults) { %>
         
-            <p class="searchMessage">Not all results for "<b><%= Html.Encode(ViewData["SearchTerm"]) %></b>", are displayed try refining your search.</p>
+            <p class="searchMessage">Not all results for "<b><%= Html.Encode(ViewData["SearchTerm"]) %></b>" are displayed, try refining your search.</p>
         
         <% } %>
         
