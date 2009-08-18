@@ -28,17 +28,24 @@
     <% if (Model == null) { %>
     
         <p>Please enter a search term.</p>
-
+    
     <% } else if (!Model.Any()) { %>
     
         <p>There were no results for the "<b><%= Html.Encode(ViewData["SearchTerm"]) %></b>".</p>
     
     <% } else { %>
     
+        <% if (Model.Count() == Settings.MaxSearchResults) { %>
+        
+            <p class="searchMessage">Not all results for "<b><%= Html.Encode(ViewData["SearchTerm"]) %></b>", are displayed try refining your search.</p>
+        
+        <% } %>
+        
         <div class="section listings">
+        
             <% var stripe = true; %>
-            <% foreach (var user in Model)
-               { %>
+            <% foreach (var user in Model) { %>
+            
                 <div class="profileBox <%= (stripe = !stripe) ? "right" : "left" %>">
                     <div class="twitterProfile">
                         <img height="73px" src="<%= user.ImageURL %>" alt="<%= user.Username %>" />
@@ -59,7 +66,9 @@
                         <% } %>
                     </p>
                 </div>
+            
             <% } %>
+        
         </div>
         
     <% } %>
