@@ -24,7 +24,7 @@ namespace Hello.App.Controllers
         {
             search = search.Trim();
 
-            var userTypes = _repo
+            List<UserType> userTypes = _repo
                 .UserTypes
                 .OrderBy(ut => ut.Ordering)
                 .ToList();
@@ -38,29 +38,15 @@ namespace Hello.App.Controllers
             }
             else
             {
-                // TODO: Split search terms and return something sensible...
-
-                //var searchTerms = search.Split(' ');
-
-                //foreach (var term in searchTerms)
-                //{
-                //    users = _repo
-                //        .Users
-                //        .Select(u => new
-                //        {
-                //            User = u,
-                //            Weight = ...
-                //        });
-                //}
-
-                var users = _repo
+                List<User> users = _repo.SearchUsers(search, Settings.MaxSearchResults).ToList();
+                /*var users = _repo
                     .Users
                     .Where(
                         u => (u.Username.Contains(search)
                            || u.Tags.Any(t => t.Name.Contains(search))
                            || u.UserTypeID.Contains(search))
                            && !u.ShadowAccount)
-                    .Take(Settings.MaxSearchResults);
+                    .Take(Settings.MaxSearchResults);*/
 
                 return View(users);
             }

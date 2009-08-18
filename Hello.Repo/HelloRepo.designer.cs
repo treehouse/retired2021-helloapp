@@ -87,7 +87,7 @@ namespace Hello.Repo
     #endregion
 		
 		public HelloRepoDataContext() : 
-				base(global::Hello.Repo.Properties.Settings.Default.helloappConnectionString, mappingSource)
+				base(global::Hello.Repo.Properties.Settings.Default.helloappConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -266,6 +266,13 @@ namespace Hello.Repo
 			{
 				return this.GetTable<HiFive>();
 			}
+		}
+		
+		[Function(Name="dbo.SearchUsers")]
+		public ISingleResult<User> SearchUsers([Parameter(Name="SearchString", DbType="VarChar(MAX)")] string searchString, [Parameter(Name="MaxResults", DbType="Int")] System.Nullable<int> maxResults)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), searchString, maxResults);
+			return ((ISingleResult<User>)(result.ReturnValue));
 		}
 	}
 	
@@ -2610,7 +2617,7 @@ namespace Hello.Repo
 			}
 		}
 		
-		[Column(Storage="_ImageURL", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_ImageURL", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
 		public string ImageURL
 		{
 			get

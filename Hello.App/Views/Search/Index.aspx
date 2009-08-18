@@ -44,7 +44,7 @@
         <div class="section listings">
         
             <% var stripe = true; %>
-            <% foreach (var user in Model) { %>
+            <% foreach (User user in Model) { %>
             
                 <div class="profileBox <%= (stripe = !stripe) ? "right" : "left" %>">
                     <div class="twitterProfile">
