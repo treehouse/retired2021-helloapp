@@ -49,6 +49,11 @@ namespace Hello.Utils
             get { return SettingsImplementation.GetString("ConnectionString"); }
         }
 
+        public static int MaxSearchResults
+        {
+            get { return SettingsImplementation.GetInt("MaxSearchResults"); }
+        }
+
         public static PointsThresholds Thresholds
         {
             get { return PointsThresholds.Get(); }
