@@ -156,22 +156,30 @@ namespace Hello.Bot
 
         private void ProcessTweet(User user, ClaimTweet tweet)
         {
-            var tokens = _repo
-                        .Tokens
-                        .Where(t => t.Token1 == tweet.Token);
+            /*
+             * The following line would throw an exception if multiple results for the same token,
+             * but this is taken care of by a unique constraint in the DB
+             */
+            Token token = _repo.Tokens.Where(t => t.Token1 == tweet.Token).SingleOrDefault();
 
-            if (tokens.Count() == 1)
+            if (token != null)
             {
-                Token token = tokens.First();
+                /* 
+                 * Only process if they haven't yet redemed this token
+                 * and the total number of redemptions hasn't exceeded the limit
+                 */
+                if (_repo.Redemptions.Where(r => r.User == user && r.TokenID == token.TokenID).Count() == 0
+                    && _repo.Redemptions.Where(r => r.TokenID == token.TokenID).Count() < token.AllowedRedemptions)
+                {
+                    _repo.Redemptions.InsertOnSubmit(new Redemption
+                                                         {
+                                                             Created = DateTime.Now,
+                                                             Username = user.Username,
+                                                             TokenID = token.TokenID
+                                                         });
 
-                _repo
-                    .Redemptions
-                    .InsertOnSubmit(new Redemption
-                    {
-                        Created = DateTime.Now,
-                        Username = user.Username,
-                        TokenID = token.TokenID
-                    });
+                    CreditPoints(user, 10, "Token:" + token.Token1);
+                }
             }
         }
 
@@ -212,8 +220,8 @@ namespace Hello.Bot
                     // If the reverse friendship exists, credit points
                     if (_repo.Friendships.Where(f => f.Befriendee == user.Username && f.Befriender == friend).Count() > 0)
                     {
-                        CreditPoints(user, 10);
-                        CreditPoints(friendUser, 10);
+                        CreditPoints(user, 10, "Mutual meeting");
+                        CreditPoints(friendUser, 10, "Mutual meeting");
                     }
                 }
             }
@@ -233,7 +241,7 @@ namespace Hello.Bot
             message.Text = tweet.Message;
         }
 
-        private void CreditPoints(User user, int points)
+        private void CreditPoints(User user, int points, string details)
         {
             _repo.Points.InsertOnSubmit(
                 new Point
@@ -241,7 +249,7 @@ namespace Hello.Bot
                     User = user,
                     Amount = points,
                     Issued = DateTime.Now,
-                    Details = "Mutual meeting"
+                    Details = details
                 });
         }
     }

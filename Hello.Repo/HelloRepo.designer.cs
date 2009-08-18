@@ -1404,6 +1404,8 @@ namespace Hello.Repo
 		
 		private string _Token1;
 		
+		private int _AllowedRedemptions;
+		
 		private EntitySet<Redemption> _Redemptions;
 		
 		private EntityRef<Campaign> _Campaign;
@@ -1418,6 +1420,8 @@ namespace Hello.Repo
     partial void OnCampaignIDChanged();
     partial void OnToken1Changing(string value);
     partial void OnToken1Changed();
+    partial void OnAllowedRedemptionsChanging(int value);
+    partial void OnAllowedRedemptionsChanged();
     #endregion
 		
 		public Token()
@@ -1487,6 +1491,26 @@ namespace Hello.Repo
 					this._Token1 = value;
 					this.SendPropertyChanged("Token1");
 					this.OnToken1Changed();
+				}
+			}
+		}
+		
+		[Column(Storage="_AllowedRedemptions", DbType="INT NOT NULL")]
+		public int AllowedRedemptions
+		{
+			get
+			{
+				return this._AllowedRedemptions;
+			}
+			set
+			{
+				if ((this._AllowedRedemptions != value))
+				{
+					this.OnAllowedRedemptionsChanging(value);
+					this.SendPropertyChanging();
+					this._AllowedRedemptions = value;
+					this.SendPropertyChanged("AllowedRedemptions");
+					this.OnAllowedRedemptionsChanged();
 				}
 			}
 		}

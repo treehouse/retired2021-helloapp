@@ -68,6 +68,7 @@
       <Column Name="TokenID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="CampaignID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Token" Member="Token1" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AllowedRedemptions" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
       <Association Name="Token_Redemption" Member="Redemptions" ThisKey="TokenID" OtherKey="TokenID" Type="Redemption" />
       <Association Name="Campaign_Token" Member="Campaign" ThisKey="CampaignID" OtherKey="CampaignID" Type="Campaign" IsForeignKey="true" />
     </Type>

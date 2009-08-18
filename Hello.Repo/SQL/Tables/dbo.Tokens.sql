@@ -6,6 +6,10 @@ CREATE TABLE [dbo].[Tokens]
 )
 
 GO
+ALTER TABLE [dbo].[Tokens] ADD CONSTRAINT [CX_Token] UNIQUE NONCLUSTERED  ([Token])
+
+
+GO
 ALTER TABLE [dbo].[Tokens] ADD CONSTRAINT [PK_Tokens] PRIMARY KEY CLUSTERED  ([TokenID]) ON [PRIMARY]
 GO
 ALTER TABLE [dbo].[Tokens] ADD CONSTRAINT [FK_Tokens_Campaigns] FOREIGN KEY ([CampaignID]) REFERENCES [dbo].[Campaigns] ([CampaignID])
