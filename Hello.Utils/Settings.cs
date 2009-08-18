@@ -54,6 +54,34 @@ namespace Hello.Utils
             get { return SettingsImplementation.GetInt("MaxSearchResults"); }
         }
 
+        public static PointsConfig Points
+        {
+            get { return PointsConfig.Get(); }
+        }
+
+        public class PointsConfig
+        {
+            public int Met
+            {
+                get { return SettingsImplementation.GetInt("PointsForMet"); }
+            }
+
+            public int Sat
+            {
+                get { return SettingsImplementation.GetInt("PointsForSat"); }
+            }
+
+            public int HiFive
+            {
+                get { return SettingsImplementation.GetInt("PointsForHiFive"); }
+            }
+
+            public static PointsConfig Get()
+            {
+                return new PointsConfig();
+            }
+        }
+
         public static PointsThresholds Thresholds
         {
             get { return PointsThresholds.Get(); }

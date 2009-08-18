@@ -29,21 +29,33 @@ namespace Hello.App.Helpers
 
         public static string Title(this HtmlHelper html)
         {
-            string title = "Hello";
+            var title = "Hello";
+            var controller = html.ViewContext.RouteData.Values["controller"].ToString().ToLower();
+            var action = html.ViewContext.RouteData.Values["action"].ToString().ToLower();
 
-            switch (html.ViewContext.RouteData.Values["action"].ToString().ToLower())
+            switch (controller)
             {
-                case "index":
-                    title += " » Home";
+                case "home":
+                    switch (action)
+                    {
+                        case "index":
+                            title += " » Home";
+                            break;
+                        case "about":
+                            title += " » About";
+                            break;
+                        case "faq":
+                            title += " » Instructions";
+                            break;
+                        case "join":
+                            title += " » Join";
+                            break;
+                        default:
+                            break;
+                    }
                     break;
-                case "about":
-                    title += " » About";
-                    break;
-                case "faq":
-                    title += " » Instructions";
-                    break;
-                case "join":
-                    title += " » Join";
+                case "search":
+                    title += " » Search";
                     break;
                 default:
                     break;

@@ -557,6 +557,12 @@ namespace Hello.Repo
 		
 		private string _Slug;
 		
+		private System.DateTime _Start;
+		
+		private System.DateTime _End;
+		
+		private int _HiFiveLimit;
+		
 		private EntitySet<Seat> _Seats;
 		
 		private EntitySet<Session> _Sessions;
@@ -575,6 +581,12 @@ namespace Hello.Repo
     partial void OnNameChanged();
     partial void OnSlugChanging(string value);
     partial void OnSlugChanged();
+    partial void OnStartChanging(System.DateTime value);
+    partial void OnStartChanged();
+    partial void OnEndChanging(System.DateTime value);
+    partial void OnEndChanged();
+    partial void OnHiFiveLimitChanging(int value);
+    partial void OnHiFiveLimitChanged();
     #endregion
 		
 		public Event()
@@ -642,6 +654,66 @@ namespace Hello.Repo
 					this._Slug = value;
 					this.SendPropertyChanged("Slug");
 					this.OnSlugChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Start", DbType="DATETIME NOT NULL")]
+		public System.DateTime Start
+		{
+			get
+			{
+				return this._Start;
+			}
+			set
+			{
+				if ((this._Start != value))
+				{
+					this.OnStartChanging(value);
+					this.SendPropertyChanging();
+					this._Start = value;
+					this.SendPropertyChanged("Start");
+					this.OnStartChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_End", DbType="DATETIME NOT NULL")]
+		public System.DateTime End
+		{
+			get
+			{
+				return this._End;
+			}
+			set
+			{
+				if ((this._End != value))
+				{
+					this.OnEndChanging(value);
+					this.SendPropertyChanging();
+					this._End = value;
+					this.SendPropertyChanged("End");
+					this.OnEndChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_HiFiveLimit", DbType="INT NOT NULL")]
+		public int HiFiveLimit
+		{
+			get
+			{
+				return this._HiFiveLimit;
+			}
+			set
+			{
+				if ((this._HiFiveLimit != value))
+				{
+					this.OnHiFiveLimitChanging(value);
+					this.SendPropertyChanging();
+					this._HiFiveLimit = value;
+					this.SendPropertyChanged("HiFiveLimit");
+					this.OnHiFiveLimitChanged();
 				}
 			}
 		}

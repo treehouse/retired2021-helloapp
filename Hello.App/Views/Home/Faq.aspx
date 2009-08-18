@@ -32,7 +32,7 @@
     
     <img src='<%= Url.Content("~/Content/images/content/high_five.jpg") %>' class="genImg" alt="High Five Badge" />
     
-    <p><span class="read">When you meet someone, and they really like you, they can award you a "High Five", which awards you a special badge and gives you more points.</span></p>
+    <p><span class="read">When you meet someone, and they really like you, they can award you a "High Five", which awards you a special badge and gives you <%= Settings.Points.HiFive %> points.</span></p>
     
     <p><span class="read">Check out the <a href="#badges">complete list of badges</a>.</span></p>
     
@@ -56,7 +56,7 @@
     
     <h4>Get points by meeting people</h4>
 
-	<p><span class="read">When you meet someone and they give you their Twitter username, just tweet:</span><br><code>@helloapp @their-username</code>. <br><span class="read">If they return the favor and tweet:</span><br> <code>@helloapp @your-username</code> <br><span class="read">then you'll both get points for meeting eachother. Both people have to do it, in order for the points to be awarded.</span></p>
+	<p><span class="read">When you meet someone and they give you their Twitter username, just tweet:</span><br><code>@helloapp @their-username</code>. <br><span class="read">If they return the favor and tweet:</span><br> <code>@helloapp @your-username</code> <br><span class="read">then you'll both get <%= Settings.Points.Met %> points for meeting each other. Both people have to do it, in order for the points to be awarded.</span></p>
 
 	<h4>Post a message to the entire audience</h4>
 
@@ -77,27 +77,27 @@
     <ul class="badges">
     <li>
     <img src='<%= Url.Content("~/Content/images/content/bronze.png") %>' alt="bronze badge" />
-    <p><span>Bronze Badge:</span> 15 points</p>
+    <p><span>Bronze Badge:</span> <%= Settings.Thresholds.Bronze %> points</p>
     </li>
     
     <li>
     <img src='<%= Url.Content("~/Content/images/content/silver.png") %>' alt="silver badge" />
-    <p><span>Silver Badge:</span> 30 points<br><strong>You can now post messages!</strong></p>
+    <p><span>Silver Badge:</span> <%= Settings.Thresholds.Silver %> points<br /><strong>You can now post messages!</strong></p>
     </li>
     
     <li>
     <img src='<%= Url.Content("~/Content/images/content/gold.png") %>' alt="gold badge" />
-    <p><span>Gold Badge:</span> 60 points</p>
+    <p><span>Gold Badge:</span> <%= Settings.Thresholds.Gold %> points</p>
     </li>
     
     <li>
     <img src='<%= Url.Content("~/Content/images/content/diamond.png") %>' alt="diamond badge" />
-    <p><span>Diamond Badge:</span> 100 points</p>
+    <p><span>Diamond Badge:</span> <%= Settings.Thresholds.Diamond %> points</p>
     </li>
     
     <li>
     <img src='<%= Url.Content("~/Content/images/content/high_five.png") %>' alt="high five badge" />
-    <p><span>High Five Badge:</span> When you meet someone, and they really like you, they can award you a "High Five", which awards you a special badge and gives you more points.</p>
+    <p><span>High Five Badge:</span> When you meet someone, and they really like you, they can award you a "High Five", which awards you a special badge and gives you <%= Settings.Points.HiFive %> points.</p>
     </li>
     
     <li>

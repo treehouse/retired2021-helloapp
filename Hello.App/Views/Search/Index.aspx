@@ -37,35 +37,23 @@
     
         <% if (Model.Count() == Settings.MaxSearchResults) { %>
         
-            <p class="searchMessage">Not all results for "<b><%= Html.Encode(ViewData["SearchTerm"]) %></b>", are displayed try refining your search.</p>
+            <p class="searchMessage">Not all results for "<b><%= Html.Encode(ViewData["SearchTerm"]) %></b>" are displayed, try refining your search.</p>
         
         <% } %>
         
         <div class="section listings">
         
-            <% var stripe = true; %>
+            <% bool? stripe = true; %>
             <% foreach (var user in Model) { %>
-            
-                <div class="profileBox <%= (stripe = !stripe) ? "right" : "left" %>">
-                    <div class="twitterProfile">
-                        <img height="73px" src="<%= user.ImageURL %>" alt="<%= user.Username %>" />
-                        <div class="bio">
-                            <p>@<a class="username" href="http://twitter.com/<%= user.Username %>"><%= user.Username %></a></p>
-                            <p id="latestTweet<%= user.Username %>">Loading...</p>
-                        </div>
-                    </div>
-                    <ul class="categories">
-                        <% foreach (var ut in ViewData["UserTypes"] as List<UserType>)
-                           { %>
-                            <li class="<%= ut.UserTypeID == user.UserTypeID ? "selected" : "" %>"><%= ut.Name %></li>
-                        <% } %>
-                    </ul>
-                    <p>
-                        <% foreach (var tag in user.Tags.OrderByDescending(t => t.Created).Take(3)) { %>
-                            #<%= Html.ActionLink(tag.Name, "Index", new { search = tag.Name }) %>
-                        <% } %>
-                    </p>
-                </div>
+                
+                <% Html.RenderPartial(
+                       "User",
+                       user,
+                       new ViewDataDictionary
+                       {
+                           { "Stripe", (stripe = !stripe) },
+                           { "UserTypes", ViewData["UserTypes"] }
+                       }); %>
             
             <% } %>
         
