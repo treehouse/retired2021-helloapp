@@ -17,8 +17,8 @@ namespace Hello.Tests
         public ProcessedTweetTests()
         {
             var mockSettings = new Mock<ISettingsImpl>();
-            mockSettings.Setup(s => s.Get("TwitterBotUsername")).Returns("apphandle");
-            mockSettings.Setup(s => s.Get("TwitterHashTag")).Returns("thetag");
+            mockSettings.Setup(s => s.GetString("TwitterBotUsername")).Returns("apphandle");
+            mockSettings.Setup(s => s.GetString("TwitterHashTag")).Returns("thetag");
             Settings.SettingsImplementation = mockSettings.Object;
         }
 

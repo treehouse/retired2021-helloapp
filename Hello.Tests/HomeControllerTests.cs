@@ -18,8 +18,8 @@ namespace Hello.Tests
         public HomeControllerTests()
         {
             var mockSettings = new Mock<ISettingsImpl>();
-            mockSettings.Setup(settings => settings.Get("ConnectionString")).Returns("ConnectionString");
-            mockSettings.Setup(s => s.Get("TwitterBotUsername")).Returns("apphandle");
+            mockSettings.Setup(settings => settings.GetString("ConnectionString")).Returns("ConnectionString");
+            mockSettings.Setup(s => s.GetString("TwitterBotUsername")).Returns("apphandle");
             Settings.SettingsImplementation = mockSettings.Object;
         }
 

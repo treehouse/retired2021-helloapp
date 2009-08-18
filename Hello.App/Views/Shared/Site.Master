@@ -13,6 +13,8 @@
 <body id="<%= Html.BodyClass() %>">
 
 <div class="section content">
+    
+    <asp:ContentPlaceHolder ID="TopContent" runat="server" />
 
 	<div class="header">
 	

@@ -4,26 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
 
-namespace Hello.Bot
+namespace Hello.Utils
 {
     [Serializable]
-    public class HelloAppException : Exception
+    public class HelloException : Exception
     {
-        public HelloAppException()
+        public HelloException()
         {
         }
 
-        public HelloAppException(string message)
+        public HelloException(string message)
             : base(message)
         {
         }
 
-        public HelloAppException(string message, Exception innerException)
+        public HelloException(string message, Exception innerException)
             : base(message, innerException)
         {
         }
 
-        protected HelloAppException(SerializationInfo info, StreamingContext context)
+        protected HelloException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }

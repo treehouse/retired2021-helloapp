@@ -62,7 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HelloAppException.cs" />
     <Compile Include="TweetProcessor.cs" />
     <Compile Include="TweetQueuer.cs" />
     <Compile Include="TweetParser.cs" />

@@ -1,6 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Hello.Repo.User>>" %>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <script type="text/javascript">
         $(function() {
             var avatar = $('.roundAvatars');
@@ -78,7 +78,15 @@
 	</script>
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="TopContent" runat="server">
+
+    <% if (ViewData["Message"] != null) { %>
+        <% Html.RenderPartial("Message", ViewData["Message"]); %>
+    <% } %>
+
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
     <% Html.RenderPartial("SearchBar", ""); %>
 

@@ -26,42 +26,84 @@ namespace Hello.Utils
 
         public static string TwitterBotUsername
         {
-            get { return SettingsImplementation.Get("TwitterBotUsername"); }
+            get { return SettingsImplementation.GetString("TwitterBotUsername"); }
         }
 
         public static string TwitterBotPassword
         {
-            get { return SettingsImplementation.Get("TwitterBotPassword"); }
+            get { return SettingsImplementation.GetString("TwitterBotPassword"); }
         }
 
         public static string TwitterHashTag
         {
-            get { return SettingsImplementation.Get("TwitterHashTag"); }
+            get { return SettingsImplementation.GetString("TwitterHashTag"); }
         }
 
         public static string DefaultImageURL
         {
-            get { return SettingsImplementation.Get("DefaultImageURL"); }
+            get { return SettingsImplementation.GetString("DefaultImageURL"); }
         }
 
         public static string ConnectionString
         {
-            get { return SettingsImplementation.Get("ConnectionString"); }
+            get { return SettingsImplementation.GetString("ConnectionString"); }
+        }
+
+        public static PointsThresholds Thresholds
+        {
+            get { return PointsThresholds.Get(); }
+        }
+
+        public class PointsThresholds
+        {
+            public int Bronze
+            {
+                get { return SettingsImplementation.GetInt("PointsThresholdBronze"); }
+            }
+
+            public int Silver
+            {
+                get { return SettingsImplementation.GetInt("PointsThresholdSilver"); }
+            }
+
+            public int Gold
+            {
+                get { return SettingsImplementation.GetInt("PointsThresholdGold"); }
+            }
+
+            public int Diamond
+            {
+                get { return SettingsImplementation.GetInt("PointsThresholdDiamond"); }
+            }
+
+            public static PointsThresholds Get()
+            {
+                return new PointsThresholds();
+            }
         }
     }
 
     public class SettingsImpl : ISettingsImpl
     {
-        public string Get(string value)
+        public string GetString(string value)
         {
             if (value == "ConnectionString")
                 return ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             return ConfigurationManager.AppSettings[value];
         }
+
+        public int GetInt(string value)
+        {
+            int result = 0;
+            if (Int32.TryParse(ConfigurationManager.AppSettings[value], out result))
+                return result;
+            else throw new HelloException("Must specify an integer value for " + value + " in the application settings.");
+        }
     }
 
     public interface ISettingsImpl
     {
-        string Get(string value);
+        string GetString(string value);
+        int GetInt(string value);
     }
 }

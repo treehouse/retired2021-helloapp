@@ -35,6 +35,14 @@ namespace Hello.App.Controllers
 
             ViewData["UserTypes"] = userTypes;
 
+            var message = _repo
+                .Messages
+                .Where(m => !m.Offensive
+                    && m.User.Points.Sum(p => p.Amount) > Settings.Thresholds.Silver)
+                .SingleOrDefault();
+
+            ViewData["Message"] = message;
+
             return View(users);
         }
 
