@@ -936,7 +936,7 @@ namespace Hello.Repo
 			OnCreated();
 		}
 		
-		[Column(Storage="_PointID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_PointID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int PointID
 		{
 			get

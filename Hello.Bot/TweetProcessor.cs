@@ -177,12 +177,15 @@ namespace Hello.Bot
 
         private void ProcessTweet(User user, MetTweet tweet)
         {
+            List<string> befriendees = user.Befrienders.Select(f => f.Befriendee).ToList();
+
             foreach (string friend in tweet.Friends)
             {
                 User friendUser = _repo
                     .Users
                     .SingleOrDefault(u => u.Username == friend);
 
+                // Add the user if they don't already exist
                 if (friendUser == null)
                 {
                     friendUser = new User
@@ -195,22 +198,25 @@ namespace Hello.Bot
                     };
                     _repo.Users.InsertOnSubmit(friendUser);
                 }
-            }
 
-            List<string> befriendees = user.Befrienders.Select(f => f.Befriendee).ToList();
-
-            _repo
-                .Friendships
-                .InsertAllOnSubmit(
-                    tweet
-                        .Friends
-                        .Where(f => !befriendees.Contains(f))
-                        .Select(friend => new Friendship
+                // Add the friendship if it doesn't already exist
+                if (!befriendees.Contains(friend))
+                {
+                    _repo.Friendships.InsertOnSubmit(
+                        new Friendship
                         {
                             Befriender = user.Username,
                             Befriendee = friend
-                        })
-                );
+                        });
+
+                    // If the reverse friendship exists, credit points
+                    if (_repo.Friendships.Where(f => f.Befriendee == user.Username && f.Befriender == friend).Count() > 0)
+                    {
+                        CreditPoints(user, 10);
+                        CreditPoints(friendUser, 10);
+                    }
+                }
+            }
         }
 
         private void ProcessTweet(User user, MessageTweet tweet)
@@ -225,6 +231,18 @@ namespace Hello.Bot
 
             message.Offensive = false;
             message.Text = tweet.Message;
+        }
+
+        private void CreditPoints(User user, int points)
+        {
+            _repo.Points.InsertOnSubmit(
+                new Point
+                {
+                    User = user,
+                    Amount = points,
+                    Issued = DateTime.Now,
+                    Details = "Mutual meeting"
+                });
         }
     }
 }
