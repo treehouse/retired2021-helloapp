@@ -110,11 +110,29 @@ namespace Hello.Bot
 
         private void ProcessTweet(User user, HiFiveTweet tweet)
         {
-            _repo.HiFives.InsertOnSubmit(new HiFive
+            Event currentEvent = _repo.Events.Where(e => e.Start <= DateTime.Now && e.End >= DateTime.Now).SingleOrDefault();
+
+            // Only accept Hi5s for the current event
+            if (currentEvent != null)
+            {
+                /*
+                 * You can only Hi5 each person once per event and there is a total cap of hifives per person per event
+                 */
+                if (_repo.HiFives.Where(h => h.HiFiver == user.Username).Count() < currentEvent.HiFiveLimit &&
+                    _repo.HiFives.Where(h => h.HiFiver == user.Username && h.EventID == currentEvent.EventID).Count() == 0)
                 {
-                    HiFiverUser = user,
-                    HiFivee = tweet.Friend
-                });
+                    User hiFivee = EnsureUser(tweet.Friend);
+
+                    _repo.HiFives.InsertOnSubmit(new HiFive
+                                                     {
+                                                         Event = currentEvent,
+                                                         HiFiverUser = user,
+                                                         HiFivee = tweet.Friend
+                                                     });
+
+                    CreditPoints(hiFivee, 10, "HiFived by " + user.Username);
+                }
+            }
         }
 
         private void ProcessTweet(User user, HelloTweet tweet)
@@ -146,6 +164,7 @@ namespace Hello.Bot
 
         private void ProcessTweet(User user, SatTweet tweet)
         {
+            // The logic for this isn't great - need to make sure we're really dealing with the current session
             var sessions = _repo
                         .Sessions
                         .Where(
@@ -161,14 +180,27 @@ namespace Hello.Bot
             {
                 Session session = sessions.First();
 
-                _repo
-                    .Sats
-                    .InsertOnSubmit(new Sat
-                    {
-                        Username = user.Username,
-                        SessionID = session.SessionID,
-                        SeatID = seat.SeatID
-                    });
+                Sat currentSeat = _repo.Sats.Where(s => s.SessionID == session.SessionID).SingleOrDefault();
+                /*
+                 * If they've already got a seat for the session, move them, rather than creating a new record
+                 * Also, only grant points the first time they sit down!
+                 */
+                if (currentSeat == null)
+                {
+                    _repo
+                        .Sats
+                        .InsertOnSubmit(new Sat
+                                            {
+                                                Username = user.Username,
+                                                SessionID = session.SessionID,
+                                                SeatID = seat.SeatID
+                                            });
+                    CreditPoints(user, 10, "Sat in seat during session:" + session.SessionID);
+                }
+                else
+                {
+                    currentSeat.SeatID = seat.SeatID;
+                }
             }
         }
 
@@ -201,29 +233,36 @@ namespace Hello.Bot
             }
         }
 
+        private User EnsureUser(string username)
+        {
+            User user = _repo
+                    .Users
+                    .SingleOrDefault(u => u.Username == username);
+
+            // Add the user if they don't already exist
+            if (user == null)
+            {
+                user = new User
+                {
+                    Username = username,
+                    ImageURL = Settings.DefaultImageURL,
+                    Created = DateTime.Now,
+                    Updated = DateTime.Now,
+                    ShadowAccount = true
+                };
+                _repo.Users.InsertOnSubmit(user);
+            }
+
+            return user;
+        }
+
         private void ProcessTweet(User user, MetTweet tweet)
         {
             List<string> befriendees = user.Befrienders.Select(f => f.Befriendee).ToList();
 
             foreach (string friend in tweet.Friends)
             {
-                User friendUser = _repo
-                    .Users
-                    .SingleOrDefault(u => u.Username == friend);
-
-                // Add the user if they don't already exist
-                if (friendUser == null)
-                {
-                    friendUser = new User
-                    {
-                        Username = friend,
-                        ImageURL = Settings.DefaultImageURL,
-                        Created = DateTime.Now,
-                        Updated = DateTime.Now,
-                        ShadowAccount = true
-                    };
-                    _repo.Users.InsertOnSubmit(friendUser);
-                }
+                User friendUser = EnsureUser(friend);
 
                 // Add the friendship if it doesn't already exist
                 if (!befriendees.Contains(friend))
