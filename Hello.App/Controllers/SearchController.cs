@@ -60,7 +60,7 @@ namespace Hello.App.Controllers
                            || u.Tags.Any(t => t.Name.Contains(search))
                            || u.UserTypeID.Contains(search))
                            && !u.ShadowAccount)
-                    .Take(100);
+                    .Take(Settings.MaxSearchResults);
 
                 return View(users);
             }
