@@ -10,7 +10,13 @@ namespace Hello.Utils
     {
         public static string Clean(string tag)
         {
-            var cleanTag = tag.Trim().ToLower();
+            var cleanTag = tag
+                .Trim()
+                .ToLower();
+            if (cleanTag.StartsWith("#"))
+                cleanTag = cleanTag.Substring(1);
+            cleanTag = cleanTag
+                .Replace("#", "sharp");
             cleanTag = Regex.Replace(
                 cleanTag,
                 @"[\W_]", "");
