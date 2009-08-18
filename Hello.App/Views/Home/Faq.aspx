@@ -58,7 +58,7 @@
 
 	<p><span class="read">When you meet someone and they give you their Twitter username, just tweet:</span><br><code>@helloapp @their-username</code>. <br><span class="read">If they return the favor and tweet:</span><br> <code>@helloapp @your-username</code> <br><span class="read">then you'll both get <%= Settings.Points.Met %> points for meeting each other. Both people have to do it, in order for the points to be awarded.</span></p>
 
-	<h4>Post a message to the entire audience</h4>
+	<h4 id="instructionsmessage">Post a message to the entire audience</h4>
 
 	<p><span class="read">Once you earn the Silver Badge you can send a message to the entire audience by tweeting:</span><br><code>@helloapp message "My message goes here"</code>. <br><span class="read">This message will be displayed like this:</span></p>
     

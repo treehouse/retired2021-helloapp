@@ -651,6 +651,25 @@ ul.categories li.selected {
 	background:#000;
 }
 
+ul.profilebadges 
+{
+	float: right;
+	margin:0px 0px 10px 0px;
+}
+
+ul.profilebadges li {
+	display:inline;
+	text-decoration:none;
+	font-size:90%;
+	letter-spacing:-0.05em;
+}
+
+ul.profilebadges li span {
+	left:-3px;
+	position:relative;
+	top:-11px;
+}
+
 a.close {
 	background:url(../images/presentation/close.png) top left no-repeat;
 	display: block;

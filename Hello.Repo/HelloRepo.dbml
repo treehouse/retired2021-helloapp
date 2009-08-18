@@ -136,8 +136,8 @@
       <Association Name="User_Message" Member="Message" ThisKey="Username" OtherKey="Username" Type="Message" Cardinality="One" />
       <Association Name="User_Tag" Member="Tags" ThisKey="Username" OtherKey="Username" Type="Tag" />
       <Association Name="User_Sat" Member="Sats" ThisKey="Username" OtherKey="Username" Type="Sat" />
-      <Association Name="User_HiFive" Member="HiFives" ThisKey="Username" OtherKey="HiFiver" Type="HiFive" />
-      <Association Name="User_HiFive1" Member="HiFives1" ThisKey="Username" OtherKey="HiFivee" Type="HiFive" />
+      <Association Name="User_HiFive" Member="HiFivers" Storage="_HiFives" ThisKey="Username" OtherKey="HiFiver" Type="HiFive" />
+      <Association Name="User_HiFive1" Member="HiFivees" Storage="_HiFives1" ThisKey="Username" OtherKey="HiFivee" Type="HiFive" />
       <Association Name="UserType_User" Member="UserType" ThisKey="UserTypeID" OtherKey="UserTypeID" Type="UserType" IsForeignKey="true" />
     </Type>
   </Table>

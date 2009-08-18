@@ -2842,7 +2842,7 @@ namespace Hello.Repo
 		}
 		
 		[Association(Name="User_HiFive", Storage="_HiFives", ThisKey="Username", OtherKey="HiFiver")]
-		public EntitySet<HiFive> HiFives
+		public EntitySet<HiFive> HiFivers
 		{
 			get
 			{
@@ -2855,7 +2855,7 @@ namespace Hello.Repo
 		}
 		
 		[Association(Name="User_HiFive1", Storage="_HiFives1", ThisKey="Username", OtherKey="HiFivee")]
-		public EntitySet<HiFive> HiFives1
+		public EntitySet<HiFive> HiFivees
 		{
 			get
 			{
@@ -4191,12 +4191,12 @@ namespace Hello.Repo
 					if ((previousValue != null))
 					{
 						this._HiFiverUser.Entity = null;
-						previousValue.HiFives.Remove(this);
+						previousValue.HiFivers.Remove(this);
 					}
 					this._HiFiverUser.Entity = value;
 					if ((value != null))
 					{
-						value.HiFives.Add(this);
+						value.HiFivers.Add(this);
 						this._HiFiver = value.Username;
 					}
 					else
@@ -4225,12 +4225,12 @@ namespace Hello.Repo
 					if ((previousValue != null))
 					{
 						this._HiFiveeUser.Entity = null;
-						previousValue.HiFives1.Remove(this);
+						previousValue.HiFivees.Remove(this);
 					}
 					this._HiFiveeUser.Entity = value;
 					if ((value != null))
 					{
-						value.HiFives1.Add(this);
+						value.HiFivees.Add(this);
 						this._HiFivee = value.Username;
 					}
 					else
