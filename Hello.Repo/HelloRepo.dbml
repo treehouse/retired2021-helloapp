@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="helloapp" Class="HelloRepoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=RYAN\SQLEXPRESS;Initial Catalog=helloapp;Integrated Security=True" SettingsObjectName="Hello.Repo.Properties.Settings" SettingsPropertyName="helloappConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DEV-MELVYN\SQL2008;Initial Catalog=helloapp;Integrated Security=True" SettingsObjectName="Hello.Repo.Properties.Settings" SettingsPropertyName="helloappConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Badges" Member="Badges">
     <Type Name="Badge">
       <Column Name="BadgeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -121,9 +121,9 @@
     </Type>
   </Table>
   <Table Name="dbo.Users" Member="Users">
-    <Type Name="User">
+    <Type Name="User" Id="ID1">
       <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ImageURL" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ImageURL" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
       <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="UserTypeID" Type="System.String" DbType="Char(3)" CanBeNull="true" />
@@ -199,4 +199,9 @@
       <Association Name="Event_HiFive" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
+  <Function Name="dbo.SearchUsers" Method="SearchUsers">
+    <Parameter Name="SearchString" Parameter="searchString" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="MaxResults" Parameter="maxResults" Type="System.Int32" DbType="Int" />
+    <ElementType IdRef="ID1" />
+  </Function>
 </Database>

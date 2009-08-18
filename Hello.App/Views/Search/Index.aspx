@@ -45,7 +45,7 @@
         
             <% bool? stripe = true; %>
             <% foreach (var user in Model) { %>
-                
+            
                 <% Html.RenderPartial(
                        "User",
                        user,
