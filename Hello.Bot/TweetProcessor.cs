@@ -164,6 +164,7 @@ namespace Hello.Bot
 
         private void ProcessTweet(User user, SatTweet tweet)
         {
+            // The logic for this isn't great - need to make sure we're really dealing with the current session
             var sessions = _repo
                         .Sessions
                         .Where(
@@ -179,14 +180,27 @@ namespace Hello.Bot
             {
                 Session session = sessions.First();
 
-                _repo
-                    .Sats
-                    .InsertOnSubmit(new Sat
-                    {
-                        Username = user.Username,
-                        SessionID = session.SessionID,
-                        SeatID = seat.SeatID
-                    });
+                Sat currentSeat = _repo.Sats.Where(s => s.SessionID == session.SessionID).SingleOrDefault();
+                /*
+                 * If they've already got a seat for the session, move them, rather than creating a new record
+                 * Also, only grant points the first time they sit down!
+                 */
+                if (currentSeat == null)
+                {
+                    _repo
+                        .Sats
+                        .InsertOnSubmit(new Sat
+                                            {
+                                                Username = user.Username,
+                                                SessionID = session.SessionID,
+                                                SeatID = seat.SeatID
+                                            });
+                    CreditPoints(user, 10, "Sat in seat during session:" + session.SessionID);
+                }
+                else
+                {
+                    currentSeat.SeatID = seat.SeatID;
+                }
             }
         }
 
