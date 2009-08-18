@@ -466,7 +466,87 @@ h2.right {
 
 
 
+/* Filter 	__________________________________________________________ */
+#filter select {
+	width: 295px;
+	float: left;
+	margin-right: 45px;
+}
 
+
+
+
+
+
+/* Tag cloud __________________________________________________________ */
+.tagCloud {
+	width: 295px;
+	float: left;
+	margin: -25px 45px 0 0;
+}
+
+.tagCloud li {
+	float: left;
+}
+
+.tagCloud li a {
+	display: block;
+	float: left;
+	padding: 5px;
+	text-decoration: none;
+	font-family: Georgia, "Times New Roman", serif;
+}
+
+.tagCloud li.smallest a {font-size: 70%;}
+.tagCloud li.smaller a {font-size: 90%;}
+.tagCloud li.small a {font-size: 110%;}
+.tagCloud li.medium a {font-size: 130%;}
+.tagCloud li.large a {font-size: 160%;}
+.tagCloud li.larger a {font-size: 190%;}
+.tagCloud li.largest a {font-size: 230%;}
+
+
+
+
+
+
+/* Search (conf day page) __________________________________________________________ */
+body.confDay form#search {
+	width: 295px;
+	float: left;
+	margin: 0;
+}
+
+body.confDay form#search label {
+	font-size: 120%;
+	color: #4b453e;
+	float:left;
+	letter-spacing: 0em;
+	padding: 8px 6px 0 0;
+}
+
+body.confDay form#search #searchTerm {
+	width: 176px;
+	height: 23px;
+	padding: 8px 5px 4px 5px;
+	font-size: 80%;
+}
+
+body.confDay form#search input#submit {
+	float:left;
+	background:url(../images/presentation/conf_day_mag_glass.png) top left no-repeat;
+	display: block;
+	width:32px;
+	height:35px;
+	border:none;
+	cursor:pointer;
+	padding:0px;
+	text-indent:-9999px;
+}
+
+body.confDay form#search input#submit:hover {
+	background-position: left -35px;
+}
 
 
 
@@ -596,7 +676,38 @@ a.close:hover {
 
 
 
+/* Messages __________________________________________________________ */
+.message {
+	width:448px;
+/*	width:598px;
+*/	padding:20px 20px 20px 20px;
+	background:#fff;
+	border:1px dashed #dc3d2a;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-webkit-box-shadow: 0px 0px 10px #9f9c91;  
+    -moz-box-shadow: 0px 0px 10px #9f9c91;  
+	box-shadow: 0px 0px 10px #9f9c91;  
+	margin:0px 0px 40px 0px;
+}
 
+.message p {
+	font-size:80%;
+	letter-spacing:-0.03em;
+	color:#5b5b5b;
+}
+
+.message p.author {
+	margin-top: 8px;
+}
+
+.message p.author a {
+	text-decoration: none;
+}
+
+	.message p.author a:hover {
+		text-decoration: underline;
+	}
 
 
 
