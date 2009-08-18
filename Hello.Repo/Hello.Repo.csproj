@@ -48,9 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HelloRepo.cs">
-      <DependentUpon>HelloRepo.dbml</DependentUpon>
-    </Compile>
     <Compile Include="HelloRepo.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
