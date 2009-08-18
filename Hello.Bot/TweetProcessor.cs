@@ -8,7 +8,7 @@ using Hello.Bot.TweetTypes;
 
 namespace Hello.Bot
 {
-    class TweetProcessor
+    public class TweetProcessor
     {
         private HelloRepoDataContext _repo;
 
@@ -135,7 +135,7 @@ namespace Hello.Bot
             }
         }
 
-        private void ProcessTweet(User user, HelloTweet tweet)
+        public void ProcessTweet(User user, HelloTweet tweet)
         {
             user.UserTypeID = tweet.UserType;
             user.ShadowAccount = false;
@@ -162,7 +162,7 @@ namespace Hello.Bot
             }
         }
 
-        private void ProcessTweet(User user, SatTweet tweet)
+        public void ProcessTweet(User user, SatTweet tweet)
         {
             // The logic for this isn't great - need to make sure we're really dealing with the current session
             var sessions = _repo
@@ -204,7 +204,7 @@ namespace Hello.Bot
             }
         }
 
-        private void ProcessTweet(User user, ClaimTweet tweet)
+        public void ProcessTweet(User user, ClaimTweet tweet)
         {
             /*
              * The following line would throw an exception if multiple results for the same token,
@@ -284,7 +284,7 @@ namespace Hello.Bot
             }
         }
 
-        private void ProcessTweet(User user, MessageTweet tweet)
+        public void ProcessTweet(User user, MessageTweet tweet)
         {
             Message message = user.Message;
 
@@ -298,7 +298,7 @@ namespace Hello.Bot
             message.Text = tweet.Message;
         }
 
-        private void CreditPoints(User user, int points, string details)
+        public void CreditPoints(User user, int points, string details)
         {
             _repo.Points.InsertOnSubmit(
                 new Point
