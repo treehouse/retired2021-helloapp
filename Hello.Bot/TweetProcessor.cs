@@ -178,7 +178,7 @@ namespace Hello.Bot
                                                              TokenID = token.TokenID
                                                          });
 
-                    CreditPoints(user, 10, "Token:" + token.Token1);
+                    CreditPoints(user, token.Campaign.Value, "Token:" + token.Token1);
                 }
             }
         }
