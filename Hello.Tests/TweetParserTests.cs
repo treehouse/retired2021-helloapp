@@ -12,9 +12,9 @@ using Hello.Repo;
 
 namespace Hello.Tests
 {
-    public class ProcessedTweetTests
+    public class TweetParserTests
     {
-        public ProcessedTweetTests()
+        public TweetParserTests()
         {
             var mockSettings = new Mock<ISettingsImpl>();
             mockSettings.Setup(s => s.GetString("TwitterBotUsername")).Returns("apphandle");
