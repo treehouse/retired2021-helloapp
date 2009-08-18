@@ -108,7 +108,7 @@ namespace Hello.Bot
             }
         }
 
-        private void ProcessTweet(User user, HiFiveTweet tweet)
+        public void ProcessTweet(User user, HiFiveTweet tweet)
         {
             Event currentEvent = _repo.Events.Where(e => e.Start <= DateTime.Now && e.End >= DateTime.Now).SingleOrDefault();
 
