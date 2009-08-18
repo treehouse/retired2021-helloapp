@@ -78,6 +78,7 @@
     </None>
     <None Include="Scripts\CreationScript.sql" />
     <None Include="Scripts\DataScript.sql" />
+    <None Include="Scripts\ResetLoginsScript.sql" />
     <None Include="Scripts\ResetScript.sql" />
     <None Include="SQL\Data\dbo.Events_Data.sql" />
     <None Include="SQL\Data\dbo.Events_Meta.sdcs" />
@@ -93,6 +94,7 @@
     <None Include="SQL\Tables\dbo.Campaigns.sql" />
     <None Include="SQL\Tables\dbo.Events.sql" />
     <None Include="SQL\Tables\dbo.Friendships.sql" />
+    <None Include="SQL\Tables\dbo.HiFives.sql" />
     <None Include="SQL\Tables\dbo.Messages.sql" />
     <None Include="SQL\Tables\dbo.Points.sql" />
     <None Include="SQL\Tables\dbo.QueuedTweets.sql" />
