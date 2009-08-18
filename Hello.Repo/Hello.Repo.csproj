@@ -61,7 +61,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="HelloRepo.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>HelloRepo.designer.cs</LastGenOutput>
