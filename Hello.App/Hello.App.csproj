@@ -156,6 +156,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\presentation\conf_day_mag_glass.png" />
     <Content Include="Views\Shared\Message.ascx" />
     <Content Include="Views\Shared\User.ascx" />
   </ItemGroup>
