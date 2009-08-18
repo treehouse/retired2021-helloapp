@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 13, 12.375" name="HelloRepo">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 13, 13.625" name="HelloRepo">
   <DataContextMoniker Name="/HelloRepoDataContext" />
   <nestedChildShapes>
     <classShape Id="67144ad1-5b2f-47f2-a19e-f426a4a70a89" absoluteBounds="10.75, 10.5, 2, 1.2605004882812523">
@@ -227,6 +227,33 @@
       <nodes>
         <classShapeMoniker Id="527d48de-c622-435c-9223-ff8ecbf54931" />
         <classShapeMoniker Id="3e361a10-66ff-47fc-ad9a-41c4428b09bb" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="176d3bd6-6ba9-4c12-9c06-c89d952af71e" absoluteBounds="2.375, 12, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/HelloRepoDataContext/HiFive" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b0bf0999-b983-4f12-a943-1e40c35a9d88" absoluteBounds="2.39, 12.46, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.93750125 : 9.37854248046875); (7.93750125 : 12.9112459016927); (4.375 : 12.9112459016927)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/HelloRepoDataContext/User/User_HiFive" />
+      <nodes>
+        <classShapeMoniker Id="e943722f-637d-475f-9618-78c6bb5e5c0f" />
+        <classShapeMoniker Id="176d3bd6-6ba9-4c12-9c06-c89d952af71e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.781248125 : 9.37854248046875); (7.781248125 : 12.5002180257161); (4.375 : 12.5002180257161)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/HelloRepoDataContext/User/User_HiFive1" />
+      <nodes>
+        <classShapeMoniker Id="e943722f-637d-475f-9618-78c6bb5e5c0f" />
+        <classShapeMoniker Id="176d3bd6-6ba9-4c12-9c06-c89d952af71e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.21875 : 8.76050048828125); (1.21875 : 12.7124239095052); (2.375 : 12.7124239095052)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/HelloRepoDataContext/Event/Event_HiFive" />
+      <nodes>
+        <classShapeMoniker Id="527d48de-c622-435c-9223-ff8ecbf54931" />
+        <classShapeMoniker Id="176d3bd6-6ba9-4c12-9c06-c89d952af71e" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

@@ -25,6 +25,7 @@
       <Association Name="Event_Seat" Member="Seats" ThisKey="EventID" OtherKey="EventID" Type="Seat" />
       <Association Name="Event_Session" Member="Sessions" ThisKey="EventID" OtherKey="EventID" Type="Session" />
       <Association Name="Event_UserType" Member="UserTypes" ThisKey="EventID" OtherKey="EventID" Type="UserType" />
+      <Association Name="Event_HiFive" Member="HiFives" ThisKey="EventID" OtherKey="EventID" Type="HiFive" />
     </Type>
   </Table>
   <Table Name="dbo.Friendships" Member="Friendships">
@@ -132,6 +133,8 @@
       <Association Name="User_Message" Member="Message" ThisKey="Username" OtherKey="Username" Type="Message" Cardinality="One" />
       <Association Name="User_Tag" Member="Tags" ThisKey="Username" OtherKey="Username" Type="Tag" />
       <Association Name="User_Sat" Member="Sats" ThisKey="Username" OtherKey="Username" Type="Sat" />
+      <Association Name="User_HiFive" Member="HiFives" ThisKey="Username" OtherKey="HiFiver" Type="HiFive" />
+      <Association Name="User_HiFive1" Member="HiFives1" ThisKey="Username" OtherKey="HiFivee" Type="HiFive" />
       <Association Name="UserType_User" Member="UserType" ThisKey="UserTypeID" OtherKey="UserTypeID" Type="UserType" IsForeignKey="true" />
     </Type>
   </Table>
@@ -180,6 +183,17 @@
       <Column Name="WarmColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
       <Association Name="UserType_User" Member="Users" ThisKey="UserTypeID" OtherKey="UserTypeID" Type="User" />
       <Association Name="Event_UserType" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HiFives" Member="HiFives">
+    <Type Name="HiFive">
+      <Column Name="HiFiveID" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HiFiver" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" />
+      <Column Name="HiFivee" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
+      <Association Name="User_HiFive" Member="HiFiverUser" ThisKey="HiFiver" OtherKey="Username" Type="User" IsForeignKey="true" />
+      <Association Name="User_HiFive1" Member="HiFiveeUser" ThisKey="HiFivee" OtherKey="Username" Type="User" IsForeignKey="true" />
+      <Association Name="Event_HiFive" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

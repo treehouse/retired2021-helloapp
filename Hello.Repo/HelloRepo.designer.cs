@@ -81,6 +81,9 @@ namespace Hello.Repo
     partial void InsertUserType(UserType instance);
     partial void UpdateUserType(UserType instance);
     partial void DeleteUserType(UserType instance);
+    partial void InsertHiFive(HiFive instance);
+    partial void UpdateHiFive(HiFive instance);
+    partial void DeleteHiFive(HiFive instance);
     #endregion
 		
 		public HelloRepoDataContext() : 
@@ -254,6 +257,14 @@ namespace Hello.Repo
 			get
 			{
 				return this.GetTable<UserType>();
+			}
+		}
+		
+		public System.Data.Linq.Table<HiFive> HiFives
+		{
+			get
+			{
+				return this.GetTable<HiFive>();
 			}
 		}
 	}
@@ -552,6 +563,8 @@ namespace Hello.Repo
 		
 		private EntitySet<UserType> _UserTypes;
 		
+		private EntitySet<HiFive> _HiFives;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -569,6 +582,7 @@ namespace Hello.Repo
 			this._Seats = new EntitySet<Seat>(new Action<Seat>(this.attach_Seats), new Action<Seat>(this.detach_Seats));
 			this._Sessions = new EntitySet<Session>(new Action<Session>(this.attach_Sessions), new Action<Session>(this.detach_Sessions));
 			this._UserTypes = new EntitySet<UserType>(new Action<UserType>(this.attach_UserTypes), new Action<UserType>(this.detach_UserTypes));
+			this._HiFives = new EntitySet<HiFive>(new Action<HiFive>(this.attach_HiFives), new Action<HiFive>(this.detach_HiFives));
 			OnCreated();
 		}
 		
@@ -671,6 +685,19 @@ namespace Hello.Repo
 			}
 		}
 		
+		[Association(Name="Event_HiFive", Storage="_HiFives", ThisKey="EventID", OtherKey="EventID")]
+		public EntitySet<HiFive> HiFives
+		{
+			get
+			{
+				return this._HiFives;
+			}
+			set
+			{
+				this._HiFives.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -722,6 +749,18 @@ namespace Hello.Repo
 		}
 		
 		private void detach_UserTypes(UserType entity)
+		{
+			this.SendPropertyChanging();
+			entity.Event = null;
+		}
+		
+		private void attach_HiFives(HiFive entity)
+		{
+			this.SendPropertyChanging();
+			entity.Event = this;
+		}
+		
+		private void detach_HiFives(HiFive entity)
 		{
 			this.SendPropertyChanging();
 			entity.Event = null;
@@ -2439,6 +2478,10 @@ namespace Hello.Repo
 		
 		private EntitySet<Sat> _Sats;
 		
+		private EntitySet<HiFive> _HiFives;
+		
+		private EntitySet<HiFive> _HiFives1;
+		
 		private EntityRef<UserType> _UserType;
 		
     #region Extensibility Method Definitions
@@ -2469,6 +2512,8 @@ namespace Hello.Repo
 			this._Message = default(EntityRef<Message>);
 			this._Tags = new EntitySet<Tag>(new Action<Tag>(this.attach_Tags), new Action<Tag>(this.detach_Tags));
 			this._Sats = new EntitySet<Sat>(new Action<Sat>(this.attach_Sats), new Action<Sat>(this.detach_Sats));
+			this._HiFives = new EntitySet<HiFive>(new Action<HiFive>(this.attach_HiFives), new Action<HiFive>(this.detach_HiFives));
+			this._HiFives1 = new EntitySet<HiFive>(new Action<HiFive>(this.attach_HiFives1), new Action<HiFive>(this.detach_HiFives1));
 			this._UserType = default(EntityRef<UserType>);
 			OnCreated();
 		}
@@ -2717,6 +2762,32 @@ namespace Hello.Repo
 			}
 		}
 		
+		[Association(Name="User_HiFive", Storage="_HiFives", ThisKey="Username", OtherKey="HiFiver")]
+		public EntitySet<HiFive> HiFives
+		{
+			get
+			{
+				return this._HiFives;
+			}
+			set
+			{
+				this._HiFives.Assign(value);
+			}
+		}
+		
+		[Association(Name="User_HiFive1", Storage="_HiFives1", ThisKey="Username", OtherKey="HiFivee")]
+		public EntitySet<HiFive> HiFives1
+		{
+			get
+			{
+				return this._HiFives1;
+			}
+			set
+			{
+				this._HiFives1.Assign(value);
+			}
+		}
+		
 		[Association(Name="UserType_User", Storage="_UserType", ThisKey="UserTypeID", OtherKey="UserTypeID", IsForeignKey=true)]
 		public UserType UserType
 		{
@@ -2853,6 +2924,30 @@ namespace Hello.Repo
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
+		}
+		
+		private void attach_HiFives(HiFive entity)
+		{
+			this.SendPropertyChanging();
+			entity.HiFiverUser = this;
+		}
+		
+		private void detach_HiFives(HiFive entity)
+		{
+			this.SendPropertyChanging();
+			entity.HiFiverUser = null;
+		}
+		
+		private void attach_HiFives1(HiFive entity)
+		{
+			this.SendPropertyChanging();
+			entity.HiFiveeUser = this;
+		}
+		
+		private void detach_HiFives1(HiFive entity)
+		{
+			this.SendPropertyChanging();
+			entity.HiFiveeUser = null;
 		}
 	}
 	
@@ -3863,6 +3958,263 @@ namespace Hello.Repo
 		{
 			this.SendPropertyChanging();
 			entity.UserType = null;
+		}
+	}
+	
+	[Table(Name="dbo.HiFives")]
+	public partial class HiFive : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _HiFiveID;
+		
+		private string _HiFiver;
+		
+		private string _HiFivee;
+		
+		private int _EventID;
+		
+		private EntityRef<User> _HiFiverUser;
+		
+		private EntityRef<User> _HiFiveeUser;
+		
+		private EntityRef<Event> _Event;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnHiFiveIDChanging(int value);
+    partial void OnHiFiveIDChanged();
+    partial void OnHiFiverChanging(string value);
+    partial void OnHiFiverChanged();
+    partial void OnHiFiveeChanging(string value);
+    partial void OnHiFiveeChanged();
+    partial void OnEventIDChanging(int value);
+    partial void OnEventIDChanged();
+    #endregion
+		
+		public HiFive()
+		{
+			this._HiFiverUser = default(EntityRef<User>);
+			this._HiFiveeUser = default(EntityRef<User>);
+			this._Event = default(EntityRef<Event>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_HiFiveID", AutoSync=AutoSync.OnInsert, DbType="INT NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int HiFiveID
+		{
+			get
+			{
+				return this._HiFiveID;
+			}
+			set
+			{
+				if ((this._HiFiveID != value))
+				{
+					this.OnHiFiveIDChanging(value);
+					this.SendPropertyChanging();
+					this._HiFiveID = value;
+					this.SendPropertyChanged("HiFiveID");
+					this.OnHiFiveIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_HiFiver", DbType="VARCHAR(50) NOT NULL", CanBeNull=false)]
+		public string HiFiver
+		{
+			get
+			{
+				return this._HiFiver;
+			}
+			set
+			{
+				if ((this._HiFiver != value))
+				{
+					if (this._HiFiverUser.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnHiFiverChanging(value);
+					this.SendPropertyChanging();
+					this._HiFiver = value;
+					this.SendPropertyChanged("HiFiver");
+					this.OnHiFiverChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_HiFivee", DbType="VARCHAR(50) NOT NULL", CanBeNull=false)]
+		public string HiFivee
+		{
+			get
+			{
+				return this._HiFivee;
+			}
+			set
+			{
+				if ((this._HiFivee != value))
+				{
+					if (this._HiFiveeUser.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnHiFiveeChanging(value);
+					this.SendPropertyChanging();
+					this._HiFivee = value;
+					this.SendPropertyChanged("HiFivee");
+					this.OnHiFiveeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EventID", DbType="INT NOT NULL")]
+		public int EventID
+		{
+			get
+			{
+				return this._EventID;
+			}
+			set
+			{
+				if ((this._EventID != value))
+				{
+					if (this._Event.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEventIDChanging(value);
+					this.SendPropertyChanging();
+					this._EventID = value;
+					this.SendPropertyChanged("EventID");
+					this.OnEventIDChanged();
+				}
+			}
+		}
+		
+		[Association(Name="User_HiFive", Storage="_HiFiverUser", ThisKey="HiFiver", OtherKey="Username", IsForeignKey=true)]
+		public User HiFiverUser
+		{
+			get
+			{
+				return this._HiFiverUser.Entity;
+			}
+			set
+			{
+				User previousValue = this._HiFiverUser.Entity;
+				if (((previousValue != value) 
+							|| (this._HiFiverUser.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._HiFiverUser.Entity = null;
+						previousValue.HiFives.Remove(this);
+					}
+					this._HiFiverUser.Entity = value;
+					if ((value != null))
+					{
+						value.HiFives.Add(this);
+						this._HiFiver = value.Username;
+					}
+					else
+					{
+						this._HiFiver = default(string);
+					}
+					this.SendPropertyChanged("HiFiverUser");
+				}
+			}
+		}
+		
+		[Association(Name="User_HiFive1", Storage="_HiFiveeUser", ThisKey="HiFivee", OtherKey="Username", IsForeignKey=true)]
+		public User HiFiveeUser
+		{
+			get
+			{
+				return this._HiFiveeUser.Entity;
+			}
+			set
+			{
+				User previousValue = this._HiFiveeUser.Entity;
+				if (((previousValue != value) 
+							|| (this._HiFiveeUser.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._HiFiveeUser.Entity = null;
+						previousValue.HiFives1.Remove(this);
+					}
+					this._HiFiveeUser.Entity = value;
+					if ((value != null))
+					{
+						value.HiFives1.Add(this);
+						this._HiFivee = value.Username;
+					}
+					else
+					{
+						this._HiFivee = default(string);
+					}
+					this.SendPropertyChanged("HiFiveeUser");
+				}
+			}
+		}
+		
+		[Association(Name="Event_HiFive", Storage="_Event", ThisKey="EventID", OtherKey="EventID", IsForeignKey=true)]
+		public Event Event
+		{
+			get
+			{
+				return this._Event.Entity;
+			}
+			set
+			{
+				Event previousValue = this._Event.Entity;
+				if (((previousValue != value) 
+							|| (this._Event.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Event.Entity = null;
+						previousValue.HiFives.Remove(this);
+					}
+					this._Event.Entity = value;
+					if ((value != null))
+					{
+						value.HiFives.Add(this);
+						this._EventID = value.EventID;
+					}
+					else
+					{
+						this._EventID = default(int);
+					}
+					this.SendPropertyChanged("Event");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

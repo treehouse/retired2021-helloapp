@@ -66,6 +66,9 @@ namespace Hello.Bot
                     MetTweet metTweet = new MetTweet();
                     metTweet.AddFriends(tokens.Skip(1));
                     return metTweet;
+                case "hi5":
+                    HiFiveTweet hiFiveTweet = new HiFiveTweet(tokens.Skip(1).FirstOrDefault());
+                    return hiFiveTweet;
                 case "message":
                     MessageTweet messageTweet = new MessageTweet();
                     if (tweet.Message.StartsWith("@" + Settings.TwitterBotUsername + " "))

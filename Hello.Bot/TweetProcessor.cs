@@ -96,7 +96,25 @@ namespace Hello.Bot
                     _repo.SubmitChanges();
                     continue;
                 }
+
+                HiFiveTweet hiFiveTweet = processedTweet as HiFiveTweet;
+                if (hiFiveTweet != null)
+                {
+                    ProcessTweet(user, hiFiveTweet);
+                    tweet.Processed = true;
+                    _repo.SubmitChanges();
+                    continue;
+                }
             }
+        }
+
+        private void ProcessTweet(User user, HiFiveTweet tweet)
+        {
+            _repo.HiFives.InsertOnSubmit(new HiFive
+                {
+                    HiFiverUser = user,
+                    HiFivee = tweet.Friend
+                });
         }
 
         private void ProcessTweet(User user, HelloTweet tweet)

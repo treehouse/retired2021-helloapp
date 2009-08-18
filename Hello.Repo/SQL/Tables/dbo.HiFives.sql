@@ -5,6 +5,11 @@ CREATE TABLE [dbo].[HiFives]
 [HiFivee] [varchar] (50) COLLATE Latin1_General_CI_AS NOT NULL,
 [EventID] [int] NOT NULL
 )
+
+ALTER TABLE [dbo].[HiFives] ADD 
+CONSTRAINT [PK_HiFives] PRIMARY KEY CLUSTERED  ([HiFiveID])
+ALTER TABLE [dbo].[HiFives] ADD
+CONSTRAINT [FK_HiFives_Events] FOREIGN KEY ([EventID]) REFERENCES [dbo].[Events] ([EventID])
 GO
 ALTER TABLE [dbo].[HiFives] ADD CONSTRAINT [FK_HiFives_HiFivee] FOREIGN KEY ([HiFivee]) REFERENCES [dbo].[Users] ([Username])
 GO
