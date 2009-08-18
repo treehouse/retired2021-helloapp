@@ -110,11 +110,26 @@ namespace Hello.Bot
 
         private void ProcessTweet(User user, HiFiveTweet tweet)
         {
-            _repo.HiFives.InsertOnSubmit(new HiFive
+            Event currentEvent = _repo.Events.Where(e => e.Start <= DateTime.Now && e.End >= DateTime.Now).SingleOrDefault();
+
+            // Only accept Hi5s for the current event
+            if (currentEvent != null)
+            {
+                // You can only Hi5 someone once per event
+                if (_repo.HiFives.Where(h => h.HiFiver == user.Username && h.EventID == currentEvent.EventID).Count() == 0)
                 {
-                    HiFiverUser = user,
-                    HiFivee = tweet.Friend
-                });
+                    User hiFivee = EnsureUser(tweet.Friend);
+
+                    _repo.HiFives.InsertOnSubmit(new HiFive
+                                                     {
+                                                         Event = currentEvent,
+                                                         HiFiverUser = user,
+                                                         HiFivee = tweet.Friend
+                                                     });
+
+                    CreditPoints(hiFivee, 10, "HiFived by " + user.Username);
+                }
+            }
         }
 
         private void ProcessTweet(User user, HelloTweet tweet)
@@ -201,29 +216,36 @@ namespace Hello.Bot
             }
         }
 
+        private User EnsureUser(string username)
+        {
+            User user = _repo
+                    .Users
+                    .SingleOrDefault(u => u.Username == username);
+
+            // Add the user if they don't already exist
+            if (user == null)
+            {
+                user = new User
+                {
+                    Username = username,
+                    ImageURL = Settings.DefaultImageURL,
+                    Created = DateTime.Now,
+                    Updated = DateTime.Now,
+                    ShadowAccount = true
+                };
+                _repo.Users.InsertOnSubmit(user);
+            }
+
+            return user;
+        }
+
         private void ProcessTweet(User user, MetTweet tweet)
         {
             List<string> befriendees = user.Befrienders.Select(f => f.Befriendee).ToList();
 
             foreach (string friend in tweet.Friends)
             {
-                User friendUser = _repo
-                    .Users
-                    .SingleOrDefault(u => u.Username == friend);
-
-                // Add the user if they don't already exist
-                if (friendUser == null)
-                {
-                    friendUser = new User
-                    {
-                        Username = friend,
-                        ImageURL = Settings.DefaultImageURL,
-                        Created = DateTime.Now,
-                        Updated = DateTime.Now,
-                        ShadowAccount = true
-                    };
-                    _repo.Users.InsertOnSubmit(friendUser);
-                }
+                User friendUser = EnsureUser(friend);
 
                 // Add the friendship if it doesn't already exist
                 if (!befriendees.Contains(friend))
