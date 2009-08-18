@@ -23,12 +23,12 @@ namespace Hello.App.Controllers
 
         public ActionResult Index()
         {
-            var randomOffset = new Random().Next(60);
+            var randomOffset = new Random(DateTime.Now.Millisecond).Next(1000);
 
             var users = _repo
                 .Users
                 .Where(u => !u.ShadowAccount)
-                .OrderBy(u => (u.Created.Minute + randomOffset) % 60)
+                .OrderBy(u => (u.Created.Millisecond + randomOffset) % 1000)
                 .Take(25);
 
             var userTypes = _repo
@@ -42,8 +42,8 @@ namespace Hello.App.Controllers
                 .Messages
                 .Where(m => !m.Offensive
                     && m.User.Points.Sum(p => p.Amount) > Settings.Thresholds.Silver)
-                .OrderBy(m => m.User.Created.Minute + randomOffset)
-                .SingleOrDefault();
+                .OrderBy(m => (m.User.Created.Millisecond + randomOffset) % 1000)
+                .FirstOrDefault();
 
             ViewData["Message"] = message;
 
