@@ -24,6 +24,7 @@
       <Column Name="Slug" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="Start" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" />
       <Column Name="End" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" />
+      <Column Name="HiFiveLimit" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
       <Association Name="Event_Seat" Member="Seats" ThisKey="EventID" OtherKey="EventID" Type="Seat" />
       <Association Name="Event_Session" Member="Sessions" ThisKey="EventID" OtherKey="EventID" Type="Session" />
       <Association Name="Event_UserType" Member="UserTypes" ThisKey="EventID" OtherKey="EventID" Type="UserType" />

@@ -561,6 +561,8 @@ namespace Hello.Repo
 		
 		private System.DateTime _End;
 		
+		private int _HiFiveLimit;
+		
 		private EntitySet<Seat> _Seats;
 		
 		private EntitySet<Session> _Sessions;
@@ -583,6 +585,8 @@ namespace Hello.Repo
     partial void OnStartChanged();
     partial void OnEndChanging(System.DateTime value);
     partial void OnEndChanged();
+    partial void OnHiFiveLimitChanging(int value);
+    partial void OnHiFiveLimitChanged();
     #endregion
 		
 		public Event()
@@ -690,6 +694,26 @@ namespace Hello.Repo
 					this._End = value;
 					this.SendPropertyChanged("End");
 					this.OnEndChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_HiFiveLimit", DbType="INT NOT NULL")]
+		public int HiFiveLimit
+		{
+			get
+			{
+				return this._HiFiveLimit;
+			}
+			set
+			{
+				if ((this._HiFiveLimit != value))
+				{
+					this.OnHiFiveLimitChanging(value);
+					this.SendPropertyChanging();
+					this._HiFiveLimit = value;
+					this.SendPropertyChanged("HiFiveLimit");
+					this.OnHiFiveLimitChanged();
 				}
 			}
 		}
