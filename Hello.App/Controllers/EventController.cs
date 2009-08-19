@@ -26,7 +26,8 @@ namespace Hello.App.Controllers
                 .Events
                 .SingleOrDefault(e => e.Slug == eventslug);
 
-            if (theEvent == null)
+            // if the event doesn't exist or starts in the future then redirect
+            if (theEvent == null || theEvent.Start > DateTime.Now)
                 return RedirectToAction("Index", "Home");
 
             return View(theEvent);
