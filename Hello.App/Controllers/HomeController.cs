@@ -38,7 +38,7 @@ namespace Hello.App.Controllers
             var users = _repo
                 .Users
                 .Where(u => !u.ShadowAccount)
-                .OrderBy(u => (u.Created.Millisecond + randomOffset) % 1000)
+                .OrderBy(u => (u.Created.Millisecond * randomOffset) % 1000)
                 .Take(25);
 
             var userTypes = _repo
@@ -47,15 +47,6 @@ namespace Hello.App.Controllers
                 .ToList();
 
             ViewData["UserTypes"] = userTypes;
-
-            var message = _repo
-                .Messages
-                .Where(m => !m.Offensive
-                    && m.User.Points.Sum(p => p.Amount) > Settings.Thresholds.Silver)
-                .OrderBy(m => (m.User.Created.Millisecond + randomOffset) % 1000)
-                .FirstOrDefault();
-
-            ViewData["Message"] = message;
 
             return View(users);
         }
