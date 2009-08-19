@@ -214,7 +214,7 @@ namespace Hello.Bot
              * The following line would throw an exception if multiple results for the same token,
              * but this is taken care of by a unique constraint in the DB
              */
-            Token token = _repo.Tokens.Where(t => t.Token1 == tweet.Token).SingleOrDefault();
+            Token token = _repo.Tokens.Where(t => t.Code == tweet.Token).SingleOrDefault();
 
             if (token != null)
             {
@@ -232,7 +232,7 @@ namespace Hello.Bot
                                                              TokenID = token.TokenID
                                                          });
 
-                    CreditPoints(user, token.Campaign.Value, "Token: " + token.Token1);
+                    CreditPoints(user, token.Campaign.Value, "Token: " + token.Code);
                 }
             }
         }

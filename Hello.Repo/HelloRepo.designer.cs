@@ -48,9 +48,6 @@ namespace Hello.Repo
     partial void InsertRedemption(Redemption instance);
     partial void UpdateRedemption(Redemption instance);
     partial void DeleteRedemption(Redemption instance);
-    partial void InsertToken(Token instance);
-    partial void UpdateToken(Token instance);
-    partial void DeleteToken(Token instance);
     partial void InsertUserBadge(UserBadge instance);
     partial void UpdateUserBadge(UserBadge instance);
     partial void DeleteUserBadge(UserBadge instance);
@@ -84,10 +81,13 @@ namespace Hello.Repo
     partial void InsertHiFive(HiFive instance);
     partial void UpdateHiFive(HiFive instance);
     partial void DeleteHiFive(HiFive instance);
+    partial void InsertToken(Token instance);
+    partial void UpdateToken(Token instance);
+    partial void DeleteToken(Token instance);
     #endregion
 		
 		public HelloRepoDataContext() : 
-				base(global::Hello.Repo.Properties.Settings.Default.helloappConnectionString1, mappingSource)
+				base(global::Hello.Repo.Properties.Settings.Default.helloappConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -169,14 +169,6 @@ namespace Hello.Repo
 			get
 			{
 				return this.GetTable<TagAggregate>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Token> Tokens
-		{
-			get
-			{
-				return this.GetTable<Token>();
 			}
 		}
 		
@@ -265,6 +257,14 @@ namespace Hello.Repo
 			get
 			{
 				return this.GetTable<HiFive>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Token> Tokens
+		{
+			get
+			{
+				return this.GetTable<Token>();
 			}
 		}
 		
@@ -1227,9 +1227,9 @@ namespace Hello.Repo
 		
 		private System.DateTime _Created;
 		
-		private EntityRef<Token> _Token;
-		
 		private EntityRef<User> _User;
+		
+		private EntityRef<Token> _Token;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1247,8 +1247,8 @@ namespace Hello.Repo
 		
 		public Redemption()
 		{
-			this._Token = default(EntityRef<Token>);
 			this._User = default(EntityRef<User>);
+			this._Token = default(EntityRef<Token>);
 			OnCreated();
 		}
 		
@@ -1340,40 +1340,6 @@ namespace Hello.Repo
 			}
 		}
 		
-		[Association(Name="Token_Redemption", Storage="_Token", ThisKey="TokenID", OtherKey="TokenID", IsForeignKey=true)]
-		public Token Token
-		{
-			get
-			{
-				return this._Token.Entity;
-			}
-			set
-			{
-				Token previousValue = this._Token.Entity;
-				if (((previousValue != value) 
-							|| (this._Token.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Token.Entity = null;
-						previousValue.Redemptions.Remove(this);
-					}
-					this._Token.Entity = value;
-					if ((value != null))
-					{
-						value.Redemptions.Add(this);
-						this._TokenID = value.TokenID;
-					}
-					else
-					{
-						this._TokenID = default(int);
-					}
-					this.SendPropertyChanged("Token");
-				}
-			}
-		}
-		
 		[Association(Name="User_Redemption", Storage="_User", ThisKey="Username", OtherKey="Username", IsForeignKey=true)]
 		public User User
 		{
@@ -1404,6 +1370,40 @@ namespace Hello.Repo
 						this._Username = default(string);
 					}
 					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[Association(Name="Token_Redemption", Storage="_Token", ThisKey="TokenID", OtherKey="TokenID", IsForeignKey=true)]
+		public Token Token
+		{
+			get
+			{
+				return this._Token.Entity;
+			}
+			set
+			{
+				Token previousValue = this._Token.Entity;
+				if (((previousValue != value) 
+							|| (this._Token.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Token.Entity = null;
+						previousValue.Redemptions.Remove(this);
+					}
+					this._Token.Entity = value;
+					if ((value != null))
+					{
+						value.Redemptions.Add(this);
+						this._TokenID = value.TokenID;
+					}
+					else
+					{
+						this._TokenID = default(int);
+					}
+					this.SendPropertyChanged("Token");
 				}
 			}
 		}
@@ -1507,209 +1507,6 @@ namespace Hello.Repo
 					this._Count = value;
 				}
 			}
-		}
-	}
-	
-	[Table(Name="dbo.Tokens")]
-	public partial class Token : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _TokenID;
-		
-		private int _CampaignID;
-		
-		private string _Token1;
-		
-		private int _AllowedRedemptions;
-		
-		private EntitySet<Redemption> _Redemptions;
-		
-		private EntityRef<Campaign> _Campaign;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTokenIDChanging(int value);
-    partial void OnTokenIDChanged();
-    partial void OnCampaignIDChanging(int value);
-    partial void OnCampaignIDChanged();
-    partial void OnToken1Changing(string value);
-    partial void OnToken1Changed();
-    partial void OnAllowedRedemptionsChanging(int value);
-    partial void OnAllowedRedemptionsChanged();
-    #endregion
-		
-		public Token()
-		{
-			this._Redemptions = new EntitySet<Redemption>(new Action<Redemption>(this.attach_Redemptions), new Action<Redemption>(this.detach_Redemptions));
-			this._Campaign = default(EntityRef<Campaign>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_TokenID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int TokenID
-		{
-			get
-			{
-				return this._TokenID;
-			}
-			set
-			{
-				if ((this._TokenID != value))
-				{
-					this.OnTokenIDChanging(value);
-					this.SendPropertyChanging();
-					this._TokenID = value;
-					this.SendPropertyChanged("TokenID");
-					this.OnTokenIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_CampaignID", DbType="Int NOT NULL")]
-		public int CampaignID
-		{
-			get
-			{
-				return this._CampaignID;
-			}
-			set
-			{
-				if ((this._CampaignID != value))
-				{
-					if (this._Campaign.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCampaignIDChanging(value);
-					this.SendPropertyChanging();
-					this._CampaignID = value;
-					this.SendPropertyChanged("CampaignID");
-					this.OnCampaignIDChanged();
-				}
-			}
-		}
-		
-		[Column(Name="Token", Storage="_Token1", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Token1
-		{
-			get
-			{
-				return this._Token1;
-			}
-			set
-			{
-				if ((this._Token1 != value))
-				{
-					this.OnToken1Changing(value);
-					this.SendPropertyChanging();
-					this._Token1 = value;
-					this.SendPropertyChanged("Token1");
-					this.OnToken1Changed();
-				}
-			}
-		}
-		
-		[Column(Storage="_AllowedRedemptions", DbType="INT NOT NULL")]
-		public int AllowedRedemptions
-		{
-			get
-			{
-				return this._AllowedRedemptions;
-			}
-			set
-			{
-				if ((this._AllowedRedemptions != value))
-				{
-					this.OnAllowedRedemptionsChanging(value);
-					this.SendPropertyChanging();
-					this._AllowedRedemptions = value;
-					this.SendPropertyChanged("AllowedRedemptions");
-					this.OnAllowedRedemptionsChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Token_Redemption", Storage="_Redemptions", ThisKey="TokenID", OtherKey="TokenID")]
-		public EntitySet<Redemption> Redemptions
-		{
-			get
-			{
-				return this._Redemptions;
-			}
-			set
-			{
-				this._Redemptions.Assign(value);
-			}
-		}
-		
-		[Association(Name="Campaign_Token", Storage="_Campaign", ThisKey="CampaignID", OtherKey="CampaignID", IsForeignKey=true)]
-		public Campaign Campaign
-		{
-			get
-			{
-				return this._Campaign.Entity;
-			}
-			set
-			{
-				Campaign previousValue = this._Campaign.Entity;
-				if (((previousValue != value) 
-							|| (this._Campaign.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Campaign.Entity = null;
-						previousValue.Tokens.Remove(this);
-					}
-					this._Campaign.Entity = value;
-					if ((value != null))
-					{
-						value.Tokens.Add(this);
-						this._CampaignID = value.CampaignID;
-					}
-					else
-					{
-						this._CampaignID = default(int);
-					}
-					this.SendPropertyChanged("Campaign");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Redemptions(Redemption entity)
-		{
-			this.SendPropertyChanging();
-			entity.Token = this;
-		}
-		
-		private void detach_Redemptions(Redemption entity)
-		{
-			this.SendPropertyChanging();
-			entity.Token = null;
 		}
 	}
 	
@@ -4294,6 +4091,209 @@ namespace Hello.Repo
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[Table(Name="dbo.Tokens")]
+	public partial class Token : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TokenID;
+		
+		private int _CampaignID;
+		
+		private string _Code;
+		
+		private int _AllowedRedemptions;
+		
+		private EntitySet<Redemption> _Redemptions;
+		
+		private EntityRef<Campaign> _Campaign;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTokenIDChanging(int value);
+    partial void OnTokenIDChanged();
+    partial void OnCampaignIDChanging(int value);
+    partial void OnCampaignIDChanged();
+    partial void OnCodeChanging(string value);
+    partial void OnCodeChanged();
+    partial void OnAllowedRedemptionsChanging(int value);
+    partial void OnAllowedRedemptionsChanged();
+    #endregion
+		
+		public Token()
+		{
+			this._Redemptions = new EntitySet<Redemption>(new Action<Redemption>(this.attach_Redemptions), new Action<Redemption>(this.detach_Redemptions));
+			this._Campaign = default(EntityRef<Campaign>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_TokenID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TokenID
+		{
+			get
+			{
+				return this._TokenID;
+			}
+			set
+			{
+				if ((this._TokenID != value))
+				{
+					this.OnTokenIDChanging(value);
+					this.SendPropertyChanging();
+					this._TokenID = value;
+					this.SendPropertyChanged("TokenID");
+					this.OnTokenIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CampaignID", DbType="Int NOT NULL")]
+		public int CampaignID
+		{
+			get
+			{
+				return this._CampaignID;
+			}
+			set
+			{
+				if ((this._CampaignID != value))
+				{
+					if (this._Campaign.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCampaignIDChanging(value);
+					this.SendPropertyChanging();
+					this._CampaignID = value;
+					this.SendPropertyChanged("CampaignID");
+					this.OnCampaignIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Code", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this.OnCodeChanging(value);
+					this.SendPropertyChanging();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_AllowedRedemptions", DbType="Int NOT NULL")]
+		public int AllowedRedemptions
+		{
+			get
+			{
+				return this._AllowedRedemptions;
+			}
+			set
+			{
+				if ((this._AllowedRedemptions != value))
+				{
+					this.OnAllowedRedemptionsChanging(value);
+					this.SendPropertyChanging();
+					this._AllowedRedemptions = value;
+					this.SendPropertyChanged("AllowedRedemptions");
+					this.OnAllowedRedemptionsChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Token_Redemption", Storage="_Redemptions", ThisKey="TokenID", OtherKey="TokenID")]
+		public EntitySet<Redemption> Redemptions
+		{
+			get
+			{
+				return this._Redemptions;
+			}
+			set
+			{
+				this._Redemptions.Assign(value);
+			}
+		}
+		
+		[Association(Name="Campaign_Token", Storage="_Campaign", ThisKey="CampaignID", OtherKey="CampaignID", IsForeignKey=true)]
+		public Campaign Campaign
+		{
+			get
+			{
+				return this._Campaign.Entity;
+			}
+			set
+			{
+				Campaign previousValue = this._Campaign.Entity;
+				if (((previousValue != value) 
+							|| (this._Campaign.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Campaign.Entity = null;
+						previousValue.Tokens.Remove(this);
+					}
+					this._Campaign.Entity = value;
+					if ((value != null))
+					{
+						value.Tokens.Add(this);
+						this._CampaignID = value.CampaignID;
+					}
+					else
+					{
+						this._CampaignID = default(int);
+					}
+					this.SendPropertyChanged("Campaign");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Redemptions(Redemption entity)
+		{
+			this.SendPropertyChanging();
+			entity.Token = this;
+		}
+		
+		private void detach_Redemptions(Redemption entity)
+		{
+			this.SendPropertyChanging();
+			entity.Token = null;
 		}
 	}
 }

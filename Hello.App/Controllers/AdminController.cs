@@ -50,8 +50,7 @@ namespace Hello.App.Controllers
         {
             var message = _repo
                 .Messages
-                .Where(m => m.Username == username)
-                .SingleOrDefault();
+                .SingleOrDefault(m => m.Username == username);
             if (message != null)
             {
                 message.Offensive = !message.Offensive;
@@ -59,6 +58,56 @@ namespace Hello.App.Controllers
             _repo.SubmitChanges();
 
             return RedirectToAction("Messages");
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult Campaigns()
+        {
+            var campaigns = _repo.Campaigns;
+            return View(campaigns);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Campaigns(Campaign campaign)
+        {
+            _repo.Campaigns.InsertOnSubmit(campaign);
+            _repo.SubmitChanges();
+            return RedirectToAction("Campaigns");
+        }
+
+        public ActionResult Tokens(int id)
+        {
+            var campaign = _repo
+                .Campaigns
+                .SingleOrDefault(c => c.CampaignID == id);
+
+            ViewData["Campaign"] = campaign;
+
+            var tokens = _repo
+                .Tokens
+                .Where(t => t.CampaignID == id);
+
+            return View(tokens);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Delete(int campaignID)
+        {
+            var campaign = _repo
+                .Campaigns
+                .SingleOrDefault(c => c.CampaignID == campaignID);
+            _repo
+                .Campaigns
+                .DeleteOnSubmit(campaign);
+            _repo.SubmitChanges();
+
+            return RedirectToAction("Campaigns");
+        }
+
+        public ActionResult New()
+        {
+            var campaigns = _repo.Campaigns;
+            return View(campaigns);
         }
     }
 }

@@ -167,9 +167,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\LogOn.aspx" />
+    <Content Include="Views\Admin\Campaigns.aspx" />
     <Content Include="Views\Admin\Events.aspx" />
     <Content Include="Views\Admin\Messages.aspx" />
     <Content Include="Views\Admin\Sessions.aspx" />
+    <Content Include="Views\Admin\Tokens.aspx" />
     <Content Include="Views\Shared\Admin.Master" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

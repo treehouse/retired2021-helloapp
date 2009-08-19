@@ -54,7 +54,7 @@ namespace Hello.Tests
             repo.Campaigns.InsertOnSubmit(new Campaign {CampaignID = 1, Name = "testCampaign", Value = 1});
             repo.SubmitChanges();
             int campaignId = repo.Campaigns.Where(c => c.Name == "testCampaign").First().CampaignID;
-            repo.Tokens.InsertOnSubmit(new Token {AllowedRedemptions = 1, CampaignID = campaignId, Token1 = "testToken"});
+            repo.Tokens.InsertOnSubmit(new Token {AllowedRedemptions = 1, CampaignID = campaignId, Code = "testToken"});
             repo.SubmitChanges();
 
             var claim = new ClaimTweet();
@@ -71,7 +71,7 @@ namespace Hello.Tests
             //Assert
             Assert.NotNull(storedRedemption);
             Assert.True(storedRedemption.Token.Campaign.Name == "testCampaign");
-            Assert.True(storedRedemption.Token.Token1 == "testToken");
+            Assert.True(storedRedemption.Token.Code == "testToken");
         }
 
         [Fact]

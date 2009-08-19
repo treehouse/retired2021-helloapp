@@ -9,12 +9,12 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
     <div>
-        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+    
+        <h1><%= Html.ActionLink("Admin", "Index", "Admin")%></h1>
         
-        </asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        
     </div>
-    </form>
 </body>
 </html>
