@@ -19,7 +19,7 @@ namespace HelloApp
             routes.MapRoute(null,
                 "{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = "" },
-                new { controller = "(Home)|(Search)" }
+                new { controller = "(Home)|(Search)|(Admin)|(Account)" }
             );
 
             routes.MapRoute(null,
