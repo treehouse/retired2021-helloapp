@@ -73,6 +73,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Scripts\AuxNumbers.sql" />
     <None Include="Scripts\CreationScript.sql" />
     <None Include="Scripts\DataScript.sql" />
     <None Include="Scripts\ResetLoginsScript.sql" />
