@@ -54,6 +54,11 @@ namespace Hello.Utils
             get { return SettingsImplementation.GetInt("MaxSearchResults"); }
         }
 
+        public static int MaxMessages
+        {
+            get { return SettingsImplementation.GetInt("MaxMessages"); }
+        }
+
         public static PointsConfig Points
         {
             get { return PointsConfig.Get(); }
@@ -130,7 +135,7 @@ namespace Hello.Utils
             int result = 0;
             if (Int32.TryParse(ConfigurationManager.AppSettings[value], out result))
                 return result;
-            else throw new HelloException("Must specify an integer value for " + value + " in the application settings.");
+            else throw new HelloException("Must specify an integer value for " + value + " in the application or web settings.");
         }
     }
 
