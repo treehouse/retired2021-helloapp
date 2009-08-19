@@ -7,15 +7,15 @@
     </p>
     
     <p>
-        <%= Html.ActionLink("Sessions", "Sessions")%>
+        <%= Html.ActionLink("Sessions", "Sessions") %>
     </p>
     
     <p>
-        <%= Html.ActionLink("Messages", "Messages")%>
+        <%= Html.ActionLink("Messages", "Messages") %>
     </p>
     
     <p>
-        <%= Html.ActionLink("Campaigns", "Campaigns")%>
+        <%= Html.ActionLink("Campaigns", "Campaigns") %>
     </p>
     
 </asp:Content>
