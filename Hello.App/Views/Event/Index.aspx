@@ -1073,7 +1073,7 @@
     
     <% if (ViewData["Messages"] != null && ((IQueryable<Message>)ViewData["Messages"]).Any()) { %>
 
-	<h2 id="allmessages">Messages:</h2> <%= Settings.MaxMessages %>
+	<h2 id="allmessages">Messages:</h2>
 	
 	    <% foreach (var message in (IQueryable<Message>)ViewData["Messages"]) { %>
 	        
