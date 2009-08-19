@@ -22,8 +22,9 @@
                 End
             </th>
             <th>
-                HiFiveLimit
+                Hi5 Limit
             </th>
+            <th></th>
         </tr>
 
     <% foreach (var item in Model) { %>
@@ -46,6 +47,9 @@
             </td>
             <td>
                 <%= Html.Encode(item.HiFiveLimit) %>
+            </td>
+            <td>
+                <%= Html.ActionLink("Seating", "Seating") %>
             </td>
         </tr>
     

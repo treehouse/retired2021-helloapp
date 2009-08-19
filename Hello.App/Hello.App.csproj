@@ -170,6 +170,7 @@
     <Content Include="Views\Admin\Campaigns.aspx" />
     <Content Include="Views\Admin\Events.aspx" />
     <Content Include="Views\Admin\Messages.aspx" />
+    <Content Include="Views\Admin\Seating.aspx" />
     <Content Include="Views\Admin\Sessions.aspx" />
     <Content Include="Views\Admin\Tokens.aspx" />
     <Content Include="Views\Shared\Admin.Master" />

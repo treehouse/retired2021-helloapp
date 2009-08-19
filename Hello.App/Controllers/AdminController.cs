@@ -103,5 +103,37 @@ namespace Hello.App.Controllers
 
             return RedirectToAction("Campaigns");
         }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult Seating()
+        {
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Seating(string seating)
+        {
+            var rows = seating.Split(new [] { Environment.NewLine }, StringSplitOptions.None);
+
+            // get session
+
+            foreach (var row in rows)
+            {
+                // new row
+
+                foreach (var seat in row)
+                {
+                    // new seat
+
+                    // add seat to row
+                }
+
+                // add row to session
+            }
+
+            //_repo.SubmitChanges();
+            
+            return View();
+        }
     }
 }
