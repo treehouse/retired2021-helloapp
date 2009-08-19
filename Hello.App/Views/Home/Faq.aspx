@@ -38,9 +38,9 @@
     
     <h3 id="instructions1">Instructions</h3>
 
-	<h4>Checking in and grabbing your seat</h4>
+	<h4 id="instructionscheckin">Checking in and grabbing your seat</h4>
 
-	<p><span class="read">Once you've sat down, there will be a password attached to your seat. Checkin to Hello by tweeting:</span><br><code>@helloapp sat your-pass-code</code></p>
+	<p><span class="read">Once you've sat down, there will be a password attached to your seat. Checkin to Hello by tweeting:</span><br><code>@helloapp sat seat-password</code></p>
 
 	<h4>Picking your skill and tagging yourself</h4>
 
