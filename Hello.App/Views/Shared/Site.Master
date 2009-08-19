@@ -10,7 +10,7 @@
     <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
 </head>
 
-<body id="<%= Html.BodyClass() %>">
+<body id="<%= Html.BodyID() %>" class="<%= Html.BodyClass() %>">
 
 <div class="section content">
     
