@@ -28,7 +28,13 @@ namespace Hello.App.Helpers
                             return action;
                     }
                 case "event":
-                    return action;
+                    switch (action)
+                    {
+                        case "index":
+                            return "home";
+                        default:
+                            return action;
+                    }
                 default:
                     return String.Empty;
             }
