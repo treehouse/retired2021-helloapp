@@ -28,9 +28,14 @@ namespace Hello.App.Controllers
 
         public ActionResult Messages()
         {
-            var messages =_repo.Messages;
+            var messages = _repo.Messages;
             return View(messages);
         }
 
+        public ActionResult Events()
+        {
+            var events = _repo.Events;
+            return View(events);
+        }
     }
 }
