@@ -1,28 +1,25 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Admin.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Hello.Repo.Event>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Admin.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Hello.Repo.Session>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Events</h2>
+    <h2>Sessions</h2>
 
     <table>
         <tr>
             <th>
-                EventID
+                SessionID
+            </th>
+            <th>
+                Event
             </th>
             <th>
                 Name
             </th>
             <th>
-                Slug
-            </th>
-            <th>
                 Start
             </th>
             <th>
-                End
-            </th>
-            <th>
-                HiFiveLimit
+                Finish
             </th>
         </tr>
 
@@ -30,22 +27,19 @@
     
         <tr>
             <td>
-                <%= Html.Encode(item.EventID) %>
+                <%= Html.Encode(item.SessionID) %>
+            </td>
+            <td>
+                <%= Html.Encode(item.Event.Name) %>
             </td>
             <td>
                 <%= Html.Encode(item.Name) %>
             </td>
             <td>
-                <%= Html.Encode(item.Slug) %>
-            </td>
-            <td>
                 <%= Html.Encode(String.Format("{0:g}", item.Start)) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:g}", item.End)) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.HiFiveLimit) %>
+                <%= Html.Encode(String.Format("{0:g}", item.Finish)) %>
             </td>
         </tr>
     
@@ -57,3 +51,4 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
+

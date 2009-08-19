@@ -3,5 +3,17 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <h1>Admin</h1>
-
+    
+    <p>
+        <%= Html.ActionLink("Events", "Events") %>
+    </p>
+    
+    <p>
+        <%= Html.ActionLink("Sessions", "Sessions")%>
+    </p>
+    
+    <p>
+        <%= Html.ActionLink("Messages", "Messages")%>
+    </p>
+    
 </asp:Content>

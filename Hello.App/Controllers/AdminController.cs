@@ -26,16 +26,39 @@ namespace Hello.App.Controllers
             return View();
         }
 
+        public ActionResult Events()
+        {
+            var events = _repo.Events;
+            return View(events);
+        }
+
+        public ActionResult Sessions()
+        {
+            var sessions = _repo.Sessions;
+            return View(sessions);
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Messages()
         {
             var messages = _repo.Messages;
             return View(messages);
         }
 
-        public ActionResult Events()
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Messages(string username)
         {
-            var events = _repo.Events;
-            return View(events);
+            var message = _repo
+                .Messages
+                .Where(m => m.Username == username)
+                .SingleOrDefault();
+            if (message != null)
+            {
+                message.Offensive = !message.Offensive;
+            }
+            _repo.SubmitChanges();
+
+            return RedirectToAction("Messages");
         }
     }
 }

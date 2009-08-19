@@ -29,6 +29,12 @@
             <td>
                 <%= Html.Encode(item.Offensive) %>
             </td>
+            <td>
+                <% using (Html.BeginForm()) { %>
+                    <%= Html.Hidden("username", item.Username) %>
+                    <input type="submit" value="toggle" />
+                <% } %>
+            </td>
         </tr>
     
     <% } %>
