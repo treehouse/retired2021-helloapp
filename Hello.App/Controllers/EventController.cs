@@ -53,5 +53,10 @@ namespace Hello.App.Controllers
 
             return View(theEvent);
         }
+
+        public ActionResult Search(string searchterm)
+        {
+            return Content(searchterm);
+        }
     }
 }
