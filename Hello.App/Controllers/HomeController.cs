@@ -23,6 +23,16 @@ namespace Hello.App.Controllers
 
         public ActionResult Index()
         {
+            // If there is an event currently on then redirect to it
+            var currentEvent = _repo
+                .Events
+                .FirstOrDefault(e => e.Start <= DateTime.Now
+                                  && e.End >= DateTime.Now);
+
+            if (currentEvent != null)
+                return RedirectToAction("Index", "Event", new { eventslug = currentEvent.Slug });
+
+            // Otherwise, show some random people
             var randomOffset = new Random(DateTime.Now.Millisecond).Next(1000);
 
             var users = _repo
