@@ -18,7 +18,14 @@ namespace HelloApp
 
             routes.MapRoute(null,
                 "{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", id = "" }
+                new { controller = "Home", action = "Index", id = "" },
+                new { controller = "(Home)|(Search)" }
+            );
+
+            routes.MapRoute(null,
+                "{eventslug}/{action}",
+                new { controller = "Event", action = "Index" },
+                new { eventslug = @"\w+" }
             );
         }
 
