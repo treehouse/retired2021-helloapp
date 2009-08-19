@@ -35,7 +35,7 @@
 	        <% foreach (var tag in (IQueryable<Tag>)ViewData["Tags"]) { %>
             
                 <li class="larger">
-                    <%= Html.ActionLink(tag.Name, "Search", "Event") %>
+                    <%= Html.ActionLink(tag.Name, "Search", "Event", new { searchterm = tag.Name }, null)%>
                 </li>
             
 		    <% } %>

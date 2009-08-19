@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Web Developer Express 2008
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hello.App", "Hello.App\Hello.App.csproj", "{46778D27-28C5-48EC-AE21-07B554245DA5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hello.Bot", "Hello.Bot\Hello.Bot.csproj", "{14718FEE-E4D8-4C34-BE23-85D55927F03C}"
