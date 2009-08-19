@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h1>LogIn</h1>
+    <h1>Log In</h1>
 
     <% if ((bool?)ViewData["lastLoginFailed"] == true) { %>
         <div class="Message">
