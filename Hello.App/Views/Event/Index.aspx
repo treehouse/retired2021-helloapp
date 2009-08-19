@@ -13,9 +13,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <%--<h2><%= Html.Encode(Model.Name) %></h2>--%>
-
-    
     <div class="checkInBar">
     <h2>Grab your seat!</h2>
     <h2 class="right">Grab your seat!</h2>
@@ -32,14 +29,36 @@
     </form>
 
 	<ul class="tagCloud">
-		<li class="larger"><a href="#">PHP</a></li>
-		<li class="small"><a href="#">Rails</a></li>
-		<li class="smaller"><a href="#">Design</a></li>
-		<li class="larger"><a href="#">Business</a></li>
-		<li class="largest"><a href="#">CSS</a></li>
-		<li class="smallest"><a href="#">Web</a></li>
-		<li class="medium"><a href="#">Apps</a></li>
-		<li class="large"><a href="#">Dev</a></li>
+	
+	    <% if (ViewData["Tags"] != null && ((IQueryable<Tag>)ViewData["Tags"]).Any()) { %>
+	    
+	        <% foreach (var tag in (IQueryable<Tag>)ViewData["Tags"]) { %>
+            
+                <li class="larger">
+                    <%= Html.ActionLink(tag.Name, "Search", "Event") %>
+                </li>
+            
+		    <% } %>
+		
+		<% } else { %>
+		
+	        <li class="large">
+                <%= Html.ActionLink("Nobody has checked in yet, why don't you?", "Faq", "Home", null, null, "instructionscheckin", null, null) %>
+            </li>
+        
+		<% } %>
+                
+	    <%--
+		    <li class="larger"><a href="#">PHP</a></li>
+		    <li class="small"><a href="#">Rails</a></li>
+		    <li class="smaller"><a href="#">Design</a></li>
+		    <li class="larger"><a href="#">Business</a></li>
+		    <li class="largest"><a href="#">CSS</a></li>
+		    <li class="smallest"><a href="#">Web</a></li>
+		    <li class="medium"><a href="#">Apps</a></li>
+		    <li class="large"><a href="#">Dev</a></li>
+		--%>
+		
 	</ul>
 
     <form id="search" method="post" action="" enctype="multipart/form-data">
@@ -1052,11 +1071,11 @@
     
     </div>
     
-    <% if (ViewData["Messages"] != null) { %>
+    <% if (ViewData["Messages"] != null && ((IQueryable<Message>)ViewData["Messages"]).Any()) { %>
 
-	<h2 id="allmessages">Messages:</h2>
+	<h2 id="allmessages">Messages:</h2> <%= Settings.MaxMessages %>
 	
-	    <% foreach (var message in ViewData["Messages"] as IQueryable<Message>) { %>
+	    <% foreach (var message in (IQueryable<Message>)ViewData["Messages"]) { %>
 	        
 	        <div class="message">
 		        <blockquote><p>"<%= message.Text %>"</p></blockquote>

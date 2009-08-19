@@ -180,12 +180,16 @@ namespace Hello.Bot
             {
                 Session session = sessions.First();
 
-                Sat currentSeat = _repo.Sats.Where(s => s.SessionID == session.SessionID).SingleOrDefault();
+                Sat currentSat = _repo
+                    .Sats
+                    .Where(s => s.SessionID == session.SessionID
+                             && s.Username == user.Username)
+                    .SingleOrDefault();
                 /*
                  * If they've already got a seat for the session, move them, rather than creating a new record
                  * Also, only grant points the first time they sit down!
                  */
-                if (currentSeat == null)
+                if (currentSat == null)
                 {
                     _repo
                         .Sats
@@ -195,11 +199,11 @@ namespace Hello.Bot
                                                 SessionID = session.SessionID,
                                                 SeatID = seat.SeatID
                                             });
-                    CreditPoints(user, 10, "Sat in seat during session:" + session.SessionID);
+                    CreditPoints(user, 10, "Sat in seat: " + session.SessionID);
                 }
                 else
                 {
-                    currentSeat.SeatID = seat.SeatID;
+                    currentSat.SeatID = seat.SeatID;
                 }
             }
         }
@@ -228,7 +232,7 @@ namespace Hello.Bot
                                                              TokenID = token.TokenID
                                                          });
 
-                    CreditPoints(user, token.Campaign.Value, "Token:" + token.Token1);
+                    CreditPoints(user, token.Campaign.Value, "Token: " + token.Token1);
                 }
             }
         }
