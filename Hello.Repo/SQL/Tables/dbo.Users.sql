@@ -7,11 +7,10 @@ CREATE TABLE [dbo].[Users]
 [UserTypeID] [char] (3) COLLATE Latin1_General_CI_AS NULL,
 [ShadowAccount] [bit] NOT NULL CONSTRAINT [DF_Users_ShadowAccount] DEFAULT ((0))
 )
-CREATE FULLTEXT INDEX ON [dbo].[Users] KEY INDEX [PK_Users] ON [HelloCatalog]
+
+
 GO
 
-ALTER FULLTEXT INDEX ON [dbo].[Users] ADD (Username LANGUAGE 2057)
-GO
 
 ALTER FULLTEXT INDEX ON [dbo].[Users] ENABLE
 GO
