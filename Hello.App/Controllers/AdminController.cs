@@ -103,11 +103,5 @@ namespace Hello.App.Controllers
 
             return RedirectToAction("Campaigns");
         }
-
-        public ActionResult New()
-        {
-            var campaigns = _repo.Campaigns;
-            return View(campaigns);
-        }
     }
 }

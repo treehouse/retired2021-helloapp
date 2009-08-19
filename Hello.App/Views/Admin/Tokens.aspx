@@ -13,13 +13,13 @@
                 TokenID
             </th>
             <th>
-                CampaignID
+                Campaign
             </th>
             <th>
-                Token1
+                Code
             </th>
             <th>
-                AllowedRedemptions
+                Allowed Redemptions
             </th>
         </tr>
 
@@ -34,7 +34,7 @@
                 <%= Html.Encode(item.TokenID) %>
             </td>
             <td>
-                <%= Html.Encode(item.CampaignID) %>
+                <%= Html.Encode(item.Campaign.Name) %>
             </td>
             <td>
                 <%= Html.Encode(item.Code) %>
