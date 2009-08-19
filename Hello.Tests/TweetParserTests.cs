@@ -32,6 +32,7 @@ namespace Hello.Tests
 
         [Theory]
         [InlineData("hello !dev #csharp #dotnet #jquery")]
+        [InlineData("hello !dev #c# #dotnet #jquery")]
         [InlineData("@apphandle hello !dev #csharp #dotnet #jquery")]
         [InlineData("#thetag hello !dev #csharp #dotnet #jquery")]
         public void HelloTest(string tweet)
