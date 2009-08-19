@@ -22,6 +22,18 @@ namespace Hello.App.Controllers
 
         public ActionResult Index(string eventslug)
         {
+            // Get the messages in a random order
+            var randomOffset = new Random(DateTime.Now.Millisecond).Next(1000);
+
+            var messages = _repo
+                .Messages
+                .Where(m => !m.Offensive
+                    && m.User.Points.Sum(p => p.Amount) > Settings.Thresholds.Silver)
+                .OrderBy(m => (m.User.Created.Millisecond * randomOffset) % 1000);
+
+            ViewData["Message"] = messages.FirstOrDefault();
+            ViewData["Messages"] = messages;
+
             var theEvent = _repo
                 .Events
                 .SingleOrDefault(e => e.Slug == eventslug);
@@ -32,6 +44,5 @@ namespace Hello.App.Controllers
 
             return View(theEvent);
         }
-
     }
 }

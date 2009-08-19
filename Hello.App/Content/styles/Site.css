@@ -526,7 +526,7 @@ body.confDay form#search label {
 }
 
 body.confDay form#search #searchTerm {
-	width: 176px;
+	width: 170px;
 	height: 23px;
 	padding: 8px 5px 4px 5px;
 	font-size: 80%;
