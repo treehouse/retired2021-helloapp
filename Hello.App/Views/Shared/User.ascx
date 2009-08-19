@@ -10,22 +10,22 @@
     </div>
     <ul class="profilebadges">
         <% var points = Model.Points.Sum(p => p.Amount); %>
-        <% if (points > Settings.Thresholds.Bronze) { %>            
+        <% if (points >= Settings.Thresholds.Bronze) { %>
             <li>
                 <img src="<%= Url.Content("~/Content/images/content/bronze.png") %>" alt="Bronze Badge" />
             </li>
         <% } %>
-        <% if (points > Settings.Thresholds.Silver) { %>            
+        <% if (points >= Settings.Thresholds.Silver) { %>
             <li>
                 <img src="<%= Url.Content("~/Content/images/content/silver.png") %>" alt="Silver Badge" />
             </li>
         <% } %>
-        <% if (points > Settings.Thresholds.Gold) { %>            
+        <% if (points >= Settings.Thresholds.Gold) { %>
             <li>
                 <img src="<%= Url.Content("~/Content/images/content/gold.png") %>" alt="Gold Badge" />
             </li>
         <% } %>
-        <% if (points > Settings.Thresholds.Diamond) { %>            
+        <% if (points >= Settings.Thresholds.Diamond) { %>
             <li>
                 <img src="<%= Url.Content("~/Content/images/content/diamond.png") %>" alt="Diamond Badge" />
             </li>
