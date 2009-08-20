@@ -25,8 +25,8 @@
        { %>
     <div id="filter">
     	<select onchange="this.form.submit()" id="viewBy" name="viewBy">
-			<option value="twitter">View Twitter Icons</option>
-			<option value="heatmap">View Heat Map</option>
+			<option <% if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "twitter") { %>selected<% } %> value="twitter">View Twitter Icons</option>
+			<option <% if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "heatmap") { %>selected<% } %> value="heatmap">View Heat Map</option>
 		</select>
     </div>
 
