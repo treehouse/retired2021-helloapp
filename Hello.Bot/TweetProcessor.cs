@@ -134,7 +134,7 @@ namespace Hello.Bot
                                                          HiFivee = tweet.Friend
                                                      });
 
-                    CreditPoints(hiFivee, 10, "HiFived by " + user.Username);
+                    CreditPoints(hiFivee, 10, "Hi5: " + user.Username);
                 }
             }
         }
@@ -318,7 +318,7 @@ namespace Hello.Bot
                     User = user,
                     Amount = points,
                     Issued = DateTime.Now,
-                    Details = details
+                    Details = details.Substring(0, 20)
                 });
         }
     }
