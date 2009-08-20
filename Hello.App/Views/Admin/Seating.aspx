@@ -10,6 +10,14 @@
     
     <h3>New Seating Plan</h3>
     
+    <h4>Key</h4>
+    
+    <p>
+        <code>x</code> = seat
+        <br />
+        <code>.</code> = gap (e.g. aisle)
+    </p>
+    
     <% using (Html.BeginForm()) { %>
     
         <p>
