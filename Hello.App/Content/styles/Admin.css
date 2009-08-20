@@ -2,3 +2,18 @@
 {
 	font-family: Calibri Arial, Sans-Serif;
 }
+
+table
+{
+	border-collapse: collapse;
+}
+
+td
+{
+	border-top: solid 1px #ccc;
+}
+
+th, td
+{
+	padding-left: 2em;
+}
