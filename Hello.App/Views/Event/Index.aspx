@@ -92,26 +92,22 @@
                         var sat = sats.SingleOrDefault(s => s.SeatID == seat.SeatID);
                         if (sat == null)
                         {
-                            %>
-                            <img class="seat" width="24" height="24" src="<%= Url.Content("~/Content/images/presentation/smiley.jpg") %>" />
-                            <%
+                            %><img class="seat" width="24" height="24" src="<%= Url.Content("~/Content/images/presentation/smiley.jpg") %>" /><%
                         }
                         else if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "heatmap")
                         {
-                            %>
-                            <div class="seat" style="width:24px; height: 24px; background-color: #<%= sat.User.UserType.DefaultColour %>; display: inline-block;"></div>   
-                            <%
+                            %><div class="seat" style="width:24px; height: 24px; background-color: #<%= sat.User.UserType.DefaultColour %>; display: inline-block;"></div><%
                         }
                         else
                         {
                             if (!String.IsNullOrEmpty((string)ViewData["searchTerm"]) && !sat.User.HasTag((string)ViewData["searchTerm"]))
                             {
-                            %><img class="seat" width="24" height="24" src="<%= Url.Content("~/Content/images/presentation/smiley.jpg") %>" /><%
-                                                                                                                                               }
+                                %><img class="seat" width="24" height="24" src="<%= Url.Content("~/Content/images/presentation/smiley.jpg") %>" /><%
+                            }
                             else
                             {
-                            %><img class="seat" width="24" height="24" src="<%= sat.User.ImageURL %>" /><%
-                                                                                                                                               }
+                                %><img class="seat" width="24" height="24" src="<%= sat.User.ImageURL %>" /><%
+                            }
                         }
                     }
                 } %>
