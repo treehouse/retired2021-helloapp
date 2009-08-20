@@ -3,6 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Seat Codes for <%= Html.ActionLink(Model.Name, "Seating", new { id = Model.EventID }) %></h2>
+    
+    <p>
+        
+    </p>
 
     <table>
         <tr>

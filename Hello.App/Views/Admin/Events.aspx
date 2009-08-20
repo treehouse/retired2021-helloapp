@@ -3,6 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Events</h2>
+    
+    <% if (ViewData["Message"] != null) { %>
+        <p><%= ViewData["Message"] %></p>
+    <% } %>
 
     <table>
         <tr>
