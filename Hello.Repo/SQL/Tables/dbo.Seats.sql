@@ -4,8 +4,9 @@ CREATE TABLE [dbo].[Seats]
 [Row] [int] NOT NULL,
 [Column] [int] NOT NULL,
 [EventID] [int] NOT NULL,
-[Code] [char] (5) COLLATE Latin1_General_CI_AS NOT NULL
+[Code] [char] (5) COLLATE Latin1_General_CI_AS NULL
 )
+
 
 
 ALTER TABLE [dbo].[Seats] ADD 
