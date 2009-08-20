@@ -27,12 +27,25 @@ namespace Hello.App.Controllers
             return View();
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Events()
         {
             var events = _repo.Events;
             return View(events);
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Events(Event theEvent)
+        {
+            _repo
+                .Events
+                .InsertOnSubmit(theEvent);
+            _repo.SubmitChanges();
+
+            return RedirectToAction("Events");
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Sessions(int id)
         {
             var theEvent = _repo
@@ -46,6 +59,25 @@ namespace Hello.App.Controllers
 
             var sessions = _repo.Sessions;
             return View(sessions);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Sessions(int id, Session session)
+        {
+            var theEvent = _repo
+                .Events
+                .SingleOrDefault(e => e.EventID == id);
+
+            if (theEvent == null)
+                return RedirectToAction("Events");
+
+            _repo
+                .Sessions
+                .InsertOnSubmit(session);
+
+            _repo.SubmitChanges();
+
+            return RedirectToAction("Sessions", new { id = theEvent.EventID });
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -214,6 +246,26 @@ namespace Hello.App.Controllers
             _repo.SubmitChanges();
 
             return RedirectToAction("Seating", new { id = theEvent.EventID });
+        }
+
+        public ActionResult Status()
+        {
+            var processedTweets = _repo
+                .QueuedTweets
+                .Count(t => t.Processed);
+            ViewData["ProcessedTweets"] = processedTweets;
+
+            var unprocessedTweets = _repo
+                .QueuedTweets
+                .Count(t => !t.Processed);
+            ViewData["UnprocessedTweets"] = unprocessedTweets;
+
+            var tideMarks = _repo
+                .TideMarks
+                .OrderByDescending(t => t.TimeStamp)
+                .Take(Settings.Admin.MaxTideMarks);
+
+            return View(tideMarks);
         }
 
         private string GenerateUniqueSeatCode(List<string> seatCodes, Random r)

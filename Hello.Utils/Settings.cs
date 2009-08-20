@@ -61,7 +61,7 @@ namespace Hello.Utils
 
         public static PointsConfig Points
         {
-            get { return PointsConfig.Get(); }
+            get { return new PointsConfig(); }
         }
 
         public class PointsConfig
@@ -80,16 +80,11 @@ namespace Hello.Utils
             {
                 get { return SettingsImplementation.GetInt("PointsForHiFive"); }
             }
-
-            public static PointsConfig Get()
-            {
-                return new PointsConfig();
-            }
         }
 
         public static PointsThresholds Thresholds
         {
-            get { return PointsThresholds.Get(); }
+            get { return new PointsThresholds(); }
         }
 
         public class PointsThresholds
@@ -113,10 +108,18 @@ namespace Hello.Utils
             {
                 get { return SettingsImplementation.GetInt("PointsThresholdDiamond"); }
             }
+        }
 
-            public static PointsThresholds Get()
+        public static AdminConfig Admin
+        {
+            get { return new AdminConfig(); }
+        }
+
+        public class AdminConfig
+        {
+            public int MaxTideMarks
             {
-                return new PointsThresholds();
+                get { return SettingsImplementation.GetInt("AdminMaxTideMarks"); }
             }
         }
     }
