@@ -45,6 +45,24 @@ namespace Hello.App.Controllers
             return RedirectToAction("Events");
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult DeleteEvent(int id)
+        {
+            var theEvent = _repo
+                .Events
+                .SingleOrDefault(c => c.EventID == id);
+
+            if (theEvent == null)
+                return RedirectToAction("Events");
+
+            _repo
+                .Events
+                .DeleteOnSubmit(theEvent);
+            _repo.SubmitChanges();
+
+            return RedirectToAction("Events");
+        }
+
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Sessions(int id)
         {
@@ -57,7 +75,9 @@ namespace Hello.App.Controllers
 
             ViewData["Event"] = theEvent;
 
-            var sessions = _repo.Sessions;
+            var sessions = _repo
+                .Sessions
+                .Where(s => s.EventID == theEvent.EventID);
             return View(sessions);
         }
 
@@ -137,11 +157,11 @@ namespace Hello.App.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Delete(int campaignID)
+        public ActionResult DeleteCampaign(int id)
         {
             var campaign = _repo
                 .Campaigns
-                .SingleOrDefault(c => c.CampaignID == campaignID);
+                .SingleOrDefault(c => c.CampaignID == id);
 
             if (campaign == null)
                 return RedirectToAction("Campaigns");

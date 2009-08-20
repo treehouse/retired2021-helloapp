@@ -35,8 +35,8 @@
                 <%= Html.ActionLink("Tokens", "Tokens", new { id = item.CampaignID }) %>
             </td>
             <td>
-                <% using (Html.BeginForm("Delete", "Admin")) { %>
-                    <%= Html.Hidden("campaignID", item.CampaignID)%>
+                <% using (Html.BeginForm("DeleteCampaign", "Admin")) { %>
+                    <%= Html.Hidden("id", item.CampaignID) %>
                     <input type="submit" value="Delete" />
                 <% } %>
             </td>
