@@ -184,6 +184,16 @@ namespace Hello.Bot
             {
                 Session session = sessions.First();
 
+                /*
+                 * If there's someone already in the seat then remove them from that seat.
+                 * There really should only be one of these, but this isn't enforced in DB so
+                 * clean all up just to be sure.
+                 */
+                var previousSitters = _repo.Sats
+                    .Where(s => s.SessionID == session.SessionID
+                    && s.SeatID == seat.SeatID);
+                _repo.Sats.DeleteAllOnSubmit(previousSitters);
+
                 Sat currentSat = _repo
                     .Sats
                     .Where(s => s.SessionID == session.SessionID
