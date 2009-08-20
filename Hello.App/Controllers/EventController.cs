@@ -72,11 +72,21 @@ namespace Hello.App.Controllers
                 .Where(t => t.User.Sats
                     .Any(s => s.SessionID == session.SessionID))
                 .GroupBy(t => t.Name)
-                .ToDictionary(t => t.Key, t => t.Count())
-                .OrderByDescending(t => t.Value)
-                .Take(Settings.MaxTags);
+                .OrderByDescending(t => t.Count())
+                .Take(Settings.MaxTags)
+                .ToList();
 
-            ViewData["Tags"] = tags;
+            var rankedTags = new Dictionary<string, string>();
+
+            var i = Settings.MaxTags;
+
+            foreach (var tag in tags)
+            {
+                rankedTags.Add(tag.Key, Settings.TagSizes[i--]);
+            }
+
+            ViewData["Tags"] = rankedTags;
+            ViewData["TagsKeys"] = rankedTags.Keys.OrderBy(t => t);
         }
 
         public ActionResult Search(string eventslug, string searchterm, string viewBy)

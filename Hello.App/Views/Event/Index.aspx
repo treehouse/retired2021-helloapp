@@ -32,36 +32,26 @@
 
 	<ul class="tagCloud">
 	
-	    <% if (ViewData["Tags"] != null && ((IEnumerable<KeyValuePair<string, int>>)ViewData["Tags"]).Any()) { %>
-	    
-	        <% foreach (var tag in (IEnumerable<KeyValuePair<string, int>>)ViewData["Tags"]) { %>
+	    <%
+            if (ViewData["Tags"] != null && ((Dictionary<string, string>)ViewData["Tags"]).Any()) {
+                
+                var tagKeys = (IEnumerable<string>)ViewData["TagsKeys"];
+                var tags = (Dictionary<string, string>)ViewData["Tags"];
+                foreach (var key in tagKeys) { %>
 	        
-                <li class="larger">
-                    <%= Html.ActionLink(tag.Key + " " + tag.Value, "Search", "Event", new { searchterm = tag.Key }, null)%>
+                <li class="<%= tags[key] %>">
+                    <%= Html.ActionLink(key, "Search", "Event", new { searchterm = key }, null)%>
                 </li>
             
 		    <% } %>
 		
-		<% }
-        else
-        { %>
+		<% } else { %>
 		
 	        <li class="large">
                 <%= Html.ActionLink("Nobody has checked in yet, why don't you?", "Faq", "Home", null, null, "instructionscheckin", null, null)%>
             </li>
         
 		<% } %>
-                
-	    <%--
-		    <li class="larger"><a href="#">PHP</a></li>
-		    <li class="small"><a href="#">Rails</a></li>
-		    <li class="smaller"><a href="#">Design</a></li>
-		    <li class="larger"><a href="#">Business</a></li>
-		    <li class="largest"><a href="#">CSS</a></li>
-		    <li class="smallest"><a href="#">Web</a></li>
-		    <li class="medium"><a href="#">Apps</a></li>
-		    <li class="large"><a href="#">Dev</a></li>
-		--%>
 		
 	</ul>
 
@@ -102,7 +92,7 @@
                         {
                             if (!String.IsNullOrEmpty((string)ViewData["searchTerm"]) && !sat.User.HasTag((string)ViewData["searchTerm"]))
                             {
-                                %><img class="seat" width="24" height="24" style="opacity:0.4;filter:alpha(opacity=40)" src="<%= Url.Content("~/Content/images/presentation/smiley.jpg") %>" /><%
+                                %><img class="seat" width="24" height="24" style="opacity:0.4;filter:alpha(opacity=40)" src="<%= sat.User.ImageURL %>" /><%
                             }
                             else
                             {

@@ -64,6 +64,25 @@ namespace Hello.Utils
             get { return SettingsImplementation.GetInt("MaxTags"); }
         }
 
+        public static Dictionary<int, string> TagSizes
+        {
+            get
+            {
+                return new Dictionary<int, string> {
+                    { 10, "largest" },
+                    { 9,  "larger" },
+                    { 8,  "large" },
+                    { 7,  "medium" },
+                    { 6,  "small" },
+                    { 5,  "smaller" },
+                    { 4,  "smallest" },
+                    { 3,  "smallest" },
+                    { 2,  "smallest" },
+                    { 1,  "smallest" }
+                };
+            }
+        }
+
         public static string EventSlugRegex
         {
             get { return @"[\w\-_]+"; }
