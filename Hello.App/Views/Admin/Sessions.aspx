@@ -2,7 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Sessions for <%= Html.ActionLink(((Event)ViewData["Event"]).Name, "Events") %></h2>
+    <% var theEvent = (Event)ViewData["Event"]; %>
+
+    <h2>Sessions for <%= Html.ActionLink(theEvent.Name, "Events") %></h2>
 
     <table>
         <tr>
@@ -51,7 +53,7 @@
     
     <% using (Html.BeginForm()) { %>
     
-        <%= Html.Hidden("EventID", ((Event)ViewData["Event"]).EventID) %>
+        <%= Html.Hidden("EventID", theEvent.EventID)%>
         <p>
             <label for="Name">Name:</label>
             <%= Html.TextBox("Name") %>

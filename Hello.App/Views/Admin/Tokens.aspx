@@ -27,10 +27,6 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.TokenID }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.TokenID })%>
-            </td>
-            <td>
                 <%= Html.Encode(item.TokenID) %>
             </td>
             <td>
@@ -52,20 +48,13 @@
     
     <% using (Html.BeginForm()) {%>
 
-        <p>
-            <label for="TokenID">TokenID:</label>
-            <%= Html.TextBox("TokenID") %>
-        </p>
-        <p>
-            <label for="CampaignID">CampaignID:</label>
-            <%= Html.TextBox("CampaignID") %>
-        </p>
+        <%= Html.Hidden("id", campaign.CampaignID)%>
         <p>
             <label for="Code">Code:</label>
             <%= Html.TextBox("Code") %>
         </p>
         <p>
-            <label for="AllowedRedemptions">AllowedRedemptions:</label>
+            <label for="AllowedRedemptions">Allowed Redemptions:</label>
             <%= Html.TextBox("AllowedRedemptions") %>
         </p>
         <p>
