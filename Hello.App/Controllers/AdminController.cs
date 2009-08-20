@@ -326,6 +326,18 @@ namespace Hello.App.Controllers
             return RedirectToAction("Seating", new { id = theEvent.EventID });
         }
 
+        public ActionResult SeatCodes(int id)
+        {
+            var theEvent = _repo
+                .Events
+                .SingleOrDefault(e => e.EventID == id);
+
+            if (theEvent == null)
+                return RedirectToAction("Events");
+            
+            return View(theEvent);
+        }
+
         public ActionResult Status()
         {
             var processedTweets = _repo

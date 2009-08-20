@@ -2,11 +2,20 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Seating for <%= Html.ActionLink(((Event)ViewData["Event"]).Name, "Events") %></h2>
+    <% var theEvent = (Event)ViewData["Event"]; %>
+    <% var seatingPlan = (string)ViewData["SeatingPlan"]; %>
+
+    <h2>Seating for <%= Html.ActionLink(theEvent.Name, "Events") %></h2>
     
-    <h3>Current Seating Plan</h3>
+    <% if (seatingPlan.Length > 0) { %>
     
-    <pre><%= (string)ViewData["SeatingPlan"] %></pre>
+        <h3>Current Seating Plan</h3>
+        
+        <pre><%= seatingPlan %></pre>
+        
+        <%= Html.ActionLink("Seat Codes", "SeatCodes", new { id = theEvent.EventID }) %>
+    
+    <% } %>
     
     <h3>New Seating Plan</h3>
     
@@ -21,7 +30,7 @@
     <% using (Html.BeginForm()) { %>
     
         <p>
-            <%= Html.TextArea("seating", (string)ViewData["SeatingPlan"], 30, 120, null) %>
+            <%= Html.TextArea("seating", seatingPlan, 30, 120, null) %>
         </p>
         <p>
             <input type="submit" value="Ok" />
