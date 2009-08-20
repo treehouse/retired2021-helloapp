@@ -122,8 +122,9 @@ namespace Hello.Bot
                 /*
                  * You can only Hi5 each person once per event and there is a total cap of hifives per person per event
                  */
-                if (_repo.HiFives.Where(h => h.HiFiver == user.Username).Count() < currentEvent.HiFiveLimit &&
-                    _repo.HiFives.Where(h => h.HiFiver == user.Username && h.EventID == currentEvent.EventID).Count() == 0)
+                if (_repo.HiFives.Where(h => h.HiFiver == user.Username && h.EventID == currentEvent.EventID).Count() < currentEvent.HiFiveLimit 
+                    && _repo.HiFives.Where(h => h.HiFiver == user.Username && h.EventID == currentEvent.EventID 
+                        && h.HiFivee == tweet.Friend).Count() == 0)
                 {
                     User hiFivee = EnsureUser(tweet.Friend);
 
