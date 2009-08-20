@@ -187,7 +187,8 @@ body {
 }
 
 .seating {
-	position:relative;
+	text-align:center;
+	padding-bottom:30px;
 }
 
 .randomAvatars {
@@ -554,37 +555,19 @@ body.confDay form#search input#submit:hover {
 
 /* Seating Plan __________________________________________________________ */
 
-table.seatingPlan {
-	float:left;
-	margin:0px 41px 40px 0px;
+.seating .row {
+	height: 25px;
 }
 
-table.seatingPlan3,
-table.seatingPlan4  {
-	margin:0px 0px 40px 0px;
+.seating .row img.space {
+	margin-left:1px;
+	margin-bottom:1px;
 }
 
-table.seatingPlan tr {
-
-}
-
-table.seatingPlan td,
-table.seatingPlan3 td,
-table.seatingPlan4 td {
-	width:24px;
-	height:24px;
-	border-right:1px solid #ebe7d5;
+.seating .row img.seat {
+	border-left:1px solid #ebe7d5;
 	border-bottom:1px solid #ebe7d5;
-	background:url(../images/presentation/smiley.jpg) top left no-repeat;
 }
-
-table.seatingPlan4  {
-	position:relative;
-	top:0;
-	left:240px;
-}
-
-
 
 
 

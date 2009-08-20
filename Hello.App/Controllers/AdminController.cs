@@ -134,7 +134,25 @@ namespace Hello.App.Controllers
 
             ViewData["Event"] = theEvent;
 
-            return View(theEvent.Seats);
+            // Visual representation of the seating plan
+            var seatingPlan = String.Empty;
+
+            foreach (var row in theEvent.Seats.GroupBy(s => s.Row))
+            {
+
+                foreach (var seat in row)
+                {
+                    if (seat.Code == null)
+                        seatingPlan += ".";
+                    else
+                        seatingPlan += "x";
+                }
+                seatingPlan += Environment.NewLine;
+            }
+
+            ViewData["SeatingPlan"] = seatingPlan;
+
+            return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -179,6 +197,11 @@ namespace Hello.App.Controllers
             }
 
             // Delete the old seating plan
+            _repo
+                .Sats
+                .DeleteAllOnSubmit(theEvent
+                    .Seats
+                    .SelectMany(s => s.Sats));
             _repo
                 .Seats
                 .DeleteAllOnSubmit(theEvent.Seats);

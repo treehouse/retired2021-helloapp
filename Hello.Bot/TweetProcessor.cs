@@ -275,7 +275,7 @@ namespace Hello.Bot
             return user;
         }
 
-        private void ProcessTweet(User user, MetTweet tweet)
+        public void ProcessTweet(User user, MetTweet tweet)
         {
             List<string> befriendees = user.Befrienders.Select(f => f.Befriendee).ToList();
 
