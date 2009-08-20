@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Admin.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Seat>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Admin.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -6,38 +6,14 @@
     
     <h3>Current Seating Plan</h3>
     
-    <table>
-        
-        <% foreach (var row in Model.GroupBy(s => s.Row)) { %>
-    	
-	        <tr>
-    	    
-	            <% foreach (var seat in row) { %>
-    	        
-    	            <td>
-    	            
-	                    <% if (seat.Code == null) { %>
-	                        .
-	                    <% } else { %>
-	                        x
-                        <% } %>
-                    
-                    </td>
-    	        
-                <% } %>
-                
-            </tr>
-    	        
-	    <% } %>
-	
-	</table>
+    <pre><%= (string)ViewData["SeatingPlan"] %></pre>
     
     <h3>New Seating Plan</h3>
     
     <% using (Html.BeginForm()) { %>
     
         <p>
-            <%= Html.TextArea("seating", String.Empty, 30, 120, null) %>
+            <%= Html.TextArea("seating", (string)ViewData["SeatingPlan"], 30, 120, null) %>
         </p>
         <p>
             <input type="submit" value="Ok" />

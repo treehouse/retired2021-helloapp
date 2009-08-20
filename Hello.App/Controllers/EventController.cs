@@ -43,6 +43,13 @@ namespace Hello.App.Controllers
             ViewData["Message"] = messages.FirstOrDefault();
             ViewData["Messages"] = messages;
 
+            // Who is sitting where?
+            var sats = _repo
+                .Sats
+                .Where(s => s.Session.EventID == theEvent.EventID);
+
+            ViewData["Sats"] = sats;
+
             // Get the tags for this event
             var tags = _repo
                 .Tags

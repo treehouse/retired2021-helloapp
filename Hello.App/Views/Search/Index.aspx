@@ -3,20 +3,24 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
     
     <script type="text/javascript">
-        $(function() {
+        $(fetchTweets);
+
+        function fetchTweets() {
             $(".bio").each(function(i, item) {
                 var username = $('.username', item).text();
-                $.getJSON('http://twitter.com/statuses/user_timeline/' +
+                if ($('#latestTweet' + username + ':visible', item).size() > 0) {
+                    $.getJSON('http://twitter.com/statuses/user_timeline/' +
                     username +
                     '.json?count=1&callback=?',
                     function(tweets) {
                         $('#latestTweet' +
                             tweets[0].user.screen_name.toLowerCase())
                                 .text(tweets[0].text);
-                    }
-                );
+                        }
+                    );
+                }
             });
-        });
+        }
     </script>
     
 </asp:Content>
@@ -52,7 +56,8 @@
                        new ViewDataDictionary
                        {
                            { "Stripe", (stripe = !stripe) },
-                           { "UserTypes", ViewData["UserTypes"] }
+                           { "UserTypes", ViewData["UserTypes"] },
+                           { "DelayTweetLoad", true }
                        }); %>
             
             <% } %>

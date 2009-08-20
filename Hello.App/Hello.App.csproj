@@ -166,12 +166,15 @@
     <Content Include="Views\Shared\User.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\presentation\spacer.gif" />
+    <Content Include="Content\styles\Admin.css" />
     <Content Include="Views\Account\LogOn.aspx" />
     <Content Include="Views\Admin\Campaigns.aspx" />
     <Content Include="Views\Admin\Events.aspx" />
     <Content Include="Views\Admin\Messages.aspx" />
     <Content Include="Views\Admin\Seating.aspx" />
     <Content Include="Views\Admin\Sessions.aspx" />
+    <Content Include="Views\Admin\Status.aspx" />
     <Content Include="Views\Admin\Tokens.aspx" />
     <Content Include="Views\Shared\Admin.Master" />
   </ItemGroup>

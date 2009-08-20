@@ -18,6 +18,7 @@
             <th>
                 Finish
             </th>
+            <th></th>
         </tr>
 
     <% foreach (var item in Model) { %>
@@ -35,17 +36,22 @@
             <td>
                 <%= Html.Encode(String.Format("{0:g}", item.Finish)) %>
             </td>
+            <td>
+                <% using (Html.BeginForm("DeleteSession", "Admin", new { id = item.SessionID })) { %>
+                    <input type="submit" value="Delete" />
+                <% } %>
+            </td>
         </tr>
     
     <% } %>
 
     </table>
     
-    <h3>Create a new Session</h3>
+    <h3>Create a Session</h3>
     
     <% using (Html.BeginForm()) { %>
     
-        <%= Html.Hidden("EventID", ViewData["EventID"]) %>
+        <%= Html.Hidden("EventID", ((Event)ViewData["Event"]).EventID) %>
         <p>
             <label for="Name">Name:</label>
             <%= Html.TextBox("Name") %>

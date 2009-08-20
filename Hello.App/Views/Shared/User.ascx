@@ -5,7 +5,12 @@
         <img height="73px" src="<%= Model.ImageURL %>" alt="<%= Model.Username %>" />
         <div class="bio">
             <p>@<a class="username" href="http://twitter.com/<%= Model.Username %>"><%= Model.Username%></a></p>
+            <% if (ViewData["DelayTweetLoad"] == null || (bool)ViewData["DelayTweetLoad"] == false) { %>
             <p id="latestTweet<%= Model.Username %>">Loading...</p>
+            <% } else { %>
+            <p id="latestTweet<%= Model.Username %>" style="display: none">Loading...</p>
+            <p id="showTweet<%= Model.Username %>" style="cursor:pointer; text-decoration: underline" onclick="$('#latestTweet<%= Model.Username %>').show(); $('#showTweet<%= Model.Username %>').hide(); fetchTweets()">View latest tweet</p>
+            <% } %>
         </div>
     </div>
     <ul class="profilebadges">

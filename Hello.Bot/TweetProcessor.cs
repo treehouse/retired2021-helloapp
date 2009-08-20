@@ -304,6 +304,9 @@ namespace Hello.Bot
                         CreditPoints(friendUser, 10, "Mutual meeting");
                     }
                 }
+
+                // Submit changes up to this point as we need to be ready to recognise reflexive meetings in the same batch.
+                _repo.SubmitChanges();
             }
         }
 

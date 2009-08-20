@@ -27,12 +27,43 @@ namespace Hello.App.Controllers
             return View();
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Events()
         {
             var events = _repo.Events;
             return View(events);
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Events(Event theEvent)
+        {
+            _repo
+                .Events
+                .InsertOnSubmit(theEvent);
+            _repo.SubmitChanges();
+
+            return RedirectToAction("Events");
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult DeleteEvent(int id)
+        {
+            var theEvent = _repo
+                .Events
+                .SingleOrDefault(c => c.EventID == id);
+
+            if (theEvent == null)
+                return RedirectToAction("Events");
+
+            _repo
+                .Events
+                .DeleteOnSubmit(theEvent);
+            _repo.SubmitChanges();
+
+            return RedirectToAction("Events");
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Sessions(int id)
         {
             var theEvent = _repo
@@ -44,8 +75,47 @@ namespace Hello.App.Controllers
 
             ViewData["Event"] = theEvent;
 
-            var sessions = _repo.Sessions;
+            var sessions = _repo
+                .Sessions
+                .Where(s => s.EventID == theEvent.EventID);
             return View(sessions);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Sessions(int id, Session session)
+        {
+            var theEvent = _repo
+                .Events
+                .SingleOrDefault(e => e.EventID == id);
+
+            if (theEvent == null)
+                return RedirectToAction("Events");
+
+            _repo
+                .Sessions
+                .InsertOnSubmit(session);
+
+            _repo.SubmitChanges();
+
+            return RedirectToAction("Sessions", new { id = theEvent.EventID });
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult DeleteSession(int id)
+        {
+            var session = _repo
+                .Sessions
+                .SingleOrDefault(s => s.SessionID == id);
+
+            if (session == null)
+                return RedirectToAction("Events");
+
+            _repo
+                .Sessions
+                .DeleteOnSubmit(session);
+            _repo.SubmitChanges();
+
+            return RedirectToAction("Sessions", new { id = session.EventID });
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -105,11 +175,11 @@ namespace Hello.App.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Delete(int campaignID)
+        public ActionResult DeleteCampaign(int id)
         {
             var campaign = _repo
                 .Campaigns
-                .SingleOrDefault(c => c.CampaignID == campaignID);
+                .SingleOrDefault(c => c.CampaignID == id);
 
             if (campaign == null)
                 return RedirectToAction("Campaigns");
@@ -134,7 +204,25 @@ namespace Hello.App.Controllers
 
             ViewData["Event"] = theEvent;
 
-            return View(theEvent.Seats);
+            // Visual representation of the seating plan
+            var seatingPlan = String.Empty;
+
+            foreach (var row in theEvent.Seats.GroupBy(s => s.Row))
+            {
+
+                foreach (var seat in row)
+                {
+                    if (seat.Code == null)
+                        seatingPlan += ".";
+                    else
+                        seatingPlan += "x";
+                }
+                seatingPlan += Environment.NewLine;
+            }
+
+            ViewData["SeatingPlan"] = seatingPlan;
+
+            return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -180,6 +268,11 @@ namespace Hello.App.Controllers
 
             // Delete the old seating plan
             _repo
+                .Sats
+                .DeleteAllOnSubmit(theEvent
+                    .Seats
+                    .SelectMany(s => s.Sats));
+            _repo
                 .Seats
                 .DeleteAllOnSubmit(theEvent.Seats);
 
@@ -191,6 +284,26 @@ namespace Hello.App.Controllers
             _repo.SubmitChanges();
 
             return RedirectToAction("Seating", new { id = theEvent.EventID });
+        }
+
+        public ActionResult Status()
+        {
+            var processedTweets = _repo
+                .QueuedTweets
+                .Count(t => t.Processed);
+            ViewData["ProcessedTweets"] = processedTweets;
+
+            var unprocessedTweets = _repo
+                .QueuedTweets
+                .Count(t => !t.Processed);
+            ViewData["UnprocessedTweets"] = unprocessedTweets;
+
+            var tideMarks = _repo
+                .TideMarks
+                .OrderByDescending(t => t.TimeStamp)
+                .Take(Settings.Admin.MaxTideMarks);
+
+            return View(tideMarks);
         }
 
         private string GenerateUniqueSeatCode(List<string> seatCodes, Random r)
