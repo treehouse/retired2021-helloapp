@@ -400,7 +400,7 @@ a.joinInSticker:hover {
 	font-size:140%;
 }
 
-#search input#submit {
+#search input#submitBtn {
 	float:left;
 	background:url(../images/presentation/mag_glass.png) top left no-repeat;
 	display: block;
@@ -412,7 +412,7 @@ a.joinInSticker:hover {
 	text-indent:-9999px;
 }
 
-#search input#submit:hover {
+#search input#submitBtn:hover {
 	background:url(../images/presentation/mag_glass.png) 0px -60px no-repeat;
 }
 
@@ -533,7 +533,7 @@ body.confDay #search #searchTerm {
 	font-size: 80%;
 }
 
-body.confDay #search input#submit {
+body.confDay #search input#submitBtn {
 	float:left;
 	background:url(../images/presentation/conf_day_mag_glass.png) top left no-repeat;
 	display: block;
@@ -545,7 +545,7 @@ body.confDay #search input#submit {
 	text-indent:-9999px;
 }
 
-body.confDay #search input#submit:hover {
+body.confDay #search input#submitBtn:hover {
 	background-position: left -35px;
 }
 
@@ -564,7 +564,7 @@ body.confDay #search input#submit:hover {
 	margin-bottom:1px;
 }
 
-.seating .row img.seat {
+.seating .row .seat {
 	border-left:1px solid #ebe7d5;
 	border-bottom:1px solid #ebe7d5;
 }
@@ -864,7 +864,7 @@ form#tags #tag3 {
 	font-size:130%;
 }
 
-form#tags input#submit {
+form#tags input#submitBtn {
 	position:absolute;
 	top:76px;
 	left:288px;
@@ -879,7 +879,7 @@ form#tags input#submit {
 	text-indent:-9999px;
 }
 
-form#tags input#submit:hover {
+form#tags input#submitBtn:hover {
 	background:url(../images/presentation/im_in.png) 0px -120px no-repeat;
 }
 

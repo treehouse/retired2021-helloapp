@@ -38,7 +38,7 @@
                     <p><input type="text" id="tag1" name="tag1" value="" /></p>
                     <p><input type="text" id="tag2" name="tag2" value="" /></p>
                     <p><input type="text" id="tag3" name="tag3" value="" /></p>
-                    <p><input type="submit" id="submit" name="submit" value="Submit" /></p>
+                    <p><input type="submit" id="submitBtn" name="submitBtn" value="Submit" /></p>
                 <% } %>
             </div>
         </div>

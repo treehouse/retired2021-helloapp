@@ -21,8 +21,10 @@
     
     <div class="generalContent">
     
+    <% using (Html.BeginForm("Search", "Event", FormMethod.Get, new { id = "searchForm" }))
+       { %>
     <div id="filter">
-    	<select id="viewBy" name="viewBy">
+    	<select onchange="this.form.submit()" id="viewBy" name="viewBy">
 			<option value="twitter">View Twitter Icons</option>
 			<option value="heatmap">View Heat Map</option>
 		</select>
@@ -30,9 +32,11 @@
 
 	<ul class="tagCloud">
 	
-	    <% if (ViewData["Tags"] != null && ((IQueryable<Tag>)ViewData["Tags"]).Any()) { %>
+	    <% if (ViewData["Tags"] != null && ((IQueryable<Tag>)ViewData["Tags"]).Any())
+        { %>
 	    
-	        <% foreach (var tag in (IQueryable<Tag>)ViewData["Tags"]) { %>
+	        <% foreach (var tag in (IQueryable<Tag>)ViewData["Tags"])
+            { %>
             
                 <li class="larger">
                     <%= Html.ActionLink(tag.Name, "Search", "Event", new { searchterm = tag.Name }, null)%>
@@ -40,10 +44,12 @@
             
 		    <% } %>
 		
-		<% } else { %>
+		<% }
+        else
+        { %>
 		
 	        <li class="large">
-                <%= Html.ActionLink("Nobody has checked in yet, why don't you?", "Faq", "Home", null, null, "instructionscheckin", null, null) %>
+                <%= Html.ActionLink("Nobody has checked in yet, why don't you?", "Faq", "Home", null, null, "instructionscheckin", null, null)%>
             </li>
         
 		<% } %>
@@ -61,10 +67,9 @@
 		
 	</ul>
 
-    <% using (Html.BeginForm("Search", "Event", FormMethod.Get)) { %>
     <div id="search">
     <p><label>Search:</label><input type="text" id="searchTerm" name="searchTerm" value="<%=Html.Encode(ViewData["SearchTerm"])%>" /></p>
-    <p><input type="submit" id="submit" name="submit" value="Submit" /></p>
+    <p><input type="submit" id="submitBtn" name="submitBtn" value="Submit" /></p>
     </div>
     <% } %>
     </div>
@@ -87,14 +92,28 @@
                     else
                     {
                         var sat = sats.SingleOrDefault(s => s.SeatID == seat.SeatID);
-
-                        if (sat == null || (!String.IsNullOrEmpty((string)ViewData["searchTerm"]) && !sat.User.HasTag((string)ViewData["searchTerm"])))
+                        if (sat == null)
                         {
-                            %><img class="seat" width="24" height="24" src="<%= Url.Content("~/Content/images/presentation/smiley.jpg") %>" /><%
+                            %>
+                            <img class="seat" width="24" height="24" src="<%= Url.Content("~/Content/images/presentation/smiley.jpg") %>" />
+                            <%
+                        }
+                        else if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "heatmap")
+                        {
+                            %>
+                            <div class="seat" style="width:24px; height: 24px; background-color: #<%= sat.User.UserType.DefaultColour %>; display: inline-block;"></div>   
+                            <%
                         }
                         else
                         {
+                            if (!String.IsNullOrEmpty((string)ViewData["searchTerm"]) && !sat.User.HasTag((string)ViewData["searchTerm"]))
+                            {
+                            %><img class="seat" width="24" height="24" src="<%= Url.Content("~/Content/images/presentation/smiley.jpg") %>" /><%
+                                                                                                                                               }
+                            else
+                            {
                             %><img class="seat" width="24" height="24" src="<%= sat.User.ImageURL %>" /><%
+                                                                                                                                               }
                         }
                     }
                 } %>

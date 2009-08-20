@@ -66,9 +66,10 @@ namespace Hello.App.Controllers
             ViewData["Tags"] = tags;
         }
 
-        public ActionResult Search(string eventslug, string searchterm)
+        public ActionResult Search(string eventslug, string searchterm, string viewBy)
         {
             ViewData["SearchTerm"] = searchterm;
+            ViewData["ViewBy"] = viewBy;
 
             var theEvent = _repo
                 .Events
