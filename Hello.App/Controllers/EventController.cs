@@ -50,10 +50,19 @@ namespace Hello.App.Controllers
             ViewData["Message"] = messages.FirstOrDefault();
             ViewData["Messages"] = messages;
 
+            // Get the last session that has started
+            var session = _repo
+                .Sessions
+                .Where(s => s.EventID == theEvent.EventID
+                        && s.Start < DateTime.Now)
+                .OrderByDescending(s => s.Start)
+                .FirstOrDefault();
+
             // Who is sitting where?
             var sats = _repo
                 .Sats
-                .Where(s => s.Session.EventID == theEvent.EventID);
+                .Where(s => s.Session.EventID == theEvent.EventID
+                        && s.SessionID == session.SessionID);
 
             ViewData["Sats"] = sats;
 
@@ -61,7 +70,8 @@ namespace Hello.App.Controllers
             var tags = _repo
                 .Tags
                 .Where(t => t.User.Sats
-                    .Any(s => s.Seat.EventID == theEvent.EventID));
+                    .Any(s => s.SessionID == session.SessionID))
+                .GroupBy(t => t.Name);
 
             ViewData["Tags"] = tags;
         }
