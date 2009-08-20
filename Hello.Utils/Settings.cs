@@ -59,6 +59,11 @@ namespace Hello.Utils
             get { return SettingsImplementation.GetInt("MaxMessages"); }
         }
 
+        public static int MaxTags
+        {
+            get { return SettingsImplementation.GetInt("MaxTags"); }
+        }
+
         public static string EventSlugRegex
         {
             get { return @"[\w\-_]+"; }

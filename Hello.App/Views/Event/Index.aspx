@@ -30,12 +30,12 @@
 
 	<ul class="tagCloud">
 	
-	    <% if (ViewData["Tags"] != null && ((IQueryable<Tag>)ViewData["Tags"]).Any()) { %>
+	    <% if (ViewData["Tags"] != null && ((Dictionary<string, int>)ViewData["Tags"]).Any()) { %>
 	    
-	        <% foreach (var tag in (IQueryable<Tag>)ViewData["Tags"]) { %>
+	        <% foreach (var tag in (Dictionary<string, int>)ViewData["Tags"]) { %>
             
                 <li class="larger">
-                    <%= Html.ActionLink(tag.Name, "Search", "Event", new { searchterm = tag.Name }, null)%>
+                    <%= Html.ActionLink(tag.Key + " " + tag.Value, "Search", "Event", new { searchterm = tag.Key }, null)%>
                 </li>
             
 		    <% } %>

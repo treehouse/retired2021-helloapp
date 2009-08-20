@@ -71,7 +71,10 @@ namespace Hello.App.Controllers
                 .Tags
                 .Where(t => t.User.Sats
                     .Any(s => s.SessionID == session.SessionID))
-                .GroupBy(t => t.Name);
+                .GroupBy(t => t.Name)
+                .ToDictionary(t => t.Key, t => t.Count())
+                .OrderByDescending(t => t.Value)
+                .Take(Settings.MaxTags);
 
             ViewData["Tags"] = tags;
         }
