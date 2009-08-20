@@ -33,17 +33,43 @@ namespace Hello.Tests
         public void ProcessHiFiveTweet()
         {
             //Arrange
+            TestHelperMethods.SetupTestEvent(repo);
+            
             var hiFive = new HiFiveTweet("benadderson");
-            var thatismatt = repo.Users.Where(u => u.Username == "thatismatt").First();
+            var hiFivingUser = repo.Users.Where(u => u.Username == "thatismatt").First();
 
             //Act
-            processor.ProcessTweet(thatismatt,hiFive);
+            processor.ProcessTweet(hiFivingUser,hiFive);
             repo.SubmitChanges();
 
-            HiFive storedTweet = repo.HiFives.Where(hf => hf.HiFiver == "thatismatt" &&
-                                                  hf.HiFivee == "benadderson").First();
+            HiFive storedTweet; 
+
             //Assert
+            storedTweet = repo.HiFives.Where(hf => hf.HiFiver == hiFivingUser.Username &&
+                                                       hf.HiFivee == "benadderson").First();
             Assert.NotNull(storedTweet);
+        }
+
+        [Fact]
+        [AutoRollback]
+        public void CantHiFiveYourself()
+        {
+            //Arrange
+            TestHelperMethods.SetupTestEvent(repo);
+
+            var hiFive = new HiFiveTweet("benadderson");
+            var hiFivingUser = repo.Users.Where(u => u.Username == "benadderson").First();
+
+            //Act
+            processor.ProcessTweet(hiFivingUser, hiFive);
+            repo.SubmitChanges();
+
+            HiFive storedTweet;
+
+            //Assert
+            Assert.Throws<InvalidOperationException>(
+                    () => storedTweet = repo.HiFives.Where(hf => hf.HiFiver == hiFivingUser.Username &&
+                                                                 hf.HiFivee == "benadderson").First());
         }
 
         [Fact]
@@ -76,16 +102,62 @@ namespace Hello.Tests
 
         [Fact]
         [AutoRollback]
-        public void ProcessHelloTweet()
+        public void ProcessHelloTweetForExistingUser()
         {
             //Arrange
-            throw new NotImplementedException();
+            TestHelperMethods.SetupTestEvent(repo);
+            var tags = new List<string> {"c#", "jquery", "dotnet"};
+            var hello = new HelloTweet {Tags = tags, UserType = "dev" };
+            var helloUser = repo.Users.Where(u => u.Username == "thatismatt").First();
+            var oldTags = repo.Tags.Where(t => t.Username == "thatismatt").Select(t => t.Name).AsEnumerable();
 
             //Act
-
+            processor.ProcessTweet(helloUser, hello);
+            repo.SubmitChanges();
 
             //Assert
-						 
+            var newTags = repo.Tags.Where(t => t.Username == "thatismatt").Select(t => t.Name).AsEnumerable();
+            var storedUser = repo.Users.Where(u => u.Username == "thatismatt").First();
+            Assert.True(storedUser.UserType.Name == "Dev");
+            Assert.Contains("c#", newTags);
+            Assert.Contains("jquery", newTags);
+            Assert.Contains("dotnet", newTags);
+
+            foreach (var tag in oldTags)
+            {
+                Assert.DoesNotContain(tag, newTags);
+            }
+        }
+
+        [Fact]
+        [AutoRollback]
+        public void ProcessHelloTweetForNewUser()
+        {
+            //Arrange
+            TestHelperMethods.SetupTestEvent(repo);
+            var tags = new List<string> { "c#", "sql", "vb" };
+            var hello = new HelloTweet { Tags = tags, UserType = "biz" };
+            var helloUser = new User
+                                {
+                                    Username = "newUser",
+                                    Created = DateTime.Now,
+                                    Updated = DateTime.Now,
+                                    ImageURL = "URL"
+                                };
+            repo.Users.InsertOnSubmit(helloUser);
+            repo.SubmitChanges();
+            
+            //Act
+            processor.ProcessTweet(helloUser, hello);
+            repo.SubmitChanges();
+
+            //Assert
+            var Tags = repo.Tags.Where(t => t.Username == "newUser").Select(t => t.Name).AsEnumerable();
+            var storedUser = repo.Users.Where(u => u.Username == "newUser").First();
+            Assert.True(storedUser.UserType.Name == "Biz");
+            Assert.Contains("c#", Tags);
+            Assert.Contains("sql", Tags);
+            Assert.Contains("vb", Tags);
         }
 
         [Fact]

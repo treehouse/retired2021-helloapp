@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Hello.Repo;
 using Hello.Utils;
+using System.Text;
 
 namespace Hello.App.Controllers
 {
@@ -36,7 +37,10 @@ namespace Hello.App.Controllers
         {
             var theEvent = _repo
                 .Events
-                .Single(e => e.EventID == id);
+                .SingleOrDefault(e => e.EventID == id);
+
+            if (theEvent == null)
+                return RedirectToAction("Events");
 
             ViewData["Event"] = theEvent;
 
@@ -57,6 +61,7 @@ namespace Hello.App.Controllers
             var message = _repo
                 .Messages
                 .SingleOrDefault(m => m.Username == username);
+
             if (message != null)
             {
                 message.Offensive = !message.Offensive;
@@ -87,6 +92,9 @@ namespace Hello.App.Controllers
                 .Campaigns
                 .SingleOrDefault(c => c.CampaignID == id);
 
+            if (campaign == null)
+                return RedirectToAction("Campaigns");
+
             ViewData["Campaign"] = campaign;
 
             var tokens = _repo
@@ -102,6 +110,10 @@ namespace Hello.App.Controllers
             var campaign = _repo
                 .Campaigns
                 .SingleOrDefault(c => c.CampaignID == campaignID);
+
+            if (campaign == null)
+                return RedirectToAction("Campaigns");
+
             _repo
                 .Campaigns
                 .DeleteOnSubmit(campaign);
@@ -115,37 +127,99 @@ namespace Hello.App.Controllers
         {
             var theEvent = _repo
                 .Events
-                .Single(e => e.EventID == id);
+                .SingleOrDefault(e => e.EventID == id);
+
+            if (theEvent == null)
+                return RedirectToAction("Events");
 
             ViewData["Event"] = theEvent;
 
-            return View();
+            return View(theEvent.Seats);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Seating(int id, string seating)
         {
+            // Get Event
+            var theEvent = _repo
+                .Events
+                .SingleOrDefault(e => e.EventID == id);
+
+            if (theEvent == null)
+                return RedirectToAction("Events");
+
             var rows = seating.Split(new [] { Environment.NewLine }, StringSplitOptions.None);
 
-            // get session
+            var seats = new List<Seat>();
+            var seatCodes = new List<string>();
+            var random = new Random();
 
-            foreach (var row in rows)
+            for (int i = 0; i < rows.Count(); i++)
             {
-                // new row
+                var row = rows[i].ToLower();
 
-                foreach (var seat in row)
+                for (int j = 0; j < row.Length; j++)
                 {
-                    // new seat
+                    var seatChar = row[j];
 
-                    // add seat to row
+                    var seat = new Seat { Row = i, Column = j, EventID = theEvent.EventID };
+                    seats.Add(seat);
+
+                    switch (seatChar)
+                    {
+                        case 'x':
+                            seat.Code = GenerateUniqueSeatCode(seatCodes, random);
+                            break;
+                        case '.':
+                            break;
+                        default:
+                            break;
+                    }
                 }
-
-                // add row to session
             }
 
-            //_repo.SubmitChanges();
-            
-            return View();
+            // Delete the old seating plan
+            _repo
+                .Seats
+                .DeleteAllOnSubmit(theEvent.Seats);
+
+            // Insert the new seating plan
+            _repo
+                .Seats
+                .InsertAllOnSubmit(seats);
+
+            _repo.SubmitChanges();
+
+            return RedirectToAction("Seating", new { id = theEvent.EventID });
+        }
+
+        private string GenerateUniqueSeatCode(List<string> seatCodes, Random r)
+        {
+            var code = String.Empty;
+            do
+            {
+                code = GenerateSeatCode(r);
+            }
+            while (seatCodes.Contains(code));
+
+            seatCodes.Add(code);
+
+            return code;
+        }
+
+        private static string GenerateSeatCode(Random r)
+        {
+            var code = new StringBuilder(5);
+
+            for (int i = 0; i < 5; i++)
+            {
+                var c = r.Next(36) + 48;
+                if (c > 57)
+                    c += 7;
+                code.Append((char)c);
+            }
+
+            return code.ToString();
         }
     }
 }
