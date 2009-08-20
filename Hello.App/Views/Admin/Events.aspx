@@ -73,27 +73,22 @@
         <p>
             <label for="Name">Name:</label>
             <%= Html.TextBox("Name") %>
-            <%= Html.ValidationMessage("Name", "*") %>
         </p>
         <p>
             <label for="Slug">Slug:</label>
             <%= Html.TextBox("Slug") %>
-            <%= Html.ValidationMessage("Slug", "*") %>
         </p>
         <p>
             <label for="Start">Start:</label>
             <%= Html.TextBox("Start") %>
-            <%= Html.ValidationMessage("Start", "*") %>
         </p>
         <p>
             <label for="End">End:</label>
             <%= Html.TextBox("End") %>
-            <%= Html.ValidationMessage("End", "*") %>
         </p>
         <p>
             <label for="HiFiveLimit">Hi5 Limit:</label>
             <%= Html.TextBox("HiFiveLimit") %>
-            <%= Html.ValidationMessage("HiFiveLimit", "*") %>
         </p>
         <p>
             <input type="submit" value="Create" />

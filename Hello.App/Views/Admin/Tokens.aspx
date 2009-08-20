@@ -49,6 +49,30 @@
     </table>
     
     <h3>Create a Token</h3>
+    
+    <% using (Html.BeginForm()) {%>
+
+        <p>
+            <label for="TokenID">TokenID:</label>
+            <%= Html.TextBox("TokenID") %>
+        </p>
+        <p>
+            <label for="CampaignID">CampaignID:</label>
+            <%= Html.TextBox("CampaignID") %>
+        </p>
+        <p>
+            <label for="Code">Code:</label>
+            <%= Html.TextBox("Code") %>
+        </p>
+        <p>
+            <label for="AllowedRedemptions">AllowedRedemptions:</label>
+            <%= Html.TextBox("AllowedRedemptions") %>
+        </p>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+
+    <% } %>
 
 </asp:Content>
 

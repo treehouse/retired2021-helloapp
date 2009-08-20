@@ -55,17 +55,14 @@
         <p>
             <label for="Name">Name:</label>
             <%= Html.TextBox("Name") %>
-            <%= Html.ValidationMessage("Name", "*") %>
         </p>
         <p>
             <label for="Start">Start:</label>
             <%= Html.TextBox("Start") %>
-            <%= Html.ValidationMessage("Start", "*") %>
         </p>
         <p>
             <label for="Finish">Finish:</label>
             <%= Html.TextBox("Finish") %>
-            <%= Html.ValidationMessage("Finish", "*") %>
         </p>
         <p>
             <input type="submit" value="Create" />
