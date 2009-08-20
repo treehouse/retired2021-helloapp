@@ -8,6 +8,11 @@ table
 	border-collapse: collapse;
 }
 
+th
+{
+	text-align: left;
+}
+
 td
 {
 	border-top: solid 1px #ccc;
