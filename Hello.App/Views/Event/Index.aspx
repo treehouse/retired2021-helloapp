@@ -106,7 +106,7 @@
                         {
                             if (!String.IsNullOrEmpty((string)ViewData["searchTerm"]) && !sat.User.HasTag((string)ViewData["searchTerm"]))
                             {
-                            %><img class="seat" width="24" height="24" src="<%= Url.Content("~/Content/images/presentation/smiley.jpg") %>" /><%
+                            %><img class="seat" width="24" height="24" style="opacity:0.4;filter:alpha(opacity=40)" src="<%= sat.User.ImageURL %>" /><%
                                                                                                                                                }
                             else
                             {
