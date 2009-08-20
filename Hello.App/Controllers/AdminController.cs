@@ -100,6 +100,24 @@ namespace Hello.App.Controllers
             return RedirectToAction("Sessions", new { id = theEvent.EventID });
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult DeleteSession(int id)
+        {
+            var session = _repo
+                .Sessions
+                .SingleOrDefault(s => s.SessionID == id);
+
+            if (session == null)
+                return RedirectToAction("Events");
+
+            _repo
+                .Sessions
+                .DeleteOnSubmit(session);
+            _repo.SubmitChanges();
+
+            return RedirectToAction("Sessions", new { id = session.EventID });
+        }
+
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Messages()
         {

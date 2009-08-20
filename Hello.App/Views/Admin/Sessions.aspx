@@ -18,6 +18,7 @@
             <th>
                 Finish
             </th>
+            <th></th>
         </tr>
 
     <% foreach (var item in Model) { %>
@@ -34,6 +35,11 @@
             </td>
             <td>
                 <%= Html.Encode(String.Format("{0:g}", item.Finish)) %>
+            </td>
+            <td>
+                <% using (Html.BeginForm("DeleteSession", "Admin", new { id = item.SessionID })) { %>
+                    <input type="submit" value="Delete" />
+                <% } %>
             </td>
         </tr>
     

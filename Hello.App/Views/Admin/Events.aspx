@@ -56,8 +56,7 @@
                 <%= Html.ActionLink("Seating", "Seating", new { id = item.EventID })%>
             </td>
             <td>
-                <% using (Html.BeginForm("DeleteEvent", "Admin")) { %>
-                    <%= Html.Hidden("id", item.EventID) %>
+                <% using (Html.BeginForm("DeleteEvent", "Admin", new { id = item.EventID })) { %>
                     <input type="submit" value="Delete" />
                 <% } %>
             </td>
