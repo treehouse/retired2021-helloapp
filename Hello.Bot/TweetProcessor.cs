@@ -318,7 +318,7 @@ namespace Hello.Bot
                     User = user,
                     Amount = points,
                     Issued = DateTime.Now,
-                    Details = details.Substring(0, 20)
+                    Details = details.Length > 20 ? details.Substring(0, 20) : details
                 });
         }
     }
