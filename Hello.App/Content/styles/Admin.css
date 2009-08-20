@@ -1,6 +1,6 @@
-﻿body
+﻿body, input
 {
-	font-family: Calibri Arial, Sans-Serif;
+	font-family: GillSans, Calibri, Trebuchet, Sans-Serif;
 }
 
 table
@@ -20,5 +20,12 @@ td
 
 th, td
 {
-	padding-left: 2em;
+	padding: 0 1em;
+}
+
+label
+{
+	display: block;
+	float: left;
+	width: 10em;
 }
