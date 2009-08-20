@@ -30,6 +30,13 @@ namespace Hello.App.Controllers
             if (theEvent == null || theEvent.Start > DateTime.Now)
                 return RedirectToAction("Index", "Home");
 
+            BuildViewData(theEvent);
+
+            return View(theEvent);
+        }
+
+        private void BuildViewData(Event theEvent)
+        {
             // Get the messages in a random order
             var randomOffset = new Random(DateTime.Now.Millisecond).Next(1000);
 
@@ -57,13 +64,23 @@ namespace Hello.App.Controllers
                     .Any(s => s.Seat.EventID == theEvent.EventID));
 
             ViewData["Tags"] = tags;
-
-            return View(theEvent);
         }
 
-        public ActionResult Search(string searchterm)
+        public ActionResult Search(string eventslug, string searchterm)
         {
-            return Content(searchterm);
+            ViewData["SearchTerm"] = searchterm;
+
+            var theEvent = _repo
+                .Events
+                .SingleOrDefault(e => e.Slug == eventslug);
+
+            // if the event doesn't exist or starts in the future then redirect
+            if (theEvent == null || theEvent.Start > DateTime.Now)
+                return RedirectToAction("Index", "Home");
+
+            BuildViewData(theEvent);
+
+            return View("Index", theEvent);
         }
     }
 }
