@@ -170,21 +170,18 @@ namespace Hello.Bot
         public void ProcessTweet(User user, SatTweet tweet)
         {
             // The logic for this isn't great - need to make sure we're really dealing with the current session
-            var sessions = _repo
+            Session session = _repo
                         .Sessions
                         .Where(
-                            s => s.Start < DateTime.Now.AddHours(1) // starts with an hours time
-                              && s.Finish > DateTime.Now            // hasn't finished
-                        );
+                            s => s.Finish > DateTime.Now            // hasn't finished
+                        ).OrderBy(s => s.Start).First();
 
             Seat seat = _repo
                 .Seats
                 .SingleOrDefault(s => s.Code == tweet.SeatCode);
 
-            if (sessions.Count() == 1 && seat != null)
+            if (session != null && seat != null)
             {
-                Session session = sessions.First();
-
                 /*
                  * If there's someone already in the seat then remove them from that seat.
                  * There really should only be one of these, but this isn't enforced in DB so
