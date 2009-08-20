@@ -16,9 +16,6 @@
                 Column
             </th>
             <th>
-                EventID
-            </th>
-            <th>
                 Code
             </th>
         </tr>
@@ -34,9 +31,6 @@
             </td>
             <td>
                 <%= Html.Encode(item.Column) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.EventID) %>
             </td>
             <td>
                 <%= Html.Encode(item.Code) %>
