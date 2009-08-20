@@ -14,4 +14,8 @@
         <%= Html.ActionLink("Campaigns", "Campaigns") %>
     </p>
     
+    <p>
+        <%= Html.ActionLink("Status", "Status") %>
+    </p>
+    
 </asp:Content>

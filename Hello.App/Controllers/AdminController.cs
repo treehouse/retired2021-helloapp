@@ -27,10 +27,22 @@ namespace Hello.App.Controllers
             return View();
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Events()
         {
             var events = _repo.Events;
             return View(events);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Events(Event theEvent)
+        {
+            _repo
+                .Events
+                .InsertOnSubmit(theEvent);
+            _repo.SubmitChanges();
+
+            return RedirectToAction("Events");
         }
 
         public ActionResult Sessions(int id)
@@ -214,6 +226,26 @@ namespace Hello.App.Controllers
             _repo.SubmitChanges();
 
             return RedirectToAction("Seating", new { id = theEvent.EventID });
+        }
+
+        public ActionResult Status()
+        {
+            var processedTweets = _repo
+                .QueuedTweets
+                .Count(t => t.Processed);
+            ViewData["ProcessedTweets"] = processedTweets;
+
+            var unprocessedTweets = _repo
+                .QueuedTweets
+                .Count(t => !t.Processed);
+            ViewData["UnprocessedTweets"] = unprocessedTweets;
+
+            var tideMarks = _repo
+                .TideMarks
+                .OrderByDescending(t => t.TimeStamp)
+                .Take(Settings.Admin.MaxTideMarks);
+
+            return View(tideMarks);
         }
 
         private string GenerateUniqueSeatCode(List<string> seatCodes, Random r)
