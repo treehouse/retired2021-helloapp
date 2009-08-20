@@ -66,7 +66,7 @@
 
     </table>
     
-    <h3>Create new Event</h3>
+    <h3>Create an Event</h3>
     
     <% using (Html.BeginForm()) {%>
 

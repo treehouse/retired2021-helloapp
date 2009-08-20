@@ -47,7 +47,7 @@
 
     </table>
     
-    <h3>Create a new Session</h3>
+    <h3>Create a Session</h3>
     
     <% using (Html.BeginForm()) { %>
     

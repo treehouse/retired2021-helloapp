@@ -46,7 +46,7 @@
 
     </table>
     
-    <h3>Create a new Campaign</h3>
+    <h3>Create a Campaign</h3>
 
     <% using (Html.BeginForm()) {%>
 
