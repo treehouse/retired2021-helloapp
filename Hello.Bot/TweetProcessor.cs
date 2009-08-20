@@ -110,6 +110,10 @@ namespace Hello.Bot
 
         public void ProcessTweet(User user, HiFiveTweet tweet)
         {
+            // Prevent users from Hi5ing themselves
+            if (user.Username == tweet.Friend)
+                return;
+
             Event currentEvent = _repo.Events.Where(e => e.Start <= DateTime.Now && e.End >= DateTime.Now).SingleOrDefault();
 
             // Only accept Hi5s for the current event
@@ -266,6 +270,10 @@ namespace Hello.Bot
 
             foreach (string friend in tweet.Friends)
             {
+                // Prevent user from meeting themselves
+                if (user.Username == friend)
+                    continue;
+
                 User friendUser = EnsureUser(friend);
 
                 // Add the friendship if it doesn't already exist
