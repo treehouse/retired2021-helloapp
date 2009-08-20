@@ -21,13 +21,12 @@
     
     <div class="generalContent">
     
-    <form id="filter" method="post" action="" enctype="multipart/form-data">
-    	<select id="viewBy">
-			<option>View by number of Twitter followers</option>
-			<option></option>
-			<option></option>
+    <div id="filter">
+    	<select id="viewBy" name="viewBy">
+			<option value="twitter">View Twitter Icons</option>
+			<option value="heatmap">View Heat Map</option>
 		</select>
-    </form>
+    </div>
 
 	<ul class="tagCloud">
 	
@@ -62,9 +61,11 @@
 		
 	</ul>
 
-    <% using (Html.BeginForm("Search", "Event", FormMethod.Get, new { id = "search" })) { %>
+    <% using (Html.BeginForm("Search", "Event", FormMethod.Get)) { %>
+    <div id="search">
     <p><label>Search:</label><input type="text" id="searchTerm" name="searchTerm" value="<%=Html.Encode(ViewData["SearchTerm"])%>" /></p>
     <p><input type="submit" id="submit" name="submit" value="Submit" /></p>
+    </div>
     <% } %>
     </div>
     <br clear="all" />

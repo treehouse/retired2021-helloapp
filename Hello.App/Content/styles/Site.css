@@ -362,14 +362,14 @@ a.joinInSticker:hover {
 	background:url(../images/presentation/join_in.png) 0px -140px no-repeat;
 	}	
 
-form#search {
+#search {
 	position:relative;
 	float:right;
 	width:515px;
 	margin:19px 0px 0px 0px;
 }
 
-form#search label {
+#search label {
 	float:left;
 	font-size:230%;
 	letter-spacing:-0.05em;
@@ -378,14 +378,14 @@ form#search label {
 	padding:17px 12px 0px 0px;
 }
 
-form#search label span {
+#search label span {
 	color:#319db8;
 	font-style:italic;
 	font-size:130%;
 	padding:0px 15px 0px 0px;
 }
 
-form#search input#searchTerm {
+#search input#searchTerm {
 	float:left;
 	width:230px;
 	height:40px;
@@ -400,7 +400,7 @@ form#search input#searchTerm {
 	font-size:140%;
 }
 
-form#search input#submit {
+#search input#submit {
 	float:left;
 	background:url(../images/presentation/mag_glass.png) top left no-repeat;
 	display: block;
@@ -412,7 +412,7 @@ form#search input#submit {
 	text-indent:-9999px;
 }
 
-form#search input#submit:hover {
+#search input#submit:hover {
 	background:url(../images/presentation/mag_glass.png) 0px -60px no-repeat;
 }
 
@@ -512,13 +512,13 @@ h2.right {
 
 
 /* Search (conf day page) __________________________________________________________ */
-body.confDay form#search {
+body.confDay #search {
 	width: 295px;
 	float: left;
 	margin: 0;
 }
 
-body.confDay form#search label {
+body.confDay #search label {
 	font-size: 120%;
 	color: #4b453e;
 	float:left;
@@ -526,14 +526,14 @@ body.confDay form#search label {
 	padding: 8px 6px 0 0;
 }
 
-body.confDay form#search #searchTerm {
+body.confDay #search #searchTerm {
 	width: 170px;
 	height: 23px;
 	padding: 8px 5px 4px 5px;
 	font-size: 80%;
 }
 
-body.confDay form#search input#submit {
+body.confDay #search input#submit {
 	float:left;
 	background:url(../images/presentation/conf_day_mag_glass.png) top left no-repeat;
 	display: block;
@@ -545,7 +545,7 @@ body.confDay form#search input#submit {
 	text-indent:-9999px;
 }
 
-body.confDay form#search input#submit:hover {
+body.confDay #search input#submit:hover {
 	background-position: left -35px;
 }
 

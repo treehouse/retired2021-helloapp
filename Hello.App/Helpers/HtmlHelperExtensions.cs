@@ -32,6 +32,8 @@ namespace Hello.App.Helpers
                     {
                         case "index":
                             return "home";
+                        case "search" :
+                            return "home";
                         default:
                             return action;
                     }
