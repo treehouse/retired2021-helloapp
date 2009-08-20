@@ -198,6 +198,11 @@ namespace Hello.App.Controllers
 
             // Delete the old seating plan
             _repo
+                .Sats
+                .DeleteAllOnSubmit(theEvent
+                    .Seats
+                    .SelectMany(s => s.Sats));
+            _repo
                 .Seats
                 .DeleteAllOnSubmit(theEvent.Seats);
 

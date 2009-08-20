@@ -166,6 +166,7 @@
     <Content Include="Views\Shared\User.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\presentation\spacer.gif" />
     <Content Include="Views\Account\LogOn.aspx" />
     <Content Include="Views\Admin\Campaigns.aspx" />
     <Content Include="Views\Admin\Events.aspx" />
