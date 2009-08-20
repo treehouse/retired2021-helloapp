@@ -25,10 +25,10 @@
       <Column Name="Start" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" />
       <Column Name="End" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" />
       <Column Name="HiFiveLimit" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
-      <Association Name="Event_Seat" Member="Seats" ThisKey="EventID" OtherKey="EventID" Type="Seat" />
       <Association Name="Event_Session" Member="Sessions" ThisKey="EventID" OtherKey="EventID" Type="Session" />
       <Association Name="Event_UserType" Member="UserTypes" ThisKey="EventID" OtherKey="EventID" Type="UserType" />
       <Association Name="Event_HiFive" Member="HiFives" ThisKey="EventID" OtherKey="EventID" Type="HiFive" />
+      <Association Name="Event_Seat" Member="Seats" ThisKey="EventID" OtherKey="EventID" Type="Seat" />
     </Type>
   </Table>
   <Table Name="dbo.Friendships" Member="Friendships">
@@ -131,26 +131,14 @@
       <Association Name="UserType_User" Member="UserType" ThisKey="UserTypeID" OtherKey="UserTypeID" Type="UserType" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Seats" Member="Seats">
-    <Type Name="Seat">
-      <Column Name="SeatID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="SeatNumber" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
-      <Column Name="Row" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
-      <Column Name="Section" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Code" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
-      <Association Name="Seat_Sat" Member="Sats" ThisKey="SeatID" OtherKey="SeatID" Type="Sat" />
-      <Association Name="Event_Seat" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Sats" Member="Sats">
     <Type Name="Sat">
       <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SessionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SeatID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Seat_Sat" Member="Seat" ThisKey="SeatID" OtherKey="SeatID" Type="Seat" IsForeignKey="true" />
       <Association Name="User_Sat" Member="User" ThisKey="Username" OtherKey="Username" Type="User" IsForeignKey="true" />
       <Association Name="Session_Sat" Member="Session" ThisKey="SessionID" OtherKey="SessionID" Type="Session" IsForeignKey="true" />
+      <Association Name="Seat_Sat" Member="Seat" ThisKey="SeatID" OtherKey="SeatID" Type="Seat" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Sessions" Member="Sessions">
@@ -197,6 +185,17 @@
       <Column Name="AllowedRedemptions" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Token_Redemption" Member="Redemptions" ThisKey="TokenID" OtherKey="TokenID" Type="Redemption" />
       <Association Name="Campaign_Token" Member="Campaign" ThisKey="CampaignID" OtherKey="CampaignID" Type="Campaign" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Seats" Member="Seats">
+    <Type Name="Seat">
+      <Column Name="SeatID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Row" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Column]" Member="Column" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Association Name="Seat_Sat" Member="Sats" ThisKey="SeatID" OtherKey="SeatID" Type="Sat" />
+      <Association Name="Event_Seat" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.SearchUsers" Method="SearchUsers">
