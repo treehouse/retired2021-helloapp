@@ -6,8 +6,10 @@
 <head runat="server">
     <title>Hello » Admin</title>
     <link rel="shortcut icon" type="image/ico" href="~/Content/images/favicon.ico" />
+    <link href="~/Content/styles/Admin.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="head" runat="server" />
 </head>
+
 <body>
     <div>
     
