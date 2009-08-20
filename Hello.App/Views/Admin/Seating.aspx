@@ -2,15 +2,16 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Seating</h2>
-    
-    <%= Model %>
+    <h2>Seating for <%= Html.ActionLink(((Event)ViewData["Event"]).Name, "Events") %></h2>
     
     <% using (Html.BeginForm()) { %>
-
-        <%= Html.TextArea("seating", String.Empty, 30, 120, null) %>
-        
-        <input type="submit" value="ok" />
+    
+        <p>
+            <%= Html.TextArea("seating", String.Empty, 30, 120, null) %>
+        </p>
+        <p>
+            <input type="submit" value="Ok" />
+        </p>
     
     <% } %>
 

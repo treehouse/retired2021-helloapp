@@ -37,7 +37,7 @@
             <td>
                 <% using (Html.BeginForm("Delete", "Admin")) { %>
                     <%= Html.Hidden("campaignID", item.CampaignID)%>
-                    <input type="submit" value="delete" />
+                    <input type="submit" value="Delete" />
                 <% } %>
             </td>
         </tr>

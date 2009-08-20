@@ -32,7 +32,7 @@
             <td>
                 <% using (Html.BeginForm()) { %>
                     <%= Html.Hidden("username", item.Username) %>
-                    <input type="submit" value="toggle" />
+                    <input type="submit" value="Toggle" />
                 <% } %>
             </td>
         </tr>
