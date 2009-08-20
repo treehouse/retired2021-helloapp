@@ -214,6 +214,24 @@ namespace Hello.App.Controllers
             return RedirectToAction("Tokens");
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult DeleteToken(int id)
+        {
+            var token = _repo
+                .Tokens
+                .SingleOrDefault(t => t.TokenID == id);
+
+            if (token == null)
+                return RedirectToAction("Campaigns");
+
+            _repo
+                .Tokens
+                .DeleteOnSubmit(token);
+            _repo.SubmitChanges();
+
+            return RedirectToAction("Tokens", new { id = token.CampaignID });
+        }
+
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Seating(int id)
         {

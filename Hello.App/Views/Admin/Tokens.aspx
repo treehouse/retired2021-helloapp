@@ -20,6 +20,7 @@
             <th>
                 Allowed Redemptions
             </th>
+            <th></th>
         </tr>
 
     <% foreach (var item in Model) { %>
@@ -36,6 +37,11 @@
             </td>
             <td>
                 <%= Html.Encode(item.AllowedRedemptions) %>
+            </td>
+            <td>
+                <% using (Html.BeginForm("DeleteToken", "Admin", new { id = item.TokenID })) { %>
+                    <input type="submit" value="Delete" />
+                <% } %>
             </td>
         </tr>
     
