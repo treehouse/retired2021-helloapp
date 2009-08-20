@@ -87,7 +87,7 @@ namespace Hello.App.Controllers
                 {
                     tagSize = Settings.DefaultTagSize;
                 }
-                rankedTags.Add(tag.Key, Settings.TagSizes[i--]);
+                rankedTags.Add(tag.Key, tagSize);
             }
 
             ViewData["Tags"] = rankedTags;
