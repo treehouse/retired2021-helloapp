@@ -20,6 +20,7 @@
     </div>
     
     <div class="generalContent">
+    
     <form id="filter" method="post" action="" enctype="multipart/form-data">
     	<select id="viewBy">
 			<option>View by number of Twitter followers</option>
