@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Hello.Utils;
 
 namespace HelloApp
 {
@@ -25,7 +26,7 @@ namespace HelloApp
             routes.MapRoute(null,
                 "{eventslug}/{action}",
                 new { controller = "Event", action = "Index" },
-                new { eventslug = @"\w+" }
+                new { eventslug = Settings.EventSlugRegex }
             );
         }
 

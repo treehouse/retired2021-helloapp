@@ -59,6 +59,11 @@ namespace Hello.Utils
             get { return SettingsImplementation.GetInt("MaxMessages"); }
         }
 
+        public static string EventSlugRegex
+        {
+            get { return @"[\w\-_]+"; }
+        }
+
         public static PointsConfig Points
         {
             get { return new PointsConfig(); }

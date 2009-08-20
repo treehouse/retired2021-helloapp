@@ -7,6 +7,7 @@ using System.Web.Mvc.Ajax;
 using Hello.Repo;
 using Hello.Utils;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Hello.App.Controllers
 {
@@ -28,21 +29,31 @@ namespace Hello.App.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Events()
+        public ActionResult Events(string message)
         {
             var events = _repo.Events;
+
+            ViewData["Message"] = message;
+
             return View(events);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Events(Event theEvent)
         {
-            _repo
-                .Events
-                .InsertOnSubmit(theEvent);
-            _repo.SubmitChanges();
+            if (new Regex(Settings.EventSlugRegex).IsMatch(theEvent.Slug))
+            {
+                _repo
+                    .Events
+                    .InsertOnSubmit(theEvent);
+                _repo.SubmitChanges();
 
-            return RedirectToAction("Events");
+                return RedirectToAction("Events", new { message = "Event created" });
+            }
+            else
+            {
+                return RedirectToAction("Events", new { message = "Failed to created event - Invalid Slug" });
+            }
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
