@@ -45,6 +45,7 @@ namespace Hello.App.Controllers
             return RedirectToAction("Events");
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Sessions(int id)
         {
             var theEvent = _repo
@@ -58,6 +59,25 @@ namespace Hello.App.Controllers
 
             var sessions = _repo.Sessions;
             return View(sessions);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Sessions(int id, Session session)
+        {
+            var theEvent = _repo
+                .Events
+                .SingleOrDefault(e => e.EventID == id);
+
+            if (theEvent == null)
+                return RedirectToAction("Events");
+
+            _repo
+                .Sessions
+                .InsertOnSubmit(session);
+
+            _repo.SubmitChanges();
+
+            return RedirectToAction("Sessions", new { id = theEvent.EventID });
         }
 
         [AcceptVerbs(HttpVerbs.Get)]

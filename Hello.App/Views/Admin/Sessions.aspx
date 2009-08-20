@@ -45,7 +45,7 @@
     
     <% using (Html.BeginForm()) { %>
     
-        <%= Html.Hidden("EventID", ViewData["EventID"]) %>
+        <%= Html.Hidden("EventID", ((Event)ViewData["Event"]).EventID) %>
         <p>
             <label for="Name">Name:</label>
             <%= Html.TextBox("Name") %>
