@@ -61,10 +61,10 @@
 		
 	</ul>
 
-    <form id="search" method="post" action="" enctype="multipart/form-data">
-    <p><label>Search:</label><input type="text" id="searchTerm" name="search" value="" /></p>
+    <% using (Html.BeginForm("Search", "Event", FormMethod.Get, new { id = "search" })) { %>
+    <p><label>Search:</label><input type="text" id="searchTerm" name="searchTerm" value="<%=Html.Encode(ViewData["SearchTerm"])%>" /></p>
     <p><input type="submit" id="submit" name="submit" value="Submit" /></p>
-    </form>
+    <% } %>
     </div>
     <br clear="all" />
     
@@ -86,7 +86,7 @@
                     {
                         var sat = sats.SingleOrDefault(s => s.SeatID == seat.SeatID);
 
-                        if (sat == null)
+                        if (sat == null || (!String.IsNullOrEmpty((string)ViewData["searchTerm"]) && !sat.User.HasTag((string)ViewData["searchTerm"])))
                         {
                             %><img class="seat" width="24" height="24" src="<%= Url.Content("~/Content/images/presentation/smiley.jpg") %>" /><%
                         }
