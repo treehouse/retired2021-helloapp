@@ -9,7 +9,6 @@ using System.Text;
 
 namespace Hello.App.Controllers
 {
-    [HandleError]
     public class HomeController : Controller
     {
         private HelloRepoDataContext _repo;
@@ -93,6 +92,11 @@ namespace Hello.App.Controllers
         }
 
         public ActionResult Faq()
+        {
+            return View();
+        }
+
+        public ActionResult Error()
         {
             return View();
         }
