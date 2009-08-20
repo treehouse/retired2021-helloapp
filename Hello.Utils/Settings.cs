@@ -74,13 +74,14 @@ namespace Hello.Utils
                     { 8,  "large" },
                     { 7,  "medium" },
                     { 6,  "small" },
-                    { 5,  "smaller" },
-                    { 4,  "smallest" },
-                    { 3,  "smallest" },
-                    { 2,  "smallest" },
-                    { 1,  "smallest" }
+                    { 5,  "smaller" }
                 };
             }
+        }
+
+        public static string DefaultTagSize
+        {
+            get { return "smallest"; }
         }
 
         public static string EventSlugRegex

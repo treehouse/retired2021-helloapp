@@ -82,6 +82,11 @@ namespace Hello.App.Controllers
 
             foreach (var tag in tags)
             {
+                var tagSize = String.Empty;
+                if (!Settings.TagSizes.TryGetValue(i--, out tagSize))
+                {
+                    tagSize = Settings.DefaultTagSize;
+                }
                 rankedTags.Add(tag.Key, Settings.TagSizes[i--]);
             }
 
