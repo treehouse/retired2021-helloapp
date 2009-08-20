@@ -16,34 +16,43 @@ namespace Hello.Bot
 
         public static void Main(string[] args)
         {
-            log4net.Config.XmlConfigurator.Configure();
-
-            var queue = args.Length == 0 || args[0].Equals("queue", StringComparison.InvariantCultureIgnoreCase);
-            var process = args.Length == 0 || args[0].Equals("process", StringComparison.InvariantCultureIgnoreCase);
-
-            HelloRepoDataContext repo = new HelloRepoDataContext(Settings.ConnectionString);
-            TweetQueuer queuer = new TweetQueuer(repo);
-            TweetProcessor processor = new TweetProcessor(repo);
-
-            // Collect & store tweets
-            if (queue)
+            try
             {
-                _log.Info("About to queue Mentions");
-                try
+                log4net.Config.XmlConfigurator.Configure();
+
+                var queue = args.Length == 0 || args[0].Equals("queue", StringComparison.InvariantCultureIgnoreCase);
+                var process = args.Length == 0 || args[0].Equals("process", StringComparison.InvariantCultureIgnoreCase);
+
+                HelloRepoDataContext repo = new HelloRepoDataContext(Settings.ConnectionString);
+                TweetQueuer queuer = new TweetQueuer(repo);
+                TweetProcessor processor = new TweetProcessor(repo);
+
+                // Collect & store tweets
+                if (queue)
                 {
-                    queuer.QueueMentions();
+                    _log.Info("About to queue Mentions");
+                    try
+                    {
+                        queuer.QueueMentions();
+                    }
+                    catch (WebException e)
+                    {
+                        _log.Error("WebException in Engine.QueueMentions", e);
+                    }
                 }
-                catch (WebException e)
+
+                // Process tweets
+                if (process)
                 {
-                    _log.Error("WebException in Engine.QueueMentions", e);
+                    _log.Info("About to process Tweets");
+                    processor.ProcessTweets();
                 }
             }
-
-            // Process tweets
-            if (process)
+            catch (Exception e)
             {
-                _log.Info("About to process Tweets");
-                processor.ProcessTweets();
+                // Log unhandled exception to ELMAH
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
+                throw;
             }
         }
     }
