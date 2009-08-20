@@ -134,7 +134,7 @@ namespace Hello.App.Controllers
 
             ViewData["Event"] = theEvent;
 
-            return View();
+            return View(theEvent.Seats);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -189,8 +189,8 @@ namespace Hello.App.Controllers
                 .InsertAllOnSubmit(seats);
 
             _repo.SubmitChanges();
-            
-            return View();
+
+            return RedirectToAction("Seating", new { id = theEvent.EventID });
         }
 
         private string GenerateUniqueSeatCode(List<string> seatCodes, Random r)
@@ -200,7 +200,9 @@ namespace Hello.App.Controllers
             {
                 code = GenerateSeatCode(r);
             }
-            while (!seatCodes.Contains(code));
+            while (seatCodes.Contains(code));
+
+            seatCodes.Add(code);
 
             return code;
         }

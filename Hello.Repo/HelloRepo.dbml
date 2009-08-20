@@ -193,7 +193,7 @@
       <Column Name="Row" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="[Column]" Member="Column" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Code" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="Char(5)" CanBeNull="true" />
       <Association Name="Seat_Sat" Member="Sats" ThisKey="SeatID" OtherKey="SeatID" Type="Sat" />
       <Association Name="Event_Seat" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
     </Type>

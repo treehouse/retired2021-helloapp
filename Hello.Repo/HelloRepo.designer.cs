@@ -4173,7 +4173,7 @@ namespace Hello.Repo
 			}
 		}
 		
-		[Column(Storage="_Code", DbType="Char(5) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Code", DbType="Char(5)")]
 		public string Code
 		{
 			get
