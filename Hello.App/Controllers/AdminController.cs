@@ -156,24 +156,6 @@ namespace Hello.App.Controllers
             return RedirectToAction("Campaigns");
         }
 
-        public ActionResult Tokens(int id)
-        {
-            var campaign = _repo
-                .Campaigns
-                .SingleOrDefault(c => c.CampaignID == id);
-
-            if (campaign == null)
-                return RedirectToAction("Campaigns");
-
-            ViewData["Campaign"] = campaign;
-
-            var tokens = _repo
-                .Tokens
-                .Where(t => t.CampaignID == id);
-
-            return View(tokens);
-        }
-
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult DeleteCampaign(int id)
         {
@@ -190,6 +172,46 @@ namespace Hello.App.Controllers
             _repo.SubmitChanges();
 
             return RedirectToAction("Campaigns");
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult Tokens(int id)
+        {
+            var campaign = _repo
+                .Campaigns
+                .SingleOrDefault(c => c.CampaignID == id);
+
+            if (campaign == null)
+                return RedirectToAction("Campaigns");
+
+            ViewData["Campaign"] = campaign;
+
+            // Token Code
+            ViewData["Code"] = GenerateTokenCode(new Random());
+
+            var tokens = _repo
+                .Tokens
+                .Where(t => t.CampaignID == id);
+
+            return View(tokens);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Tokens(int id, Token token)
+        {
+            var campaign = _repo
+                .Campaigns
+                .SingleOrDefault(c => c.CampaignID == id);
+
+            if (campaign == null)
+                return RedirectToAction("Campaigns");
+
+            _repo
+                .Tokens
+                .InsertOnSubmit(token);
+            _repo.SubmitChanges();
+
+            return RedirectToAction("Tokens");
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -322,9 +344,19 @@ namespace Hello.App.Controllers
 
         private static string GenerateSeatCode(Random r)
         {
-            var code = new StringBuilder(5);
+            return GenerateCode(r, 5);
+        }
 
-            for (int i = 0; i < 5; i++)
+        private static string GenerateTokenCode(Random r)
+        {
+            return GenerateCode(r, 10);
+        }
+
+        private static string GenerateCode(Random r, int length)
+        {
+            var code = new StringBuilder(length);
+
+            for (int i = 0; i < length; i++)
             {
                 var c = r.Next(36) + 48;
                 if (c > 57)

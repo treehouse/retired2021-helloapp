@@ -8,7 +8,6 @@
 
     <table>
         <tr>
-            <th></th>
             <th>
                 TokenID
             </th>
@@ -48,10 +47,11 @@
     
     <% using (Html.BeginForm()) {%>
 
-        <%= Html.Hidden("id", campaign.CampaignID)%>
+        <%= Html.Hidden("CampaignID", campaign.CampaignID)%>
         <p>
             <label for="Code">Code:</label>
-            <%= Html.TextBox("Code") %>
+            <%= Html.TextBox("Code", ViewData["Code"]) %>
+            <%= Html.ActionLink("New Code", "Tokens") %>
         </p>
         <p>
             <label for="AllowedRedemptions">Allowed Redemptions:</label>
