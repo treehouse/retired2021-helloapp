@@ -33,17 +33,57 @@ namespace Hello.Tests
         public void ProcessHiFiveTweet()
         {
             //Arrange
+            TestHelperMethods.SetupTestEvent(repo);
+            //repo.Events.InsertOnSubmit(new Event{Start = DateTime.Now, 
+            //                                     End = DateTime.Now.AddDays(1),
+            //                                     HiFiveLimit = 5,
+            //                                     Slug = "testEvent",
+            //                                     Name = "testEvent"});
+            //repo.SubmitChanges();
+            
             var hiFive = new HiFiveTweet("benadderson");
-            var thatismatt = repo.Users.Where(u => u.Username == "thatismatt").First();
+            var hiFivingUser = repo.Users.Where(u => u.Username == "thatismatt").First();
 
             //Act
-            processor.ProcessTweet(thatismatt,hiFive);
+            processor.ProcessTweet(hiFivingUser,hiFive);
             repo.SubmitChanges();
 
-            HiFive storedTweet = repo.HiFives.Where(hf => hf.HiFiver == "thatismatt" &&
-                                                  hf.HiFivee == "benadderson").First();
+            HiFive storedTweet; 
+
             //Assert
+            storedTweet = repo.HiFives.Where(hf => hf.HiFiver == hiFivingUser.Username &&
+                                                       hf.HiFivee == "benadderson").First();
             Assert.NotNull(storedTweet);
+        }
+
+        [Fact]
+        [AutoRollback]
+        public void CantHiFiveYourself()
+        {
+            //Arrange
+            repo.Events.InsertOnSubmit(new Event
+                                           {
+                                               Start = DateTime.Now,
+                                               End = DateTime.Now.AddDays(1),
+                                               HiFiveLimit = 5,
+                                               Slug = "testEvent",
+                                               Name = "testEvent"
+                                           });
+            repo.SubmitChanges();
+
+            var hiFive = new HiFiveTweet("benadderson");
+            var hiFivingUser = repo.Users.Where(u => u.Username == "benadderson").First();
+
+            //Act
+            processor.ProcessTweet(hiFivingUser, hiFive);
+            repo.SubmitChanges();
+
+            HiFive storedTweet;
+
+            //Assert
+            Assert.Throws<InvalidOperationException>(
+                    () => storedTweet = repo.HiFives.Where(hf => hf.HiFiver == hiFivingUser.Username &&
+                                                                 hf.HiFivee == "benadderson").First());
         }
 
         [Fact]
