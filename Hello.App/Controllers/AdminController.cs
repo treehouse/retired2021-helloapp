@@ -32,8 +32,14 @@ namespace Hello.App.Controllers
             return View(events);
         }
 
-        public ActionResult Sessions()
+        public ActionResult Sessions(int id)
         {
+            var theEvent = _repo
+                .Events
+                .Single(e => e.EventID == id);
+
+            ViewData["Event"] = theEvent;
+
             var sessions = _repo.Sessions;
             return View(sessions);
         }
@@ -105,13 +111,19 @@ namespace Hello.App.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Seating()
+        public ActionResult Seating(int id)
         {
+            var theEvent = _repo
+                .Events
+                .Single(e => e.EventID == id);
+
+            ViewData["Event"] = theEvent;
+
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Seating(string seating)
+        public ActionResult Seating(int id, string seating)
         {
             var rows = seating.Split(new [] { Environment.NewLine }, StringSplitOptions.None);
 

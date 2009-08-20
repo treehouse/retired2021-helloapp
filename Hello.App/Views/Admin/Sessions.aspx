@@ -2,15 +2,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Sessions</h2>
+    <h2>Sessions for <%= Html.ActionLink(((Event)ViewData["Event"]).Name, "Events") %></h2>
 
     <table>
         <tr>
             <th>
                 SessionID
-            </th>
-            <th>
-                Event
             </th>
             <th>
                 Name
@@ -30,9 +27,6 @@
                 <%= Html.Encode(item.SessionID) %>
             </td>
             <td>
-                <%= Html.Encode(item.Event.Name) %>
-            </td>
-            <td>
                 <%= Html.Encode(item.Name) %>
             </td>
             <td>
@@ -46,6 +40,32 @@
     <% } %>
 
     </table>
+    
+    <h3>Create a new Session</h3>
+    
+    <% using (Html.BeginForm()) { %>
+    
+        <%= Html.Hidden("EventID", ViewData["EventID"]) %>
+        <p>
+            <label for="Name">Name:</label>
+            <%= Html.TextBox("Name") %>
+            <%= Html.ValidationMessage("Name", "*") %>
+        </p>
+        <p>
+            <label for="Start">Start:</label>
+            <%= Html.TextBox("Start") %>
+            <%= Html.ValidationMessage("Start", "*") %>
+        </p>
+        <p>
+            <label for="Finish">Finish:</label>
+            <%= Html.TextBox("Finish") %>
+            <%= Html.ValidationMessage("Finish", "*") %>
+        </p>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    
+    <% } %>
 
 </asp:Content>
 

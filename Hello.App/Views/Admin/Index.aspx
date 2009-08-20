@@ -7,10 +7,6 @@
     </p>
     
     <p>
-        <%= Html.ActionLink("Sessions", "Sessions") %>
-    </p>
-    
-    <p>
         <%= Html.ActionLink("Messages", "Messages") %>
     </p>
     

@@ -25,6 +25,7 @@
                 Hi5 Limit
             </th>
             <th></th>
+            <th></th>
         </tr>
 
     <% foreach (var item in Model) { %>
@@ -49,13 +50,51 @@
                 <%= Html.Encode(item.HiFiveLimit) %>
             </td>
             <td>
-                <%= Html.ActionLink("Seating", "Seating") %>
+                <%= Html.ActionLink("Sessions", "Sessions", new { id = item.EventID }) %>
+            </td>
+            <td>
+                <%= Html.ActionLink("Seating", "Seating", new { id = item.EventID })%>
             </td>
         </tr>
     
     <% } %>
 
     </table>
+    
+    <h3>Create new Event</h3>
+    
+    <% using (Html.BeginForm()) {%>
+
+        <p>
+            <label for="Name">Name:</label>
+            <%= Html.TextBox("Name") %>
+            <%= Html.ValidationMessage("Name", "*") %>
+        </p>
+        <p>
+            <label for="Slug">Slug:</label>
+            <%= Html.TextBox("Slug") %>
+            <%= Html.ValidationMessage("Slug", "*") %>
+        </p>
+        <p>
+            <label for="Start">Start:</label>
+            <%= Html.TextBox("Start") %>
+            <%= Html.ValidationMessage("Start", "*") %>
+        </p>
+        <p>
+            <label for="End">End:</label>
+            <%= Html.TextBox("End") %>
+            <%= Html.ValidationMessage("End", "*") %>
+        </p>
+        <p>
+            <label for="HiFiveLimit">Hi5 Limit:</label>
+            <%= Html.TextBox("HiFiveLimit") %>
+            <%= Html.ValidationMessage("HiFiveLimit", "*") %>
+        </p>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+
+    <% } %>
 
 </asp:Content>
 
