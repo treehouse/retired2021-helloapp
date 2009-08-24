@@ -3,11 +3,6 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
 GO
--- =============================================
--- Author:		<Author,,Name>
--- Create date: <Create Date,,>
--- Description:	<Description,,>
--- =============================================
 CREATE PROCEDURE [dbo].[SearchUsers] 
 	-- Add the parameters for the stored procedure here
 	@SearchString VARCHAR(MAX),
@@ -19,7 +14,7 @@ BEGIN
 	SET NOCOUNT ON;
 	
 	CREATE TABLE #SearchTerms (
-		Term VARCHAR(MAX)
+		Term VARCHAR(MAX) COLLATE Latin1_General_CI_AS
 	)
 	
 	INSERT INTO #SearchTerms ( Term )
@@ -27,7 +22,7 @@ BEGIN
 	FROM dbo.SplitString(@SearchString, ' ')
 	
 	CREATE TABLE #TempResults (
-		Username VARCHAR(50),
+		Username VARCHAR(50) COLLATE Latin1_General_CI_AS,
 		Weighting INTEGER)
 
 	-- Strongly weight exact match of username
@@ -88,6 +83,7 @@ BEGIN
 	DROP TABLE #SearchTerms
 END
 GO
+
 
 
 GRANT EXECUTE ON  [dbo].[SearchUsers] TO [hello_web]
