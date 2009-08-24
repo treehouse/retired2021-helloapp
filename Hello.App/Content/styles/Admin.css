@@ -29,3 +29,9 @@ label
 	float: left;
 	width: 10em;
 }
+
+h1 small
+{
+	float: right;
+	font-size: 50%;
+}

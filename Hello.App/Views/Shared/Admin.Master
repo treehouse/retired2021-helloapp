@@ -13,7 +13,15 @@
 <body>
     <div>
     
-        <h1><%= Html.ActionLink("Admin", "Index", "Admin")%></h1>
+        <h1>
+            <%= Html.ActionLink("Admin", "Index", "Admin") %>
+            
+            <% if (Page.User.Identity.IsAuthenticated) { %>
+                <small>
+                    <%= Html.ActionLink("[Log Off]", "LogOff", "Account") %>
+                </small>
+            <% } %>
+        </h1>
         
         <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         

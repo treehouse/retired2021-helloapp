@@ -11,7 +11,7 @@ namespace Hello.App.Controllers
     public class AccountController : Controller
     {
         [AcceptVerbs(HttpVerbs.Get)]
-        public ViewResult LogOn()
+        public ActionResult LogOn()
         {
             return View();
         }
@@ -32,6 +32,14 @@ namespace Hello.App.Controllers
                 ViewData["lastLoginFailed"] = true;
                 return View();
             }
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("LogOn", "Account");
         }
     }
 }
