@@ -86,7 +86,8 @@
                         }
                         else if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "heatmap")
                         {
-                            %><div class="seat" style="width:24px; height: 24px; background-color: #<%= sat.User.UserType.DefaultColour %>; display: inline-block;"></div><%
+                            var colour = sat.User.UserType == null ? "ccc" : sat.User.UserType.DefaultColour;
+                            %><div class="seat" style="width:24px; height: 24px; background-color: #<%= colour %>; display: inline-block;"></div><%
                         }
                         else
                         {
