@@ -12,8 +12,14 @@
     
     <p>Please log in to access the administrative area:</p>
     <% using (Html.BeginForm()) { %>
-        <div>Login name: <%= Html.TextBox("name") %></div>
-        <div>Password: <%= Html.Password("password") %></div>
+        <p>
+            <label for="name">Login name:</label>
+            <%= Html.TextBox("name") %>
+        </p>
+        <p>
+            <label for="password">Password:</label>
+            <%= Html.Password("password") %>
+        </p>
         <p><input type="submit" value="Log in" /></p>
     <% } %>
 </asp:Content>
