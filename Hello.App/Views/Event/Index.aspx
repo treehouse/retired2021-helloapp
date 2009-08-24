@@ -21,8 +21,8 @@
     
     <div class="generalContent">
     
-    <% using (Html.BeginForm("Search", "Event", FormMethod.Get, new { id = "searchForm" }))
-       { %>
+    <% using (Html.BeginForm("Search", "Event", FormMethod.Get, new { id = "searchForm" })) { %>
+    
     <div id="filter">
     	<select onchange="this.form.submit()" id="viewBy" name="viewBy">
 			<option <% if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "twitter") { %>selected<% } %> value="twitter">View Twitter Icons</option>
@@ -32,15 +32,14 @@
 
 	<ul class="tagCloud">
 	
-	    <%
-            if (ViewData["Tags"] != null && ((Dictionary<string, string>)ViewData["Tags"]).Any()) {
-                
-                var tagKeys = (IEnumerable<string>)ViewData["TagsKeys"];
-                var tags = (Dictionary<string, string>)ViewData["Tags"];
-                foreach (var key in tagKeys) { %>
+	    <% if (ViewData["Tags"] != null && ((Dictionary<string, string>)ViewData["Tags"]).Any()) { %>
+            
+            <% var tagKeys = (IEnumerable<string>)ViewData["TagsKeys"]; %>
+            <% var tags = (Dictionary<string, string>)ViewData["Tags"]; %>
+            <% foreach (var key in tagKeys) { %>
 	        
                 <li class="<%= tags[key] %>">
-                    <%= Html.ActionLink(key, "Search", "Event", new { searchterm = key }, null)%>
+                    <%= Html.ActionLink(key, "Search", "Event", new { searchterm = key }, null) %>
                 </li>
             
 		    <% } %>
@@ -56,7 +55,7 @@
 	</ul>
 
     <div id="search">
-    <p><label>Search:</label><input type="text" id="searchTerm" name="searchTerm" value="<%=Html.Encode(ViewData["SearchTerm"])%>" /></p>
+    <p><label>Search:</label><input type="text" id="searchTerm" name="searchTerm" value="<%= Html.Encode(ViewData["SearchTerm"]) %>" /></p>
     <p><input type="submit" id="submitBtn" name="submitBtn" value="Submit" /></p>
     </div>
     <% } %>
