@@ -58,6 +58,9 @@ namespace Hello.App.Controllers
                 .OrderByDescending(s => s.Start)
                 .FirstOrDefault();
 
+            if (session == null)
+                throw new HelloException("The event '" + theEvent.Name + "' has no sessions that have started.");
+
             // Who is sitting where?
             var sats = _repo
                 .Sats
