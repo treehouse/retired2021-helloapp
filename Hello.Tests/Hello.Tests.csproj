@@ -75,7 +75,7 @@
     <Compile Include="TweetProcessorTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hello.App\Hello.App.csproj">
+    <ProjectReference Include="..\Hello.Web\Hello.Web.csproj">
       <Project>{46778D27-28C5-48EC-AE21-07B554245DA5}</Project>
       <Name>Hello.App</Name>
     </ProjectReference>
