@@ -7,7 +7,7 @@ using Hello.Repo;
 using Hello.Utils;
 using System.Text;
 
-namespace Hello.App.Controllers
+namespace Hello.Web.Controllers
 {
     public class HomeController : Controller
     {

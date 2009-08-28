@@ -7,7 +7,7 @@ using System.Web.Mvc.Ajax;
 using Hello.Utils;
 using Hello.Repo;
 
-namespace Hello.App.Controllers
+namespace Hello.Web.Controllers
 {
     public class EventController : Controller
     {

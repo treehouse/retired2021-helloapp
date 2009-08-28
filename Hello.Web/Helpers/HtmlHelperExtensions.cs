@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
-using Hello.App.Controllers;
+using Hello.Web.Controllers;
 
-namespace Hello.App.Helpers
+namespace Hello.Web.Helpers
 {
     public static class HtmlHelperExtensions
     {

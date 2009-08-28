@@ -7,7 +7,7 @@ using System.Web.Mvc.Ajax;
 using Hello.Repo;
 using Hello.Utils;
 
-namespace Hello.App.Controllers
+namespace Hello.Web.Controllers
 {
     public class SearchController : Controller
     {

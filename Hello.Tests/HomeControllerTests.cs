@@ -5,7 +5,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Hello.App.Controllers;
+using Hello.Web.Controllers;
 using Hello.Utils;
 using Moq;
 using Xunit;

@@ -9,7 +9,7 @@ using Hello.Utils;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Hello.App.Controllers
+namespace Hello.Web.Controllers
 {
     [Authorize]
     public class AdminController : Controller

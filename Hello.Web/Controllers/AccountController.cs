@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Security;
 
-namespace Hello.App.Controllers
+namespace Hello.Web.Controllers
 {
     public class AccountController : Controller
     {
