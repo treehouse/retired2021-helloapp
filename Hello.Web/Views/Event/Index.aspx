@@ -23,54 +23,56 @@
     
     <% using (Html.BeginForm("Search", "Event", FormMethod.Get, new { id = "searchForm" })) { %>
     
-    <div id="filter">
-    	<select onchange="this.form.submit()" id="viewBy" name="viewBy">
-			<option <% if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "twitter") { %>selected<% } %> value="twitter">View Twitter Icons</option>
-			<option <% if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "heatmap") { %>selected<% } %> value="heatmap">View Heat Map</option>
-		</select>
-    </div>
+        <div id="filter">
+            <select onchange="this.form.submit()" id="viewBy" name="viewBy">
+                <option <% if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "twitter") { %>selected<% } %> value="twitter">View Twitter Icons</option>
+                <option <% if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "heatmap") { %>selected<% } %> value="heatmap">View Heat Map</option>
+            </select>
+        </div>
 
-	<ul class="tagCloud">
-	
-	    <% if (ViewData["Tags"] != null && ((Dictionary<string, string>)ViewData["Tags"]).Any()) { %>
+        <ul class="tagCloud">
+        
+            <% if (ViewData["Tags"] != null && ((Dictionary<string, string>)ViewData["Tags"]).Any()) { %>
+                
+                <% var tagKeys = (IEnumerable<string>)ViewData["TagsKeys"]; %>
+                <% var tags = (Dictionary<string, string>)ViewData["Tags"]; %>
+                <% foreach (var key in tagKeys) { %>
+                
+                    <li class="<%= tags[key] %>">
+                        <%= Html.ActionLink(key, "Search", "Event", new { searchterm = key }, null) %>
+                    </li>
+                
+                <% } %>
             
-            <% var tagKeys = (IEnumerable<string>)ViewData["TagsKeys"]; %>
-            <% var tags = (Dictionary<string, string>)ViewData["Tags"]; %>
-            <% foreach (var key in tagKeys) { %>
-	        
-                <li class="<%= tags[key] %>">
-                    <%= Html.ActionLink(key, "Search", "Event", new { searchterm = key }, null) %>
+            <% } else { %>
+            
+                <li class="large">
+                    <%= Html.ActionLink("Nobody has checked in yet, why don't you?", "Faq", "Home", null, null, "instructionscheckin", null, null)%>
                 </li>
             
-		    <% } %>
-		
-		<% } else { %>
-		
-	        <li class="large">
-                <%= Html.ActionLink("Nobody has checked in yet, why don't you?", "Faq", "Home", null, null, "instructionscheckin", null, null)%>
-            </li>
-        
-		<% } %>
-		
-	</ul>
+            <% } %>
+            
+        </ul>
 
-    <div id="search">
-    <p><label>Search:</label><input type="text" id="searchTerm" name="searchTerm" value="<%= Html.Encode(ViewData["SearchTerm"]) %>" /></p>
-    <p><input type="submit" id="submitBtn" name="submitBtn" value="Submit" /></p>
-    </div>
+        <div id="search">
+        <p><label>Search:</label><input type="text" id="searchTerm" name="searchTerm" value="<%= Html.Encode(ViewData["SearchTerm"]) %>" /></p>
+        <p><input type="submit" id="submitBtn" name="submitBtn" value="Submit" /></p>
+        </div>
+    
     <% } %>
+    
     </div>
     <br clear="all" />
     
-	<div class="seating">
+    <div class="seating">
     
         <% var sats = (IList<Sat>)ViewData["Sats"]; %>
         
         <% foreach (var row in Model.Seats.GroupBy(s => s.Row)) { %>
-    	
-	        <div class="row">
-    	    
-	            <% foreach (var seat in row) {
+        
+            <div class="row">
+            
+                <% foreach (var seat in row) {
 
                     if (seat.Code == null)
                     {
@@ -103,24 +105,24 @@
                 } %>
             
             </div>
-    	        
-	    <% } %>
-	
+                
+        <% } %>
+    
     </div>
     
     <% if (ViewData["Messages"] != null && ((IQueryable<Message>)ViewData["Messages"]).Any()) { %>
 
-	<h2 id="allmessages">Messages:</h2>
-	
-	    <% foreach (var message in (IQueryable<Message>)ViewData["Messages"]) { %>
-	        
-	        <div class="message">
-		        <blockquote><p>"<%= message.Text %>"</p></blockquote>
-		        <p class="author">By @<a href="http://twitter.com/<%= message.Username %>"><%= message.Username %></a></p>
-	        </div><!-- /.message -->
-	        
-	    <% } %>
-	    
-	<% } %>
-	
+        <h2 id="allmessages">Messages:</h2>
+    
+        <% foreach (var message in (IQueryable<Message>)ViewData["Messages"]) { %>
+            
+            <div class="message">
+                <blockquote><p>"<%= message.Text %>"</p></blockquote>
+                <p class="author">By @<a href="http://twitter.com/<%= message.Username %>"><%= message.Username %></a></p>
+            </div><!-- /.message -->
+            
+        <% } %>
+        
+    <% } %>
+    
 </asp:Content>
