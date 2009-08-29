@@ -112,31 +112,36 @@ namespace Hello.Utils
             }
         }
 
-        public static PointsThresholds Thresholds
+        public static ThresholdsConfig Thresholds
         {
-            get { return new PointsThresholds(); }
+            get { return new ThresholdsConfig(); }
         }
 
-        public class PointsThresholds
+        public class ThresholdsConfig
         {
             public int Bronze
             {
-                get { return SettingsImplementation.GetInt("PointsThresholdBronze"); }
+                get { return SettingsImplementation.GetInt("BronzeThreshold"); }
             }
 
             public int Silver
             {
-                get { return SettingsImplementation.GetInt("PointsThresholdSilver"); }
+                get { return SettingsImplementation.GetInt("SilverThreshold"); }
             }
 
             public int Gold
             {
-                get { return SettingsImplementation.GetInt("PointsThresholdGold"); }
+                get { return SettingsImplementation.GetInt("GoldThreshold"); }
             }
 
             public int Diamond
             {
-                get { return SettingsImplementation.GetInt("PointsThresholdDiamond"); }
+                get { return SettingsImplementation.GetInt("DiamondThreshold"); }
+            }
+
+            public int Smiley
+            {
+                get { return SettingsImplementation.GetInt("SmileyThreshold"); }
             }
         }
 

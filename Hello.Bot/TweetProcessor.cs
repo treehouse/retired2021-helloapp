@@ -295,7 +295,7 @@ namespace Hello.Bot
                         });
 
                     // If the reverse friendship exists, credit points
-                    if (_repo.Friendships.Where(f => f.Befriendee == user.Username && f.Befriender == friend).Count() > 0)
+                    if (_repo.Friendships.Where(f => f.Befriendee == user.Username && f.Befriender == friend).Any())
                     {
                         CreditPoints(user, 10, "Mutual meeting");
                         CreditPoints(friendUser, 10, "Mutual meeting");

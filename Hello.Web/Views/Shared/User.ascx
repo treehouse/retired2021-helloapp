@@ -44,12 +44,11 @@
                 <% } %>
             </li>
         <% } %>
-        
-        <%-- TODO: Smiley Badge
+        <% if (Model.Friendships().Count() >= Settings.Thresholds.Smiley) { %>
             <li>
                 <img src="<%= Url.Content("~/Content/images/content/smiley.png") %>" alt="Smiley" />
             </li>
-        --%>
+        <% } %>
     </ul>
     <ul class="categories">
         <% foreach (var ut in ViewData["UserTypes"] as List<UserType>) { %>
