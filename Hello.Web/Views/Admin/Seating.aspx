@@ -11,9 +11,9 @@
     
         <h3>Current Seating Plan</h3>
         
-        <pre><%= seatingPlan %></pre>
-        
         <%= Html.ActionLink("Seat Codes", "SeatCodes", new { id = theEvent.EventID }) %>
+        
+        <pre><%= seatingPlan %></pre>
     
     <% } %>
     
