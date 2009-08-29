@@ -64,7 +64,7 @@
     
 	<div class="seating">
     
-        <% var sats = (IEnumerable<Sat>)ViewData["Sats"]; %>
+        <% var sats = (IList<Sat>)ViewData["Sats"]; %>
         
         <% foreach (var row in Model.Seats.GroupBy(s => s.Row)) { %>
     	
@@ -92,7 +92,7 @@
                         {
                             if (!String.IsNullOrEmpty((string)ViewData["searchTerm"]) && !sat.User.HasTag((string)ViewData["searchTerm"]))
                             {
-                                %><img class="seat" width="24" height="24" style="opacity:0.4;filter:alpha(opacity=40)" src="<%= sat.User.ImageURL %>" /><%
+                                %><img class="seat" width="24" height="24" style="opacity:0.4; filter:alpha(opacity=40);" src="<%= sat.User.ImageURL %>" /><%
                             }
                             else
                             {

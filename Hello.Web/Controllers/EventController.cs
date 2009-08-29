@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Hello.Utils;
 using Hello.Repo;
+using System.Data.Linq;
 
 namespace Hello.Web.Controllers
 {
@@ -65,7 +66,8 @@ namespace Hello.Web.Controllers
             var sats = _repo
                 .Sats
                 .Where(s => s.Session.EventID == theEvent.EventID
-                        && s.SessionID == session.SessionID);
+                        && s.SessionID == session.SessionID)
+                .ToList(); // Stops the query being executed for each seat
 
             ViewData["Sats"] = sats;
 
