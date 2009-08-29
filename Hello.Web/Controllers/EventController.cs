@@ -19,6 +19,9 @@ namespace Hello.Web.Controllers
         public EventController(HelloRepoDataContext repo)
         {
             _repo = repo;
+            var options = new DataLoadOptions();
+            options.LoadWith<Sat>(s => s.User);
+            _repo.LoadOptions = options;
         }
 
         public ActionResult Index(string eventslug)
