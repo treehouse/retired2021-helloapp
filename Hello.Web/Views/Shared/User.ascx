@@ -44,7 +44,7 @@
                 <% } %>
             </li>
         <% } %>
-        <% if (Model.Friendships().Count() >= Settings.Thresholds.Smiley) { %>
+        <% if (Model.Friends.Count() >= Settings.Thresholds.Smiley) { %>
             <li>
                 <img src="<%= Url.Content("~/Content/images/content/smiley.png") %>" alt="Smiley" />
             </li>
