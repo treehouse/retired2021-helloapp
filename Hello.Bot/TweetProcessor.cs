@@ -131,7 +131,7 @@ namespace Hello.Bot
                     _repo.HiFives.InsertOnSubmit(new HiFive
                                                      {
                                                          Event = currentEvent,
-                                                         HiFiverUser = user,
+                                                         HiFiver = user.Username,
                                                          HiFivee = tweet.Friend
                                                      });
 
