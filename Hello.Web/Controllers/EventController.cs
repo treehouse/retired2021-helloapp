@@ -21,6 +21,7 @@ namespace Hello.Web.Controllers
             _repo = repo;
             var options = new DataLoadOptions();
             options.LoadWith<Sat>(s => s.User);
+            options.LoadWith<User>(u => u.Tags);
             _repo.LoadOptions = options;
         }
 
@@ -75,13 +76,13 @@ namespace Hello.Web.Controllers
             ViewData["Sats"] = sats;
 
             // Get the tags for this event
-            var tags = _repo
-                .Tags
-                .Where(t => t.User.Sats
-                    .Any(s => s.SessionID == session.SessionID))
+            var tags = sats
+                .Select(s => s.User)
+                .SelectMany(u => u.Tags)
                 .GroupBy(t => t.Name)
                 .OrderByDescending(t => t.Count())
                 .Take(Settings.MaxTags)
+                .Select(t => t.Key)
                 .ToList();
 
             var rankedTags = new Dictionary<string, string>();
@@ -95,7 +96,7 @@ namespace Hello.Web.Controllers
                 {
                     tagSize = Settings.DefaultTagSize;
                 }
-                rankedTags.Add(tag.Key, tagSize);
+                rankedTags.Add(tag, tagSize);
             }
 
             ViewData["Tags"] = rankedTags;
