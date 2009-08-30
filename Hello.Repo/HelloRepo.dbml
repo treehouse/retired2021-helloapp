@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="helloapp" Class="HelloRepoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=IS-MATTLTEST.TESTNET\SQL2008;Initial Catalog=helloapp;Integrated Security=True" SettingsObjectName="Hello.Repo.Properties.Settings" SettingsPropertyName="helloappConnectionString2" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Badges" Member="Badges">
-    <Type Name="Badge">
-      <Column Name="BadgeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="Badge_UserBadge" Member="UserBadges" ThisKey="BadgeID" OtherKey="BadgeID" Type="UserBadge" />
-    </Type>
-  </Table>
   <Table Name="dbo.Campaigns" Member="Campaigns">
     <Type Name="Campaign">
       <Column Name="CampaignID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -67,15 +59,6 @@
       <Column Name="Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.UserBadges" Member="UserBadges">
-    <Type Name="UserBadge">
-      <Column Name="BadgeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Awarded" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Badge_UserBadge" Member="Badge" ThisKey="BadgeID" OtherKey="BadgeID" Type="Badge" IsForeignKey="true" />
-      <Association Name="User_UserBadge" Member="User" ThisKey="Username" OtherKey="Username" Type="User" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Messages" Member="Messages">
     <Type Name="Message">
       <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -122,7 +105,6 @@
       <Association Name="User_Friendship1" Member="Befrienders" Storage="_Friendships1" ThisKey="Username" OtherKey="Befriender" Type="Friendship" />
       <Association Name="User_Point" Member="Points" ThisKey="Username" OtherKey="Username" Type="Point" />
       <Association Name="User_Redemption" Member="Redemptions" ThisKey="Username" OtherKey="Username" Type="Redemption" />
-      <Association Name="User_UserBadge" Member="UserBadges" ThisKey="Username" OtherKey="Username" Type="UserBadge" />
       <Association Name="User_Message" Member="Message" ThisKey="Username" OtherKey="Username" Type="Message" Cardinality="One" />
       <Association Name="User_Tag" Member="Tags" ThisKey="Username" OtherKey="Username" Type="Tag" />
       <Association Name="User_Sat" Member="Sats" ThisKey="Username" OtherKey="Username" Type="Sat" />

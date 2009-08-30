@@ -30,9 +30,6 @@ namespace Hello.Repo
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertBadge(Badge instance);
-    partial void UpdateBadge(Badge instance);
-    partial void DeleteBadge(Badge instance);
     partial void InsertCampaign(Campaign instance);
     partial void UpdateCampaign(Campaign instance);
     partial void DeleteCampaign(Campaign instance);
@@ -48,9 +45,6 @@ namespace Hello.Repo
     partial void InsertRedemption(Redemption instance);
     partial void UpdateRedemption(Redemption instance);
     partial void DeleteRedemption(Redemption instance);
-    partial void InsertUserBadge(UserBadge instance);
-    partial void UpdateUserBadge(UserBadge instance);
-    partial void DeleteUserBadge(UserBadge instance);
     partial void InsertMessage(Message instance);
     partial void UpdateMessage(Message instance);
     partial void DeleteMessage(Message instance);
@@ -116,14 +110,6 @@ namespace Hello.Repo
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Badge> Badges
-		{
-			get
-			{
-				return this.GetTable<Badge>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Campaign> Campaigns
 		{
 			get
@@ -169,14 +155,6 @@ namespace Hello.Repo
 			get
 			{
 				return this.GetTable<TagAggregate>();
-			}
-		}
-		
-		public System.Data.Linq.Table<UserBadge> UserBadges
-		{
-			get
-			{
-				return this.GetTable<UserBadge>();
 			}
 		}
 		
@@ -273,144 +251,6 @@ namespace Hello.Repo
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), searchString, maxResults);
 			return ((ISingleResult<User>)(result.ReturnValue));
-		}
-	}
-	
-	[Table(Name="dbo.Badges")]
-	public partial class Badge : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _BadgeID;
-		
-		private string _Name;
-		
-		private string _ImageUrl;
-		
-		private EntitySet<UserBadge> _UserBadges;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnBadgeIDChanging(int value);
-    partial void OnBadgeIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnImageUrlChanging(string value);
-    partial void OnImageUrlChanged();
-    #endregion
-		
-		public Badge()
-		{
-			this._UserBadges = new EntitySet<UserBadge>(new Action<UserBadge>(this.attach_UserBadges), new Action<UserBadge>(this.detach_UserBadges));
-			OnCreated();
-		}
-		
-		[Column(Storage="_BadgeID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int BadgeID
-		{
-			get
-			{
-				return this._BadgeID;
-			}
-			set
-			{
-				if ((this._BadgeID != value))
-				{
-					this.OnBadgeIDChanging(value);
-					this.SendPropertyChanging();
-					this._BadgeID = value;
-					this.SendPropertyChanged("BadgeID");
-					this.OnBadgeIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ImageUrl", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string ImageUrl
-		{
-			get
-			{
-				return this._ImageUrl;
-			}
-			set
-			{
-				if ((this._ImageUrl != value))
-				{
-					this.OnImageUrlChanging(value);
-					this.SendPropertyChanging();
-					this._ImageUrl = value;
-					this.SendPropertyChanged("ImageUrl");
-					this.OnImageUrlChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Badge_UserBadge", Storage="_UserBadges", ThisKey="BadgeID", OtherKey="BadgeID")]
-		public EntitySet<UserBadge> UserBadges
-		{
-			get
-			{
-				return this._UserBadges;
-			}
-			set
-			{
-				this._UserBadges.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_UserBadges(UserBadge entity)
-		{
-			this.SendPropertyChanging();
-			entity.Badge = this;
-		}
-		
-		private void detach_UserBadges(UserBadge entity)
-		{
-			this.SendPropertyChanging();
-			entity.Badge = null;
 		}
 	}
 	
@@ -1510,198 +1350,6 @@ namespace Hello.Repo
 		}
 	}
 	
-	[Table(Name="dbo.UserBadges")]
-	public partial class UserBadge : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _BadgeID;
-		
-		private string _Username;
-		
-		private System.DateTime _Awarded;
-		
-		private EntityRef<Badge> _Badge;
-		
-		private EntityRef<User> _User;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnBadgeIDChanging(int value);
-    partial void OnBadgeIDChanged();
-    partial void OnUsernameChanging(string value);
-    partial void OnUsernameChanged();
-    partial void OnAwardedChanging(System.DateTime value);
-    partial void OnAwardedChanged();
-    #endregion
-		
-		public UserBadge()
-		{
-			this._Badge = default(EntityRef<Badge>);
-			this._User = default(EntityRef<User>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_BadgeID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int BadgeID
-		{
-			get
-			{
-				return this._BadgeID;
-			}
-			set
-			{
-				if ((this._BadgeID != value))
-				{
-					if (this._Badge.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnBadgeIDChanging(value);
-					this.SendPropertyChanging();
-					this._BadgeID = value;
-					this.SendPropertyChanged("BadgeID");
-					this.OnBadgeIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string Username
-		{
-			get
-			{
-				return this._Username;
-			}
-			set
-			{
-				if ((this._Username != value))
-				{
-					if (this._User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUsernameChanging(value);
-					this.SendPropertyChanging();
-					this._Username = value;
-					this.SendPropertyChanged("Username");
-					this.OnUsernameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Awarded", DbType="DateTime NOT NULL")]
-		public System.DateTime Awarded
-		{
-			get
-			{
-				return this._Awarded;
-			}
-			set
-			{
-				if ((this._Awarded != value))
-				{
-					this.OnAwardedChanging(value);
-					this.SendPropertyChanging();
-					this._Awarded = value;
-					this.SendPropertyChanged("Awarded");
-					this.OnAwardedChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Badge_UserBadge", Storage="_Badge", ThisKey="BadgeID", OtherKey="BadgeID", IsForeignKey=true)]
-		public Badge Badge
-		{
-			get
-			{
-				return this._Badge.Entity;
-			}
-			set
-			{
-				Badge previousValue = this._Badge.Entity;
-				if (((previousValue != value) 
-							|| (this._Badge.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Badge.Entity = null;
-						previousValue.UserBadges.Remove(this);
-					}
-					this._Badge.Entity = value;
-					if ((value != null))
-					{
-						value.UserBadges.Add(this);
-						this._BadgeID = value.BadgeID;
-					}
-					else
-					{
-						this._BadgeID = default(int);
-					}
-					this.SendPropertyChanged("Badge");
-				}
-			}
-		}
-		
-		[Association(Name="User_UserBadge", Storage="_User", ThisKey="Username", OtherKey="Username", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.UserBadges.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.UserBadges.Add(this);
-						this._Username = value.Username;
-					}
-					else
-					{
-						this._Username = default(string);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[Table(Name="dbo.Messages")]
 	public partial class Message : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2346,8 +1994,6 @@ namespace Hello.Repo
 		
 		private EntitySet<Redemption> _Redemptions;
 		
-		private EntitySet<UserBadge> _UserBadges;
-		
 		private EntityRef<Message> _Message;
 		
 		private EntitySet<Tag> _Tags;
@@ -2384,7 +2030,6 @@ namespace Hello.Repo
 			this._Friendships1 = new EntitySet<Friendship>(new Action<Friendship>(this.attach_Friendships1), new Action<Friendship>(this.detach_Friendships1));
 			this._Points = new EntitySet<Point>(new Action<Point>(this.attach_Points), new Action<Point>(this.detach_Points));
 			this._Redemptions = new EntitySet<Redemption>(new Action<Redemption>(this.attach_Redemptions), new Action<Redemption>(this.detach_Redemptions));
-			this._UserBadges = new EntitySet<UserBadge>(new Action<UserBadge>(this.attach_UserBadges), new Action<UserBadge>(this.detach_UserBadges));
 			this._Message = default(EntityRef<Message>);
 			this._Tags = new EntitySet<Tag>(new Action<Tag>(this.attach_Tags), new Action<Tag>(this.detach_Tags));
 			this._Sats = new EntitySet<Sat>(new Action<Sat>(this.attach_Sats), new Action<Sat>(this.detach_Sats));
@@ -2570,19 +2215,6 @@ namespace Hello.Repo
 			}
 		}
 		
-		[Association(Name="User_UserBadge", Storage="_UserBadges", ThisKey="Username", OtherKey="Username")]
-		public EntitySet<UserBadge> UserBadges
-		{
-			get
-			{
-				return this._UserBadges;
-			}
-			set
-			{
-				this._UserBadges.Assign(value);
-			}
-		}
-		
 		[Association(Name="User_Message", Storage="_Message", ThisKey="Username", OtherKey="Username", IsUnique=true, IsForeignKey=false)]
 		public Message Message
 		{
@@ -2761,18 +2393,6 @@ namespace Hello.Repo
 		}
 		
 		private void detach_Redemptions(Redemption entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_UserBadges(UserBadge entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserBadges(UserBadge entity)
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
