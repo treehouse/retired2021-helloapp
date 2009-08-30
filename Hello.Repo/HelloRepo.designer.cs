@@ -66,9 +66,6 @@ namespace Hello.Repo
     partial void InsertSession(Session instance);
     partial void UpdateSession(Session instance);
     partial void DeleteSession(Session instance);
-    partial void InsertUserType(UserType instance);
-    partial void UpdateUserType(UserType instance);
-    partial void DeleteUserType(UserType instance);
     partial void InsertHiFive(HiFive instance);
     partial void UpdateHiFive(HiFive instance);
     partial void DeleteHiFive(HiFive instance);
@@ -78,10 +75,13 @@ namespace Hello.Repo
     partial void InsertSeat(Seat instance);
     partial void UpdateSeat(Seat instance);
     partial void DeleteSeat(Seat instance);
+    partial void InsertUserType(UserType instance);
+    partial void UpdateUserType(UserType instance);
+    partial void DeleteUserType(UserType instance);
     #endregion
 		
 		public HelloRepoDataContext() : 
-				base(global::Hello.Repo.Properties.Settings.Default.helloappConnectionString2, mappingSource)
+				base(global::Hello.Repo.Properties.Settings.Default.helloappConnectionString3, mappingSource)
 		{
 			OnCreated();
 		}
@@ -214,14 +214,6 @@ namespace Hello.Repo
 			}
 		}
 		
-		public System.Data.Linq.Table<UserType> UserTypes
-		{
-			get
-			{
-				return this.GetTable<UserType>();
-			}
-		}
-		
 		public System.Data.Linq.Table<HiFive> HiFives
 		{
 			get
@@ -243,6 +235,14 @@ namespace Hello.Repo
 			get
 			{
 				return this.GetTable<Seat>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserType> UserTypes
+		{
+			get
+			{
+				return this.GetTable<UserType>();
 			}
 		}
 		
@@ -412,8 +412,6 @@ namespace Hello.Repo
 		
 		private EntitySet<Session> _Sessions;
 		
-		private EntitySet<UserType> _UserTypes;
-		
 		private EntitySet<HiFive> _HiFives;
 		
 		private EntitySet<Seat> _Seats;
@@ -439,7 +437,6 @@ namespace Hello.Repo
 		public Event()
 		{
 			this._Sessions = new EntitySet<Session>(new Action<Session>(this.attach_Sessions), new Action<Session>(this.detach_Sessions));
-			this._UserTypes = new EntitySet<UserType>(new Action<UserType>(this.attach_UserTypes), new Action<UserType>(this.detach_UserTypes));
 			this._HiFives = new EntitySet<HiFive>(new Action<HiFive>(this.attach_HiFives), new Action<HiFive>(this.detach_HiFives));
 			this._Seats = new EntitySet<Seat>(new Action<Seat>(this.attach_Seats), new Action<Seat>(this.detach_Seats));
 			OnCreated();
@@ -578,19 +575,6 @@ namespace Hello.Repo
 			}
 		}
 		
-		[Association(Name="Event_UserType", Storage="_UserTypes", ThisKey="EventID", OtherKey="EventID")]
-		public EntitySet<UserType> UserTypes
-		{
-			get
-			{
-				return this._UserTypes;
-			}
-			set
-			{
-				this._UserTypes.Assign(value);
-			}
-		}
-		
 		[Association(Name="Event_HiFive", Storage="_HiFives", ThisKey="EventID", OtherKey="EventID")]
 		public EntitySet<HiFive> HiFives
 		{
@@ -644,18 +628,6 @@ namespace Hello.Repo
 		}
 		
 		private void detach_Sessions(Session entity)
-		{
-			this.SendPropertyChanging();
-			entity.Event = null;
-		}
-		
-		private void attach_UserTypes(UserType entity)
-		{
-			this.SendPropertyChanging();
-			entity.Event = this;
-		}
-		
-		private void detach_UserTypes(UserType entity)
 		{
 			this.SendPropertyChanging();
 			entity.Event = null;
@@ -2907,305 +2879,6 @@ namespace Hello.Repo
 		}
 	}
 	
-	[Table(Name="dbo.UserTypes")]
-	public partial class UserType : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _UserTypeID;
-		
-		private int _EventID;
-		
-		private string _Name;
-		
-		private int _Ordering;
-		
-		private string _DefaultColour;
-		
-		private string _BurningColour;
-		
-		private string _HotColour;
-		
-		private string _WarmColour;
-		
-		private EntitySet<User> _Users;
-		
-		private EntityRef<Event> _Event;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUserTypeIDChanging(string value);
-    partial void OnUserTypeIDChanged();
-    partial void OnEventIDChanging(int value);
-    partial void OnEventIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnOrderingChanging(int value);
-    partial void OnOrderingChanged();
-    partial void OnDefaultColourChanging(string value);
-    partial void OnDefaultColourChanged();
-    partial void OnBurningColourChanging(string value);
-    partial void OnBurningColourChanged();
-    partial void OnHotColourChanging(string value);
-    partial void OnHotColourChanged();
-    partial void OnWarmColourChanging(string value);
-    partial void OnWarmColourChanged();
-    #endregion
-		
-		public UserType()
-		{
-			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
-			this._Event = default(EntityRef<Event>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_UserTypeID", DbType="Char(3) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string UserTypeID
-		{
-			get
-			{
-				return this._UserTypeID;
-			}
-			set
-			{
-				if ((this._UserTypeID != value))
-				{
-					this.OnUserTypeIDChanging(value);
-					this.SendPropertyChanging();
-					this._UserTypeID = value;
-					this.SendPropertyChanged("UserTypeID");
-					this.OnUserTypeIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_EventID", DbType="Int NOT NULL")]
-		public int EventID
-		{
-			get
-			{
-				return this._EventID;
-			}
-			set
-			{
-				if ((this._EventID != value))
-				{
-					if (this._Event.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnEventIDChanging(value);
-					this.SendPropertyChanging();
-					this._EventID = value;
-					this.SendPropertyChanged("EventID");
-					this.OnEventIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Name", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Ordering", DbType="Int NOT NULL")]
-		public int Ordering
-		{
-			get
-			{
-				return this._Ordering;
-			}
-			set
-			{
-				if ((this._Ordering != value))
-				{
-					this.OnOrderingChanging(value);
-					this.SendPropertyChanging();
-					this._Ordering = value;
-					this.SendPropertyChanged("Ordering");
-					this.OnOrderingChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DefaultColour", DbType="Char(6) NOT NULL", CanBeNull=false)]
-		public string DefaultColour
-		{
-			get
-			{
-				return this._DefaultColour;
-			}
-			set
-			{
-				if ((this._DefaultColour != value))
-				{
-					this.OnDefaultColourChanging(value);
-					this.SendPropertyChanging();
-					this._DefaultColour = value;
-					this.SendPropertyChanged("DefaultColour");
-					this.OnDefaultColourChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_BurningColour", DbType="Char(6) NOT NULL", CanBeNull=false)]
-		public string BurningColour
-		{
-			get
-			{
-				return this._BurningColour;
-			}
-			set
-			{
-				if ((this._BurningColour != value))
-				{
-					this.OnBurningColourChanging(value);
-					this.SendPropertyChanging();
-					this._BurningColour = value;
-					this.SendPropertyChanged("BurningColour");
-					this.OnBurningColourChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_HotColour", DbType="Char(6) NOT NULL", CanBeNull=false)]
-		public string HotColour
-		{
-			get
-			{
-				return this._HotColour;
-			}
-			set
-			{
-				if ((this._HotColour != value))
-				{
-					this.OnHotColourChanging(value);
-					this.SendPropertyChanging();
-					this._HotColour = value;
-					this.SendPropertyChanged("HotColour");
-					this.OnHotColourChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_WarmColour", DbType="Char(6) NOT NULL", CanBeNull=false)]
-		public string WarmColour
-		{
-			get
-			{
-				return this._WarmColour;
-			}
-			set
-			{
-				if ((this._WarmColour != value))
-				{
-					this.OnWarmColourChanging(value);
-					this.SendPropertyChanging();
-					this._WarmColour = value;
-					this.SendPropertyChanged("WarmColour");
-					this.OnWarmColourChanged();
-				}
-			}
-		}
-		
-		[Association(Name="UserType_User", Storage="_Users", ThisKey="UserTypeID", OtherKey="UserTypeID")]
-		public EntitySet<User> Users
-		{
-			get
-			{
-				return this._Users;
-			}
-			set
-			{
-				this._Users.Assign(value);
-			}
-		}
-		
-		[Association(Name="Event_UserType", Storage="_Event", ThisKey="EventID", OtherKey="EventID", IsForeignKey=true)]
-		public Event Event
-		{
-			get
-			{
-				return this._Event.Entity;
-			}
-			set
-			{
-				Event previousValue = this._Event.Entity;
-				if (((previousValue != value) 
-							|| (this._Event.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Event.Entity = null;
-						previousValue.UserTypes.Remove(this);
-					}
-					this._Event.Entity = value;
-					if ((value != null))
-					{
-						value.UserTypes.Add(this);
-						this._EventID = value.EventID;
-					}
-					else
-					{
-						this._EventID = default(int);
-					}
-					this.SendPropertyChanged("Event");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Users(User entity)
-		{
-			this.SendPropertyChanging();
-			entity.UserType = this;
-		}
-		
-		private void detach_Users(User entity)
-		{
-			this.SendPropertyChanging();
-			entity.UserType = null;
-		}
-	}
-	
 	[Table(Name="dbo.HiFives")]
 	public partial class HiFive : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3890,6 +3563,240 @@ namespace Hello.Repo
 		{
 			this.SendPropertyChanging();
 			entity.Seat = null;
+		}
+	}
+	
+	[Table(Name="dbo.UserTypes")]
+	public partial class UserType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _UserTypeID;
+		
+		private string _Name;
+		
+		private int _Ordering;
+		
+		private string _DefaultColour;
+		
+		private string _BurningColour;
+		
+		private string _HotColour;
+		
+		private string _WarmColour;
+		
+		private EntitySet<User> _Users;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserTypeIDChanging(string value);
+    partial void OnUserTypeIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnOrderingChanging(int value);
+    partial void OnOrderingChanged();
+    partial void OnDefaultColourChanging(string value);
+    partial void OnDefaultColourChanged();
+    partial void OnBurningColourChanging(string value);
+    partial void OnBurningColourChanged();
+    partial void OnHotColourChanging(string value);
+    partial void OnHotColourChanged();
+    partial void OnWarmColourChanging(string value);
+    partial void OnWarmColourChanged();
+    #endregion
+		
+		public UserType()
+		{
+			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
+			OnCreated();
+		}
+		
+		[Column(Storage="_UserTypeID", DbType="Char(3) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string UserTypeID
+		{
+			get
+			{
+				return this._UserTypeID;
+			}
+			set
+			{
+				if ((this._UserTypeID != value))
+				{
+					this.OnUserTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserTypeID = value;
+					this.SendPropertyChanged("UserTypeID");
+					this.OnUserTypeIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Ordering", DbType="Int NOT NULL")]
+		public int Ordering
+		{
+			get
+			{
+				return this._Ordering;
+			}
+			set
+			{
+				if ((this._Ordering != value))
+				{
+					this.OnOrderingChanging(value);
+					this.SendPropertyChanging();
+					this._Ordering = value;
+					this.SendPropertyChanged("Ordering");
+					this.OnOrderingChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DefaultColour", DbType="Char(6) NOT NULL", CanBeNull=false)]
+		public string DefaultColour
+		{
+			get
+			{
+				return this._DefaultColour;
+			}
+			set
+			{
+				if ((this._DefaultColour != value))
+				{
+					this.OnDefaultColourChanging(value);
+					this.SendPropertyChanging();
+					this._DefaultColour = value;
+					this.SendPropertyChanged("DefaultColour");
+					this.OnDefaultColourChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BurningColour", DbType="Char(6) NOT NULL", CanBeNull=false)]
+		public string BurningColour
+		{
+			get
+			{
+				return this._BurningColour;
+			}
+			set
+			{
+				if ((this._BurningColour != value))
+				{
+					this.OnBurningColourChanging(value);
+					this.SendPropertyChanging();
+					this._BurningColour = value;
+					this.SendPropertyChanged("BurningColour");
+					this.OnBurningColourChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_HotColour", DbType="Char(6) NOT NULL", CanBeNull=false)]
+		public string HotColour
+		{
+			get
+			{
+				return this._HotColour;
+			}
+			set
+			{
+				if ((this._HotColour != value))
+				{
+					this.OnHotColourChanging(value);
+					this.SendPropertyChanging();
+					this._HotColour = value;
+					this.SendPropertyChanged("HotColour");
+					this.OnHotColourChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_WarmColour", DbType="Char(6) NOT NULL", CanBeNull=false)]
+		public string WarmColour
+		{
+			get
+			{
+				return this._WarmColour;
+			}
+			set
+			{
+				if ((this._WarmColour != value))
+				{
+					this.OnWarmColourChanging(value);
+					this.SendPropertyChanging();
+					this._WarmColour = value;
+					this.SendPropertyChanged("WarmColour");
+					this.OnWarmColourChanged();
+				}
+			}
+		}
+		
+		[Association(Name="UserType_User", Storage="_Users", ThisKey="UserTypeID", OtherKey="UserTypeID")]
+		public EntitySet<User> Users
+		{
+			get
+			{
+				return this._Users;
+			}
+			set
+			{
+				this._Users.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Users(User entity)
+		{
+			this.SendPropertyChanging();
+			entity.UserType = this;
+		}
+		
+		private void detach_Users(User entity)
+		{
+			this.SendPropertyChanging();
+			entity.UserType = null;
 		}
 	}
 }

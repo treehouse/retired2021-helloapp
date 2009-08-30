@@ -53,5 +53,16 @@ namespace Hello.Repo.Properties {
                 return ((string)(this["helloappConnectionString2"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LTDEMO4\\INSTANCE2008;Initial Catalog=helloapp;Integrated Security=Tru" +
+            "e")]
+        public string helloappConnectionString3 {
+            get {
+                return ((string)(this["helloappConnectionString3"]));
+            }
+        }
     }
 }

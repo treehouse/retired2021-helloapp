@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="helloapp" Class="HelloRepoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=IS-MATTLTEST.TESTNET\SQL2008;Initial Catalog=helloapp;Integrated Security=True" SettingsObjectName="Hello.Repo.Properties.Settings" SettingsPropertyName="helloappConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LTDEMO4\INSTANCE2008;Initial Catalog=helloapp;Integrated Security=True" SettingsObjectName="Hello.Repo.Properties.Settings" SettingsPropertyName="helloappConnectionString3" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Campaigns" Member="Campaigns">
     <Type Name="Campaign">
       <Column Name="CampaignID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -18,7 +18,6 @@
       <Column Name="End" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" />
       <Column Name="HiFiveLimit" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
       <Association Name="Event_Session" Member="Sessions" ThisKey="EventID" OtherKey="EventID" Type="Session" />
-      <Association Name="Event_UserType" Member="UserTypes" ThisKey="EventID" OtherKey="EventID" Type="UserType" />
       <Association Name="Event_HiFive" Member="HiFives" ThisKey="EventID" OtherKey="EventID" Type="HiFive" />
       <Association Name="Event_Seat" Member="Seats" ThisKey="EventID" OtherKey="EventID" Type="Seat" />
     </Type>
@@ -134,20 +133,6 @@
       <Association Name="Event_Session" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.UserTypes" Member="UserTypes">
-    <Type Name="UserType">
-      <Column Name="UserTypeID" Type="System.String" DbType="Char(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="Ordering" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DefaultColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
-      <Column Name="BurningColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
-      <Column Name="HotColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
-      <Column Name="WarmColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
-      <Association Name="UserType_User" Member="Users" ThisKey="UserTypeID" OtherKey="UserTypeID" Type="User" />
-      <Association Name="Event_UserType" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.HiFives" Member="HiFives">
     <Type Name="HiFive">
       <Column Name="HiFiveID" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -178,6 +163,18 @@
       <Column Name="Code" Type="System.String" DbType="Char(5)" CanBeNull="true" />
       <Association Name="Seat_Sat" Member="Sats" ThisKey="SeatID" OtherKey="SeatID" Type="Sat" />
       <Association Name="Event_Seat" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserTypes" Member="UserTypes">
+    <Type Name="UserType">
+      <Column Name="UserTypeID" Type="System.String" DbType="Char(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Ordering" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DefaultColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="BurningColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="HotColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="WarmColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Association Name="UserType_User" Member="Users" ThisKey="UserTypeID" OtherKey="UserTypeID" Type="User" />
     </Type>
   </Table>
   <Function Name="dbo.SearchUsers" Method="SearchUsers">
