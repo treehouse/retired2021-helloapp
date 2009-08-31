@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Index</h2>
+    <h2>Events</h2>
 
     <table>
         <tr>
@@ -25,6 +25,9 @@
             <th>
                 HiFiveLimit
             </th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
 
     <% foreach (var item in Model) { %>
@@ -51,6 +54,17 @@
             <td>
                 <%= Html.Encode(item.HiFiveLimit) %>
             </td>
+            <td>
+                <%= Html.ActionLink("Sessions", "Index", "SessionAdmin", new { id = item.EventID }, null)%>
+            </td>
+            <td>
+                <%= Html.ActionLink("Seating", "Seating", new { id = item.EventID }) %>
+            </td>
+            <td>
+                <% using (Html.BeginForm("Delete", "EventAdmin", new { id = item.EventID })) { %>
+                    <input type="submit" value="Delete" />
+                <% } %>
+            </td>
         </tr>
     
     <% } %>
@@ -58,7 +72,7 @@
     </table>
 
     <p>
-        <%= Html.ActionLink("Create New", "Create") %>
+        <%= Html.ActionLink("Create an Event", "Create")%>
     </p>
 
 </asp:Content>

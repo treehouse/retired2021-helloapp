@@ -1,8 +1,10 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Admin.Master" Inherits="System.Web.Mvc.ViewPage<Hello.Repo.Event>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Admin.Master" Inherits="System.Web.Mvc.ViewPage<Hello.Repo.Session>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Create an Event</h2>
+    <% var theEvent = (Event)ViewData["Event"]; %>
+
+    <h2>Create a Session for <%= Html.ActionLink(theEvent.Name, "Index", "SessionAdmin", new { id = theEvent.EventID }, null) %></h2>
 
     <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
 
@@ -16,24 +18,14 @@
                 <%= Html.ValidationMessage("Name", "*") %>
             </p>
             <p>
-                <label for="Slug">Slug:</label>
-                <%= Html.TextBox("Slug") %>
-                <%= Html.ValidationMessage("Slug", "*") %>
-            </p>
-            <p>
                 <label for="Start">Start:</label>
                 <%= Html.TextBox("Start") %>
                 <%= Html.ValidationMessage("Start", "*") %>
             </p>
             <p>
-                <label for="End">End:</label>
-                <%= Html.TextBox("End") %>
-                <%= Html.ValidationMessage("End", "*") %>
-            </p>
-            <p>
-                <label for="HiFiveLimit">HiFiveLimit:</label>
-                <%= Html.TextBox("HiFiveLimit") %>
-                <%= Html.ValidationMessage("HiFiveLimit", "*") %>
+                <label for="Finish">Finish:</label>
+                <%= Html.TextBox("Finish") %>
+                <%= Html.ValidationMessage("Finish", "*") %>
             </p>
             <p>
                 <input type="submit" value="Create" />
@@ -41,10 +33,6 @@
         </fieldset>
 
     <% } %>
-
-    <div>
-        <%= Html.ActionLink("Back to List", "Index") %>
-    </div>
 
 </asp:Content>
 

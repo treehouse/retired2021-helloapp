@@ -1,8 +1,8 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Admin.Master" Inherits="System.Web.Mvc.ViewPage<Hello.Repo.Event>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Admin.Master" Inherits="System.Web.Mvc.ViewPage<Hello.Repo.Session>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Edit Event</h2>
+    <h2>Edit Session at <%= Html.ActionLink(Model.Event.Name, "Index", "SessionAdmin", new { id = Model.Event.EventID }, null) %></h2>
 
     <%= Html.ValidationSummary("Edit was unsuccessful. Please correct the errors and try again.") %>
 
@@ -11,9 +11,9 @@
         <fieldset>
             <legend>Fields</legend>
             <p>
-                <label for="EventID">EventID:</label>
+                <label for="EventID">Event:</label>
                 <%= Html.Hidden("EventID", Model.EventID) %>
-                <%= Model.EventID %>
+                <%= Model.Event.Name %>
             </p>
             <p>
                 <label for="Name">Name:</label>
@@ -21,24 +21,14 @@
                 <%= Html.ValidationMessage("Name", "*") %>
             </p>
             <p>
-                <label for="Slug">Slug:</label>
-                <%= Html.TextBox("Slug", Model.Slug) %>
-                <%= Html.ValidationMessage("Slug", "*") %>
-            </p>
-            <p>
                 <label for="Start">Start:</label>
                 <%= Html.TextBox("Start", String.Format("{0:g}", Model.Start)) %>
                 <%= Html.ValidationMessage("Start", "*") %>
             </p>
             <p>
-                <label for="End">End:</label>
-                <%= Html.TextBox("End", String.Format("{0:g}", Model.End)) %>
-                <%= Html.ValidationMessage("End", "*") %>
-            </p>
-            <p>
-                <label for="HiFiveLimit">HiFiveLimit:</label>
-                <%= Html.TextBox("HiFiveLimit", Model.HiFiveLimit) %>
-                <%= Html.ValidationMessage("HiFiveLimit", "*") %>
+                <label for="Finish">Finish:</label>
+                <%= Html.TextBox("Finish", String.Format("{0:g}", Model.Finish)) %>
+                <%= Html.ValidationMessage("Finish", "*") %>
             </p>
             <p>
                 <input type="submit" value="Save" />

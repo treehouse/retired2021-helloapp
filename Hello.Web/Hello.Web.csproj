@@ -66,8 +66,10 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\EventAdminController.cs" />
     <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\HelloBaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\SessionAdminController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -171,11 +173,10 @@
     <Content Include="Content\styles\Admin.css" />
     <Content Include="Views\Account\LogOn.aspx" />
     <Content Include="Views\Admin\Campaigns.aspx" />
-    <Content Include="Views\Admin\Events.aspx" />
     <Content Include="Views\Admin\Messages.aspx" />
-    <Content Include="Views\Admin\SeatCodes.aspx" />
-    <Content Include="Views\Admin\Seating.aspx" />
-    <Content Include="Views\Admin\Sessions.aspx" />
+    <Content Include="Views\EventAdmin\SeatCodes.aspx" />
+    <Content Include="Views\EventAdmin\Seating.aspx" />
+    <Content Include="Views\SessionAdmin\Sessions.aspx" />
     <Content Include="Views\Admin\Status.aspx" />
     <Content Include="Views\Admin\Tokens.aspx" />
     <Content Include="Views\Shared\Admin.Master" />
@@ -188,6 +189,9 @@
     <Content Include="Views\EventAdmin\Create.aspx" />
     <Content Include="Views\EventAdmin\Edit.aspx" />
     <Content Include="Views\EventAdmin\Index.aspx" />
+    <Content Include="Views\SessionAdmin\Create.aspx" />
+    <Content Include="Views\SessionAdmin\Edit.aspx" />
+    <Content Include="Views\SessionAdmin\Index.aspx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

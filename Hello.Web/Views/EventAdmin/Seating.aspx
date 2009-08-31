@@ -5,7 +5,7 @@
     <% var theEvent = (Event)ViewData["Event"]; %>
     <% var seatingPlan = (string)ViewData["SeatingPlan"]; %>
 
-    <h2>Seating for <%= Html.ActionLink(theEvent.Name, "Events") %></h2>
+    <h2>Seating for <%= Html.ActionLink(theEvent.Name, "Index", "EventAdmin") %></h2>
     
     <% if (seatingPlan.Length > 0) { %>
     

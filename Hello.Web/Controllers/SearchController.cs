@@ -9,17 +9,8 @@ using Hello.Utils;
 
 namespace Hello.Web.Controllers
 {
-    public class SearchController : Controller
+    public class SearchController : HelloBaseController
     {
-        private HelloRepoDataContext _repo;
-
-        public SearchController() : this(new HelloRepoDataContext(Settings.ConnectionString)) { }
-
-        public SearchController(HelloRepoDataContext repo)
-        {
-            _repo = repo;
-        }
-
         public ActionResult Index(string search)
         {
             search = search.Trim();

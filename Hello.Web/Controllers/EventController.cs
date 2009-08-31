@@ -10,15 +10,10 @@ using System.Data.Linq;
 
 namespace Hello.Web.Controllers
 {
-    public class EventController : Controller
+    public class EventController : HelloBaseController
     {
-        private HelloRepoDataContext _repo;
-
-        public EventController() : this(new HelloRepoDataContext(Settings.ConnectionString)) { }
-
-        public EventController(HelloRepoDataContext repo)
+        public override void PostRepoInit()
         {
-            _repo = repo;
             var options = new DataLoadOptions();
             options.LoadWith<Sat>(s => s.User);
             options.LoadWith<User>(u => u.Tags);

@@ -9,17 +9,8 @@ using System.Text;
 
 namespace Hello.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : HelloBaseController
     {
-        private HelloRepoDataContext _repo;
-
-        public HomeController() : this(new HelloRepoDataContext(Settings.ConnectionString)) { }
-
-        public HomeController(HelloRepoDataContext repo)
-        {
-            _repo = repo;
-        }
-
         public ActionResult Index()
         {
             // If there is an event currently on then redirect to it
