@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     
     <p>
-        <%= Html.ActionLink("Events", "Events") %>
+        <%= Html.ActionLink("Events", "Index", "EventAdmin") %>
     </p>
     
     <p>

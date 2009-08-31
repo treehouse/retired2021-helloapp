@@ -29,52 +29,6 @@ namespace Hello.Web.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Events(string message)
-        {
-            var events = _repo.Events;
-
-            ViewData["Message"] = message;
-
-            return View(events);
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Events(Event theEvent)
-        {
-            if (new Regex(Settings.EventSlugRegex).IsMatch(theEvent.Slug))
-            {
-                _repo
-                    .Events
-                    .InsertOnSubmit(theEvent);
-                _repo.SubmitChanges();
-
-                return RedirectToAction("Events", new { message = "Event created" });
-            }
-            else
-            {
-                return RedirectToAction("Events", new { message = "Failed to created event - Invalid Slug" });
-            }
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult DeleteEvent(int id)
-        {
-            var theEvent = _repo
-                .Events
-                .SingleOrDefault(c => c.EventID == id);
-
-            if (theEvent == null)
-                return RedirectToAction("Events");
-
-            _repo
-                .Events
-                .DeleteOnSubmit(theEvent);
-            _repo.SubmitChanges();
-
-            return RedirectToAction("Events");
-        }
-
-        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Sessions(int id)
         {
             var theEvent = _repo
