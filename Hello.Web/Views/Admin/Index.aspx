@@ -11,7 +11,7 @@
     </p>
     
     <p>
-        <%= Html.ActionLink("Campaigns", "Campaigns") %>
+        <%= Html.ActionLink("Campaigns", "Index", "CampaignAdmin") %>
     </p>
     
     <p>

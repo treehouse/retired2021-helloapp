@@ -6,6 +6,7 @@
 
     <table>
         <tr>
+            <th></th>
             <th>
                 CampaignID
             </th>
@@ -16,12 +17,14 @@
                 Value
             </th>
             <th></th>
-            <th></th>
         </tr>
 
     <% foreach (var item in Model) { %>
     
         <tr>
+            <td>
+                <%= Html.ActionLink("Edit", "Edit", new { id=item.CampaignID }) %>
+            </td>
             <td>
                 <%= Html.Encode(item.CampaignID) %>
             </td>
@@ -32,11 +35,10 @@
                 <%= Html.Encode(item.Value) %>
             </td>
             <td>
-                <%= Html.ActionLink("Tokens", "Tokens", new { id = item.CampaignID }) %>
+                <%= Html.ActionLink("Tokens", "Index", "TokenAdmin", new { id = item.CampaignID }, null) %>
             </td>
             <td>
-                <% using (Html.BeginForm("DeleteCampaign", "Admin")) { %>
-                    <%= Html.Hidden("id", item.CampaignID) %>
+                <% using (Html.BeginForm("Delete", "CampaignAdmin", new { id = item.CampaignID })) { %>
                     <input type="submit" value="Delete" />
                 <% } %>
             </td>
@@ -45,24 +47,10 @@
     <% } %>
 
     </table>
-    
-    <h3>Create a Campaign</h3>
 
-    <% using (Html.BeginForm()) {%>
-
-        <p>
-            <label for="Name">Name:</label>
-            <%= Html.TextBox("Name") %>
-        </p>
-        <p>
-            <label for="Value">Value:</label>
-            <%= Html.TextBox("Value") %>
-        </p>
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-
-    <% } %>
+    <p>
+        <%= Html.ActionLink("Create a Campaign", "Create") %>
+    </p>
 
 </asp:Content>
 

@@ -3,16 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <% var campaign = (Campaign)ViewData["Campaign"]; %>
-
-    <h2>Tokens for <%= Html.ActionLink(campaign.Name, "Campaigns") %></h2>
+    
+    <h2>Tokens for <%= Html.ActionLink(campaign.Name, "Index", "CampaignAdmin") %></h2>
 
     <table>
         <tr>
             <th>
                 TokenID
-            </th>
-            <th>
-                Campaign
             </th>
             <th>
                 Code
@@ -30,16 +27,13 @@
                 <%= Html.Encode(item.TokenID) %>
             </td>
             <td>
-                <%= Html.Encode(item.Campaign.Name) %>
-            </td>
-            <td>
                 <%= Html.Encode(item.Code) %>
             </td>
             <td>
                 <%= Html.Encode(item.AllowedRedemptions) %>
             </td>
             <td>
-                <% using (Html.BeginForm("DeleteToken", "Admin", new { id = item.TokenID })) { %>
+                <% using (Html.BeginForm("Delete", "TokenAdmin", new { id = item.TokenID })) { %>
                     <input type="submit" value="Delete" />
                 <% } %>
             </td>
@@ -48,26 +42,10 @@
     <% } %>
 
     </table>
-    
-    <h3>Create a Token</h3>
-    
-    <% using (Html.BeginForm()) {%>
 
-        <%= Html.Hidden("CampaignID", campaign.CampaignID)%>
-        <p>
-            <label for="Code">Code:</label>
-            <%= Html.TextBox("Code", ViewData["Code"]) %>
-            <%= Html.ActionLink("New Code", "Tokens") %>
-        </p>
-        <p>
-            <label for="AllowedRedemptions">Allowed Redemptions:</label>
-            <%= Html.TextBox("AllowedRedemptions") %>
-        </p>
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-
-    <% } %>
+    <p>
+        <%= Html.ActionLink("Create a Token", "Create", new { id = campaign.CampaignID }) %>
+    </p>
 
 </asp:Content>
 
