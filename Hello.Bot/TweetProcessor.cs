@@ -44,7 +44,7 @@ namespace Hello.Bot
                 {
                     user = new User
                     {
-                        ImageURL = tweet.ImageURL.Replace("_normal.", "_bigger."), // we want the larger twitter image if it exists
+                        ImageURL = tweet.ImageURL,
                         Username = tweet.Username,
                         Created = DateTime.Now,
                         Updated = DateTime.Now

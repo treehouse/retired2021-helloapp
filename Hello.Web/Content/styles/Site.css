@@ -555,19 +555,19 @@ body.confDay #search input#submitBtn:hover {
 
 /* Seating Plan __________________________________________________________ */
 
-.seating .row {
-	height: 25px;
+.seatingPlan {
+	margin:auto;
 }
 
-.seating .row img.space {
-	margin-left:1px;
-	margin-bottom:1px;
+.seatingPlan img, .seatingPlan div {
+	vertical-align:bottom;
 }
 
-.seating .row .seat {
+.seatingPlan td {
 	border-left:1px solid #ebe7d5;
 	border-bottom:1px solid #ebe7d5;
 }
+
 
 
 
@@ -722,9 +722,9 @@ a.close:hover {
 	position:absolute;
 	top:100px;
 	left:100px;
-	height:73px;
-	width:73px;
-	background:url(../images/content/greg.jpg) top left no-repeat;
+	height:48px;
+	width:48px;
+	background: top left no-repeat;
 	-moz-border-radius:37px;
 	-webkit-border-radius:35px;
 	border-radius:37px;

@@ -132,7 +132,6 @@
     <Content Include="Content\images\content\carsonified.jpg" />
     <Content Include="Content\images\content\diamond.png" />
     <Content Include="Content\images\content\gold.png" />
-    <Content Include="Content\images\content\greg.jpg" />
     <Content Include="Content\images\content\heat_map.jpg" />
     <Content Include="Content\images\content\high_five.jpg" />
     <Content Include="Content\images\content\high_five.png" />
@@ -144,7 +143,6 @@
     <Content Include="Content\images\content\microsoft.jpg" />
     <Content Include="Content\images\content\mike.jpg" />
     <Content Include="Content\images\content\red_gate.jpg" />
-    <Content Include="Content\images\content\ryan.jpg" />
     <Content Include="Content\images\content\ryan_large.jpg" />
     <Content Include="Content\images\content\screen_01.jpg" />
     <Content Include="Content\images\content\silver.png" />
@@ -213,7 +211,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1490</DevelopmentServerPort>
+          <DevelopmentServerPort>3632</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

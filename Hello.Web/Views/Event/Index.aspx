@@ -66,47 +66,44 @@
     
     <div class="seating">
     
+    <table class="seatingPlan" cellpadding="0" cellspacing="0" border="0">
+    
         <% var sats = (IList<Sat>)ViewData["Sats"]; %>
         
         <% foreach (var row in Model.Seats.GroupBy(s => s.Row)) { %>
         
-            <div class="row">
+            <tr>
             
-                <% foreach (var seat in row) {
-
-                    if (seat.Code == null)
-                    {
-                        %><img class="space" width="24" height="24" src="<%= Url.Content("~/Content/images/presentation/spacer.gif") %>" /><%
-                    }
-                    else
-                    {
-                        var sat = sats.SingleOrDefault(s => s.SeatID == seat.SeatID);
-                        if (sat == null)
-                        {
-                            %><img class="seat" width="24" height="24" src="<%= Url.Content("~/Content/images/presentation/smiley.jpg") %>" /><%
-                        }
-                        else if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "heatmap")
-                        {
-                            var colour = sat.User.UserType == null ? "ccc" : sat.User.UserType.DefaultColour;
-                            %><div class="seat" style="width:24px; height: 24px; background-color: #<%= colour %>; display: inline-block;"></div><%
-                        }
-                        else
-                        {
-                            if (!String.IsNullOrEmpty((string)ViewData["searchTerm"]) && !sat.User.HasTag((string)ViewData["searchTerm"]))
-                            {
-                                %><img class="seat" width="24" height="24" style="opacity:0.4; filter:alpha(opacity=40);" src="<%= sat.User.ImageURL %>" /><%
-                            }
-                            else
-                            {
-                                %><img class="seat" width="24" height="24" src="<%= sat.User.ImageURL %>" /><%
-                            }
-                        }
-                    }
-                } %>
-            
-            </div>
+                <% foreach (var seat in row) { %>
                 
+                    <td>
+                    
+                        <% if (seat.Code == null) { %>
+                            <img width="24" height="24" src="<%= Url.Content("~/Content/images/presentation/spacer.gif") %>" />
+                        
+                        <% } else { %>
+                            <% var sat = sats.SingleOrDefault(s => s.SeatID == seat.SeatID); %>
+                            <% if (sat == null) { %>
+                                <img width="24" height="24" src="<%= Url.Content("~/Content/images/presentation/smiley.jpg") %>" />
+                            <% } else if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "heatmap") { %>
+                                <% var colour = sat.User.UserType == null ? "ccc" : sat.User.UserType.DefaultColour; %>
+                                <div style="width:24px; height: 24px; background-color: #<%= colour %>; display: inline-block;"></div>
+                            <% } else if (!String.IsNullOrEmpty((string)ViewData["searchTerm"]) && !sat.User.HasTag((string)ViewData["searchTerm"])) { %>
+                                <img width="24" height="24" style="opacity:0.4; filter:alpha(opacity=40);" src="<%= sat.User.ImageURL %>" />
+                            <% } else { %>
+                                <img width="24" height="24" src="<%= sat.User.ImageURL %>" />
+                            <% } %>
+                        <% } %>
+                    
+                    </td>
+                
+                <% } %>
+            
+            </tr>
+        
         <% } %>
+    
+    </table>
     
     </div>
     
