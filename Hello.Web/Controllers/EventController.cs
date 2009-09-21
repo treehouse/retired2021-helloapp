@@ -82,12 +82,12 @@ namespace Hello.Web.Controllers
 
             var rankedTags = new Dictionary<string, string>();
 
-            var i = Settings.MaxTags;
+            var i = 0;
 
             foreach (var tag in tags)
             {
                 var tagSize = String.Empty;
-                if (!Settings.TagSizes.TryGetValue(i--, out tagSize))
+                if (!Settings.TagSizes.TryGetValue(i++, out tagSize))
                 {
                     tagSize = Settings.DefaultTagSize;
                 }

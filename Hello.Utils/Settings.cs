@@ -69,11 +69,11 @@ namespace Hello.Utils
             get
             {
                 return new Dictionary<int, string> {
-                    { 10, "largest" },
-                    { 9,  "larger" },
-                    { 8,  "large" },
-                    { 7,  "medium" },
-                    { 6,  "small" },
+                    { 0, "largest" },
+                    { 1,  "larger" },
+                    { 2,  "large" },
+                    { 3,  "medium" },
+                    { 4,  "small" },
                     { 5,  "smaller" }
                 };
             }
