@@ -88,6 +88,9 @@ namespace Hello.Web.Controllers
                 return RedirectToAction("Index");
 
             _repo
+                .Tokens
+                .DeleteAllOnSubmit(campaign.Tokens);
+            _repo
                 .Campaigns
                 .DeleteOnSubmit(campaign);
             _repo.SubmitChanges();

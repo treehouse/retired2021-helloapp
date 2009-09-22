@@ -61,8 +61,10 @@
                 <%= Html.ActionLink("Seating", "Seating", new { id = item.EventID }) %>
             </td>
             <td>
-                <% using (Html.BeginForm("Delete", "EventAdmin", new { id = item.EventID })) { %>
-                    <input type="submit" value="Delete" />
+                <% if (item.Start > DateTime.Now) { %>
+                    <% using (Html.BeginForm("Delete", "EventAdmin", new { id = item.EventID })) { %>
+                        <input type="submit" value="Delete" />
+                    <% } %>
                 <% } %>
             </td>
         </tr>

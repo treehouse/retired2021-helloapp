@@ -94,6 +94,18 @@ namespace Hello.Web.Controllers
             _repo
                 .Events
                 .DeleteOnSubmit(theEvent);
+            _repo
+                .Seats
+                .DeleteAllOnSubmit(theEvent.Seats);
+            _repo
+                .Sessions
+                .DeleteAllOnSubmit(theEvent.Sessions);
+            _repo
+                .HiFives
+                .DeleteAllOnSubmit(theEvent.HiFives);
+            _repo
+                .Sats
+                .DeleteAllOnSubmit(theEvent.Seats.SelectMany(s => s.Sats));
             _repo.SubmitChanges();
 
             return RedirectToAction("Index");
