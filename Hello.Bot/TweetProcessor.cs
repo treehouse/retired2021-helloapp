@@ -44,13 +44,18 @@ namespace Hello.Bot
                 {
                     user = new User
                     {
-                        ImageURL = tweet.ImageURL,
                         Username = tweet.Username,
                         Created = DateTime.Now,
-                        Updated = DateTime.Now
                     };
                     _repo.Users.InsertOnSubmit(user);
                 }
+
+                // Update user's details
+                if (String.IsNullOrEmpty(tweet.ImageURL))
+                    user.ImageURL = Settings.DefaultImageURL;
+                else
+                    user.ImageURL = tweet.ImageURL;
+                user.Updated = DateTime.Now;
 
                 HelloTweet helloTweet = processedTweet as HelloTweet;
                 if (helloTweet != null)
