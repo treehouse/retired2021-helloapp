@@ -98,9 +98,9 @@ namespace Hello.Web.Controllers
             ViewData["TagsKeys"] = rankedTags.Keys.OrderBy(t => t);
         }
 
-        public ActionResult Search(string eventslug, string searchterm, string viewBy)
+        public ActionResult Search(string eventslug, string searchTerm, string viewBy)
         {
-            ViewData["SearchTerm"] = searchterm;
+            ViewData["SearchTerm"] = searchTerm;
             ViewData["ViewBy"] = viewBy;
 
             var theEvent = _repo

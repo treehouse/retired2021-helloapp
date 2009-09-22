@@ -602,6 +602,7 @@ body.confDay #search input#submitBtn:hover {
 	font-size:80%;
 	letter-spacing:-0.03em;
 	color:#5b5b5b;
+	overflow:hidden;
 }
 
 .twitterProfile img {

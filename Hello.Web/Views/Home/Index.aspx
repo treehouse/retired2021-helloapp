@@ -102,7 +102,7 @@
             </div>
         <% } %>
         
-        <div class="profileBox avatarPopup">
+        <div class="profileBox avatarPopup" style="display: none;">
             <div class="twitterProfile">
                 <img height="73px" />
                 <div class="bio">

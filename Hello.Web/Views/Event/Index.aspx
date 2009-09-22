@@ -39,7 +39,7 @@
                 <% foreach (var key in tagKeys) { %>
                 
                     <li class="<%= tags[key] %>">
-                        <%= Html.ActionLink(key, "Search", "Event", new { searchterm = key }, null) %>
+                        <%= Html.ActionLink(key, "Search", "Event", new { searchTerm = key }, null) %>
                     </li>
                 
                 <% } %>
@@ -80,7 +80,6 @@
                     
                         <% if (seat.Code == null) { %>
                             <img width="24" height="24" src="<%= Url.Content("~/Content/images/presentation/spacer.gif") %>" />
-                        
                         <% } else { %>
                             <% var sat = sats.SingleOrDefault(s => s.SeatID == seat.SeatID); %>
                             <% if (sat == null) { %>
