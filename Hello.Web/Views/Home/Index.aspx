@@ -44,8 +44,8 @@
                 var pos = $this.position();
                 var height = popup.height();
                 popup.css({
-                    top: pos.top - height - 20,
-                    left: (pos.left > 980 / 2) ? pos.left - 420 : pos.left + 48
+                    top: pos.top - height - 26,
+                    left: (pos.left > 980 / 2) ? pos.left - 427 : pos.left + 34
                 });
 
                 // Latest Tweet
