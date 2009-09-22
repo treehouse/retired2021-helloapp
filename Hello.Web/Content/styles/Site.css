@@ -189,6 +189,7 @@ body {
 .seating {
 	text-align:center;
 	padding-bottom:30px;
+	position:relative;
 }
 
 .randomAvatars {
@@ -230,7 +231,7 @@ a.logo {
 	border:none;
 	padding:0px;
 	text-indent:-9999px;
-	}
+}
 	
 .headerRight {
 	float:left;
@@ -360,7 +361,7 @@ a.joinInSticker {
 	
 a.joinInSticker:hover {
 	background:url(../images/presentation/join_in.png) 0px -140px no-repeat;
-	}	
+}
 
 #search {
 	position:relative;
@@ -449,20 +450,20 @@ a.checkIn {
 	border:none;
 	padding:0px;
 	text-indent:-9999px;
-	}
+}
 	
 a.checkIn:hover {
 	background:url(../images/presentation/check_in.png) 0px -170px no-repeat;
-	}	
+}	
 
 .checkInBar h2 {
 	float:left;
 	padding:37px 0px 0px 0px;
-	}	
+}	
 	
 h2.right {
 	float:right;
-	}	
+}	
 
 
 
@@ -568,6 +569,12 @@ body.confDay #search input#submitBtn:hover {
 	border-bottom:1px solid #ebe7d5;
 }
 
+.seating  .avatarPopup {
+	text-align: left;
+}
+
+
+
 
 
 
@@ -580,6 +587,7 @@ body.confDay #search input#submitBtn:hover {
 
 .profileBox {
 	width:400px;
+	height:161px;
 	padding:20px 20px 20px 20px;
 	background:#fff;
 	border:1px dashed #dc3d2a;

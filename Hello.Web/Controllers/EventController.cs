@@ -96,10 +96,19 @@ namespace Hello.Web.Controllers
 
             ViewData["Tags"] = rankedTags;
             ViewData["TagsKeys"] = rankedTags.Keys.OrderBy(t => t);
+
+            var userTypes = _repo
+                .UserTypes
+                .OrderBy(ut => ut.Ordering)
+                .ToList();
+
+            ViewData["UserTypes"] = userTypes;
         }
 
         public ActionResult Search(string eventslug, string searchTerm, string viewBy)
         {
+            if (searchTerm != null)
+                searchTerm = searchTerm.Trim();
             ViewData["SearchTerm"] = searchTerm;
             ViewData["ViewBy"] = viewBy;
 

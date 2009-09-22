@@ -1,6 +1,80 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Hello.Repo.Event>" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
+    <script type="text/javascript">
+        $(function() {
+            var seats = $('.seating td:has(form)');
+            var popup = $('.avatarPopup');
+            var popupSize = popup.size();
+            seats.click(function() {
+                var $this = $(this);
+
+                var username = $('input[name=Username]', $this).val();
+
+                // Image
+                var img = $('img', popup);
+                // HACK: to stop image glitching
+                img.attr('src', '');
+                img.attr('src', $('input[name=ImageURL]', $this).val());
+                img.attr('alt', username);
+
+                // Username
+                var twitterLink = $('.twitterLink', popup);
+                twitterLink.attr('href', 'http://twitter.com/' + username);
+                twitterLink.text(username);
+
+                // UserType
+                var userType = $('input[name=UserType]', $this).val();
+                $('.categories li').removeClass('selected');
+                if (userType != '') {
+                    $('.' + userType, popup).addClass('selected');
+                }
+
+                // Tags
+                var tags = $('input[name=Tag]', $this);
+                var tagHtml = '';
+                tags.each(function(i, tagInput) {
+                    var tag = $(tagInput).val();
+                    tagHtml += '#<a href="<%= Url.Action("Search", "Event", new { searchTerm = " " }) %>' + tag + '">' + tag + '</a> ';
+                });
+                $('.tagsPara', popup).html(tagHtml);
+
+                // Positioning
+                var pos = $this.position();
+                var height = popup.height();
+                popup.css({
+                    top: pos.top - height - 29,
+                    left: (pos.left < 980 / 2) ? pos.left + 14 : pos.left - 428
+                });
+
+                // Latest Tweet
+                var latestTweetInput = $('input[name=LatestTweet]', $this);
+                if (latestTweetInput.length == 0) {
+                    $('#latestTweet', popup).text('Loading...');
+                    $.getJSON('http://twitter.com/statuses/user_timeline/' +
+                        username +
+                        '.json?count=1&callback=?',
+                        function(tweets) {
+                            $('form#' + tweets[0].user.screen_name.toLowerCase()).append('<input name="LatestTweet" value="' + tweets[0].text + '" type="hidden" />');
+                            $('#latestTweet', popup).html(tweets[0].text);
+                        }
+                    );
+                } else {
+                    $('#latestTweet', popup).html(latestTweetInput.val());
+                }
+
+                // Display
+                popup.fadeIn();
+            });
+
+            $('.close').click(function() {
+                popup.fadeOut();
+                return false;
+            });
+
+            popup.hide();
+        });
+	</script>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="TopContent" runat="server">
@@ -62,6 +136,7 @@
     <% } %>
     
     </div>
+    
     <br clear="all" />
     
     <div class="seating">
@@ -84,13 +159,23 @@
                             <% var sat = sats.SingleOrDefault(s => s.SeatID == seat.SeatID); %>
                             <% if (sat == null) { %>
                                 <img width="24" height="24" src="<%= Url.Content("~/Content/images/presentation/smiley.jpg") %>" />
-                            <% } else if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "heatmap") { %>
-                                <% var colour = sat.User.UserType == null ? "ccc" : sat.User.UserType.DefaultColour; %>
-                                <div style="width:24px; height: 24px; background-color: #<%= colour %>; display: inline-block;"></div>
-                            <% } else if (!String.IsNullOrEmpty((string)ViewData["searchTerm"]) && !sat.User.HasTag((string)ViewData["searchTerm"])) { %>
-                                <img width="24" height="24" style="opacity:0.4; filter:alpha(opacity=40);" src="<%= sat.User.ImageURL %>" />
                             <% } else { %>
-                                <img width="24" height="24" src="<%= sat.User.ImageURL %>" />
+                                <% if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "heatmap") { %>
+                                    <% var colour = sat.User.UserType == null ? "aaa" : sat.User.UserType.DefaultColour; %>
+                                    <div style="width:24px; height: 24px; background-color: #<%= colour %>; display: inline-block;"></div>
+                                <% } else if (!String.IsNullOrEmpty((string)ViewData["searchTerm"]) && !sat.User.HasTag((string)ViewData["searchTerm"])) { %>
+                                    <img width="24" height="24" style="opacity:0.4; filter:alpha(opacity=40);" src="<%= sat.User.ImageURL %>" />
+                                <% } else { %>
+                                    <img width="24" height="24" src="<%= sat.User.ImageURL %>" />
+                                <% } %>
+                                <form id="<%= sat.User.Username %>">
+                                    <%= Html.Hidden("Username", sat.User.Username) %>
+                                    <%= Html.Hidden("ImageURL", sat.User.ImageURL) %>
+                                    <%= Html.Hidden("UserType", sat.User.UserTypeID) %>
+                                    <% foreach (var tag in sat.User.Tags.OrderByDescending(t => t.Created).Take(3)) { %>
+                                        <%= Html.Hidden("Tag", tag.Name) %>
+                                    <% } %>
+                                </form>
                             <% } %>
                         <% } %>
                     
@@ -103,8 +188,25 @@
         <% } %>
     
     </table>
+        
+        <div class="profileBox avatarPopup" style="display: none;">
+            <div class="twitterProfile">
+                <img height="73px" />
+                <div class="bio">
+                    <p>@<a class="twitterLink" href="http://twitter.com/ryancarson">Ryancarson</a></p>
+                    <p id="latestTweet">Loading...</p>
+                </div>
+                <a href="#" class="close">Close</a>
+            </div>
+            <ul class="categories">
+                <% foreach (var ut in ViewData["UserTypes"] as List<UserType>) { %>
+                    <li class="<%= ut.UserTypeID %>"><%= ut.Name %></li>
+                <% } %>
+            </ul>
+            <p class="tagsPara">#<a href="#">Fake</a> #<a href="#">Fake</a> #<a href="#">Fake</a></p>
+        </div>
     
-    </div>
+    </div><!-- /.seating -->
     
     <% if (ViewData["Messages"] != null && ((IQueryable<Message>)ViewData["Messages"]).Any()) { %>
 

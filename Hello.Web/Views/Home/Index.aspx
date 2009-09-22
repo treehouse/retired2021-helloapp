@@ -35,8 +35,7 @@
                 var tagHtml = '';
                 tags.each(function(i, tagInput) {
                     var tag = $(tagInput).val();
-                    tagHtml += '#<a href="<%= Url.Action("Index", "Search", new { search = " " }) %>' + tag + '">' + tag + '</a> '
-
+                    tagHtml += '#<a href="<%= Url.Action("Index", "Search", new { search = " " }) %>' + tag + '">' + tag + '</a> ';
                 });
                 $('.tagsPara', popup).html(tagHtml);
 
