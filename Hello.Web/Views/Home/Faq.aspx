@@ -56,7 +56,7 @@
     
     <h4>Get points by meeting people</h4>
 
-	<p><span class="read">When you meet someone and they give you their Twitter username, just tweet:</span><br><code>@helloapp @their-username</code>. <br><span class="read">If they return the favor and tweet:</span><br> <code>@helloapp @your-username</code> <br><span class="read">then you'll both get <%= Settings.Points.Met %> points for meeting each other. Both people have to do it, in order for the points to be awarded.</span></p>
+	<p><span class="read">When you meet someone and they give you their Twitter username, just tweet:</span><br><code>@helloapp met @their-username</code>. <br><span class="read">If they return the favor and tweet:</span><br> <code>@helloapp met @your-username</code> <br><span class="read">then you'll both get <%= Settings.Points.Met %> points for meeting each other. Both people have to do it, in order for the points to be awarded.</span></p>
 
 	<h4 id="instructionsmessage">Post a message to the entire audience</h4>
 

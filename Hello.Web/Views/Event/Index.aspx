@@ -211,8 +211,10 @@
                                         <%= Html.Hidden("Badge", "diamond") %>
                                     <% } %>
                                     <% var hiFives = sat.User.HiFivees.Count(); %>
-                                    <% if (hiFives > 1) { %>
+                                    <% if (hiFives > 0) { %>
                                         <%= Html.Hidden("Badge", "highFive") %>
+                                    <% } %>
+                                    <% if (hiFives > 1) { %>
                                         <%= Html.Hidden("HiFives", hiFives) %>
                                     <% } %>
                                     <% if (sat.User.Friends.Count() >= Settings.Thresholds.Smiley) { %>
