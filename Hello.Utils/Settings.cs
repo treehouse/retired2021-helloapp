@@ -81,19 +81,17 @@ namespace Hello.Utils
 
         public static string GetHeatColour(int hottness)
         {
-            if (hottness >= 2000)
-                return "red";
             if (hottness >= 1000)
-                return "orange";
+                return "DC3D2A";
             if (hottness >= 250)
-                return "yellow";
+                return "DCC12A";
             if (hottness >= 100)
-                return "lime";
+                return "4FA431";
             if (hottness >= 50)
-                return "cyan";
+                return "319DB8";
             if (hottness >= 20)
-                return "blue";
-            return "#B7B4A3";
+                return "8B4591";
+            return "000000";
         }
 
         public static string DefaultTagSize

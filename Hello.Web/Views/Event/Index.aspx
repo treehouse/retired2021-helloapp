@@ -183,7 +183,7 @@
                                     <div style="width:24px; height: 24px; background-color: #<%= colour %>; display: inline-block;"></div>
                                 <% } else if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "follower") { %>
                                     <% var colour = Settings.GetHeatColour(sat.User.Followers); %>
-                                    <div style="width:24px; height: 24px; background-color: <%= colour %>; display: inline-block;"></div>
+                                    <div style="width:24px; height: 24px; background-color: #<%= colour %>; display: inline-block;"></div>
                                 <% } else if (!String.IsNullOrEmpty((string)ViewData["searchTerm"]) && !sat.User.HasTag((string)ViewData["searchTerm"])) { %>
                                     <img width="24" height="24" style="opacity:0.4; filter:alpha(opacity=40);" src="<%= sat.User.ImageURL %>" />
                                 <% } else { %>
