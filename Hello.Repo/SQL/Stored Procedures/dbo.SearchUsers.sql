@@ -72,10 +72,10 @@ BEGIN
 	WHERE u.ShadowAccount = 0 AND LEFT(st.Term, 1) = '#'
 
     -- Insert statements for procedure here
-	SELECT u.Username, u.ImageURL, u.Created, u.Updated, u.UserTypeID, u.ShadowAccount
+	SELECT u.Username, u.ImageURL, u.Created, u.Updated, u.UserTypeID, u.ShadowAccount, u.Followers
 	FROM dbo.Users u
 	INNER JOIN #TempResults t ON u.Username = t.Username
-	GROUP BY u.Username, u.ImageURL, u.Created, u.Updated, u.UserTypeID, u.ShadowAccount
+	GROUP BY u.Username, u.ImageURL, u.Created, u.Updated, u.UserTypeID, u.ShadowAccount, u.Followers
 	HAVING SUM(t.Weighting) >= (SELECT 10 * COUNT(*) FROM #SearchTerms)
 	ORDER BY SUM(t.Weighting) DESC
 	
@@ -83,6 +83,7 @@ BEGIN
 	DROP TABLE #SearchTerms
 END
 GO
+
 
 
 
