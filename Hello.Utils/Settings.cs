@@ -79,6 +79,23 @@ namespace Hello.Utils
             }
         }
 
+        public static string GetHeatColour(int hottness)
+        {
+            if (hottness >= 2000)
+                return "red";
+            if (hottness >= 1000)
+                return "orange";
+            if (hottness >= 250)
+                return "yellow";
+            if (hottness >= 100)
+                return "lime";
+            if (hottness >= 50)
+                return "cyan";
+            if (hottness >= 20)
+                return "blue";
+            return "#B7B4A3";
+        }
+
         public static string DefaultTagSize
         {
             get { return "smallest"; }

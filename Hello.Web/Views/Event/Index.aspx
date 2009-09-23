@@ -113,7 +113,8 @@
         <div id="filter">
             <select onchange="this.form.submit()" id="viewBy" name="viewBy">
                 <option <% if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "twitter") { %>selected<% } %> value="twitter">View Twitter Icons</option>
-                <option <% if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "heatmap") { %>selected<% } %> value="heatmap">View Heat Map</option>
+                <option <% if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "category") { %>selected<% } %> value="category">View Categories</option>
+                <option <% if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "follower") { %>selected<% } %> value="follower">View Follower Heat Map</option>
             </select>
         </div>
 
@@ -173,9 +174,12 @@
                             <% if (sat == null) { %>
                                 <img width="24" height="24" src="<%= Url.Content("~/Content/images/presentation/smiley.jpg") %>" />
                             <% } else { %>
-                                <% if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "heatmap") { %>
-                                    <% var colour = sat.User.UserType == null ? "aaa" : sat.User.UserType.DefaultColour; %>
+                                <% if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "category") { %>
+                                    <% var colour = sat.User.UserType == null ? "B7B4A3" : sat.User.UserType.DefaultColour; %>
                                     <div style="width:24px; height: 24px; background-color: #<%= colour %>; display: inline-block;"></div>
+                                <% } else if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "follower") { %>
+                                    <% var colour = Settings.GetHeatColour(sat.User.Followers); %>
+                                    <div style="width:24px; height: 24px; background-color: <%= colour %>; display: inline-block;"></div>
                                 <% } else if (!String.IsNullOrEmpty((string)ViewData["searchTerm"]) && !sat.User.HasTag((string)ViewData["searchTerm"])) { %>
                                     <img width="24" height="24" style="opacity:0.4; filter:alpha(opacity=40);" src="<%= sat.User.ImageURL %>" />
                                 <% } else { %>
@@ -203,8 +207,8 @@
                                         <%= Html.Hidden("Badge", "diamond") %>
                                     <% } %>
                                     <% var hiFives = sat.User.HiFivees.Count(); %>
-                                        <%= Html.Hidden("Badge", "highFive") %>
                                     <% if (hiFives > 1) { %>
+                                        <%= Html.Hidden("Badge", "highFive") %>
                                         <%= Html.Hidden("HiFives", hiFives) %>
                                     <% } %>
                                     <% if (sat.User.Friends.Count() >= Settings.Thresholds.Smiley) { %>
