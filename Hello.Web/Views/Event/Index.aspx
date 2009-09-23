@@ -52,6 +52,10 @@
                     }
                 });
 
+                //Points
+                var points = $('input[name=Points]', $this).val();
+                $('.points', popup).text(points);                
+                
                 // Positioning
                 var pos = $this.position();
                 var height = popup.height();
@@ -192,8 +196,8 @@
                                     <% foreach (var tag in sat.User.Tags.OrderByDescending(t => t.Created).Take(3)) { %>
                                         <%= Html.Hidden("Tag", tag.Name) %>
                                     <% } %>
-                                    
                                     <% var points = sat.User.Points.Sum(p => p.Amount); %>
+                                        <%= Html.Hidden("Points", points) %>
                                     <% if (points >= Settings.Thresholds.Bronze) { %>
                                         <%= Html.Hidden("Badge", "bronze") %>
                                     <% } %>
@@ -212,7 +216,7 @@
                                         <%= Html.Hidden("HiFives", hiFives) %>
                                     <% } %>
                                     <% if (sat.User.Friends.Count() >= Settings.Thresholds.Smiley) { %>
-                                        <%= Html.Hidden("Badge", "smiley")%>
+                                        <%= Html.Hidden("Badge", "smiley") %>
                                     <% } %>
                                 </form>
                             <% } %>
@@ -232,7 +236,7 @@
             <div class="twitterProfile">
                 <img height="73px" />
                 <div class="bio">
-                    <p>@<a class="twitterLink" href="http://twitter.com/ryancarson">Ryancarson</a></p>
+                    <p>@<a class="twitterLink" href="http://twitter.com/ryancarson">Ryancarson</a><b class="points"></b></p>
                     <p id="latestTweet">Loading...</p>
                 </div>
                 <a href="#" class="close">Close</a>

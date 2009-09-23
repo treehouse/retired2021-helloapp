@@ -655,6 +655,11 @@ body.confDay #search input#submitBtn:hover {
 	margin:0px 25px 0px 90px;
 }
 
+.points {
+	float: right;
+	padding-right: 15px;
+}
+
 ul.categories {
 	float: left;
 	margin:0px 0px 10px 0px;
