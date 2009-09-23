@@ -55,6 +55,7 @@ namespace Hello.Bot
                     user.ImageURL = Settings.DefaultImageURL;
                 else
                     user.ImageURL = tweet.ImageURL;
+                user.Followers = tweet.Followers;
                 user.Updated = DateTime.Now;
 
                 HelloTweet helloTweet = processedTweet as HelloTweet;

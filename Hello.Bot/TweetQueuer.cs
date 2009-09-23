@@ -56,7 +56,8 @@ namespace Hello.Bot
                         Username = s.User.ScreenName.ToLower(),
                         Message = s.Text,
                         Created = DateTime.Now,
-                        ImageURL = s.User.ProfileImageUrl
+                        ImageURL = s.User.ProfileImageUrl,
+                        Followers = s.User.FollowersCount
                     });
 
             StoreTweets(queuedTweets);
