@@ -376,7 +376,7 @@ a.joinInSticker:hover {
 	letter-spacing:-0.05em;
 	color:#3e3d36;
 	font-weight:bold;
-	padding:17px 12px 0px 0px;
+	padding:17px 12px 14px 0px;
 }
 
 #search label span {
@@ -411,6 +411,8 @@ a.joinInSticker:hover {
 	cursor:pointer;
 	padding:0px;
 	text-indent:-9999px;
+	font-size: 0;
+	line-height: 0;
 }
 
 #search input#submitBtn:hover {
@@ -528,14 +530,15 @@ body.confDay #search label {
 }
 
 body.confDay #search #searchTerm {
-	width: 170px;
+	width: 176px;
 	height: 23px;
 	padding: 8px 5px 4px 5px;
 	font-size: 80%;
 }
 
 body.confDay #search input#submitBtn {
-	float:left;
+	position: absolute;
+	right: 1px;
 	background:url(../images/presentation/conf_day_mag_glass.png) top left no-repeat;
 	display: block;
 	width:32px;
@@ -544,6 +547,8 @@ body.confDay #search input#submitBtn {
 	cursor:pointer;
 	padding:0px;
 	text-indent:-9999px;
+	font-size: 0;
+	line-height: 0;
 }
 
 body.confDay #search input#submitBtn:hover {
@@ -579,6 +584,34 @@ body.confDay #search input#submitBtn:hover {
 
 
 
+
+/* Listings ______________________________________________________ */
+
+
+.badgeList {
+	float: left;
+	margin: -4px 0 5px 10px; 
+}
+
+.badgeList li {
+	float: left;
+	text-indent: -2000em;
+	overflow: hidden;
+	width: 28px;
+	height: 28px;
+	margin-right: 2px;
+}
+
+.badgeList li.bronze {background: transparent url(../images/content/bronze.png) left top no-repeat;}
+.badgeList li.silver {background: transparent url(../images/content/silver.png) left top no-repeat;}
+.badgeList li.gold {background: transparent url(../images/content/gold.png) left top no-repeat;}
+.badgeList li.diamond {background: transparent url(../images/content/diamond.png) left top no-repeat;}
+.badgeList li.highFive {background: transparent url(../images/content/high_five.png) left top no-repeat;}
+.badgeList li.smiley {background: transparent url(../images/content/smiley.png) left top no-repeat;}
+
+.tagPara {
+	clear: left;
+}
 
 
 
@@ -623,6 +656,7 @@ body.confDay #search input#submitBtn:hover {
 }
 
 ul.categories {
+	float: left;
 	margin:0px 0px 10px 0px;
 }
 
@@ -641,25 +675,6 @@ ul.categories li {
 
 ul.categories li.selected {
 	background:#000;
-}
-
-ul.profilebadges 
-{
-	float: right;
-	margin:0px 0px 10px 0px;
-}
-
-ul.profilebadges li {
-	display:inline;
-	text-decoration:none;
-	font-size:90%;
-	letter-spacing:-0.05em;
-}
-
-ul.profilebadges li span {
-	left:-3px;
-	position:relative;
-	top:-11px;
 }
 
 a.close {
@@ -781,10 +796,6 @@ a.close:hover {
 	color:#797979;
 }
 
-.whatIdo {
-    padding-bottom: 23px; 
-}
-
 .whatIdo ul {
 	margin:0px 0px 10px 26px;
 }
@@ -836,7 +847,8 @@ a.close:hover {
 }
 
 .tags {
-	padding:25px 25px 15px 25px;
+	margin:25px 0px 0px 0px;
+	padding:23px 25px 15px 25px;
 	border-top:1px dashed #afaca1;
 	position:relative;
 }
@@ -886,6 +898,8 @@ form#tags input#submitBtn {
 	cursor:pointer;
 	padding:0px;
 	text-indent:-9999px;
+	font-size: 0;
+	line-height: 0;
 }
 
 form#tags input#submitBtn:hover {
@@ -906,7 +920,7 @@ form#tags input#submitBtn:hover {
 .narrowContent {
 	width:580px;
 	float:left;
-	margin-top:80px;
+	margin-top:30px;
 }
 
 
@@ -921,7 +935,7 @@ form#tags input#submitBtn:hover {
 	-webkit-box-shadow: 0px 0px 10px #9f9c91;  
     -moz-box-shadow: 0px 0px 10px #9f9c91;  
 	box-shadow: 0px 0px 10px #9f9c91;  
-	margin:50px 0px 40px 0px;
+	margin:0px 0px 40px 0px;
 }
 
 .castWrapper h3 {
@@ -935,6 +949,7 @@ ul.cast {
 
 ul.cast li {
 	float:left;
+	width: 260px;
 	margin-bottom:25px;
 }
 
@@ -965,7 +980,7 @@ ul.cast li .role {
 body#instructions .narrowContent {
 	width:580px;
 	float:left;
-	margin:80px 0 0 70px;
+	margin:0px 0px 0px 100px;
 }
 
 body#instructions .narrowContent h3 {
@@ -1180,6 +1195,7 @@ a.carsonifiedLogo:hover {
 .checkInBar:after,
 .twitterProfile:after,
 .listings:after,
+.badgeList:after,
 .joinOrSearch:after,
 .content:after,
 .nav.categories:after {

@@ -183,6 +183,7 @@
     <Content Include="authentication.local.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\styles\ie7.css" />
     <Content Include="Views\CampaignAdmin\Create.aspx" />
     <Content Include="Views\CampaignAdmin\Edit.aspx" />
     <Content Include="Views\CampaignAdmin\Index.aspx" />
@@ -211,7 +212,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>3632</DevelopmentServerPort>
+          <DevelopmentServerPort>1229</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

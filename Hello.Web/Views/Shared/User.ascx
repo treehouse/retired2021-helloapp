@@ -13,49 +13,34 @@
             <% } %>
         </div>
     </div>
-    <ul class="profilebadges">
-        <% var points = Model.Points.Sum(p => p.Amount); %>
-        <% if (points >= Settings.Thresholds.Bronze) { %>
-            <li>
-                <img src="<%= Url.Content("~/Content/images/content/bronze.png") %>" alt="Bronze Badge" />
-            </li>
-        <% } %>
-        <% if (points >= Settings.Thresholds.Silver) { %>
-            <li>
-                <img src="<%= Url.Content("~/Content/images/content/silver.png") %>" alt="Silver Badge" />
-            </li>
-        <% } %>
-        <% if (points >= Settings.Thresholds.Gold) { %>
-            <li>
-                <img src="<%= Url.Content("~/Content/images/content/gold.png") %>" alt="Gold Badge" />
-            </li>
-        <% } %>
-        <% if (points >= Settings.Thresholds.Diamond) { %>
-            <li>
-                <img src="<%= Url.Content("~/Content/images/content/diamond.png") %>" alt="Diamond Badge" />
-            </li>
-        <% } %>
-        <% var hiFives = Model.HiFivees.Count(); %>
-        <% if (hiFives > 0) { %>
-            <li>
-                <img src="<%= Url.Content("~/Content/images/content/high_five.png") %>" alt="Hi5" />
-                <% if (hiFives > 1) { %>
-                    <span>x <%= hiFives %></span>
-                <% } %>
-            </li>
-        <% } %>
-        <% if (Model.Friends.Count() >= Settings.Thresholds.Smiley) { %>
-            <li>
-                <img src="<%= Url.Content("~/Content/images/content/smiley.png") %>" alt="Smiley" />
-            </li>
-        <% } %>
-    </ul>
     <ul class="categories">
         <% foreach (var ut in ViewData["UserTypes"] as List<UserType>) { %>
             <li class="<%= ut.UserTypeID == Model.UserTypeID ? "selected" : "" %>"><%= ut.Name%></li>
         <% } %>
     </ul>
-    <p>
+    <ul class="badgeList">
+        <% var points = Model.Points.Sum(p => p.Amount); %>
+        <% if (points >= Settings.Thresholds.Bronze) { %>
+            <li title="Bronze Badge" class="bronze">Bronze Badge</li>
+        <% } %>
+        <% if (points >= Settings.Thresholds.Silver) { %>
+            <li title="Silver Badge" class="silver">Silver Badge</li>
+        <% } %>
+        <% if (points >= Settings.Thresholds.Gold) { %>
+			<li title="Gold Badge" class="gold">Gold Badge</li>
+        <% } %>
+        <% if (points >= Settings.Thresholds.Diamond) { %>
+			<li title="Diamond Badge" class="diamond">Diamond Badge</li>
+        <% } %>
+        <% var hiFives = Model.HiFivees.Count(); %>
+        <% if (hiFives > 0) { %>
+			<li title="High Five Badge<% if (hiFives > 1) { %> x <%= hiFives %><% } %>" class="highFive">High Five Badge</li>
+        <% } %>
+        <% if (Model.Friends.Count() >= Settings.Thresholds.Smiley) { %>
+			<li title="Smiley Badge" class="smiley">Smiley Badge</li>
+        <% } %>
+    </ul>
+    <p class="tagPara">
         <% foreach (var tag in Model.Tags.OrderByDescending(t => t.Created).Take(3)) { %>
             #<%= Html.ActionLink(tag.Name, "Index", new { search = tag.Name })%>
         <% } %>

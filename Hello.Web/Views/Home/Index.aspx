@@ -37,7 +37,7 @@
                     var tag = $(tagInput).val();
                     tagHtml += '#<a href="<%= Url.Action("Index", "Search", new { search = " " }) %>' + tag + '">' + tag + '</a> ';
                 });
-                $('.tagsPara', popup).html(tagHtml);
+                $('.tagPara', popup).html(tagHtml);
 
                 // Positioning
                 var pos = $this.position();
@@ -115,7 +115,7 @@
                     <li class="<%= ut.UserTypeID %>"><%= ut.Name %></li>
                 <% } %>
             </ul>
-            <p class="tagsPara">#<a href="#">Fake</a> #<a href="#">Fake</a> #<a href="#">Fake</a></p>
+            <p class="tagPara">#<a href="#">Fake</a> #<a href="#">Fake</a> #<a href="#">Fake</a></p>
         </div>
         
     </div>

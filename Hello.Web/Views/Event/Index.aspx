@@ -37,7 +37,20 @@
                     var tag = $(tagInput).val();
                     tagHtml += '#<a href="<%= Url.Action("Search", "Event", new { searchTerm = " " }) %>' + tag + '">' + tag + '</a> ';
                 });
-                $('.tagsPara', popup).html(tagHtml);
+                $('.tagPara', popup).html(tagHtml);
+
+                // Badges
+                $('.badgeList li', popup).hide();
+                var badges = $('input[name=Badge]', $this);
+                badges.each(function(i, badgeInput) {
+                    var badge = $(badgeInput).val();
+                    var badgeLi = $('.badgeList .' + badge, popup);
+                    badgeLi.show();
+                    if (badge == 'highFive') {
+                        var hiFives = $('input[name=HiFives]', $this).val();
+                        badgeLi.attr('title', badgeLi.text() + (hiFives > 1 ? ' x ' + hiFives : ''));
+                    }
+                });
 
                 // Positioning
                 var pos = $this.position();
@@ -95,7 +108,7 @@
     
     <div class="generalContent">
     
-    <% using (Html.BeginForm("Search", "Event", FormMethod.Get, new { id = "searchForm" })) { %>
+    <% using (Html.BeginForm("Search", "Event", FormMethod.Get)) { %>
     
         <div id="filter">
             <select onchange="this.form.submit()" id="viewBy" name="viewBy">
@@ -130,7 +143,7 @@
 
         <div id="search">
         <p><label>Search:</label><input type="text" id="searchTerm" name="searchTerm" value="<%= Html.Encode(ViewData["SearchTerm"]) %>" /></p>
-        <p><input type="submit" id="submitBtn" name="submitBtn" value="Submit" /></p>
+        <p><input type="submit" id="submitBtn" value="Submit" /></p>
         </div>
     
     <% } %>
@@ -175,6 +188,28 @@
                                     <% foreach (var tag in sat.User.Tags.OrderByDescending(t => t.Created).Take(3)) { %>
                                         <%= Html.Hidden("Tag", tag.Name) %>
                                     <% } %>
+                                    
+                                    <% var points = sat.User.Points.Sum(p => p.Amount); %>
+                                    <% if (points >= Settings.Thresholds.Bronze) { %>
+                                        <%= Html.Hidden("Badge", "bronze") %>
+                                    <% } %>
+                                    <% if (points >= Settings.Thresholds.Silver) { %>
+                                        <%= Html.Hidden("Badge", "silver") %>
+                                    <% } %>
+                                    <% if (points >= Settings.Thresholds.Gold) { %>
+                                        <%= Html.Hidden("Badge", "gold") %>
+                                    <% } %>
+                                    <% if (points >= Settings.Thresholds.Diamond) { %>
+                                        <%= Html.Hidden("Badge", "diamond") %>
+                                    <% } %>
+                                    <% var hiFives = sat.User.HiFivees.Count(); %>
+                                        <%= Html.Hidden("Badge", "highFive") %>
+                                    <% if (hiFives > 1) { %>
+                                        <%= Html.Hidden("HiFives", hiFives) %>
+                                    <% } %>
+                                    <% if (sat.User.Friends.Count() >= Settings.Thresholds.Smiley) { %>
+                                        <%= Html.Hidden("Badge", "smiley")%>
+                                    <% } %>
                                 </form>
                             <% } %>
                         <% } %>
@@ -203,7 +238,15 @@
                     <li class="<%= ut.UserTypeID %>"><%= ut.Name %></li>
                 <% } %>
             </ul>
-            <p class="tagsPara">#<a href="#">Fake</a> #<a href="#">Fake</a> #<a href="#">Fake</a></p>
+            <ul class="badgeList">
+                <li title="Bronze Badge" class="bronze" style="display:none;">Bronze Badge</li>
+                <li title="Silver Badge" class="silver" style="display:none;">Silver Badge</li>
+			    <li title="Gold Badge" class="gold" style="display:none;">Gold Badge</li>
+			    <li title="Diamond Badge" class="diamond" style="display:none;">Diamond Badge</li>
+			    <li title="Hi5 Badge" class="highFive" style="display:none;">Hi5 Badge</li>
+			    <li title="Smiley Badge" class="smiley" style="display:none;">Smiley Badge</li>
+            </ul>
+            <p class="tagPara">#<a href="#">Fake</a> #<a href="#">Fake</a> #<a href="#">Fake</a></p>
         </div>
     
     </div><!-- /.seating -->
