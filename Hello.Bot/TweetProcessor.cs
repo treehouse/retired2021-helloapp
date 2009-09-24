@@ -120,14 +120,16 @@ namespace Hello.Bot
             if (user.Username == tweet.Friend)
                 return;
 
-            Event currentEvent = _repo.Events.Where(e => e.Start <= DateTime.Now && e.End >= DateTime.Now).SingleOrDefault();
+            Event currentEvent = _repo
+                .Events
+                .Where(e => e.Start <= DateTime.Now
+                         && e.End >= DateTime.Now)
+                .SingleOrDefault();
 
             // Only accept Hi5s for the current event
             if (currentEvent != null)
             {
-                /*
-                 * You can only Hi5 each person once per event and there is a total cap of hifives per person per event
-                 */
+                // You can only Hi5 each person once per event and there is a total cap of hifives per person per event
                 if (_repo.HiFives.Where(h => h.HiFiver == user.Username && h.EventID == currentEvent.EventID).Count() < currentEvent.HiFiveLimit 
                     && _repo.HiFives.Where(h => h.HiFiver == user.Username && h.EventID == currentEvent.EventID 
                         && h.HiFivee == tweet.Friend).Count() == 0)
@@ -177,10 +179,10 @@ namespace Hello.Bot
         {
             // The logic for this isn't great - need to make sure we're really dealing with the current session
             Session session = _repo
-                        .Sessions
-                        .Where(
-                            s => s.Finish > DateTime.Now            // hasn't finished
-                        ).OrderBy(s => s.Start).First();
+                .Sessions
+                .Where(s => s.Finish > DateTime.Now) // hasn't finished
+                .OrderBy(s => s.Start)
+                .FirstOrDefault();
 
             Seat seat = _repo
                 .Seats
@@ -188,25 +190,25 @@ namespace Hello.Bot
 
             if (session != null && seat != null)
             {
-                /*
-                 * If there's someone already in the seat then remove them from that seat.
-                 * There really should only be one of these, but this isn't enforced in DB so
-                 * clean all up just to be sure.
-                 */
-                var previousSitters = _repo.Sats
+                // If there's someone already in the seat then remove them from that seat.
+                // There really should only be one of these, but this isn't enforced in DB so
+                // clean all up just to be sure.
+                var previousSitters = _repo
+                    .Sats
                     .Where(s => s.SessionID == session.SessionID
-                    && s.SeatID == seat.SeatID);
-                _repo.Sats.DeleteAllOnSubmit(previousSitters);
+                             && s.SeatID == seat.SeatID);
+                _repo
+                    .Sats
+                    .DeleteAllOnSubmit(previousSitters);
 
                 Sat currentSat = _repo
                     .Sats
                     .Where(s => s.SessionID == session.SessionID
                              && s.Username == user.Username)
                     .SingleOrDefault();
-                /*
-                 * If they've already got a seat for the session, move them, rather than creating a new record
-                 * Also, only grant points the first time they sit down!
-                 */
+
+                // If they've already got a seat for the session, move them, rather than creating a new record
+                // Also, only grant points the first time they sit down!
                 if (currentSat == null)
                 {
                     _repo
@@ -228,18 +230,17 @@ namespace Hello.Bot
 
         public void ProcessTweet(User user, ClaimTweet tweet)
         {
-            /*
-             * The following line would throw an exception if multiple results for the same token,
-             * but this is taken care of by a unique constraint in the DB
-             */
-            Token token = _repo.Tokens.Where(t => t.Code == tweet.Token).SingleOrDefault();
+            // The following line would throw an exception if multiple results for the same token,
+            // but this is taken care of by a unique constraint in the DB
+            Token token = _repo
+                .Tokens
+                .Where(t => t.Code == tweet.Token)
+                .SingleOrDefault();
 
             if (token != null)
             {
-                /* 
-                 * Only process if they haven't yet redemed this token
-                 * and the total number of redemptions hasn't exceeded the limit
-                 */
+                // Only process if they haven't yet redeemed this token
+                // and the total number of redemptions hasn't exceeded the limit
                 if (_repo.Redemptions.Where(r => r.User == user && r.TokenID == token.TokenID).Count() == 0
                     && _repo.Redemptions.Where(r => r.TokenID == token.TokenID).Count() < token.AllowedRedemptions)
                 {
@@ -280,7 +281,10 @@ namespace Hello.Bot
 
         public void ProcessTweet(User user, MetTweet tweet)
         {
-            List<string> befriendees = user.Befrienders.Select(f => f.Befriendee).ToList();
+            List<string> befriendees = user
+                .Befrienders
+                .Select(f => f.Befriendee)
+                .ToList();
 
             foreach (string friend in tweet.Friends)
             {
@@ -329,14 +333,16 @@ namespace Hello.Bot
 
         public void CreditPoints(User user, int points, string details)
         {
-            _repo.Points.InsertOnSubmit(
-                new Point
-                {
-                    User = user,
-                    Amount = points,
-                    Issued = DateTime.Now,
-                    Details = details.Length > 20 ? details.Substring(0, 20) : details
-                });
+            _repo
+                .Points
+                .InsertOnSubmit(
+                    new Point
+                    {
+                        User = user,
+                        Amount = points,
+                        Issued = DateTime.Now,
+                        Details = details.Length > 20 ? details.Substring(0, 20) : details
+                    });
         }
     }
 }
