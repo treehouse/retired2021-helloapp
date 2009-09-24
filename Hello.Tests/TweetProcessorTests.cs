@@ -18,8 +18,9 @@ namespace Hello.Tests
         public TweetProcessorTests()
         {
             var mockSettings = new Mock<ISettingsImpl>();
-            mockSettings.Setup(settings => settings.GetString("ConnectionString")).Returns(
-                "Data Source=localhost\\SQL2008;Initial Catalog=helloapp;User Id=hello_bot;Password=asdf;");
+            mockSettings
+                .Setup(settings => settings.GetString("ConnectionString"))
+                .Returns("Data Source=localhost\\SQL2008;Initial Catalog=helloapp;User Id=hello_bot;Password=asdf;");
             Settings.SettingsImplementation = mockSettings.Object;
 
             repo = new HelloRepoDataContext(Settings.ConnectionString);
