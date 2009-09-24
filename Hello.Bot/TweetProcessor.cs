@@ -100,6 +100,7 @@ namespace Hello.Bot
                     ProcessTweet(user, messageTweet);
                     tweet.Processed = true;
                     _repo.SubmitChanges();
+                    _repo.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, user);
                     continue;
                 }
 
@@ -319,16 +320,14 @@ namespace Hello.Bot
 
         public void ProcessTweet(User user, MessageTweet tweet)
         {
-            Message message = user.Message;
-
-            if (message == null)
+            if (user.Message == null)
             {
-                message = new Message { Username = user.Username };
-                _repo.Messages.InsertOnSubmit(message);
+                user.Message = new Message { Username = user.Username };
+                _repo.Messages.InsertOnSubmit(user.Message);
             }
 
-            message.Offensive = false;
-            message.Text = tweet.Message;
+            user.Message.Offensive = false;
+            user.Message.Text = tweet.Message;
         }
 
         public void CreditPoints(User user, int points, string details)

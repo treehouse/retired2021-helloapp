@@ -70,12 +70,16 @@ namespace Hello.Bot
                     HiFiveTweet hiFiveTweet = new HiFiveTweet(tokens.Skip(1).FirstOrDefault());
                     return hiFiveTweet;
                 case "message":
-                    MessageTweet messageTweet = new MessageTweet();
-                    if (tweet.Message.StartsWith("@" + Settings.TwitterBotUsername + " "))
-                        tweet.Message = tweet.Message.Substring(("@" + Settings.TwitterBotUsername + " ").Length);
-                    if (tweet.Message.StartsWith("#" + Settings.TwitterHashTag + " "))
-                        tweet.Message = tweet.Message.Substring(("#" + Settings.TwitterBotUsername + " ").Length);
-                    messageTweet.Message = tweet.Message.Substring("message ".Length);
+                    MessageTweet messageTweet = new MessageTweet { Message = tweet.Message };
+                    if (messageTweet.Message.StartsWith("@" + Settings.TwitterBotUsername + " ", StringComparison.InvariantCultureIgnoreCase))
+                        messageTweet.Message = messageTweet.Message.Substring(("@" + Settings.TwitterBotUsername + " ").Length);
+                    if (messageTweet.Message.StartsWith("#" + Settings.TwitterHashTag + " ", StringComparison.InvariantCultureIgnoreCase))
+                        messageTweet.Message = messageTweet.Message.Substring(("#" + Settings.TwitterHashTag + " ").Length);
+                    messageTweet.Message = messageTweet.Message.Substring("message ".Length).Trim().TrimEnd(new[] { '.' });
+                    if (messageTweet.Message.StartsWith("\"") && messageTweet.Message.EndsWith("\""))
+                        messageTweet.Message = messageTweet.Message.Substring(1, messageTweet.Message.Length - 2);
+                    if (messageTweet.Message.StartsWith("'") && messageTweet.Message.EndsWith("'"))
+                        messageTweet.Message = messageTweet.Message.Substring(1, messageTweet.Message.Length - 2);
                     return messageTweet;
                 default:
                     return null;
