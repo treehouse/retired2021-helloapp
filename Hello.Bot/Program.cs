@@ -30,7 +30,7 @@ namespace Hello.Bot
                 // Collect & store tweets
                 if (queue)
                 {
-                    _log.Info("About to queue Mentions");
+                    _log.Info("About to queue tweets");
                     try
                     {
                         queuer.QueueMentions();
@@ -39,13 +39,26 @@ namespace Hello.Bot
                     {
                         _log.Error("WebException in Engine.QueueMentions", e);
                     }
+                    catch (Exception e)
+                    {
+                        _log.Fatal("Exception while Queueing", e);
+                    }
+                    _log.Info("Done queueing tweets");
                 }
 
                 // Process tweets
                 if (process)
                 {
-                    _log.Info("About to process Tweets");
-                    processor.ProcessTweets();
+                    _log.Info("About to process tweets");
+                    try
+                    {
+                        processor.ProcessTweets();
+                    }
+                    catch (Exception e)
+                    {
+                        _log.Fatal("Exception while Processing", e);
+                    }
+                    _log.Info("Done processing tweets");
                 }
             }
             catch (Exception e)

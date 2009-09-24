@@ -47,7 +47,7 @@ namespace Hello.Bot
             {
                 TwitterError error = request.AsError();
                 if (error != null)
-                    throw new HelloException(error.ErrorMessage);
+                    throw new HelloException("Twitter Error: " + error.ErrorMessage);
             }
 
             var queuedTweets = statuses
