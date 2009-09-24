@@ -13,7 +13,7 @@ namespace Hello.Web.Controllers
     {
         public ActionResult Index(string search)
         {
-            search = search.Trim();
+            search = (search ?? String.Empty).Trim();
 
             List<UserType> userTypes = _repo
                 .UserTypes
