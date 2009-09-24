@@ -54,12 +54,20 @@ namespace Hello.Web.Controllers
             var session = _repo
                 .Sessions
                 .Where(s => s.EventID == theEvent.EventID
-                        && s.Start < DateTime.Now)
+                         && s.Start < DateTime.Now)
                 .OrderByDescending(s => s.Start)
                 .FirstOrDefault();
 
+            // Or the first session
             if (session == null)
-                throw new HelloException("The event '" + theEvent.Name + "' has no sessions that have started.");
+                session = _repo
+                    .Sessions
+                    .Where(s => s.EventID == theEvent.EventID)
+                    .OrderBy(s => s.Start)
+                    .FirstOrDefault();
+
+            if (session == null)
+                throw new HelloException("The event '" + theEvent.Name + "' has no sessions.");
 
             // Who is sitting where?
             var sats = _repo
