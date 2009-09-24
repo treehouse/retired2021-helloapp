@@ -137,14 +137,17 @@ namespace Hello.Bot
                 {
                     User hiFivee = EnsureUser(tweet.Friend);
 
-                    _repo.HiFives.InsertOnSubmit(new HiFive
-                                                     {
-                                                         Event = currentEvent,
-                                                         HiFiver = user.Username,
-                                                         HiFivee = tweet.Friend
-                                                     });
+                    _repo
+                        .HiFives
+                        .InsertOnSubmit(
+                            new HiFive
+                            {
+                                Event = currentEvent,
+                                HiFiver = user.Username,
+                                HiFivee = tweet.Friend
+                            });
 
-                    CreditPoints(hiFivee, 10, "Hi5: " + user.Username);
+                    CreditPoints(hiFivee, Settings.Points.HiFive, "Hi5: " + user.Username);
                 }
             }
         }
