@@ -154,28 +154,39 @@ namespace Hello.Bot
 
         public void ProcessTweet(User user, HelloTweet tweet)
         {
-            user.UserTypeID = tweet.UserType;
+            if (_repo
+                .UserTypes
+                .Any(t => t.Name == tweet.UserType))
+            {
+                user.UserTypeID = tweet.UserType;
+            }
             user.ShadowAccount = false;
 
-            if (tweet.Tags.Count > 0)
+            foreach (var tagName in tweet.Tags)
             {
-                var oldTags = _repo
+                var tag = _repo
                     .Tags
-                    .Where(t => t.Username == user.Username)
-                    .Select(t => t.Name);
-                _repo
-                    .Tags
-                    .InsertAllOnSubmit(
-                        tweet
-                            .Tags
-                            .Where(t => !oldTags.Contains(t))
-                            .Select(tag => new Tag
-                            {
-                                Created = DateTime.Now,
-                                Name = tag,
-                                Username = user.Username
-                            })
-                    );
+                    .SingleOrDefault(t => t.Username == user.Username
+                                       && t.Name == tagName);
+                if (tag == null)
+                {
+                    // Add new tag
+                    tag = new Tag
+                    {
+                        Created = DateTime.Now,
+                        Name = tagName,
+                        Username = user.Username
+                    };
+
+                    _repo
+                        .Tags
+                        .InsertOnSubmit(tag);
+                }
+                else
+                {
+                    // or update old tag
+                    tag.Created = DateTime.Now;
+                }
             }
         }
 
@@ -223,7 +234,7 @@ namespace Hello.Bot
                                                 SessionID = session.SessionID,
                                                 SeatID = seat.SeatID
                                             });
-                    CreditPoints(user, 10, "Sat in seat: " + session.SessionID);
+                    CreditPoints(user, Settings.Points.Sat, "Sat in seat: " + session.SessionID);
                 }
                 else
                 {
@@ -309,10 +320,12 @@ namespace Hello.Bot
                         });
 
                     // If the reverse friendship exists, credit points
-                    if (_repo.Friendships.Where(f => f.Befriendee == user.Username && f.Befriender == friend).Any())
+                    if (_repo
+                        .Friendships
+                        .Any(f => f.Befriendee == user.Username && f.Befriender == friend))
                     {
-                        CreditPoints(user, 10, "Mutual meeting");
-                        CreditPoints(friendUser, 10, "Mutual meeting");
+                        CreditPoints(user, Settings.Points.Met, "Mutual meeting");
+                        CreditPoints(friendUser, Settings.Points.Met, "Mutual meeting");
                     }
                 }
 

@@ -49,7 +49,7 @@ namespace Hello.Bot
                         else if (token.StartsWith("#"))
                         {
                             string cleanTag = TagHelper.Clean(token);
-                            if (!helloTweet.Tags.Contains(cleanTag))
+                            if (!helloTweet.Tags.Contains(cleanTag) && !String.IsNullOrEmpty(cleanTag))
                                 helloTweet.Tags.Add(cleanTag);
                         }
                     }
