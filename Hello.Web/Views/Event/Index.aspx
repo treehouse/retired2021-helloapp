@@ -180,14 +180,14 @@
                             <% } else { %>
                                 <% if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "category") { %>
                                     <% var colour = sat.User.UserType == null ? "B7B4A3" : sat.User.UserType.DefaultColour; %>
-                                    <div style="width:24px; height: 24px; background-color: #<%= colour %>; display: inline-block;"></div>
+                                    <div class="user" style="background-color: #<%= colour %>;"></div>
                                 <% } else if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "follower") { %>
                                     <% var colour = Settings.GetHeatColour(sat.User.Followers); %>
-                                    <div style="width:24px; height: 24px; background-color: #<%= colour %>; display: inline-block;"></div>
+                                    <div class="user" style="background-color: #<%= colour %>;"></div>
                                 <% } else if (!String.IsNullOrEmpty((string)ViewData["searchTerm"]) && !sat.User.HasTag((string)ViewData["searchTerm"])) { %>
-                                    <img width="24" height="24" style="opacity:0.4; filter:alpha(opacity=40);" src="<%= sat.User.ImageURL %>" />
+                                    <img class="user" width="24" height="24" style="opacity:0.4; filter:alpha(opacity=40);" src="<%= sat.User.ImageURL %>" />
                                 <% } else { %>
-                                    <img width="24" height="24" src="<%= sat.User.ImageURL %>" />
+                                    <img class="user" width="24" height="24" src="<%= sat.User.ImageURL %>" />
                                 <% } %>
                                 <form id="<%= sat.User.Username %>">
                                     <%= Html.Hidden("Username", sat.User.Username) %>

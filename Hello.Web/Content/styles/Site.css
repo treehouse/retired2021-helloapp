@@ -565,6 +565,12 @@ body.confDay #search input#submitBtn:hover {
 	margin:auto;
 }
 
+.seatingPlan div {
+	width: 24px;
+	height: 24px;
+	display: inline-block;
+}
+
 .seatingPlan img, .seatingPlan div {
 	vertical-align:bottom;
 }
@@ -574,7 +580,11 @@ body.confDay #search input#submitBtn:hover {
 	border-bottom:1px solid #ebe7d5;
 }
 
-.seating  .avatarPopup {
+.seatingPlan .user {
+	cursor: pointer;
+}
+
+.seating .avatarPopup {
 	text-align: left;
 }
 
