@@ -56,11 +56,15 @@
     
     <h4>Get points by meeting people</h4>
 
-	<p><span class="read">When you meet someone and they give you their Twitter username, just tweet:</span><br><code>@helloapp met @their-username</code>. <br><span class="read">If they return the favor and tweet:</span><br> <code>@helloapp met @your-username</code> <br><span class="read">then you'll both get <%= Settings.Points.Met %> points for meeting each other. Both people have to do it, in order for the points to be awarded.</span></p>
+	<p><span class="read">When you meet someone and they give you their Twitter username, just tweet:</span><br><code>@helloapp met @their-username</code><br><span class="read">If they return the favor and tweet:</span><br><code>@helloapp met @your-username</code><br><span class="read">then you'll both get <%= Settings.Points.Met %> points for meeting each other. Both people have to do it, in order for the points to be awarded.</span></p>
+	
+	<h4>Give points by high fiving people</h4>
+	
+	<p><span class="read">When you want to reward someone you meet, you can "High Five" them by tweeting:</span><br><code>@helloapp hi5 @their-username</code><br><span class="read">Then they'll get <%= Settings.Points.HiFive %> points. Give them out wisely, as you have a limited number of High Fives at each event.</span></p>
 
 	<h4 id="instructionsmessage">Post a message to the entire audience</h4>
 
-	<p><span class="read">Once you earn the Silver Badge you can send a message to the entire audience by tweeting:</span><br><code>@helloapp message "My message goes here"</code>. <br><span class="read">This message will be displayed like this:</span></p>
+	<p><span class="read">Once you earn the Silver Badge you can send a message to the entire audience by tweeting:</span><br><code>@helloapp message "My message goes here"</code><br><span class="read">This message will be displayed like this:</span></p>
     
     <img src='<%= Url.Content("~/Content/images/content/message.jpg") %>' class="genImg2" alt="Screenshot showing the message area highlighted" />
     
