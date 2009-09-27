@@ -3,7 +3,9 @@ CREATE TABLE [dbo].[Tokens]
 [TokenID] [int] NOT NULL IDENTITY(1, 1),
 [CampaignID] [int] NOT NULL,
 [Code] [varchar] (10) COLLATE Latin1_General_CI_AS NOT NULL,
-[AllowedRedemptions] [int] NOT NULL CONSTRAINT [DF_Tokens_AllowedRedemptions] DEFAULT ((1))
+[AllowedRedemptions] [int] NOT NULL CONSTRAINT [DF_Tokens_AllowedRedemptions] DEFAULT ((1)),
+[FileName] [varchar] (100) COLLATE Latin1_General_CI_AS NOT NULL,
+[Text] [varchar] (100) COLLATE Latin1_General_CI_AS NOT NULL
 )
 
 GO

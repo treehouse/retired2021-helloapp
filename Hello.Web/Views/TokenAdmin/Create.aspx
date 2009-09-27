@@ -8,7 +8,7 @@
 
     <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
 
-    <% using (Html.BeginForm()) { %>
+    <% using (Html.BeginForm("Create", "TokenAdmin", FormMethod.Post, new { enctype = "multipart/form-data" })) { %>
 
         <fieldset>
             <legend>Fields</legend>
@@ -22,6 +22,15 @@
                 <label for="AllowedRedemptions">Allowed Redemptions:</label>
                 <%= Html.TextBox("AllowedRedemptions") %>
                 <%= Html.ValidationMessage("AllowedRedemptions", "*") %>
+            </p>
+            <p>
+                <label for="Text">Token Text:</label>
+                <%= Html.TextBox("Text") %>
+                <%= Html.ValidationMessage("Text", "*") %>
+            </p>
+            <p>
+                <label for="image">Token Image:</label>
+                <input type="file" name="image" id="image" />
             </p>
             <p>
                 <input type="submit" value="Create" />

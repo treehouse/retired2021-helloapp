@@ -56,13 +56,23 @@ namespace Hello.Web.Controllers
             if (campaign == null)
                 return RedirectToAction("Index", "CampaignAdmin");
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && (Request.Files.Count != 0 || Request.Files[0].ContentLength != 0))
             {
                 token.CampaignID = id;
 
-                _repo
-                    .Tokens
-                    .InsertOnSubmit(token);
+                HttpPostedFileBase tokenImage = Request.Files[0];
+
+                String tokenImagesDir = HttpContext.Server.MapPath("~/Content/images/tokens/");
+                
+                String fileName = String.Format("{0}-{1}", token.CampaignID, tokenImage.FileName);
+                String fullFileName = String.Format("{0}{1}", tokenImagesDir, fileName);
+                
+                tokenImage.SaveAs(fullFileName);
+
+                token.FileName = fileName;
+
+                _repo.Tokens.InsertOnSubmit(token);
+                
                 _repo.SubmitChanges();
 
                 return RedirectToAction("Index", new { id = campaign.CampaignID });
@@ -81,6 +91,12 @@ namespace Hello.Web.Controllers
             var token = _repo
                 .Tokens
                 .SingleOrDefault(t => t.TokenID == id);
+
+            String tokenImagesDir = HttpContext.Server.MapPath("~/Content/images/tokens/");
+
+            String fullFileName = String.Format("{0}{1}", tokenImagesDir, token.FileName);
+
+            System.IO.File.Delete(fullFileName);
 
             if (token == null)
                 return RedirectToAction("Index", "CampaignAdmin");
