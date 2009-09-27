@@ -32,6 +32,16 @@ ul.people li
 
 .castWrapper p 
 {
-    /*background-color: Aqua;*/
     font-size:70%;
+}
+#tokenImages 
+{
+    float: right;
+    margin:-4px 0 5px 10px;
+    max-width:200px;
+}
+
+.tokenImage {
+    width: 28px;
+    height: 28px;
 }

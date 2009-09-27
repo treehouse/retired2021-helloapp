@@ -45,7 +45,13 @@
 			    <li style="display: <% if (currentPoints >= Settings.Thresholds.Diamond) { %> list-item <% } else { %> none <% }%>;" class="diamond" title="Diamond Badge">Diamond Badge</li>
 			    <li style="display: <% if (hiFivers.Count > 0) { %> list-item <% } else { %> none <% }%>;" class="highFive" title="Hi5 Badge">Hi5 Badge</li>
 			    <li style="display: <% if (currentPoints >= Settings.Thresholds.Smiley) { %> list-item <% } else { %> none <% }%>;" class="smiley" title="Smiley Badge">Smiley Badge</li>
+			    
             </ul>
+            <div id="tokenImages">
+            <% foreach (Token t in ViewData["redeemedTokens"] as List<Token>) { %>
+                <img class="tokenImage" src="/Content/images/tokens/<%= t.FileName %>" alt="<%= t.Text %>" title="<%= t.Text %>" />
+            <% } %>
+            </div>
             <p class="tagPara">
             <% foreach (String tag in ViewData["tags"] as List<String>) { %>
                 #<%= Html.ActionLink(tag, "Index", new { controller = "Search", search = tag })%> 
