@@ -69,6 +69,7 @@
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HelloBaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SessionAdminController.cs" />
     <Compile Include="Controllers\TokenAdminController.cs" />
@@ -184,12 +185,16 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\styles\ie7.css" />
+    <Content Include="Content\styles\Profile.css" />
     <Content Include="Views\CampaignAdmin\Create.aspx" />
     <Content Include="Views\CampaignAdmin\Edit.aspx" />
     <Content Include="Views\CampaignAdmin\Index.aspx" />
     <Content Include="Views\EventAdmin\Create.aspx" />
     <Content Include="Views\EventAdmin\Edit.aspx" />
     <Content Include="Views\EventAdmin\Index.aspx" />
+    <Content Include="Views\Profile\NotFound.aspx" />
+    <Content Include="Views\Profile\See.aspx" />
+    <Content Include="Views\Profile\View.aspx" />
     <Content Include="Views\SessionAdmin\Create.aspx" />
     <Content Include="Views\SessionAdmin\Edit.aspx" />
     <Content Include="Views\SessionAdmin\Index.aspx" />

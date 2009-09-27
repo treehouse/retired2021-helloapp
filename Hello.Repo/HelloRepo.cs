@@ -22,5 +22,13 @@ namespace Hello.Repo
                         .Any(befriender => befriender.Befriendee == befriendee.Befriender));
             }
         }
+
+        public int CurrentPointsTotal
+        {
+            get
+            {
+                return this.Points.Sum(p => p.Amount);
+            }
+        }
     }
 }

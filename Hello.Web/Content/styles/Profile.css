@@ -1,0 +1,37 @@
+﻿h4 {
+    color: #319DB8;
+    border-bottom:1px dashed #727068;
+}
+
+h5 {
+    border-top:1px dashed #727068;
+    margin:0 0 5px;
+    padding:10px 0 0;
+    color:#3E3D36;
+    font-size:100%;
+    font-weight:bold;
+    letter-spacing:-0.05em;
+}
+h5.top {
+    border-top:none;
+}
+
+ul.friends li 
+{
+    display: inline;
+}
+
+ul.people, ul.friends {
+    margin-bottom:10px;
+}
+
+ul.people li 
+{
+     line-height:170%; 
+}
+
+.castWrapper p 
+{
+    /*background-color: Aqua;*/
+    font-size:70%;
+}

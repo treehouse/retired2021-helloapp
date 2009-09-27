@@ -20,7 +20,7 @@
 
                 // Username
                 var twitterLink = $('.twitterLink', popup);
-                twitterLink.attr('href', 'http://twitter.com/' + username);
+                twitterLink.attr('href', '/Profile/See/' + username);
                 twitterLink.text(username);
 
                 // UserType
@@ -238,7 +238,7 @@
             <div class="twitterProfile">
                 <img height="73px" />
                 <div class="bio">
-                    <p>@<a class="twitterLink" href="http://twitter.com/ryancarson">Ryancarson</a><b class="points"></b></p>
+                    <p><a class="twitterLink" href="/Profile/View/ryancarson">Ryancarson</a><b class="points"></b></p>
                     <p id="latestTweet">Loading...</p>
                 </div>
                 <a href="#" class="close">Close</a>
