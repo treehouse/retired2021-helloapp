@@ -184,6 +184,7 @@
     <Content Include="authentication.local.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\images\content\pound_host.jpg" />
     <Content Include="Content\styles\ie7.css" />
     <Content Include="Content\styles\Profile.css" />
     <Content Include="Views\CampaignAdmin\Create.aspx" />
