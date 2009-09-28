@@ -52,10 +52,21 @@
                     }
                 });
 
+                // Token Images
+                var tokenImages = $('input[name=TokenImage]', $this);
+                var tokenList = $('#tokenList', popup);
+                var tokenHtml = '';
+                tokenImages.each(function(i, tokenImageInput) {
+                    var tokenFileName = $(tokenImageInput).val();
+                    var tokenText = $(tokenImageInput).attr('text');
+                    tokenHtml += '<img class="tokenImage" title="' + tokenText + '" alt="' + tokenText + '" src="/Content/images/tokens/' + tokenFileName + '"/>';
+                });
+                tokenList.html(tokenHtml);
+
                 //Points
                 var points = $('input[name=Points]', $this).val();
-                $('.points', popup).text('Points : ' + points);                
-                
+                $('.points', popup).text('Points : ' + points);
+
                 // Positioning
                 var pos = $this.position();
                 var height = popup.height();
@@ -220,6 +231,9 @@
                                     <% if (sat.User.Friends.Count() >= Settings.Thresholds.Smiley) { %>
                                         <%= Html.Hidden("Badge", "smiley") %>
                                     <% } %>
+                                    <% foreach (Token t in sat.User.Redemptions.OrderBy(r => r.Created).Select(r => r.Token).ToList()) { %>
+                                        <%= Html.Hidden("TokenImage", t.FileName, new {Text = t.Text } )%>
+                                    <% } %>
                                 </form>
                             <% } %>
                         <% } %>
@@ -256,6 +270,8 @@
 			    <li title="Hi5 Badge" class="highFive" style="display:none;">Hi5 Badge</li>
 			    <li title="Smiley Badge" class="smiley" style="display:none;">Smiley Badge</li>
             </ul>
+            <div id="tokenList">
+            </div>
             <p class="tagPara">#<a href="#">Fake</a> #<a href="#">Fake</a> #<a href="#">Fake</a></p>
         </div>
     

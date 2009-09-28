@@ -619,6 +619,17 @@ body.confDay #search input#submitBtn:hover {
 .badgeList li.highFive {background: transparent url(../images/content/high_five.png) left top no-repeat;}
 .badgeList li.smiley {background: transparent url(../images/content/smiley.png) left top no-repeat;}
 
+#tokenList {
+    float:right;
+    margin:-4px 0 5px 10px;
+    max-width:100px;
+}
+
+.tokenImage {
+    height:28px;
+    width:28px;
+}
+
 .tagPara {
 	clear: left;
 }
@@ -630,7 +641,8 @@ body.confDay #search input#submitBtn:hover {
 
 .profileBox {
 	width:400px;
-	height:161px;
+	/* height:161px; -- Commented out to allow height growth for token images. */
+	min-height: 161px;
 	padding:20px 20px 20px 20px;
 	background:#fff;
 	border:1px dashed #dc3d2a;
