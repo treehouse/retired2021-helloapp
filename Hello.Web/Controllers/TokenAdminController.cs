@@ -64,7 +64,7 @@ namespace Hello.Web.Controllers
 
                 String tokenImagesDir = HttpContext.Server.MapPath("~/Content/images/tokens/");
                 
-                String fileName = String.Format("{0}-{1}", token.CampaignID, tokenImage.FileName);
+                String fileName = String.Format("{0}-{1}", token.CampaignID, System.IO.Path.GetFileName(tokenImage.FileName));
                 String fullFileName = String.Format("{0}{1}", tokenImagesDir, fileName);
                 
                 tokenImage.SaveAs(fullFileName);
