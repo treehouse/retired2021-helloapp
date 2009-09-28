@@ -12,12 +12,12 @@ namespace Hello.Web.Controllers
     public class ProfileController : HelloBaseController
     {
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult See(String id)
+        public ActionResult Index(string username)
         {
             Repo.User user = null;
             
-            if (!String.IsNullOrEmpty(id))
-                user = _repo.Users.SingleOrDefault(u => u.Username == id);
+            if (!String.IsNullOrEmpty(username))
+                user = _repo.Users.SingleOrDefault(u => u.Username == username);
 
             if (user != null)
             {

@@ -16,11 +16,17 @@ namespace Hello.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            
+
             routes.MapRoute(null,
                 "{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = "" },
-                new { controller = "(Home)|(Search)|(Profile)|(Admin)|(Account)|(EventAdmin)|(SessionAdmin)|(CampaignAdmin)|(TokenAdmin)" }
+                new { controller = "(Home)|(Search)|(Admin)|(Account)|(EventAdmin)|(SessionAdmin)|(CampaignAdmin)|(TokenAdmin)" }
+            );
+
+            routes.MapRoute(null,
+                "{controller}/{username}",
+                new { controller = "Profile", action = "Index", username = "" },
+                new { controller = "Profile" }
             );
 
             routes.MapRoute(null,
