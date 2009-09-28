@@ -60,10 +60,8 @@
         </div>
     </div>
     <div class="castWrapper">
-        <% if (Model.Message != null) { %>
-            <h4><%= Model.Message.Text%></h4>
-        <% } %>
-        <h5 class="top">friends</h5>
+        <h4 class="top">Friends</h4>
+        <h5>@<%= Model.Username %> has met these people and they've returned the favor</h5>
     <% if (friends.Count > 0) { %>
         <ul class="friends">
         <% foreach (Friendship f in friends) { %>
@@ -73,27 +71,44 @@
         <% } %>
         </ul>
     <% } else {%>
-        <p>I have not made any friends yet.</p>
+        <p class="nada">No one yet, they must be shy. Somebody give 'em a hug!</p>
     <% } %>
+        <h4>People that met @<%= Model.Username %></h4>
+        <h5>... but he hasn't returned the favor</h5>
     <% if (followers.Count > 0 ) {%>
-        <h5>people that met me</h5>
         <ul class="subNav people">
-        <% foreach (String username in followers)
-           {%>
+        <% foreach (String username in followers) {%>
         <li><%= Html.ActionLink(username, "See", new { id = username })%></li>
         <% } %>
         </ul>
+    <% } else { %>
+        <p class="nada">Nada, but hopefully it'll happen soon.</p>
     <% } %>
+        <h4>People @<%= Model.Username %> has met</h4>
+        <h5>... but they haven't returned the favor</h5>
     <% if (following.Count > 0) { %>
-        <h5>people I've met</h5>
         <ul class="subNav people">
         <% foreach (String username in following)
            {%>
         <li><%= Html.ActionLink(username, "See", new { id = username })%></li>
         <% } %>
         </ul>
-    <% }%>
-        <h5>HiFivers</h5>
+    <% } else {%>
+        <p class="nada">... Nothing yet</p>
+    <% } %>
+    <% if (hiFivees.Count > 0) { %>
+        <h4 class="border">People that @<%= Model.Username %> has given a High Five to</h4>
+        <ul class="subNav people">
+        <% foreach (String username in hiFivees)
+           {%>
+        <li><%= Html.ActionLink(username, "See", new { id = username })%></li>
+        <% } %>
+        </ul>
+    <% } else { %>
+        <h4 class="border">People that @<%= Model.Username %> has High Fived</h4>
+        <p class="nada">Zippo. Seriously @<%= Model.Username %>, theres got to be someone :)</p>
+    <% } %>
+        <h4 class="border">People that have given @<%= Model.Username %> a High Five</h4>
     <% if (hiFivers.Count > 0) { %>
         <ul class="subNav people">
         <% foreach (String username in hiFivers)
@@ -102,18 +117,14 @@
         <% } %>
         </ul>
     <% } else { %>
-        <p>I have not been HiFived</p>
+        <p class="nada">Come on people. That's just mean. Get High Fivin!</p>
     <% } %>
-        <h5>HiFived</h5>
-    <% if (hiFivees.Count > 0) { %>
-        <ul class="subNav people">
-        <% foreach (String username in hiFivees)
-           {%>
-        <li><%= Html.ActionLink(username, "See", new { id = username })%></li>
+    <h4>@<%= Model.Username %>'s latest message</h4>
+    <h5>Silver badge required</h5>
+        <% if (Model.Message != null) { %>
+            <h6><%= Model.Message.Text%></h6>
+        <% } else {%>
+            <p class="nada">Nothing yet ... but watch this space!</p>
         <% } %>
-        </ul>
-    <% } else { %>
-        <p>I have not HiFived anyone</p>
-    <% } %>    
     </div>
 </asp:Content>

@@ -25,7 +25,6 @@ namespace Hello.Web.Controllers
                 ViewData["pointsTotal"] = currentPointsTotal;
 
                 var redeemedTokens = user.Redemptions.OrderBy(r => r.Created).Select(r => r.Token).ToList();
-                //var redeemedTokens = user.Redemptions.Select(r => r.Token).ToList();
                 ViewData["redeemedTokens"] = redeemedTokens;
 
                 ViewData["tags"] = user.Tags.OrderByDescending(t => t.Created)

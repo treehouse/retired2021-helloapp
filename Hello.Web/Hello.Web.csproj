@@ -194,7 +194,6 @@
     <Content Include="Views\EventAdmin\Index.aspx" />
     <Content Include="Views\Profile\NotFound.aspx" />
     <Content Include="Views\Profile\See.aspx" />
-    <Content Include="Views\Profile\View.aspx" />
     <Content Include="Views\SessionAdmin\Create.aspx" />
     <Content Include="Views\SessionAdmin\Edit.aspx" />
     <Content Include="Views\SessionAdmin\Index.aspx" />
