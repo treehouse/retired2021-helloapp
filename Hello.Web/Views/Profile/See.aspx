@@ -28,7 +28,7 @@
             <div class="twitterProfile">
                 <img height="73px" src="<%= Model.ImageURL %>" alt="<%= Model.Username %>"/>
                 <div class="bio">
-                    <p>@<a href="http://twitter.com/<%= Model.Username %>" class="twitterLink"><%= Model.Username %></a> has <%= ViewData["pointsTotal"] %> points (<a href="http://twitter.com/?status=%40HelloApp+met+%40<%= Model.Username %>">Im following <%= Model.Username %></a>)</p>
+                    <p>@<a href="http://twitter.com/<%= Model.Username %>" class="twitterLink"><%= Model.Username %></a> has <%= ViewData["pointsTotal"] %> points (<a href="http://twitter.com/?status=%40HelloApp+met+%40<%= Model.Username %>">I met <%= Model.Username %></a>)</p>
                     <p id="latestTweet"></p>
                 </div>
             </div>                        

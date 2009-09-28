@@ -54,7 +54,7 @@
 
                 //Points
                 var points = $('input[name=Points]', $this).val();
-                $('.points', popup).text(points);                
+                $('.points', popup).text('Points : ' + points);                
                 
                 // Positioning
                 var pos = $this.position();
