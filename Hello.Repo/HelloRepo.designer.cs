@@ -2488,7 +2488,11 @@ namespace Hello.Repo
 		private string _Code;
 		
 		private int _AllowedRedemptions;
-		
+
+        private string _FileName;
+
+        private string _Text;
+
 		private EntitySet<Redemption> _Redemptions;
 		
 		private EntityRef<Campaign> _Campaign;
@@ -2505,6 +2509,10 @@ namespace Hello.Repo
     partial void OnCodeChanged();
     partial void OnAllowedRedemptionsChanging(int value);
     partial void OnAllowedRedemptionsChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
+    partial void OnTextChanging(string value);
+    partial void OnTextChanged();
     #endregion
 		
 		public Token()
@@ -2597,6 +2605,46 @@ namespace Hello.Repo
 				}
 			}
 		}
+
+        [Column(Storage = "_FileName", DbType = "VarChar(100) NOT NULL", CanBeNull = false)]
+        public string FileName
+        {
+            get
+            {
+                return this._FileName;
+            }
+            set
+            {
+                if ((this._FileName != value))
+                {
+                    this.OnFileNameChanging(value);
+                    this.SendPropertyChanging();
+                    this._FileName = value;
+                    this.SendPropertyChanged("FileName");
+                    this.OnFileNameChanged();
+                }
+            }
+        }
+
+        [Column(Storage = "_Text", DbType = "VarChar(100) NOT NULL", CanBeNull = false)]
+        public string Text
+        {
+            get
+            {
+                return this._Text;
+            }
+            set
+            {
+                if ((this._Text != value))
+                {
+                    this.OnTextChanging(value);
+                    this.SendPropertyChanging();
+                    this._Text = value;
+                    this.SendPropertyChanged("Text");
+                    this.OnTextChanged();
+                }
+            }
+        }
 		
 		[Association(Name="Token_Redemption", Storage="_Redemptions", ThisKey="TokenID", OtherKey="TokenID")]
 		public EntitySet<Redemption> Redemptions

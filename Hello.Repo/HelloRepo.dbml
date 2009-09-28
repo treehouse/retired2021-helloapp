@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Database Name="helloapp" Class="HelloRepoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=IS-MATTLTEST.TESTNET\SQL2008;Initial Catalog=helloapp;Integrated Security=True" SettingsObjectName="Hello.Repo.Properties.Settings" SettingsPropertyName="helloappConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Campaigns" Member="Campaigns">
@@ -120,6 +120,8 @@
       <Column Name="CampaignID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Code" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="AllowedRedemptions" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Text" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Association Name="Token_Redemption" Member="Redemptions" ThisKey="TokenID" OtherKey="TokenID" Type="Redemption" />
       <Association Name="Campaign_Token" Member="Campaign" ThisKey="CampaignID" OtherKey="CampaignID" Type="Campaign" IsForeignKey="true" />
     </Type>

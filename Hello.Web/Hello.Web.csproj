@@ -69,6 +69,7 @@
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HelloBaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SessionAdminController.cs" />
     <Compile Include="Controllers\TokenAdminController.cs" />
@@ -183,19 +184,26 @@
     <Content Include="authentication.local.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\images\content\pound_host.jpg" />
     <Content Include="Content\styles\ie7.css" />
+    <Content Include="Content\styles\Profile.css" />
     <Content Include="Views\CampaignAdmin\Create.aspx" />
     <Content Include="Views\CampaignAdmin\Edit.aspx" />
     <Content Include="Views\CampaignAdmin\Index.aspx" />
     <Content Include="Views\EventAdmin\Create.aspx" />
     <Content Include="Views\EventAdmin\Edit.aspx" />
     <Content Include="Views\EventAdmin\Index.aspx" />
+    <Content Include="Views\Profile\NotFound.aspx" />
+    <Content Include="Views\Profile\See.aspx" />
     <Content Include="Views\SessionAdmin\Create.aspx" />
     <Content Include="Views\SessionAdmin\Edit.aspx" />
     <Content Include="Views\SessionAdmin\Index.aspx" />
     <Content Include="Views\TokenAdmin\Create.aspx" />
     <Content Include="Views\TokenAdmin\Edit.aspx" />
     <Content Include="Views\TokenAdmin\Index.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\images\tokens\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

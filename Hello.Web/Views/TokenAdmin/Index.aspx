@@ -17,6 +17,9 @@
             <th>
                 Allowed Redemptions
             </th>
+            <th>
+                Image
+            </th>
             <th></th>
         </tr>
 
@@ -31,6 +34,9 @@
             </td>
             <td>
                 <%= Html.Encode(item.AllowedRedemptions) %>
+            </td>
+            <td>
+                <img src="/Content/images/tokens/<%= item.FileName %>" alt="<%= item.Text %>" title="<%= item.Text %>" />
             </td>
             <td>
                 <% using (Html.BeginForm("Delete", "TokenAdmin", new { id = item.TokenID })) { %>

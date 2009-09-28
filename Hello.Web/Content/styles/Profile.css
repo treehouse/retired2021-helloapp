@@ -1,0 +1,68 @@
+﻿.castWrapper {
+    padding-bottom: 15px;
+}
+
+h4.top {
+    margin-top: 0;
+}
+
+h4.border {
+    border-bottom:1px dashed #727068;
+    margin:20px 0 5px;
+    padding:0 0 5px;
+}
+
+h4 {
+    margin-top: 20px;
+    padding:0 0 2px;
+    font-size: 96%;
+}
+
+
+h5 {
+    border-bottom:1px dashed #727068;
+    margin:0 0 5px;
+    padding:0 0 2px;
+    color:#3E3D36;
+    font-size:71%;
+    font-weight:normal;
+    letter-spacing:-0.01em;
+}
+
+h6 
+{
+    font-size: 90%;
+    color: #319DB8;
+}
+
+ul.friends li 
+{
+    display: inline;
+}
+
+ul.people, ul.friends {
+    margin-bottom:10px;
+}
+
+ul.people li 
+{
+     line-height:170%; 
+}
+
+#tokenImages 
+{
+    float: right;
+    margin:-4px 0 5px 10px;
+    max-width:200px;
+}
+
+.tokenImage {
+    width: 28px;
+    height: 28px;
+}
+
+p.nada {
+    font-size:75%;
+    margin:0 0 10px;
+    color: #4FA431;
+}

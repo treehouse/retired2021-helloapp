@@ -20,7 +20,7 @@ namespace Hello.Web
             routes.MapRoute(null,
                 "{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = "" },
-                new { controller = "(Home)|(Search)|(Admin)|(Account)|(EventAdmin)|(SessionAdmin)|(CampaignAdmin)|(TokenAdmin)" }
+                new { controller = "(Home)|(Search)|(Profile)|(Admin)|(Account)|(EventAdmin)|(SessionAdmin)|(CampaignAdmin)|(TokenAdmin)" }
             );
 
             routes.MapRoute(null,
