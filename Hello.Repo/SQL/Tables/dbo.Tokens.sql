@@ -4,9 +4,10 @@ CREATE TABLE [dbo].[Tokens]
 [CampaignID] [int] NOT NULL,
 [Code] [varchar] (10) COLLATE Latin1_General_CI_AS NOT NULL,
 [AllowedRedemptions] [int] NOT NULL CONSTRAINT [DF_Tokens_AllowedRedemptions] DEFAULT ((1)),
-[FileName] [varchar] (100) COLLATE Latin1_General_CI_AS NOT NULL,
-[Text] [varchar] (100) COLLATE Latin1_General_CI_AS NOT NULL
+[FileName] [varchar] (100) COLLATE Latin1_General_CI_AS NOT NULL CONSTRAINT [DF_Tokens_FileName] DEFAULT (''),
+[Text] [varchar] (100) COLLATE Latin1_General_CI_AS NOT NULL CONSTRAINT [DF_Tokens_Text] DEFAULT ('')
 )
+
 
 GO
 ALTER TABLE [dbo].[Tokens] ADD CONSTRAINT [CX_Token] UNIQUE NONCLUSTERED  ([Code])

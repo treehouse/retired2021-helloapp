@@ -193,8 +193,8 @@
     <Content Include="Views\EventAdmin\Create.aspx" />
     <Content Include="Views\EventAdmin\Edit.aspx" />
     <Content Include="Views\EventAdmin\Index.aspx" />
+    <Content Include="Views\Profile\Index.aspx" />
     <Content Include="Views\Profile\NotFound.aspx" />
-    <Content Include="Views\Profile\See.aspx" />
     <Content Include="Views\SessionAdmin\Create.aspx" />
     <Content Include="Views\SessionAdmin\Edit.aspx" />
     <Content Include="Views\SessionAdmin\Index.aspx" />
@@ -220,7 +220,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1229</DevelopmentServerPort>
+          <DevelopmentServerPort>2196</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

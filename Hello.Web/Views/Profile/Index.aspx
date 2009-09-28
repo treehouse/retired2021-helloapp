@@ -66,7 +66,7 @@
         <ul class="friends">
         <% foreach (Friendship f in friends) { %>
             <li>
-                <a href="/Profile/See/<%= f.User1.Username %>"><img src="<%= f.User1.ImageURL %>" alt="<%= f.User1.Username %>" height="24" width="24" /></a>
+                <a href="<%=Url.Action("Index", "Profile", new { username = f.User1.Username }) %>"><img src="<%= f.User1.ImageURL %>" alt="<%= f.User1.Username %>" height="24" width="24" /></a>
             </li>            
         <% } %>
         </ul>
@@ -75,10 +75,10 @@
     <% } %>
         <h4>People that met @<%= Model.Username %></h4>
         <h5>... but he hasn't returned the favor</h5>
-    <% if (followers.Count > 0 ) {%>
+    <% if (followers.Count > 0 ) { %>
         <ul class="subNav people">
-        <% foreach (String username in followers) {%>
-        <li><%= Html.ActionLink(username, "See", new { id = username })%></li>
+        <% foreach (String username in followers) { %>
+        <li><%= Html.ActionLink(username, "Index", new { username = username }) %></li>
         <% } %>
         </ul>
     <% } else { %>
@@ -88,9 +88,8 @@
         <h5>... but they haven't returned the favor</h5>
     <% if (following.Count > 0) { %>
         <ul class="subNav people">
-        <% foreach (String username in following)
-           {%>
-        <li><%= Html.ActionLink(username, "See", new { id = username })%></li>
+        <% foreach (String username in following) { %>
+        <li><%= Html.ActionLink(username, "Index", new { username = username }) %></li>
         <% } %>
         </ul>
     <% } else {%>
@@ -101,7 +100,7 @@
         <ul class="subNav people">
         <% foreach (String username in hiFivees)
            {%>
-        <li><%= Html.ActionLink(username, "See", new { id = username })%></li>
+        <li><%= Html.ActionLink(username, "Index", new { username = username }) %></li>
         <% } %>
         </ul>
     <% } else { %>
@@ -111,9 +110,8 @@
         <h4 class="border">People that have given @<%= Model.Username %> a High Five</h4>
     <% if (hiFivers.Count > 0) { %>
         <ul class="subNav people">
-        <% foreach (String username in hiFivers)
-           {%>
-        <li><%= Html.ActionLink(username, "See", new { id = username })%></li>
+        <% foreach (String username in hiFivers) { %>
+        <li><%= Html.ActionLink(username, "Index", new { username = username }) %></li>
         <% } %>
         </ul>
     <% } else { %>
@@ -122,7 +120,7 @@
     <h4>@<%= Model.Username %>'s latest message</h4>
     <h5>Silver badge required</h5>
         <% if (Model.Message != null) { %>
-            <h6><%= Model.Message.Text%></h6>
+            <h6><%= Model.Message.Text %></h6>
         <% } else {%>
             <p class="nada">Nothing yet ... but watch this space!</p>
         <% } %>
