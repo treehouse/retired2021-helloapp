@@ -117,7 +117,7 @@
         <% } %>
         </ul>
     <% } else { %>
-        <p class="nada">Come on people. That's just mean. Get High Fivin!</p>
+        <p class="nada">None. Come on people. That's just mean. Get High Fivin!</p>
     <% } %>
     <h4>@<%= Model.Username %>'s latest message</h4>
     <h5>Silver badge required</h5>
