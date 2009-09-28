@@ -40,7 +40,7 @@
     <% } %>
 
     <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Back to List", "Index", new { id = campaign.CampaignID })%>
     </div>
 
 </asp:Content>
