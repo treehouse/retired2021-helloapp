@@ -9,6 +9,7 @@
     <li><a href="#overview">Overview</a></li>
     <li><a href="#points-badges">Points and Badges</a></li>
     <li><a href="#instructions1">Instructions</a></li>
+		<li><a href="#quickref">Quick Ref Guide</a></li>
     <li><a href="#badges">List of Badges</a></li>
 	</ul>
     
@@ -40,40 +41,65 @@
 
 	<h4 id="instructionscheckin">Checking in and grabbing your seat</h4>
 
-	<p><span class="read">Once you've sat down, there will be a password attached to your seat. Checkin to Hello by tweeting:</span><br><code>@helloapp sat seat-password</code></p>
+	<p><span class="read">Once you've sat down, there will be a passcode attached to your seat. <strong>Important:</strong> At the beginning of each session in the conference schedule, the seating chart is wiped clean and you'll need to re-checkin. (Replace 'XXX' with the passcode attached to your seat.)</span><br><code>@helloapp sat XXX</code></p>
 
-	<h4>Picking your skill and tagging yourself</h4>
+		
+		<h4>Picking your skill and tagging yourself</h4>
 
-	<p><span class="read">Choose what you're best at (Design, Development, Business) and choose three tags for yourself:</span><br><code>@helloapp hello !des #ux #html5 #movies</code><br><code>@helloapp hello !dev #php #django #mysql</code><br><code>@helloapp hello !biz #piano #entrepreneur #marketing</code></p>
+		<p><span class="read">Choose what you're best at (Design, Development, Business)
+		and choose three tags for yourself. You can change your category and tags by just re-checking in.</span><br><code>@helloapp hello !des #ux #html5 #movies</code><br><code>@helloapp hello !dev #php #django #mysql</code><br><code>@helloapp hello !biz #ideas #fun #music</code></p>
+		
+		<h4>Getting points and meeting people</h4>
 
-	<p><span class="read">You'll be assigned a colour, based on whether you choose Design, Development or Business. You can view the seating chart based on skillset:</span></p>
-    
-    <img src='<%= Url.Content("~/Content/images/content/skill_set.jpg") %>' class="genImg2" alt="The audience color-coded based on their skill set" />
-    
-    <p><span class="read">You can also view it by tags. In this example, I've searched for everyone tagged with #ux:</span></p>
-    
-    <img src='<%= Url.Content("~/Content/images/content/ux_map.jpg") %>' class="genImg" alt="The seat chart with some people highlighted that chose ux as their tag" />
-    
-    <h4>Get points by meeting people</h4>
+		<p><span class="read">When you meet someone and they give you their Twitter username, just tweet:</span><br><code>@helloapp met @their-username</code></p>
+		
+		<p><span class="read">If they return the favour and tweet:</span><br><code>@helloapp met @your-username</code></p>
+		
+		<p><span class="read">then you'll both get 10 points for meeting each other. Both people have to do it, in order for the points to be awarded.</span></p>
+		
+		<h4>Posting a message to the entire audience</h4>
 
-	<p><span class="read">When you meet someone and they give you their Twitter username, just tweet:</span><br><code>@helloapp met @their-username</code><br><span class="read">If they return the favor and tweet:</span><br><code>@helloapp met @your-username</code><br><span class="read">then you'll both get <%= Settings.Points.Met %> points for meeting each other. Both people have to do it, in order for the points to be awarded.</span></p>
-	
-	<h4>Give points by high fiving people</h4>
-	
-	<p><span class="read">When you want to reward someone you meet, you can "High Five" them by tweeting:</span><br><code>@helloapp hi5 @their-username</code><br><span class="read">Then they'll get <%= Settings.Points.HiFive %> points. Give them out wisely, as you have a limited number of High Fives at each event.</span></p>
+		<p><span class="read">Once you earn the Silver Badge you can send a message to the entire audience which will be displayed on the HelloApp page. Just tweet (replace 'your-message' with your actual message):</span><br><code>@helloapp message your-message</code></p>
+		
+		<h4>Badges and Points</h4>
 
-	<h4 id="instructionsmessage">Post a message to the entire audience</h4>
+		<p><span class="read">The more people you meet and special tasks you complete during the conference, the more points and "badges" you'll be awarded.</span></p>
+		<p><span class="read">If you earn a high enough rank, you'll be able to post public messages to the entire audience and win awesome prizes.</span></p>
+		
+		<h4>Tokens</h4>
 
-	<p><span class="read">Once you earn the Silver Badge you can send a message to the entire audience by tweeting:</span><br><code>@helloapp message "My message goes here"</code><br><span class="read">This message will be displayed like this:</span></p>
-    
-    <img src='<%= Url.Content("~/Content/images/content/message.jpg") %>' class="genImg2" alt="Screenshot showing the message area highlighted" />
-    
-    <h3>Frequently Asked Questions</h3>
+		<p><span class="read">There are secret tokens hidden around the venue which are worth varying points. There are a limited number of tokens so once a token has been claimed, it can’t be re-used. Claim a token by tweeting (replace 'XXX' with the token code):</span><br><code>@helloapp claim XXX</code></p>
+		
+		<h4>High Fives (baby!)</h4>
 
-	<p><span class="read">Q: Can I change my category (Design, Development, Business)?</span><br><span class="read">A: Yes, just re-check-in by tweeting:</span><br><code>@helloapp hello !des #tag-one #tag-two #tag-three</code></p>
-    
-    <p><span class="read">If you have any more questions just email: <a href="mailto:&#104;&#101;&#108;&#108;&#111;&#64;&#99;&#97;&#114;&#115;&#111;&#110;&#105;&#102;&#105;&#101;d&#46;&#99;&#111;&#109;">h&#101;&#108;l&#111;&#64;ca&#114;&#115;&#111;n&#105;&#102;&#105;&#101;&#100;&#46;&#99;&#111;&#109;</a></span></p>
-    
+		<p><span class="read">When you meet someone and you really like them, you can award them a "High Five", which gives them a special badge and 20 points. You don’t have to meet someone to give them a High Five. To award a high five, just Tweet:</span><br><code>@helloapp hi5 @their-username</code></p>
+		
+		<h4>Points</h4>
+
+		<p><span class="read">Met: 10<br>High Five: 20<br>Tokens: 10 - 100</span></p>
+		
+		<h3 id="quickref">Quick Reference Guide</h4>
+
+		<p>
+			<span class="read">Checkin</span>
+			<br><code>@helloapp sat XXX</code>
+			<br />
+			<span class="read">Categorise and tag yourself</span>
+			<br><code>@helloapp hello ![des/dev/biz] #tag #tag #tag</code>
+			<br />
+			<span class="read">Met someone</span>
+			<br><code>@helloapp hello @their-username</code>
+			<br />
+			<span class="read">Post message</span>
+			<br><code>@helloapp message your-message</code>
+			<br />
+			<span class="read">Give High Five</span>
+			<br><code>@helloapp hi5 @their-username</code>
+			<br />
+			<span class="read">Claim a token</span>
+			<br><code>@helloapp claim XXX</code>
+		</p>
+		
     <h3 id="badges">Badges</h3>
     
 	<p><span class="read">The more people you meet and special tasks you complete during the conference, the more points and "badges" you'll be awarded. If you earn a high enough rank, you'll be able to post public messages to the entire audience and win awesome prizes.</span></p>
@@ -109,7 +135,6 @@
     <p><span>Smiley Badge:</span> The person who meets the most folk during the conference gets the mighty 'Super Friendly' badge.</p>
     </li>
     </ul>
-
 	
     </div><!-- .narrowContent -->
 
