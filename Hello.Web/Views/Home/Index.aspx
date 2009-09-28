@@ -105,7 +105,7 @@
             <div class="twitterProfile">
                 <img height="73px" />
                 <div class="bio">
-                    <p>@<a class="twitterLink" href="http://twitter.com/ryancarson">Ryancarson</a></p>
+                    <p><a class="twitterLink" href="/Profile/ryancarson">Ryancarson</a></p>
                     <p id="latestTweet">Loading...</p>
                 </div>
                 <a href="#" class="close">Close</a>
