@@ -93,6 +93,7 @@ namespace Hello.Bot
                     ProcessTweet(user, metTweet);
                     tweet.Processed = true;
                     _repo.SubmitChanges();
+                    _repo.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, user);
                     continue;
                 }
 
@@ -288,7 +289,8 @@ namespace Hello.Bot
                     ImageURL = Settings.DefaultImageURL,
                     Created = DateTime.Now,
                     Updated = DateTime.Now,
-                    ShadowAccount = true
+                    ShadowAccount = true,
+                    FullName = username
                 };
                 _repo.Users.InsertOnSubmit(user);
             }
