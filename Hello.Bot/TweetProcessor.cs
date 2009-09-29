@@ -93,7 +93,6 @@ namespace Hello.Bot
                     ProcessTweet(user, metTweet);
                     tweet.Processed = true;
                     _repo.SubmitChanges();
-                    _repo.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, user);
                     continue;
                 }
 
@@ -103,7 +102,6 @@ namespace Hello.Bot
                     ProcessTweet(user, messageTweet);
                     tweet.Processed = true;
                     _repo.SubmitChanges();
-                    _repo.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, user);
                     continue;
                 }
 
@@ -316,12 +314,7 @@ namespace Hello.Bot
                 // Add the friendship if it doesn't already exist
                 if (!befriendees.Contains(friend))
                 {
-                    _repo.Friendships.InsertOnSubmit(
-                        new Friendship
-                        {
-                            Befriender = user.Username,
-                            Befriendee = friend
-                        });
+                    user.Befrienders.Add(new Friendship { Befriendee = friend });
 
                     // If the reverse friendship exists, credit points
                     if (_repo
