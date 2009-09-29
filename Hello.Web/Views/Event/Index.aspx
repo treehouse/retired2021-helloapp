@@ -59,7 +59,8 @@
                 tokenImages.each(function(i, tokenImageInput) {
                     var tokenFileName = $(tokenImageInput).val();
                     var tokenText = $(tokenImageInput).attr('text');
-                    tokenHtml += '<img class="tokenImage" title="' + tokenText + '" alt="' + tokenText + '" src="/Content/images/tokens/' + tokenFileName + '"/>';
+                    var tokenPoints = $(tokenImageInput).attr('points');
+                    tokenHtml += '<img class="tokenImage" title="' + tokenText + ' (' + tokenPoints + ')" alt="' + tokenText + ' (' + tokenPoints + ')" src="/Content/images/tokens/' + tokenFileName + '"/>';
                 });
                 tokenList.html(tokenHtml);
 
@@ -252,7 +253,7 @@
                                         <%= Html.Hidden("Badge", "smiley") %>
                                     <% } %>
                                     <% foreach (Token t in sat.User.Redemptions.OrderBy(r => r.Created).Select(r => r.Token).ToList()) { %>
-                                        <%= Html.Hidden("TokenImage", t.FileName, new {Text = t.Text } )%>
+                                        <%= Html.Hidden("TokenImage", t.FileName, new { Text = t.Text, Points = t.Campaign.Value })%>
                                     <% } %>
                                 </form>
                             <% } %>
