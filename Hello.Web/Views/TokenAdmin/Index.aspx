@@ -18,6 +18,9 @@
                 Allowed Redemptions
             </th>
             <th>
+                Redeemed by
+            </th>
+            <th>
                 Image
             </th>
             <th></th>
@@ -34,6 +37,11 @@
             </td>
             <td>
                 <%= Html.Encode(item.AllowedRedemptions) %>
+            </td>
+            <td>
+                <% foreach (var redemption in item.Redemptions) { %>
+                    <%= Html.ActionLink(redemption.Username, "Index", "Profile", new {username = redemption.Username }, new { target = "_blank" } ) %><br />
+                <% } %>
             </td>
             <td>
                 <img src="/Content/images/tokens/<%= item.FileName %>" alt="<%= item.Text %>" title="<%= item.Text %>" />
