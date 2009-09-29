@@ -289,7 +289,8 @@ namespace Hello.Bot
                     ImageURL = Settings.DefaultImageURL,
                     Created = DateTime.Now,
                     Updated = DateTime.Now,
-                    ShadowAccount = true
+                    ShadowAccount = true,
+                    FullName = username
                 };
                 _repo.Users.InsertOnSubmit(user);
             }
