@@ -249,7 +249,7 @@
                                     <% if (hiFives > 1) { %>
                                         <%= Html.Hidden("HiFives", hiFives) %>
                                     <% } %>
-                                    <% if (sat.User.Friends.Count() >= Settings.Thresholds.Smiley) { %>
+                                    <% if (points >= Settings.Thresholds.Smiley) { %>
                                         <%= Html.Hidden("Badge", "smiley") %>
                                     <% } %>
                                     <% foreach (Token t in sat.User.Redemptions.OrderBy(r => r.Created).Select(r => r.Token).ToList()) { %>
