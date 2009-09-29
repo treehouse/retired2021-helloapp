@@ -87,6 +87,13 @@ namespace Hello.Web.Controllers
             if (campaign == null)
                 return RedirectToAction("Index");
 
+            foreach (Token t in campaign.Tokens)
+            {
+                _repo
+                    .Redemptions
+                    .DeleteAllOnSubmit(t.Redemptions);
+            }
+
             _repo
                 .Tokens
                 .DeleteAllOnSubmit(campaign.Tokens);
