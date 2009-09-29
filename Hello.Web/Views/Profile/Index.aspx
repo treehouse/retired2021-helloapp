@@ -49,7 +49,7 @@
             </ul>
             <div id="tokenImages">
             <% foreach (Token t in ViewData["redeemedTokens"] as List<Token>) { %>
-                <img class="tokenImage" src="/Content/images/tokens/<%= t.FileName %>" alt="<%= t.Text %>" title="<%= t.Text %>" />
+                <img class="tokenImage" src="/Content/images/tokens/<%= t.FileName %>" alt="<%= t.Text %> (<%=t.Campaign.Value %>)" title="<%= t.Text %> (<%=t.Campaign.Value %>)" />
             <% } %>
             </div>
             <p class="tagPara">
