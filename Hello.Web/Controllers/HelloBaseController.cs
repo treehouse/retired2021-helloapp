@@ -22,5 +22,13 @@ namespace Hello.Web.Controllers
         }
 
         public virtual void PostRepoInit() { }
+
+        protected Event CurrentEvent
+        {
+            get
+            {
+                return _repo.Events.FirstOrDefault(e => e.Start <= DateTime.Now && e.End >= DateTime.Now);
+            }
+        }
     }
 }

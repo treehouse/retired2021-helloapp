@@ -53,8 +53,9 @@
             <% } %>
             </div>
             <p class="tagPara">
+            <% var currentEventSlug = ViewData["currentEvent"] as String; %>
             <% foreach (String tag in ViewData["tags"] as List<String>) { %>
-                #<%= Html.ActionLink(tag, "Index", new { controller = "Search", search = tag })%> 
+                #<%= Html.ActionLink(tag, "Search", "Event", new { searchTerm = tag, eventslug = currentEventSlug }, null)%>
             <% } %>
             </p>
         </div>
