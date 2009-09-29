@@ -158,7 +158,7 @@
       <Column Name="Processed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="ImageURL" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
       <Column Name="Followers" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="FullName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="true" />
+      <Column Name="FullName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Users" Member="Users">
@@ -170,7 +170,7 @@
       <Column Name="UserTypeID" Type="System.String" DbType="Char(3)" CanBeNull="true" />
       <Column Name="ShadowAccount" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Followers" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="FullName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="true" />
+      <Column Name="FullName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Association Name="User_Friendship" Member="Befriendees" ThisKey="Username" OtherKey="Befriendee" Type="Friendship" />
       <Association Name="User_Friendship1" Member="Befrienders" ThisKey="Username" OtherKey="Befriender" Type="Friendship" />
       <Association Name="User_Point" Member="Points" ThisKey="Username" OtherKey="Username" Type="Point" />
