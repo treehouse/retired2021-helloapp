@@ -126,13 +126,13 @@
     </li>
     
     <li>
-    <img src='<%= Url.Content("~/Content/images/content/high_five.png") %>' alt="high five badge" />
-    <p><span>High Five Badge:</span> When you meet someone, and they really like you, they can award you a "High Five", which awards you a special badge and gives you <%= Settings.Points.HiFive %> points.</p>
+    <img src='<%= Url.Content("~/Content/images/content/smiley.png") %>' alt="smiley badge" />
+    <p><span>Smiley Badge:</span> <%= Settings.Thresholds.Smiley %> points</p>
     </li>
     
     <li>
-    <img src='<%= Url.Content("~/Content/images/content/smiley.png") %>' alt="smiley badge" />
-    <p><span>Smiley Badge:</span> The person who meets the most folk during the conference gets the mighty 'Super Friendly' badge.</p>
+    <img src='<%= Url.Content("~/Content/images/content/high_five.png") %>' alt="high five badge" />
+    <p><span>High Five Badge:</span> When you meet someone, and they really like you, they can award you a "High Five", which awards you a special badge and gives you <%= Settings.Points.HiFive %> points.</p>
     </li>
     </ul>
 	
