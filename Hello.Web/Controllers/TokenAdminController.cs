@@ -92,12 +92,6 @@ namespace Hello.Web.Controllers
                 .Tokens
                 .SingleOrDefault(t => t.TokenID == id);
 
-            String tokenImagesDir = HttpContext.Server.MapPath("~/Content/images/tokens/");
-
-            String fullFileName = String.Format("{0}{1}", tokenImagesDir, token.FileName);
-
-            System.IO.File.Delete(fullFileName);
-
             if (token == null)
                 return RedirectToAction("Index", "CampaignAdmin");
 
