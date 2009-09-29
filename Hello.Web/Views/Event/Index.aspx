@@ -66,7 +66,7 @@
 
                 //Points
                 var points = $('input[name=Points]', $this).val();
-                $('.points', popup).text('Points : ' + points);
+                $('.points', popup).text(points + ' points');
 
                 // Positioning
                 var pos = $this.position();
@@ -273,7 +273,7 @@
             <div class="twitterProfile">
                 <img height="73px" />
                 <div class="bio">
-                    <p><a class="twitterLink" href="/Profile/ryancarson">Ryancarson</a><b class="points"></b></p>
+                    <p><a class="twitterLink" href="/Profile/ryancarson">Ryancarson</a> | <b class="points"></b></p>
                     <p id="latestTweet">Loading...</p>
                 </div>
                 <a href="#" class="close">Close</a>
