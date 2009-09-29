@@ -30,5 +30,13 @@ namespace Hello.Repo
                 return this.Points.Sum(p => p.Amount);
             }
         }
+
+        public String CurrentPointsTotalFormatted
+        {
+            get
+            {
+                return String.Format("{0:n0}", this.CurrentPointsTotal);
+            }
+        }
     }
 }

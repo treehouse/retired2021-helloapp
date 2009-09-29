@@ -65,7 +65,7 @@
                 tokenList.html(tokenHtml);
 
                 //Points
-                var points = $('input[name=Points]', $this).val();
+                var points = $('input[name=Points]', $this).attr('formatted');
                 $('.points', popup).text(points + ' points');
 
                 // Positioning
@@ -229,7 +229,7 @@
                                         <%= Html.Hidden("Tag", tag.Name) %>
                                     <% } %>
                                     <% var points = sat.User.Points.Sum(p => p.Amount); %>
-                                        <%= Html.Hidden("Points", points) %>
+                                        <%= Html.Hidden("Points", points, new { formatted = sat.User.CurrentPointsTotalFormatted } )%>
                                     <% if (points >= Settings.Thresholds.Bronze) { %>
                                         <%= Html.Hidden("Badge", "bronze") %>
                                     <% } %>
