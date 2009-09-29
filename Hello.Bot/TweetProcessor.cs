@@ -93,6 +93,7 @@ namespace Hello.Bot
                     ProcessTweet(user, metTweet);
                     tweet.Processed = true;
                     _repo.SubmitChanges();
+                    _repo.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, user);
                     continue;
                 }
 
