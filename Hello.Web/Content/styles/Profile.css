@@ -49,11 +49,8 @@ ul.people li
      line-height:170%; 
 }
 
-#tokenImages 
-{
-    float: right;
-    margin:-4px 0 5px 10px;
-    max-width:200px;
+#tokenImages {
+    clear: both;
 }
 
 .tokenImage {

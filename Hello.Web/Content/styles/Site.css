@@ -620,9 +620,7 @@ body.confDay #search input#submitBtn:hover {
 .badgeList li.smiley {background: transparent url(../images/content/smiley.png) left top no-repeat;}
 
 #tokenList {
-    float:right;
-    margin:-4px 0 5px 10px;
-    max-width:100px;
+    clear: both;
 }
 
 .tokenImage {
@@ -678,8 +676,6 @@ body.confDay #search input#submitBtn:hover {
 }
 
 .points {
-	float: right;
-	padding-right: 15px;
 }
 
 ul.categories {
