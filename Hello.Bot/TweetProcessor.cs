@@ -45,7 +45,7 @@ namespace Hello.Bot
                     user = new User
                     {
                         Username = tweet.Username,
-                        FullName = tweet.FullName.ToLower(),
+                        FullName = (tweet.FullName ?? String.Empty).ToLower(),
                         Created = DateTime.Now
                     };
                     _repo.Users.InsertOnSubmit(user);
@@ -57,7 +57,7 @@ namespace Hello.Bot
                 else
                     user.ImageURL = tweet.ImageURL;
                 user.Followers = tweet.Followers;
-                user.FullName = tweet.FullName.ToLower();
+                user.FullName = (tweet.FullName ?? String.Empty).ToLower();
                 user.Updated = DateTime.Now;
 
                 HelloTweet helloTweet = processedTweet as HelloTweet;
