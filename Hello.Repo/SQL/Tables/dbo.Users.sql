@@ -6,7 +6,8 @@ CREATE TABLE [dbo].[Users]
 [Updated] [datetime] NOT NULL,
 [UserTypeID] [char] (3) COLLATE Latin1_General_CI_AS NULL,
 [ShadowAccount] [bit] NOT NULL CONSTRAINT [DF_Users_ShadowAccount] DEFAULT ((0)),
-[Followers] [int] NOT NULL CONSTRAINT [DF_Users_Followers] DEFAULT ((0))
+[Followers] [int] NOT NULL CONSTRAINT [DF_Users_Followers] DEFAULT ((0)),
+[FullName] [varchar](100) COLLATE Latin1_General_CI_AS NULL
 )
 
 

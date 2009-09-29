@@ -54,6 +54,7 @@ namespace Hello.Bot
                     .Select(s => new QueuedTweet
                     {
                         Username = s.User.ScreenName.ToLower(),
+                        FullName = s.User.Name,
                         Message = s.Text,
                         Created = DateTime.Now,
                         ImageURL = s.User.ProfileImageUrl,

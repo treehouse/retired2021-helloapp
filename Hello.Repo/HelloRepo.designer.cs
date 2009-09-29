@@ -3206,7 +3206,9 @@ namespace Hello.Repo
 		private string _ImageURL;
 		
 		private int _Followers;
-		
+
+        private string _FullName;
+
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3225,6 +3227,8 @@ namespace Hello.Repo
     partial void OnImageURLChanged();
     partial void OnFollowersChanging(int value);
     partial void OnFollowersChanged();
+    partial void OnFullNameChanging(string value);
+    partial void OnFullNameChanged();
     #endregion
 		
 		public QueuedTweet()
@@ -3371,6 +3375,26 @@ namespace Hello.Repo
 				}
 			}
 		}
+
+        [Column(Storage = "_FullName", DbType = "VarChar(100) NOT NULL", CanBeNull = false)]
+        public string FullName
+        {
+            get
+            {
+                return this._FullName;
+            }
+            set
+            {
+                if ((this._FullName != value))
+                {
+                    this.OnFullNameChanging(value);
+                    this.SendPropertyChanging();
+                    this._FullName = value;
+                    this.SendPropertyChanged("FullName");
+                    this.OnFullNameChanged();
+                }
+            }
+        }
 		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
@@ -3412,7 +3436,9 @@ namespace Hello.Repo
 		private bool _ShadowAccount;
 		
 		private int _Followers;
-		
+
+        private string _FullName;
+
 		private EntitySet<Friendship> _Befriendees;
 		
 		private EntitySet<Friendship> _Befrienders;
@@ -3451,6 +3477,8 @@ namespace Hello.Repo
     partial void OnShadowAccountChanged();
     partial void OnFollowersChanging(int value);
     partial void OnFollowersChanged();
+    partial void OnFullNameChanging(string value);
+    partial void OnFullNameChanged();
     #endregion
 		
 		public User()
@@ -3611,6 +3639,26 @@ namespace Hello.Repo
 				}
 			}
 		}
+
+        [Column(Storage = "_FullName", DbType = "VarChar(100) NOT NULL", CanBeNull = false)]
+        public string FullName
+        {
+            get
+            {
+                return this._FullName;
+            }
+            set
+            {
+                if ((this._FullName != value))
+                {
+                    this.OnFullNameChanging(value);
+                    this.SendPropertyChanging();
+                    this._FullName = value;
+                    this.SendPropertyChanged("FullName");
+                    this.OnFullNameChanged();
+                }
+            }
+        }
 		
 		[Association(Name="User_Friendship", Storage="_Befriendees", ThisKey="Username", OtherKey="Befriendee")]
 		public EntitySet<Friendship> Befriendees
