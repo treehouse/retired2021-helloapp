@@ -106,5 +106,16 @@ namespace Hello.Tests
             var t = TweetParser.Parse(new QueuedTweet { Message = tweet }) as HelloTweet;
             Assert.Null(t);
         }
+
+        [Theory]
+        [InlineData("@apphandle hi5 matt")]
+        [InlineData("@apphandle hi5 @matt")]
+        public void HiFiveTest(string tweet)
+        {
+            var t = TweetParser.Parse(new QueuedTweet { Message = tweet }) as HiFiveTweet;
+
+            Assert.NotNull(t);
+            Assert.Equal(t.Friend, "matt");
+        }
     }
 }

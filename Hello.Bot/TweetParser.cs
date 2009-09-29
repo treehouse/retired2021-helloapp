@@ -67,7 +67,10 @@ namespace Hello.Bot
                     metTweet.AddFriends(tokens.Skip(1));
                     return metTweet;
                 case "hi5":
-                    HiFiveTweet hiFiveTweet = new HiFiveTweet(tokens.Skip(1).FirstOrDefault());
+                    var hifivee = tokens.Skip(1).FirstOrDefault().Trim();
+                    if (hifivee.StartsWith("@"))
+                        hifivee = hifivee.Substring(1);
+                    HiFiveTweet hiFiveTweet = new HiFiveTweet(hifivee);
                     return hiFiveTweet;
                 case "message":
                     MessageTweet messageTweet = new MessageTweet { Message = tweet.Message };
