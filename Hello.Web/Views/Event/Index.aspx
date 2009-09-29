@@ -195,9 +195,29 @@
                                 <% } else if (!String.IsNullOrEmpty((string)ViewData["ViewBy"]) && (string)ViewData["ViewBy"] == "follower") { %>
                                     <% var colour = Settings.GetHeatColour(sat.User.Followers); %>
                                     <div class="user" style="background-color: #<%= colour %>;"></div>
-                                <% } else if (!String.IsNullOrEmpty((string)ViewData["searchTerm"]) && !sat.User.HasTag((string)ViewData["searchTerm"])) { %>
-                                    <img class="user" width="24" height="24" style="opacity:0.4; filter:alpha(opacity=40);" src="<%= sat.User.ImageURL %>" />
-                                <% } else { %>
+
+                                <% }
+                                   else if (!String.IsNullOrEmpty((string)ViewData["searchTerm"]))
+                                   {
+                                       if (sat.User.FullName.Contains(((string)ViewData["searchTerm"]).ToLower()))
+                                       {
+                                           %>
+                                           <img class="user" width="24" height="24" src="<%= sat.User.ImageURL %>" />
+                                           <%
+                                       }
+                                       else if (sat.User.HasTag((string)ViewData["searchTerm"]))
+                                       {
+                                           %>
+                                           <img class="user" width="24" height="24" src="<%= sat.User.ImageURL %>" />
+                                           <%
+                                       }
+                                       else
+                                       {
+                                           %>
+                                           <img class="user" width="24" height="24" style="opacity:0.4; filter:alpha(opacity=40);" src="<%= sat.User.ImageURL %>" />
+                                           <%
+                                       }
+                                 } else { %>
                                     <img class="user" width="24" height="24" src="<%= sat.User.ImageURL %>" />
                                 <% } %>
                                 <form id="<%= sat.User.Username %>">
