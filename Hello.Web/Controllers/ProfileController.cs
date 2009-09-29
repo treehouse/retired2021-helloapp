@@ -27,7 +27,10 @@ namespace Hello.Web.Controllers
                 var redeemedTokens = user.Redemptions.OrderBy(r => r.Created).Select(r => r.Token).ToList();
                 ViewData["redeemedTokens"] = redeemedTokens;
 
-                ViewData["currentEvent"] = CurrentEvent.Slug;
+                Event current = CurrentEvent;
+                if (current != null)
+                    ViewData["currentEvent"] = CurrentEvent.Slug;
+
                 ViewData["tags"] = user.Tags.OrderByDescending(t => t.Created)
                     .Select(t => t.Name).Take(3).ToList();
 
