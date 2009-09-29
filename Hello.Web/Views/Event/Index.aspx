@@ -118,7 +118,7 @@
     <div class="checkInBar">
     <h2>Grab your seat!</h2>
     <h2 class="right">Grab your seat!</h2>
-    <a href="http://twitter.com/?status=%40HelloApp+sat+" class="checkIn">Check In</a>
+    <%= Html.ActionLink("Check In", "Faq", "Home", null, null, "instructions1", null, new { @class = "checkIn" }) %>
     </div>
     
     <div class="generalContent">
@@ -150,7 +150,7 @@
             <% } else { %>
             
                 <li class="large">
-                    <%= Html.ActionLink("Nobody has checked in yet, why don't you?", "Faq", "Home", null, null, "instructionscheckin", null, null)%>
+                    <%= Html.ActionLink("Nobody has checked in yet, why don't you?", "Faq", "Home", null, null, "instructions1", null, null)%>
                 </li>
             
             <% } %>
