@@ -607,8 +607,8 @@ body.confDay #search input#submitBtn:hover {
 	float: left;
 	text-indent: -2000em;
 	overflow: hidden;
-	width: 28px;
-	height: 28px;
+	width: 32px;
+	height: 32px;
 	margin-right: 2px;
 }
 
@@ -626,8 +626,8 @@ body.confDay #search input#submitBtn:hover {
 }
 
 .tokenImage {
-    height:28px;
-    width:28px;
+    height:32px;
+    width:32px;
 }
 
 .tagPara {
