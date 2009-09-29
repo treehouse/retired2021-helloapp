@@ -45,7 +45,7 @@ namespace Hello.Bot
                     foreach (string token in tokens.Skip(1))
                     {
                         if (token.StartsWith("!"))
-                            helloTweet.UserType = token.Substring(1);
+                            helloTweet.UserType = token.Substring(1).ToLower();
                         else if (token.StartsWith("#"))
                         {
                             string cleanTag = TagHelper.Clean(token);

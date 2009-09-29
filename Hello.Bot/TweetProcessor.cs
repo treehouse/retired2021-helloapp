@@ -156,7 +156,7 @@ namespace Hello.Bot
         {
             if (_repo
                 .UserTypes
-                .Any(t => t.Name == tweet.UserType))
+                .Any(t => t.UserTypeID == tweet.UserType))
             {
                 user.UserTypeID = tweet.UserType;
             }
