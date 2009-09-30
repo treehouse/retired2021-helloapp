@@ -32,5 +32,37 @@ namespace Hello.Repo.Properties {
                 return ((string)(this["helloappConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DEV-MELVYN\\SQL2008;Initial Catalog=helloapp;Integrated Security=True")]
+        public string helloappConnectionString1 {
+            get {
+                return ((string)(this["helloappConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IS-MATTLTEST.TESTNET\\SQL2008;Initial Catalog=helloapp;Integrated Secu" +
+            "rity=True")]
+        public string helloappConnectionString2 {
+            get {
+                return ((string)(this["helloappConnectionString2"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LTDEMO4\\INSTANCE2008;Initial Catalog=helloapp;Integrated Security=Tru" +
+            "e")]
+        public string helloappConnectionString3 {
+            get {
+                return ((string)(this["helloappConnectionString3"]));
+            }
+        }
     }
 }

@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HelloRepo.cs">
+      <DependentUpon>HelloRepo.dbml</DependentUpon>
+    </Compile>
     <Compile Include="HelloRepo.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -61,13 +64,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="app.config" />
     <None Include="HelloRepo.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>HelloRepo.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>HelloRepo.designer.cs</LastGenOutput>
     </None>
     <None Include="HelloRepo.dbml.layout">
       <DependentUpon>HelloRepo.dbml</DependentUpon>
@@ -76,6 +77,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Scripts\AuxNumbers.sql" />
     <None Include="Scripts\CreationScript.sql" />
     <None Include="Scripts\DataScript.sql" />
     <None Include="Scripts\ResetLoginsScript.sql" />
@@ -86,16 +88,19 @@
     <None Include="SQL\Data\dbo.QueuedTweets_Meta.sdcs" />
     <None Include="SQL\Data\dbo.UserTypes_Data.sql" />
     <None Include="SQL\Data\dbo.UserTypes_Meta.sdcs" />
+    <None Include="SQL\Functions\dbo.SplitString.sql" />
     <None Include="SQL\Security\Roles\db_datareader.sql" />
     <None Include="SQL\Security\Roles\db_datawriter.sql" />
     <None Include="SQL\Security\Users\hello_bot.sql" />
     <None Include="SQL\Security\Users\hello_web.sql" />
+    <None Include="SQL\Stored Procedures\dbo.SearchUsers.sql" />
     <None Include="SQL\Tables\dbo.Badges.sql" />
     <None Include="SQL\Tables\dbo.Campaigns.sql" />
     <None Include="SQL\Tables\dbo.Events.sql" />
     <None Include="SQL\Tables\dbo.Friendships.sql" />
     <None Include="SQL\Tables\dbo.HiFives.sql" />
     <None Include="SQL\Tables\dbo.Messages.sql" />
+    <None Include="SQL\Tables\dbo.Numbers.sql" />
     <None Include="SQL\Tables\dbo.Points.sql" />
     <None Include="SQL\Tables\dbo.QueuedTweets.sql" />
     <None Include="SQL\Tables\dbo.Redemptions.sql" />

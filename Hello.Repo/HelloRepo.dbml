@@ -1,14 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Database Name="helloapp" Class="HelloRepoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=RYAN\SQLEXPRESS;Initial Catalog=helloapp;Integrated Security=True" SettingsObjectName="Hello.Repo.Properties.Settings" SettingsPropertyName="helloappConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Badges" Member="Badges">
-    <Type Name="Badge">
-      <Column Name="BadgeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ImageUrl" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="Badge_UserBadge" Member="UserBadges" ThisKey="BadgeID" OtherKey="BadgeID" Type="UserBadge" />
-    </Type>
-  </Table>
+  <Connection Mode="AppSettings" ConnectionString="Data Source=IS-MATTLTEST.TESTNET\SQL2008;Initial Catalog=helloapp;Integrated Security=True" SettingsObjectName="Hello.Repo.Properties.Settings" SettingsPropertyName="helloappConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Campaigns" Member="Campaigns">
     <Type Name="Campaign">
       <Column Name="CampaignID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -22,9 +14,12 @@
       <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Slug" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Association Name="Event_Seat" Member="Seats" ThisKey="EventID" OtherKey="EventID" Type="Seat" />
+      <Column Name="Start" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" />
+      <Column Name="End" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" />
+      <Column Name="HiFiveLimit" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
       <Association Name="Event_Session" Member="Sessions" ThisKey="EventID" OtherKey="EventID" Type="Session" />
-      <Association Name="Event_UserType" Member="UserTypes" ThisKey="EventID" OtherKey="EventID" Type="UserType" />
+      <Association Name="Event_HiFive" Member="HiFives" ThisKey="EventID" OtherKey="EventID" Type="HiFive" />
+      <Association Name="Event_Seat" Member="Seats" ThisKey="EventID" OtherKey="EventID" Type="Seat" />
     </Type>
   </Table>
   <Table Name="dbo.Friendships" Member="Friendships">
@@ -37,7 +32,7 @@
   </Table>
   <Table Name="dbo.Points" Member="Points">
     <Type Name="Point">
-      <Column Name="PointID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PointID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Issued" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Amount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -63,24 +58,6 @@
       <Column Name="Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.Tokens" Member="Tokens">
-    <Type Name="Token">
-      <Column Name="TokenID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CampaignID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Token" Member="Token1" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Association Name="Token_Redemption" Member="Redemptions" ThisKey="TokenID" OtherKey="TokenID" Type="Redemption" />
-      <Association Name="Campaign_Token" Member="Campaign" ThisKey="CampaignID" OtherKey="CampaignID" Type="Campaign" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.UserBadges" Member="UserBadges">
-    <Type Name="UserBadge">
-      <Column Name="BadgeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Awarded" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Badge_UserBadge" Member="Badge" ThisKey="BadgeID" OtherKey="BadgeID" Type="Badge" IsForeignKey="true" />
-      <Association Name="User_UserBadge" Member="User" ThisKey="Username" OtherKey="Username" Type="User" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Messages" Member="Messages">
     <Type Name="Message">
       <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -97,16 +74,6 @@
       <Association Name="User_Tag" Member="User" ThisKey="Username" OtherKey="Username" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.QueuedTweets" Member="QueuedTweets">
-    <Type Name="QueuedTweet">
-      <Column Name="QueuedTweetID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Message" Type="System.String" DbType="NVarChar(140) NOT NULL" CanBeNull="false" />
-      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Processed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="ImageURL" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.TideMarks" Member="TideMarks">
     <Type Name="TideMark">
       <Column Name="TideMarkID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -115,45 +82,14 @@
       <Column Name="TimeStamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.Users" Member="Users">
-    <Type Name="User">
-      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ImageURL" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="UserTypeID" Type="System.String" DbType="Char(3)" CanBeNull="true" />
-      <Column Name="ShadowAccount" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="User_Friendship" Member="Befriendees" Storage="_Friendships" ThisKey="Username" OtherKey="Befriendee" Type="Friendship" />
-      <Association Name="User_Friendship1" Member="Befrienders" Storage="_Friendships1" ThisKey="Username" OtherKey="Befriender" Type="Friendship" />
-      <Association Name="User_Point" Member="Points" ThisKey="Username" OtherKey="Username" Type="Point" />
-      <Association Name="User_Redemption" Member="Redemptions" ThisKey="Username" OtherKey="Username" Type="Redemption" />
-      <Association Name="User_UserBadge" Member="UserBadges" ThisKey="Username" OtherKey="Username" Type="UserBadge" />
-      <Association Name="User_Message" Member="Message" ThisKey="Username" OtherKey="Username" Type="Message" Cardinality="One" />
-      <Association Name="User_Tag" Member="Tags" ThisKey="Username" OtherKey="Username" Type="Tag" />
-      <Association Name="User_Sat" Member="Sats" ThisKey="Username" OtherKey="Username" Type="Sat" />
-      <Association Name="UserType_User" Member="UserType" ThisKey="UserTypeID" OtherKey="UserTypeID" Type="UserType" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Seats" Member="Seats">
-    <Type Name="Seat">
-      <Column Name="SeatID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="SeatNumber" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
-      <Column Name="Row" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
-      <Column Name="Section" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Code" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
-      <Association Name="Seat_Sat" Member="Sats" ThisKey="SeatID" OtherKey="SeatID" Type="Sat" />
-      <Association Name="Event_Seat" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Sats" Member="Sats">
     <Type Name="Sat">
       <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SessionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SeatID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Session_Sat" Member="Session" ThisKey="SessionID" OtherKey="SessionID" Type="Session" IsForeignKey="true" />
       <Association Name="Seat_Sat" Member="Seat" ThisKey="SeatID" OtherKey="SeatID" Type="Seat" IsForeignKey="true" />
       <Association Name="User_Sat" Member="User" ThisKey="Username" OtherKey="Username" Type="User" IsForeignKey="true" />
-      <Association Name="Session_Sat" Member="Session" ThisKey="SessionID" OtherKey="SessionID" Type="Session" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Sessions" Member="Sessions">
@@ -167,10 +103,43 @@
       <Association Name="Event_Session" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.HiFives" Member="HiFives">
+    <Type Name="HiFive">
+      <Column Name="HiFiveID" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HiFiver" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" />
+      <Column Name="HiFivee" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
+      <Association Name="Event_HiFive" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
+      <Association Name="User_HiFive" Member="User" ThisKey="HiFivee" OtherKey="Username" Type="User" IsForeignKey="true" />
+      <Association Name="User_HiFive1" Member="User1" ThisKey="HiFiver" OtherKey="Username" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tokens" Member="Tokens">
+    <Type Name="Token">
+      <Column Name="TokenID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CampaignID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AllowedRedemptions" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Text" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Token_Redemption" Member="Redemptions" ThisKey="TokenID" OtherKey="TokenID" Type="Redemption" />
+      <Association Name="Campaign_Token" Member="Campaign" ThisKey="CampaignID" OtherKey="CampaignID" Type="Campaign" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Seats" Member="Seats">
+    <Type Name="Seat">
+      <Column Name="SeatID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Row" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Column]" Member="Column" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Association Name="Seat_Sat" Member="Sats" ThisKey="SeatID" OtherKey="SeatID" Type="Sat" />
+      <Association Name="Event_Seat" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.UserTypes" Member="UserTypes">
     <Type Name="UserType">
       <Column Name="UserTypeID" Type="System.String" DbType="Char(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="Ordering" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="DefaultColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
@@ -178,7 +147,45 @@
       <Column Name="HotColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
       <Column Name="WarmColour" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
       <Association Name="UserType_User" Member="Users" ThisKey="UserTypeID" OtherKey="UserTypeID" Type="User" />
-      <Association Name="Event_UserType" Member="Event" ThisKey="EventID" OtherKey="EventID" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.QueuedTweets" Member="QueuedTweets">
+    <Type Name="QueuedTweet">
+      <Column Name="QueuedTweetID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Processed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ImageURL" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Followers" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ImageURL" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UserTypeID" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="ShadowAccount" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Followers" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="User_Friendship" Member="Befriendees" ThisKey="Username" OtherKey="Befriendee" Type="Friendship" />
+      <Association Name="User_Friendship1" Member="Befrienders" ThisKey="Username" OtherKey="Befriender" Type="Friendship" />
+      <Association Name="User_Point" Member="Points" ThisKey="Username" OtherKey="Username" Type="Point" />
+      <Association Name="User_Redemption" Member="Redemptions" ThisKey="Username" OtherKey="Username" Type="Redemption" />
+      <Association Name="User_Message" Member="Message" ThisKey="Username" OtherKey="Username" Type="Message" Cardinality="One" />
+      <Association Name="User_Tag" Member="Tags" ThisKey="Username" OtherKey="Username" Type="Tag" />
+      <Association Name="User_Sat" Member="Sats" ThisKey="Username" OtherKey="Username" Type="Sat" />
+      <Association Name="User_HiFive" Member="HiFivees" Storage="_HiFives" ThisKey="Username" OtherKey="HiFivee" Type="HiFive" />
+      <Association Name="User_HiFive1" Member="HiFivers" Storage="_HiFives1" ThisKey="Username" OtherKey="HiFiver" Type="HiFive" />
+      <Association Name="UserType_User" Member="UserType" ThisKey="UserTypeID" OtherKey="UserTypeID" Type="UserType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.SearchUsers" Method="SearchUsers">
+    <Parameter Name="SearchString" Parameter="searchString" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="MaxResults" Parameter="maxResults" Type="System.Int32" DbType="Int" />
+    <Return Type="ID1" />
+  </Function>
 </Database>

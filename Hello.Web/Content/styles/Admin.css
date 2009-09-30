@@ -1,0 +1,57 @@
+﻿body, input
+{
+	font-family: GillSans, Calibri, Trebuchet, Sans-Serif;
+}
+
+table
+{
+	border-collapse: collapse;
+}
+
+th
+{
+	text-align: left;
+}
+
+td
+{
+	border-top: solid 1px #ccc;
+}
+
+th, td
+{
+	padding: 0 1em;
+}
+
+label
+{
+	display: block;
+	float: left;
+	width: 10em;
+}
+
+h1 small
+{
+	float: right;
+	font-size: 50%;
+}
+
+
+/* Validation */
+
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}

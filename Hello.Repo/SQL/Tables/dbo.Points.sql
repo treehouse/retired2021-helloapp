@@ -1,11 +1,12 @@
 CREATE TABLE [dbo].[Points]
 (
-[PointID] [int] NOT NULL,
+[PointID] [int] NOT NULL IDENTITY(1, 1),
 [Username] [varchar] (50) COLLATE Latin1_General_CI_AS NOT NULL,
 [Issued] [datetime] NOT NULL,
 [Amount] [int] NOT NULL,
 [Details] [nchar] (20) COLLATE Latin1_General_CI_AS NOT NULL
 )
+
 
 ALTER TABLE [dbo].[Points] ADD 
 CONSTRAINT [PK_Points] PRIMARY KEY CLUSTERED  ([PointID])

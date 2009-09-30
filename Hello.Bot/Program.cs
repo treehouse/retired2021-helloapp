@@ -18,43 +18,53 @@ namespace Hello.Bot
         {
             log4net.Config.XmlConfigurator.Configure();
 
-            var repo = new HelloRepoDataContext(Settings.ConnectionString);
-            var engine = new Engine(repo);
-
-            // Collect & store tweets
-            
-            //try
-            //{
-            //    engine.QueueHashTagged();
-            //}
-            //catch (WebException e)
-            //{
-            //    _log.Error("WebException in Engine.QueueHashTagged", e);
-            //}
-
             try
             {
-                engine.QueueMentions();
+                var queue = args.Length == 0 || args[0].Equals("queue", StringComparison.InvariantCultureIgnoreCase);
+                var process = args.Length == 0 || args[0].Equals("process", StringComparison.InvariantCultureIgnoreCase);
+
+                HelloRepoDataContext repo = new HelloRepoDataContext(Settings.ConnectionString);
+                TweetQueuer queuer = new TweetQueuer(repo);
+                TweetProcessor processor = new TweetProcessor(repo);
+
+                // Collect & store tweets
+                if (queue)
+                {
+                    _log.Info("About to queue tweets");
+                    try
+                    {
+                        queuer.QueueMentions();
+                    }
+                    catch (WebException e)
+                    {
+                        _log.Error("WebException in Engine.QueueMentions", e);
+                    }
+                    catch (Exception e)
+                    {
+                        _log.Fatal("Exception while Queueing", e);
+                    }
+                    _log.Info("Done queueing tweets");
+                }
+
+                // Process tweets
+                if (process)
+                {
+                    _log.Info("About to process tweets");
+                    try
+                    {
+                        processor.ProcessTweets();
+                    }
+                    catch (Exception e)
+                    {
+                        _log.Fatal("Exception while Processing", e);
+                    }
+                    _log.Info("Done processing tweets");
+                }
             }
-            catch (WebException e)
+            catch (Exception e)
             {
-                _log.Error("WebException in Engine.QueueMentions", e);
+                _log.Fatal("Unhandled Exception", e);
             }
-            
-            //try
-            //{
-            //    engine.QueueDirectMessages();
-            //}
-            //catch (WebException e)
-            //{
-            //    _log.Error("WebException in Engine.QueueDirectMessages", e);
-            //}
-
-            // Process tweets
-            engine.ProcessTweets();
-
-            //Console.WriteLine("Done");
-            //Console.ReadKey();
         }
     }
 }

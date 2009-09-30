@@ -5,7 +5,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Hello.App.Controllers;
+using Hello.Web.Controllers;
 using Hello.Utils;
 using Moq;
 using Xunit;
@@ -18,13 +18,13 @@ namespace Hello.Tests
         public HomeControllerTests()
         {
             var mockSettings = new Mock<ISettingsImpl>();
-            mockSettings.Setup(settings => settings.Get("ConnectionString")).Returns("ConnectionString");
-            mockSettings.Setup(s => s.Get("TwitterBotUsername")).Returns("apphandle");
+            mockSettings.Setup(settings => settings.GetString("ConnectionString")).Returns("ConnectionString");
+            mockSettings.Setup(s => s.GetString("TwitterBotUsername")).Returns("apphandle");
             Settings.SettingsImplementation = mockSettings.Object;
         }
 
         [Theory]
-        [InlineData("", "", "", "", "http://twitter.com/?status=%40apphandle+hello+!+%23+%23+%23")]
+        [InlineData("des", "", "", "", "http://twitter.com/?status=%40apphandle+hello+!des")]
         [InlineData("dev", "tag1", "tag2", "", "http://twitter.com/?status=%40apphandle+hello+!dev+%23tag1+%23tag2")]
         public void JoinTest(string userType, string tag1, string tag2, string tag3, string expectedResult)
         {

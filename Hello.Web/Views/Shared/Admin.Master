@@ -1,0 +1,30 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Hello » Admin</title>
+    <link rel="shortcut icon" type="image/ico" href="~/Content/images/favicon.ico" />
+    <link href="~/Content/styles/Admin.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server" />
+</head>
+
+<body>
+    <div>
+    
+        <h1>
+            <%= Html.ActionLink("Admin", "Index", "Admin") %>
+            
+            <% if (Page.User.Identity.IsAuthenticated) { %>
+                <small>
+                    <%= Html.ActionLink("[Log Off]", "LogOff", "Account") %>
+                </small>
+            <% } %>
+        </h1>
+        
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        
+    </div>
+</body>
+</html>

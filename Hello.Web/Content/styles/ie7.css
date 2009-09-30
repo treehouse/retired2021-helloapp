@@ -1,0 +1,19 @@
+.mainNav li {
+	float: left;
+}
+
+.narrowContent h2 {
+	padding-top: 5px;
+}
+
+.castWrapper {
+	border:1px dashed #dc3d2a;
+}
+
+.checkInBar h2 {
+/*	padding-bottom: 10px;*/
+}
+
+ul.categories li {
+	padding: 12px 6px;
+}

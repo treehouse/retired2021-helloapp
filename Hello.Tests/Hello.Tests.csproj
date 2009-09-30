@@ -39,6 +39,16 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Abstractions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Routing">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -57,11 +67,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProcessedTweetTests.cs" />
+    <Compile Include="HomeControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TagHelperTests.cs" />
+    <Compile Include="TestHelperMethods.cs" />
+    <Compile Include="TweetParserTests.cs" />
+    <Compile Include="TweetProcessorTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hello.Web\Hello.Web.csproj">
+      <Project>{46778D27-28C5-48EC-AE21-07B554245DA5}</Project>
+      <Name>Hello.App</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hello.Bot\Hello.Bot.csproj">
       <Project>{14718FEE-E4D8-4C34-BE23-85D55927F03C}</Project>
       <Name>Hello.Bot</Name>

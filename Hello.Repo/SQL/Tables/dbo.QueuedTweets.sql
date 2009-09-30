@@ -5,8 +5,12 @@ CREATE TABLE [dbo].[QueuedTweets]
 [Message] [nvarchar] (500) COLLATE Latin1_General_CI_AS NOT NULL,
 [Created] [datetime] NOT NULL,
 [Processed] [bit] NOT NULL CONSTRAINT [DF_QueuedTweets_Processed] DEFAULT ((0)),
-[ImageURL] [varchar] (500) COLLATE Latin1_General_CI_AS NOT NULL
+[ImageURL] [varchar] (500) COLLATE Latin1_General_CI_AS NOT NULL,
+[Followers] [int] NOT NULL CONSTRAINT [DF_QueuedTweets_Followers] DEFAULT ((0)),
+[FullName] [varchar] (100) COLLATE Latin1_General_CI_AS NOT NULL CONSTRAINT [DF_QueuedTweets_FullName] DEFAULT ('')
 )
+
+
 
 
 ALTER TABLE [dbo].[QueuedTweets] ADD 
