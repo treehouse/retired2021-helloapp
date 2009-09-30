@@ -60,7 +60,7 @@
                     var tokenFileName = $(tokenImageInput).val();
                     var tokenText = $(tokenImageInput).attr('text');
                     var tokenPoints = $(tokenImageInput).attr('points');
-                    tokenHtml += '<img class="tokenImage" title="' + tokenText + ' (' + tokenPoints + ')" alt="' + tokenText + ' (' + tokenPoints + ')" src="/Content/images/tokens/' + tokenFileName + '"/>';
+                    tokenHtml += '<img class="tokenImage" title="' + tokenText + ' (' + tokenPoints + ' points)" alt="' + tokenText + ' (' + tokenPoints + ' points)" src="/Content/images/tokens/' + tokenFileName + '"/>';
                 });
                 tokenList.html(tokenHtml);
 
@@ -215,7 +215,7 @@
                                        else
                                        {
                                            %>
-                                           <img class="user" width="24" height="24" style="opacity:0.4; filter:alpha(opacity=40);" src="<%= sat.User.ImageURL %>" />
+                                           <img class="user" width="24" height="24" style="opacity:0.2; filter:alpha(opacity=20);" src="<%= sat.User.ImageURL %>" />
                                            <%
                                        }
                                  } else { %>

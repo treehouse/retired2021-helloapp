@@ -49,6 +49,14 @@
 		<p><span class="read">Choose what you're best at (Design, Development, Business)
 		and choose three tags for yourself. You can change your category and tags by just re-checking in.</span><br><code>@helloapp hello !des #ux #html5 #movies</code><br><code>@helloapp hello !dev #php #django #mysql</code><br><code>@helloapp hello !biz #ideas #fun #music</code></p>
 		
+		<p><span class="read">When you view the audience based on their category, they will be colored in the following ways:</span></p>
+
+        <p><span class="read">
+        Designer = <span style="background-color: #00cc00; color: #FFFFFF;">Green</span><br />
+        Developer = <span style="background-color: #cc0000; color: #FFFFFF;">Red</span><br />
+        Business = <span style="background-color: #0000cc; color: #FFFFFF;">Blue</span>
+        </span></p>
+		
 		<h4>Getting points and meeting people</h4>
 
 		<p><span class="read">When you meet someone and they give you their Twitter username, just tweet:</span><br><code>@helloapp met @their-username</code></p>
